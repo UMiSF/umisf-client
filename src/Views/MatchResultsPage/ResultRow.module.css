@@ -1,0 +1,26 @@
+.row{
+    border-radius: 20px;
+    height: auto;
+    /* font-size: 1vw; */
+    margin-bottom: 0.5%;
+    padding: 1.2vw;
+}
+
+.row:hover{
+    cursor: pointer;
+    background-color:  rgba(170, 170, 170, 0.638);
+}
+
+.match-result-table{
+    /* width: 85%; */
+}
+
+.age-group{
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+.type{
+    font-size: 0.7vw;
+    font-weight: bold;
+}

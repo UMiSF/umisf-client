@@ -1,0 +1,59 @@
+.body {
+  /* height: 100%; */
+  margin-left: 1%;
+  
+  
+}
+
+.finished-match-result-section{
+  position: absolute;
+  width: 69%;
+}
+
+.ongoing-match-result-section{
+  position: absolute;
+  width: 30%;
+  margin-left: 69%;
+  margin-top: 1%;
+  margin-right: 0;
+  display: block;
+  overflow: auto;
+}
+.match-result-table{
+  padding: 30px;
+  display: block;
+  overflow: auto;
+  margin: 1%;
+  border-radius: 20px;
+  
+}
+
+.header{
+  /* position: absolute; */
+  height: 100px;
+  height: fit-content;
+}
+
+.title{
+  margin: 1%;
+}
+
+.select-container{
+/* height: 60%;
+width: 50%;
+margin: 1%; */
+align-items: center;
+padding: 5px;
+}
+
+.select-btn{
+position: relative;
+float: right;
+}
+
+
+.select-menu{
+  height: fit-content;
+}
+
+
