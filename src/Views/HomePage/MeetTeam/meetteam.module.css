@@ -1,0 +1,84 @@
+.team{
+    height:50vw;
+    width: 100%;
+    padding: 1vw;
+}
+
+.team-title{
+    width:100%;
+    text-transform: uppercase;
+    height: 25vw;
+    padding: 25px;
+    background:url('../../../assests/images/team.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-image: 
+}
+
+.team-title span{
+    font-family: 'roboto';
+    font-size: 40px;
+}
+
+.container{
+    display: block;
+    background-color: #102c42;
+    width: 100%;
+    padding: 2vw;
+    height: 25vw;
+}
+
+.captain-contaier{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+}
+
+.group-photo img{
+    height:25vw;
+    object-fit: scale-down;
+    margin-left: 30%;
+}
+
+/* .captains,.vice-captains{
+    display:inline-flex;
+} */
+
+.member{
+    margin: 1vw 1.7vw;
+}
+
+@media screen and (max-width:600px){
+    .team{
+        height:140vw;
+    }
+
+    .container{
+        display: block;
+    }
+   
+
+    .group-photo img{
+        height:65vw;
+        object-fit: scale-down;
+    }
+
+    .member{
+        margin: 1vw 9.5vw;
+    }
+}
+@media screen and (max-width:425px){
+
+    .team{
+        height:150vw;
+    }
+
+    .captain-contaier{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .member{
+        margin: 1vw 9.5vw;
+    }
+}
