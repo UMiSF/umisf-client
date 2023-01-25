@@ -18,7 +18,7 @@ const HomePage = () => {
                   <a href="/">Home</a>
                   </li>
             <li className={`${styles['navBarItem']}`}>
-              <a href="#">About</a>
+              <a href="/about">About</a>
             </li>
             <li className={`${styles['navBarItem']}`}>
               <a href="/contact-us">Contact Us</a>
