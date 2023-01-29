@@ -1,6 +1,8 @@
 .contct-us-form{
-    padding:15vw;
-    padding-top: 4vw;
+    margin:8vw;
+    padding: 7vw;
+    padding-top: 5vw;
+    border: 0.5px rgb(224, 220, 220) solid;
 }
 
 .label{

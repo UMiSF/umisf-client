@@ -12,7 +12,7 @@
 .team-overlay{
     background:linear-gradient(to right,rgba(0,0,0,0.4),rgba(0, 0, 0, 0.4));
     height:28vw;
-    padding: 7vw;
+    padding: 6vw;
     text-align: center;
 }
 
@@ -41,7 +41,7 @@
 
 .team-description{
     color: white;
-    padding: 20vw;
+    padding: 19vw;
     padding-top: 3vw;
     font-size: 1.2vw;
     font-family: 'Montserrat';
