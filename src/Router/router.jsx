@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 // Route imports
 import HomePage from "../Views/HomePage/HomePage";
 import AboutPage from "../Views/AboutPage/AboutPage";
+import ContactUsPage from "../Views/ContactUsPage/ContactUs";
 import RegistrationPage from "../Views/RegistrationPage/RegistrationPage";
 import DrawsPage from "../Views/DrawsPage/DrawsPage";
 import MatchSchedulePage from "../Views/MatchSchedulePage/MatchSchedulePage";
@@ -29,6 +30,10 @@ export default function AppRouter() {
             <Route
               path="about"
               element={<AboutPage />}
+            />
+             <Route
+              path="contact-us"
+              element={<ContactUsPage />}
             />
                         <Route
               path="registration"

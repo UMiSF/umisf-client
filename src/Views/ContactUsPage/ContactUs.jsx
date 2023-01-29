@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styles from './contactus.module.css'
 import Footer from '../HomePage/Footer/footer'
 import Header from '../HomePage/Header/Header'
+import Member from './Member/memberComponent'
 
 function ContactUs() {
     const loadSideBar = ()=>{
@@ -60,6 +61,24 @@ function ContactUs() {
         </div>
        
       </div>
+
+      <div className={`${styles['container']}`}>
+          <div className={`${styles['captain-contaier']}`}>
+          <div className={`${styles['member']}`}>
+              <Member img={'Captain_male.jpg'} name={'Nadun Gunawardana'} tag={'Captain'} phone={'0764197875'}/>
+              </div>
+              <div className={`${styles['member']}`}>
+              <Member img={'ViceCaptain_male.jpg'} name={'Vinul Fernando'} tag={'Vice Captain'} phone={'0764197875'}/>
+              </div>
+              <div className={`${styles['member']}`}>
+                <Member img={'Captain_female.JPG'} name={'Nethmi Jayakody'} tag={'Captain'} phone={'0764197875'}/>
+              </div>
+              <div className={`${styles['member']}`}>
+              <Member img={'ViceCaptain_female.jpg'} name={'Dulja Bamunusinghe'} tag={'Vice Captain'} phone={'0764197875'}/>
+              </div>
+          </div>
+        </div>
+
       <div className={`${styles['contct-us-form']}`}>
         <form className="needs-validation" novalidate>
           <div className="form-row">

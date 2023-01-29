@@ -1,51 +1,71 @@
 .team{
-    height:50vw;
+    height:30vw;
     width: 100%;
     padding: 1vw;
+    align-items: center;
+    background: url('../../../assests/images/team.jpeg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.team-overlay{
+    background:linear-gradient(to right,rgba(0,0,0,0.4),rgba(0, 0, 0, 0.4));
+    height:28vw;
+    padding: 6vw;
+    text-align: center;
 }
 
 .team-title{
     width:100%;
     text-transform: uppercase;
-    height: 25vw;
-    padding: 25px;
-    background:url('../../../assests/images/team.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-image: 
+    color:white;
+    overflow: hidden;
+    font-family: 'Roboto';
+    font-size: 3vw;
 }
 
-.team-title span{
-    font-family: 'roboto';
-    font-size: 40px;
-}
-
-.container{
-    display: block;
-    background-color: #102c42;
+/* .group-photo{
+    filter: grayscale(100%);
     width: 100%;
-    padding: 2vw;
-    height: 25vw;
 }
 
-.captain-contaier{
-    display: flex;
-    flex-direction: row;
-    margin-left: 10%;
+.team-title-span{
+    padding: 1vw;
 }
 
-.group-photo img{
-    height:25vw;
-    object-fit: scale-down;
-    margin-left: 30%;
-}
-
-/* .captains,.vice-captains{
-    display:inline-flex;
+.team-title-span span{
+    font-family: 'roboto';
+    font-size: 4vw;
 } */
 
-.member{
-    margin: 1vw 1.7vw;
+.team-description{
+    color: white;
+    padding: 19vw;
+    padding-top: 3vw;
+    font-size: 1.2vw;
+    font-family: 'Montserrat';
+    font-weight: bold;
+}
+
+@media screen and (max-width:1050px){
+
+    .captain-contaier{
+        margin-left: 21.5%;
+    }
+
+    .member{
+        margin: 1vw -0.9vw;
+    }
+}
+
+@media screen and (max-width:800px){
+    .captain-contaier{
+        margin-left: 20.5%;
+    }
+    .member{
+        margin: 1vw -0.5vw;
+    }
 }
 
 @media screen and (max-width:600px){
