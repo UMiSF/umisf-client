@@ -57,7 +57,7 @@ const GalleryPage = () => {
       </div>
       <div className={`${Styles["gallery"]}`}>
         <div className={`${Styles["gallery-title"]}`}>
-          <h1 style={{ Height: "10px", color: "white" }}>Gallery</h1>
+          <h1 style={{ color: "white" }}>Gallery</h1>
         </div>
 
         <div className={`${Styles["gallery-content"]} `}>

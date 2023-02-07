@@ -786,7 +786,7 @@ const MatchResultsPage = () => {
             {tempFinishedMatches?.map((match, index) => {
               return (
                 <Link
-                  to={`../match-result/${match.match_id}`}
+                  to={`../match-results/${match.match_id}`}
                   state={{ obj: match }}
                   key={index}
                   style={{ textDecoration: "none", color: "black" }}

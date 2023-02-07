@@ -33,7 +33,7 @@ export default function AppRouter() {
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
           <Route path="match-results" element={<MatchResultsPage />} />
 
-          <Route path="match-result/:matchid" element={<FinishedMatchCard />} />
+          <Route path="match-results/:matchid" element={<FinishedMatchCard />} />
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
           <Route path="photos" element={<GalleryPage />} />
           <Route path="photos/:title" element={<PhotosPage />} />

@@ -51,10 +51,10 @@
 }
 
 .gallery{
-    padding-top: 5%;
+    padding-top: 1%;
     width: 100%;
     height: fit-content;
-    background-image:linear-gradient(to right, rgba(0,0,0,0.5), rgba(0, 0, 0, 0.363)), url('./Images/cover.webp');
+    background-image:url('./Images/album_bg.png');
     background-repeat: no-repeat;
     background-attachment: fixed;  
     background-size: cover;
@@ -64,7 +64,8 @@
 .gallery-title{
     
     height: 3rem;
-    padding-left: 5%;
+    padding-left: 3.3%;
+    padding-bottom: 5%;
 }
 
 .gallery-content{
