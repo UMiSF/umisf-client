@@ -1,5 +1,6 @@
 import React , {useEffect} from 'react'
 import Footer from '../HomePage/Footer/footer';
+import Header from '../HeaderPage/HeaderPage'
 import styles from './aboutPage.module.css'
 
 

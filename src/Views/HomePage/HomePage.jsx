@@ -1,15 +1,16 @@
 import React , {useEffect} from 'react'
-import Header from './Header/Header'
+import Header from '../HeaderPage/HeaderPage'
 import CountDownTimer from './CountDown/CountDownTimer'
 import MeetTeam from './MeetTeam/MeetTeam'
 import Footer from './Footer/footer'
 import Tshirt from './Tshirt/tshirt'
+import HeaderPage from '../HeaderPage/HeaderPage'
 
 const HomePage = () => {
 
   return (
     <div>
-      <Header/>
+      <HeaderPage/>
       <CountDownTimer />
       <MeetTeam/>
       <Tshirt/>
