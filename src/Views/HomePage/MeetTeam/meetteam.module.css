@@ -1,28 +1,28 @@
-.team{
-    height:30vw;
-    width: 100%;
-    padding: 1vw;
-    align-items: center;
-    background: url('../../../assests/images/team.jpeg');
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+.team {
+  height: 30vw;
+  width: 100%;
+  padding: 1vw;
+  align-items: center;
+  background: url("../../../assests/images/team.jpeg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.team-overlay{
-    background:linear-gradient(to right,rgba(0,0,0,0.4),rgba(0, 0, 0, 0.4));
-    height:28vw;
-    padding: 6vw;
-    text-align: center;
+.team-overlay {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  height: 28vw;
+  padding: 6vw;
+  text-align: center;
 }
 
-.team-title{
-    width:100%;
-    text-transform: uppercase;
-    color:white;
-    overflow: hidden;
-    font-family: 'Roboto';
-    font-size: 3vw;
+.team-title {
+  width: 100%;
+  text-transform: uppercase;
+  color: white;
+  overflow: hidden;
+  font-family: "Roboto";
+  font-size: 3vw;
 }
 
 /* .group-photo{
@@ -39,66 +39,63 @@
     font-size: 4vw;
 } */
 
-.team-description{
-    color: white;
-    padding: 19vw;
-    padding-top: 3vw;
-    font-size: 1.2vw;
-    font-family: 'Montserrat';
-    font-weight: bold;
+.team-description {
+  color: white;
+  padding: 19vw;
+  padding-top: 3vw;
+  font-size: 1.2vw;
+  font-family: "Montserrat";
+  font-weight: bold;
 }
 
-@media screen and (max-width:1050px){
+@media screen and (max-width: 1050px) {
+  .captain-contaier {
+    margin-left: 21.5%;
+  }
 
-    .captain-contaier{
-        margin-left: 21.5%;
-    }
-
-    .member{
-        margin: 1vw -0.9vw;
-    }
+  .member {
+    margin: 1vw -0.9vw;
+  }
 }
 
-@media screen and (max-width:800px){
-    .captain-contaier{
-        margin-left: 20.5%;
-    }
-    .member{
-        margin: 1vw -0.5vw;
-    }
+@media screen and (max-width: 800px) {
+  .captain-contaier {
+    margin-left: 20.5%;
+  }
+  .member {
+    margin: 1vw -0.5vw;
+  }
 }
 
-@media screen and (max-width:600px){
-    .team{
-        height:140vw;
-    }
+@media screen and (max-width: 600px) {
+  .team {
+    height: 140vw;
+  }
 
-    .container{
-        display: block;
-    }
-   
+  .container {
+    display: block;
+  }
 
-    .group-photo img{
-        height:65vw;
-        object-fit: scale-down;
-    }
+  .group-photo img {
+    height: 65vw;
+    object-fit: scale-down;
+  }
 
-    .member{
-        margin: 1vw 9.5vw;
-    }
+  .member {
+    margin: 1vw 9.5vw;
+  }
 }
-@media screen and (max-width:425px){
+@media screen and (max-width: 425px) {
+  .team {
+    height: 150vw;
+  }
 
-    .team{
-        height:150vw;
-    }
+  .captain-contaier {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .captain-contaier{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .member{
-        margin: 1vw 9.5vw;
-    }
+  .member {
+    margin: 1vw 9.5vw;
+  }
 }
