@@ -1,0 +1,48 @@
+.navbar-container {
+  align-items: center;
+  margin:2vw 6vw;
+}
+
+.navbar-item {
+  list-style: none;
+  margin: 0 1vw;
+}
+
+.navbar-item-link {
+  text-decoration: none;
+  color: black;
+  font-family: "Hind";
+  font-size: 15px;
+}
+
+.navbar-item-link img {
+  width: 20px;
+}
+
+.navbar-ul {
+  display: flex;
+  flex-direction: row;
+  transition: ease-in-out 0.1s;
+}
+
+.navbar-sections{
+  display: flex;
+  flex-direction: row;
+  transition: ease-in-out 0.1s;
+}
+
+@media only screen and (max-width:1080px){
+  .navbar-ul{
+    display: block;
+  }
+
+  .navbar-sections{
+    justify-content: space-between;
+  }
+
+  .navbar-container {
+    margin: 40px 6vw;
+    margin-right: 9vw;
+  }
+
+}
