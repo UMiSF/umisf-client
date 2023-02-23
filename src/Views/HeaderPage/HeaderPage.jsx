@@ -11,7 +11,6 @@ const HeaderPage = () => {
 
   return (
     <div>
-      <div className={`${styles["headerDiv"]}`}>
         <div className={`${styles["navBarList"]}`}>
           <img
             src={require("../../assests/images/umisf_logo.png")}
@@ -65,20 +64,8 @@ const HeaderPage = () => {
               <a href="#">Register</a>
             </li>
           </ul>
-        </div>
-        {/* ---- */}
-        <div className={`${styles["UMiSF-container"]}`}>
-          <h1>UMiSF</h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. A <br />
-            facere eligendi esse explicabo laborum repudiandae corporis <br />
-            praesentium et ducimus quod ut veniam deleniti periam
-          </p>
-
-          <button type="button">View More</button>
-        </div>
+        </div> 
       </div>
-    </div>
   );
 };
 
