@@ -47,10 +47,13 @@ export default function AppRouter() {
 
           {type === 1 ? (
             <Route>
-              <Route exact path="admin" >
+              <Route exact path="admin">
                 <Route path="" element={<AdminHomePage />} />
                 <Route path="gallery" element={<AdminGalleryPage />} />
-                <Route path="gallery/year/:year" element={<AdminGalleryViewYearPage />} />
+                <Route
+                  path="gallery/year/:year"
+                  element={<AdminGalleryViewYearPage />}
+                />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />

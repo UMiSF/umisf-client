@@ -30,7 +30,7 @@ const AdminGalleryPage = () => {
   return (
     <div className={`${styles["gallery-container"]}`}>
       <AdminHeader />
-      <AdminNavbar />
+      <AdminNavbar page='gallery'/>
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/gallery">Gallery</a>
       </div>

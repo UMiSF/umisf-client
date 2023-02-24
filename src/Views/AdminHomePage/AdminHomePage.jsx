@@ -7,7 +7,7 @@ const AdminHomePage = () => {
     return (
         <div className={`${styles["home-container"]}`}>
             <AdminHeader/>
-            <AdminNavbar/>
+            <AdminNavbar page='home'/>
             Home
         </div>
     );
