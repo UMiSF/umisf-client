@@ -20,6 +20,7 @@ import AdminHeader from "../Views/AdminHeaderPage/AdminHeader";
 import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
 import AdminGalleryViewYearPage from "../Views/AdminGalleyViewYearPage/AdminGalleryViewYearPage";
+import AdminUserAccountsPage from '../Views/AdminUserAccountsPage/AdminUserAccountsPage'
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -53,6 +54,10 @@ export default function AppRouter() {
                 <Route
                   path="gallery/year/:year"
                   element={<AdminGalleryViewYearPage />}
+                />
+                <Route
+                  path="user_accounts"
+                  element={<AdminUserAccountsPage />}
                 />
                 <Route path="*" element={<NotFound />} />
               </Route>
