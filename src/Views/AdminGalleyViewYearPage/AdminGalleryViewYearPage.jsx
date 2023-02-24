@@ -6,12 +6,15 @@ import styles from "./adminGalleryViewYearPage.module.css";
 
 const AdminGalleryViewYearPage = () => {
   let { year } = useParams();
+  const [images, setImages] = useState([
+
+  ]);
   return (
     <div className={`${styles["gallery-container"]}`}>
       <AdminHeader />
       <AdminNavbar />
       <div className={`${styles["main-title"]}`}>
-        Gallery
+      <a href="/admin/gallery">Gallery</a>
         <img
           src={require("../../assests/images/forward_arrow.png")}
           alt=""
@@ -24,7 +27,14 @@ const AdminGalleryViewYearPage = () => {
         Upload
         </button>
       </div>
-      
+      <div className={`${styles["image-container"]}`}>
+        {images.map((image) => (
+          <a href={`gallery/year/${image}`} className={`${styles["folder"]}`}>
+            <img src={require("../../assests/images/folder.png")} alt="" />{" "}
+            {year}
+          </a>
+        ))}
+      </div>
     </div>
   );
 };

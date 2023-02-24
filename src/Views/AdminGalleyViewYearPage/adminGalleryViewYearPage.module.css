@@ -15,6 +15,19 @@
   font-size: 25px;
 }
 
+.main-title a {
+    font-family: "Hind";
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 25px;
+    text-decoration: none;
+    color: #0c0744;
+  }
+
+.main-title img{
+    width: 16px;
+}
+
 .tool-bar {
   background: white;
   color: #0c0744;
@@ -34,9 +47,8 @@
   margin-right: 1vw;
 }
 
-.folder-container {
+.image-container {
   margin-top: 3vw;
-  background: white;
   color: black;
   margin: 60px 10vw;
   padding: 2vw;

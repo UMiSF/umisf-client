@@ -6,13 +6,17 @@
 
 .main-title {
   background: white;
-  color: #0c0744;
   margin: 10px 10vw;
   padding: 8px 13px;
+}
+
+.main-title a {
   font-family: "Hind";
   font-weight: bold;
   letter-spacing: 2px;
   font-size: 25px;
+  text-decoration: none;
+  color: #0c0744;
 }
 
 .tool-bar {
@@ -25,8 +29,8 @@
   font-size: 16px;
 }
 
-.tool-bar button{
-    text-align: left;
+.tool-bar button {
+  text-align: left;
   border: none;
   background: transparent;
 }

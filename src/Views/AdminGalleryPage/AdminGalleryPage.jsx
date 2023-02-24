@@ -9,16 +9,18 @@ const AdminGalleryPage = () => {
     <div className={`${styles["gallery-container"]}`}>
       <AdminHeader />
       <AdminNavbar />
-      <div className={`${styles["main-title"]}`}>Gallery</div>
+      <div className={`${styles["main-title"]}`}>
+        <a href="/admin/gallery">Gallery</a>
+      </div>
       <div className={`${styles["tool-bar"]}`}>
         <button>
-        <img src={require("../../assests/images/add.png")} alt="" /> Create
-        folder
+          <img src={require("../../assests/images/add.png")} alt="" /> Create
+          folder
         </button>
       </div>
       <div className={`${styles["folder-container"]}`}>
         {years.map((year) => (
-          <a  href={`gallery/year/${year}`} className={`${styles["folder"]}`}>
+          <a href={`gallery/year/${year}`} className={`${styles["folder"]}`}>
             <img src={require("../../assests/images/folder.png")} alt="" />{" "}
             {year}
           </a>
