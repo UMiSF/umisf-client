@@ -1,7 +1,8 @@
 .gallery-container {
   background: #f7f7fe;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
+  min-height: 100vh;
 }
 
 .main-title {
@@ -41,21 +42,30 @@
 }
 
 .folder {
-  text-decoration: none;
-  font-size: 16px;
-  font-family: "Hind";
   padding: 16px;
-  color: black;
   align-items: center;
   display: block;
   border-bottom: 1px solid #d7d8ed;
   width: 100%;
   transition: ease-in-out 0.7s;
+  display: flex;
 }
 
-.folder:hover {
+.folder a {
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Hind";
+  color: black;
+  flex: 1;
+}
+
+.folder:hover{
   background: #f7f7fe;
   transform: scale(1.01);
+}
+
+.folder:hover .folder-delete{
+  display: block;
 }
 
 .folder img {
@@ -64,9 +74,23 @@
 }
 
 .folder-container {
-  margin-top: 3vw;
   background: white;
   color: black;
   margin: 60px 10vw;
   padding: 2vw;
+  margin-bottom: 0;
+}
+
+.folder-delete{
+  border: none;
+  background: transparent;
+  display: none;
+  height:25px;
+  transition: ease-in-out 10s;
+}
+
+.folder-delete img{
+  width: 25px;
+  position: relative;
+  top: -0.5vw;
 }
