@@ -16,7 +16,7 @@ import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import OrganizerHomePage from "../Views/OrganizerHomePage/OrganizerHomePage";
 import TableHomePage from "../Views/TableHomePage/TableHomePage";
 import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
-
+import AdminYearlyConfigurations from "../Views/AdminYearlyConfigurations/AdminYearlyConfigurations";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -66,8 +66,8 @@ export default function AppRouter() {
 
           {type === 1 ? (
             <Route>
-              <Route exact path="admin" element={<HeaderPage type={1} />}>
-                <Route path="" element={<AdminHomePage />} />
+              <Route exact path="admin" element={<AdminYearlyConfigurations type={1} />}>
+                <Route path="yearly-configurations" element={<AdminYearlyConfigurations />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />
