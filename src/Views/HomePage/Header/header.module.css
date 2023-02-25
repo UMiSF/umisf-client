@@ -1,0 +1,211 @@
+.headerDiv{
+    background-image:linear-gradient(to right,rgba(0,0,0,0.3),rgba(9, 132, 227,0.2)), 
+                url('../../../assests/images/HomePage.jpg');
+    color:white;
+    width:100%;
+    height:100vh;
+    background-size: cover;
+    background-position:top;
+}
+.navBarList{
+    display: flex;
+    margin-right: 4em;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5em 0;
+    z-index: -1;
+}
+
+.navBarList img{
+    width:50px;
+    height: 46px;
+    margin-left: 7vw;
+}
+
+.side-img{
+    width:50px;
+    height: 46px;
+    margin-left: 7vw;
+    position: absolute;
+    top: 5vw;
+    display: none;
+}
+
+.toggle-button{
+    font-size: 7vw;
+    position:absolute;
+    z-index: 1;
+    right: 7vw;
+    top:7vw;
+    display: none;
+}
+
+.navBarItem{
+    list-style: none;
+    display: inline-block;
+    margin: 0 0.5em;
+    position:relative;
+}
+
+.navBarItem a{
+    margin: 0 0.3em;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    font-family: 'Montserrat';
+}
+
+.navBarItem::after{
+    content: '';
+    height: 0.088em;
+    width:0;
+    background: #0984e3;
+    position: absolute;
+    left: 0;
+    bottom:-0.1em;
+    transition: 0.5s width;
+}
+
+.navBarItem:hover::after{
+    width:100%;
+}
+
+.UMiSF-container{
+    width:100%;
+    position: absolute;
+    top:55%;
+    padding-left: 6%;
+}
+
+.UMiSF-container h1{
+    color:#0984e3;
+    font-size: 5.3vw;
+    margin-bottom: 2vh;
+    font-weight: bold;
+    font-family: 'Montserrat';
+}
+
+.UMiSF-container p{
+    font-size: 0.68em;
+    text-align: justify;
+    font-family: 'Montserrat';
+}
+
+.UMiSF-container button{
+    padding:0.2em;
+    padding-bottom: 0.3em;
+    width: 10vw;
+    text-align: center;
+    background: transparent;
+    color: #0984e3;
+    border:1px solid #0984e3;
+    cursor:pointer;
+    font-size: 0.8em;
+    position: relative;
+    overflow:hidden;
+    font-family: 'Montserrat';
+    transition: 0.8s;
+    z-index:0;
+}
+
+.UMiSF-container button::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+    width:100%;
+    height:0%;
+    background: #0984e3;
+    z-index: -1;
+    transition: 0.8s;
+}
+
+.UMiSF-container button:hover::before{
+    height:180%;
+}
+
+.UMiSF-container button:hover{
+    color: #fff;
+}
+
+.navSideBar{
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    height: 100vh;
+    width:100%;
+    text-align: center;
+    display:none;
+}
+
+@media screen and (max-width:770px){
+    .UMiSF-container h1{
+        font-size: 5em;
+        text-shadow: 1px 1px 5px black ;
+    }
+
+    .UMiSF-container p{
+        font-size: 0.95em;
+        text-shadow:  2px 2px 5px black;
+    }
+}
+
+@media screen and (max-width:900px){
+    .timer-blocks{
+        width:80px;
+    }
+}
+
+@media screen and (max-width:500px){
+    .UMiSF-container h1{
+        font-size: 4.5em;
+        text-shadow: 1px 1px 5px black ;
+    }
+
+    .UMiSF-container p{
+        font-size: 0.92em;
+        text-shadow:  2px 2px 5px black;
+    }
+
+    .UMiSF-container button{
+        font-size: 1em;
+        width:80px;
+    }
+
+    .toggle-button{
+        display: block;
+    }
+
+    .navBarItem{
+        display: block;
+        margin: 30px;
+        top:10vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .navBarList{
+        display: none;
+    } 
+
+    .side-img{
+        display: block;
+    }
+
+    .timer-blocks{
+        width: 60px;
+    }
+
+}
+
+@media screen and (min-width:501px){
+    .navSideBar{
+        width: 0;
+    }
+
+    .navSideBar li{
+        display: none;
+    }
+}
+
