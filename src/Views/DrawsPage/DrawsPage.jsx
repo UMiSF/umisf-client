@@ -1,10 +1,9 @@
 import React from 'react';
+import Draw from './Draw';
 
 const DrawsPage = () => {
     return (
-        <div>
-            <h1>Draws Page</h1>
-        </div>
+        <Draw />
     );
 };
 
