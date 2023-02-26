@@ -159,7 +159,7 @@ export default function Draw(){
     return(
       <Grid container>
 
-        <Grid item container xs={12} justifyContent='center' mt={1}>
+        <Grid sx={{display: {md:"none", xs:''}}} item container xs={12} justifyContent='center' mt={1}>
           {titles.map((title,index) => <Button sx={{backgroundColor: '#1a1d2e'}} variant={index === titleIndex ? "contained":"outlined" }key={index} onClick={(e) => handleTitleChange(index)}>{title}</Button>)}
         </Grid>
 
@@ -169,9 +169,11 @@ export default function Draw(){
           animateHeight: true,
           index: titleIndex,
           onChangeIndex: setTitleIndex
+
         }} roundTitleComponent={(title, roundIndex) => {
                 return <div style={{ textAlign: 'center' }}>{title}</div>;
             }} 
+            mobileBreakpoint={900}
           />         
         </Grid>
       </Grid>
