@@ -16,6 +16,7 @@ import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import OrganizerHomePage from "../Views/OrganizerHomePage/OrganizerHomePage";
 import TableHomePage from "../Views/TableHomePage/TableHomePage";
 import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
+import DrawEditPage from "../Views/DrawEditPage/DrawEditPage";
 
 
 export default function AppRouter() {
@@ -38,6 +39,10 @@ export default function AppRouter() {
               path="draws"
               element={<DrawsPage />}
             />
+
+            <Route
+              path="draws-edit"
+              element={<DrawEditPage />} />
                         <Route
               path="scheduled-matches"
               element={<MatchSchedulePage />}
