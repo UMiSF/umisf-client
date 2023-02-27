@@ -13,11 +13,14 @@ import PhotosPage from "../Views/PhotosPage/PhotosPage";
 import NotFound from "../Views/NotFoundPage/NotFound";
 import Unauth from "../Views/UnauthPage/Unauth";
 import HeaderPage from "../Views/HeaderPage/HeaderPage";
-import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import OrganizerHomePage from "../Views/OrganizerHomePage/OrganizerHomePage";
 import TableHomePage from "../Views/TableHomePage/TableHomePage";
 import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
-import AdminYearlyConfigurations from "../Views/AdminYearlyConfigurations/AdminYearlyConfigurations";
+
+import AdminHeader from "../Views/AdminHeaderPage/AdminHeader";
+import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
+import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
+import AdminGalleryViewYearPage from "../Views/AdminGalleyViewYearPage/AdminGalleryViewYearPage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -26,41 +29,15 @@ export default function AppRouter() {
     <BrowserRouter>
       <>
         <Routes>
-          <Route exact path="/" element={<HomePage />}/>
-            <Route
-              path="about"
-              element={<AboutPage />}
-            />
-             <Route
-              path="contact-us"
-              element={<ContactUsPage />}
-            />
-                        <Route
-              path="registration"
-              element={<RegistrationPage />}
-            />
-                        <Route
-              path="draws"
-              element={<DrawsPage />}
-            />
-                        <Route
-              path="scheduled-matches"
-              element={<MatchSchedulePage />}
-            />
-                                    <Route
-              path="match-results"
-              element={<MatchResultsPage />}
-            />
-                                    <Route
-              path="scheduled-matches"
-              element={<MatchSchedulePage />}
-            />
-                                    <Route
-              path="photos"
-              element={<PhotosPage />}
-            />
-            <Route path="*" element={<NotFound />} />
-          
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="registration" element={<RegistrationPage />} />
+          <Route path="draws" element={<DrawsPage />} />
+          <Route path="scheduled-matches" element={<MatchSchedulePage />} />
+          <Route path="match-results" element={<MatchResultsPage />} />
+          <Route path="scheduled-matches" element={<MatchSchedulePage />} />
+          <Route path="photos" element={<PhotosPage />} />
+          <Route path="*" element={<NotFound />} />
 
           {/*type1: admin  admin/page_name*/}
           {/*type2: organizer       oragnozierer/page_name*/}
@@ -71,8 +48,13 @@ export default function AppRouter() {
 
           {type === 1 ? (
             <Route>
-              <Route exact path="admin" element={<AdminYearlyConfigurations type={1} />}>
-                <Route path="yearly-configurations" element={<AdminYearlyConfigurations />} />
+              <Route exact path="admin">
+                <Route path="" element={<AdminHomePage />} />
+                <Route path="gallery" element={<AdminGalleryPage />} />
+                <Route
+                  path="gallery/year/:year"
+                  element={<AdminGalleryViewYearPage />}
+                />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />
@@ -95,17 +77,8 @@ export default function AppRouter() {
             </Route>
           ) : type === 4 ? (
             <Route>
-              <Route
-                exact
-                path="umpire"
-                element={
-                  <HeaderPage  type={4} />
-                }
-              >
-                <Route
-                  path=""
-                  element={<UmpireHomePage  />}
-                />
+              <Route exact path="umpire" element={<HeaderPage type={4} />}>
+                <Route path="" element={<UmpireHomePage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />
