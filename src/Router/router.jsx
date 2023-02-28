@@ -21,6 +21,7 @@ import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
 import AdminGalleryViewYearPage from "../Views/AdminGalleyViewYearPage/AdminGalleryViewYearPage";
 import AdminUserAccountsPage from '../Views/AdminUserAccountsPage/AdminUserAccountsPage'
+import AdminUserAccountViewPage from "../Views/AdminUserAccountViewPage/AdminUserAccountViewPage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -56,8 +57,12 @@ export default function AppRouter() {
                   element={<AdminGalleryViewYearPage />}
                 />
                 <Route
-                  path="user_accounts"
+                  path="user-accounts"
                   element={<AdminUserAccountsPage />}
+                />
+                <Route
+                  path="user-accounts/:user"
+                  element={<AdminUserAccountViewPage />}
                 />
                 <Route path="*" element={<NotFound />} />
               </Route>

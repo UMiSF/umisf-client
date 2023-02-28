@@ -34,7 +34,7 @@ const AdminUserAccountsPage = () => {
       <AdminHeader />
       <AdminNavbar page="user_accounts" />
       <div className={`${styles["main-title"]}`}>
-        <a href="/admin/gallery">User Accounts</a>
+        <a href="/admin/user-accounts">User Accounts</a>
       </div>
       <div className={`${styles["tool-bar"]}`}>
         <button>
@@ -68,7 +68,7 @@ const AdminUserAccountsPage = () => {
               className={`${styles["users-name-container"]}`}
             >
               {userType.names.map((user, index) => (
-                <a href="#" className={`${styles["users-name"]}`}>
+                <a href={"user-accounts/"+index} className={`${styles["users-name"]}`}>
                   {user}
                   <img
                     src={require("../../assests/images/double_arrows.png")}
