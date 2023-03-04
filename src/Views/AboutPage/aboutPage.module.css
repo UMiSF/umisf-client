@@ -382,11 +382,12 @@ h3:hover{
 .testimanial-col p{
     padding: 0;
     color: #fff;
+    font-size: 13px;
 }
 .testimanial-col h3{
     margin-top: 15px;
     text-align: left;
-    font-size: 20px;
+    font-size: 10px;
     color: rgb(94, 229, 232);
 }
 .testimanial-col h6{

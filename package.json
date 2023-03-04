@@ -12,6 +12,8 @@
     "react-dom": "^18.2.0",
     "react-icon": "^1.0.0",
     "react-icons": "^4.7.1",
+    "react-image-crop": "^10.0.9",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-strap": "^0.0.1",
