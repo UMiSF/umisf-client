@@ -45,28 +45,28 @@
 }
 
 .main-title {
-    background: white;
-    color: #0c0744;
-    margin: 10px 10vw;
-    padding: 8px 13px;
-    font-family: "Hind";
-    font-weight: bold;
-    letter-spacing: 2px;
-    font-size: 20px;
-  }
-  
-  .main-title a {
-    font-family: "Hind";
-    font-weight: bold;
-    letter-spacing: 2px;
-    font-size: 25px;
-    text-decoration: none;
-    color: #0c0744;
-  }
-  
-  .main-title img {
-    width: 16px;
-  }
+  background: white;
+  color: #0c0744;
+  margin: 10px 10vw;
+  padding: 8px 13px;
+  font-family: "Hind";
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.main-title a {
+  font-family: "Hind";
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 25px;
+  text-decoration: none;
+  color: #0c0744;
+}
+
+.main-title img {
+  width: 16px;
+}
 
 .tool-bar {
   background: white;
@@ -74,6 +74,7 @@
   margin: 20px 10vw;
   padding: 8px 13px;
   font-family: "Hind";
+  font-weight: lighter;
   font-size: 16px;
 }
 
@@ -82,15 +83,6 @@
   border: none;
   background: transparent;
   margin-right: 63px;
-}
-
-.tool-bar a{
-  text-align: left;
-  text-decoration: none;
-  margin-right: 63px;
-  font-family: "Hind";
-  font-size: 16px;
-  color: black;
 }
 
 .tool-bar img {
@@ -103,4 +95,26 @@
   margin: 60px 10vw;
   padding: 20px;
   margin-bottom: 0;
+}
+
+.form-input {
+  border: 0.5px solid #d7d8ed;
+  padding: 10px;
+  width: 100%;
+}
+
+.form-submit-button {
+  background: #0c0744;
+  border: none;
+  color: white;
+  font-family: "Hind";
+  font-size: 20px;
+  padding: 6px;
+  width: 160px;
+}
+
+@media only screen and (max-width: 460px) {
+    .profile-field-container{
+        display: block;
+    }
 }

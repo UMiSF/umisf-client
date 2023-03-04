@@ -44,10 +44,10 @@ const AdminUserAccountViewPage = () => {
         {userDetails.name}
       </div>
       <div className={`${styles["tool-bar"]}`}>
-        <button>
+        <a href={"/admin/user-accounts/edit/"+ user}>
           <img src={require("../../assests/images/edit.png")} alt="" /> Edit
           Account
-        </button>
+        </a>
 
         <button onClick={handleShow}>
           <img src={require("../../assests/images/delete.png")} alt="" /> Delete
