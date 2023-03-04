@@ -17,7 +17,7 @@ import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import OrganizerHomePage from "../Views/OrganizerHomePage/OrganizerHomePage";
 import TableHomePage from "../Views/TableHomePage/TableHomePage";
 import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
-
+import Scoreboard from "../Views/ScoreBoard/Scoreboard";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -58,6 +58,10 @@ export default function AppRouter() {
                                     <Route
               path="photos"
               element={<PhotosPage />}
+            />
+                                                <Route
+              path="score-board"
+              element={<Scoreboard />}
             />
             <Route path="*" element={<NotFound />} />
           
