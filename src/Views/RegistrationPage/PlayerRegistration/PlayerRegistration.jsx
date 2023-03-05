@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
-import uploader from "../../../assests/images/upload-img.jpeg";
 import { Form } from "react-bootstrap";
 import {
   MDBContainer,
   MDBInput,
   MDBBtn,
   MDBCol,
-  MDBValidation,
-  MDBValidationItem,
 } from "mdb-react-ui-kit";
-import TextField from "@mui/material/TextField";
+import ImageUploader from "../Common/imageUploader/ImageUploader";
 
 const PlayerRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
@@ -26,6 +23,7 @@ const PlayerRegistration = () => {
     contact_number: "",
     email: "",
   });
+  const [fileList, setFileList] = useState([]);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -94,11 +92,7 @@ const PlayerRegistration = () => {
           >
             <div className="d-flex flex-row mb-4 ">
               <MDBCol className="d-flex align-items-center justify-content-center">
-                <img
-                  src={uploader}
-                  alt="upload-image"
-                  className={`${Styles["uploader"]}`}
-                />
+                <ImageUploader fileList={fileList} setFileList={setFileList} />
               </MDBCol>
               <MDBCol>
 
