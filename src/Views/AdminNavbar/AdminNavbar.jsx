@@ -38,7 +38,7 @@ const AdminNavbar = (props) => {
           </li>
           <li className={`${styles["navbar-item"]}`}>
             <a
-              href="/admin/user_accounts"
+              href="/admin/user-accounts"
               className={`${styles["navbar-item-link"]}`}
               id='user_accounts'
             >
