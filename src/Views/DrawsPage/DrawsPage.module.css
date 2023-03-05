@@ -1,0 +1,25 @@
+.page {
+  width: 100%;
+  height: 100vh;
+  background-color: #040924;
+}
+
+.header {
+  font-weight: 400;
+  font-size: 4vw;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #185de1;
+}
+.header-line-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-line {
+  font-size: 2.5vw;
+  letter-spacing: 5px;
+  align-self: center;
+  color: aliceblue;
+}
