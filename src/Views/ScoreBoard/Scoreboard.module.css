@@ -8,6 +8,7 @@
   background-color: #d7d8ed;
 }
 
+
 .body {
   height: 73%;
   background-color: #0c0744;
@@ -19,6 +20,7 @@
   height: 60%;
   margin-left: 45%;
 }
+
 
 .header-line-container {
   display: flex;
@@ -228,3 +230,147 @@ font-size: 1vw;
   margin-top: 3vh;
 }
 
+.modal-header{
+  background: #0b1968e8;
+}
+
+.header-modal {
+  height: 8vw;
+  background-color: #d7d8ed;
+  margin-left: 9.7vw;
+}
+
+.umisf-logo-modal {
+  height: 8vw;
+  margin-left: auto;
+}
+
+.timer{
+  margin-top: -1vw;
+    margin-left: 6vw;
+    margin-bottom: 1vw;
+}
+
+.player-container-modal {
+  height: 10vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.player1-modal {
+  
+  margin-left: 10%;
+  margin-right: 5%;
+  width: 40%;
+  height: 88%;
+  background-color: #d7d8ed;
+  color: #d7d8ed;
+  display: flex;
+  flex-direction: row;
+}
+
+.player1-img-modal {
+  width: 8vw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player2-modal {
+ 
+  margin-left: 5%;
+  margin-right: 10%;
+  width: 40%;
+  height: 88%;
+  background-color: #d7d8ed;
+  color: #d7d8ed;
+  display: flex;
+  flex-direction: row;
+}
+
+.player2-img-modal {
+  width: 8vw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.l-side-modal {
+  margin-top: 1.5vw;
+  color: #0c0744;
+  width: 2.5vw;
+  height: 2.5vw;
+  padding: 12px;
+  margin-left: 0.5vw;
+  font-size: 2.5vw;
+  font-weight: bolder;
+}
+
+.r-side-modal {
+  margin-top: 1.5vw;
+  color: #0c0744;
+  width: 2.5vw;
+  height: 2.5vw;
+  padding: 12px;
+  margin-left: 0.5vw;
+  font-size: 2.5vw;
+  font-weight: bolder;
+}
+
+.modal-body{
+  background-color: #2f302f;
+}
+
+.score-container-modal{
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: row;
+  background-color: #12b72b;
+  border-radius: 1rem;
+  height: 6.1vw;
+
+
+}
+.score-line-modal{
+  font-size: 5.5vw;
+    letter-spacing: 5px;
+    align-self: center;
+    margin-left: 5%;
+    margin-right: 5%;  
+    height: 10vw;
+    border-radius: 5px;
+    font-weight: bolder;
+   
+    
+  }
+
+  .modal-body-winner{
+   
+    
+  }
+
+  .celeb{
+    position: absolute;
+    margin-left: 4vw;
+    height: 20vw;
+    z-index: 1;
+  }
+
+  .winner{
+    z-index: -1;
+    width: 12vw;
+    margin-left: 8vw;
+    margin-top: 4vw;
+  }
+
+  .header-line-container-modal {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .header-line-modal {
+    font-size: 1.3vw;
+    letter-spacing: 5px;
+    align-self: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight:1000;
+  }

@@ -7,7 +7,9 @@ import swap from "../../assests/images/swap.png";
 import w_shuttle from "../../assests/images/w-shuttle.png";
 import * as _ from "lodash";
 import Button from "react-bootstrap/Button";
-import ProgressBar from "react-bootstrap/ProgressBar";
+import Modal from "react-bootstrap/Modal";
+import timer from "../../assests/images/timer.gif";
+import celeb from '../../assests/images/celeb.gif';
 
 const Scoreboard = () => {
   const match = {
@@ -50,12 +52,18 @@ const Scoreboard = () => {
   const [won, setWon] = useState([]);
   const [doServe, setDoServe] = useState({ left: false, right: false });
   const [score, setScore] = useState({ left: 0, right: 0 });
-  const [progress, setProgress] = useState(100);
- // const [period, setPeriod] = useState(120)
+
+  // const [period, setPeriod] = useState(120)
   let period = 120;
   const [leftWon, setLeftwon] = useState(0);
   const [rightWon, setRightWon] = useState(0);
-  const [variant,setVarient] = useState('success');
+  const [show, setShow] = useState(false); //maodal show
+  const handleClose = () => setShow(false); //handle modal close
+  const handleShow = () => setShow(true); //handle modal show
+
+  const [showWinner, setShowWinner] = useState(false); //maodal show
+  const handleCloseWinner = () => setShowWinner(false); //handle modal close
+  const handleShowWinner = () => setShowWinner(true); //handle modal show
 
   const swapSides = () => {
     console.log("Team One swap: ", teamOne);
@@ -396,37 +404,24 @@ const Scoreboard = () => {
 
   const finishTheMatch = () => {
     console.log("Finished ", won);
-  };
-
-  const startTimer = () => {
-    //setPeriod((prevValue)=>{return prevValue-1})
-    period -= 1;
-    const p = Math.round(period/120*100)
-    setProgress(p)
-    p > 15 ? setVarient('success'):setVarient('danger')
-    if (period < 0) {
-      //setPeriod(120)
-      //console.log("clear",period);
-      clearInterval();
-      return
-    } else {
-      console.log(period);
-      console.log("Hello");
-    }
+    handleShowWinner()
   };
 
   const startInterval = () => {
     console.log("Start interval");
-    period = 120
-    setInterval(startTimer, 1000);
+    handleShow();
+    setTimeout(function () {
+      // Log a message to the console
+      handleClose();
+    }, 121000);
   };
 
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
   };
+
   return (
     <div className={Styles["page"]}>
-      <ProgressBar animated now={progress} variant={variant}/>
       <div className={Styles["header"]}>
         <img
           src={umisf_logo}
@@ -586,6 +581,111 @@ const Scoreboard = () => {
           </Button>{" "}
         </div>
       </div>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="lg"
+        centered
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton className={Styles["modal-header"]}>
+          <div className={Styles["header-modal"]}>
+            <img
+              src={umisf_logo}
+              alt="umisf-logo"
+              className={Styles["umisf-logo-modal"]}
+            />
+          </div>
+        </Modal.Header>
+        <Modal.Body className={Styles["modal-body"]}>
+          <img src={timer} alt="timer" className={Styles["timer"]} />
+          <div className={Styles["player-container-modal"]}>
+            <div className={Styles["player1-modal"]}>
+              <img
+                src={match.playerOne.photo}
+                alt="player1"
+                className={Styles["player1-img-modal"]}
+              />
+              <div className={`${Styles["l-side-modal"]}`}>{teamOne.side}</div>
+            </div>
+            <div className={`${Styles["player2-modal"]}`}>
+              <img
+                src={match.playerTwo.photo}
+                alt="player2"
+                className={Styles["player2-img-modal"]}
+              />
+              <div className={`${Styles["r-side-modal"]}`}>{teamTwo.side}</div>
+            </div>
+          </div>
+          <div className={`${Styles["result-table-container-modal"]} `}>
+            <h4 style={{ color: "white", textAlign: "center", fontWeight: 'bolder'}}>
+              Round {round}
+            </h4>
+            <div
+              className={`${Styles["score-container-modal"]} d-flex justify-content-center`}
+            >
+              <div className={Styles["score-line-modal"]}>
+                {teamOne.side == "L"
+                  ? score.left.toLocaleString("en-US", {
+                      minimumIntegerDigits: 2,
+                      useGrouping: false,
+                    })
+                  : score.right.toLocaleString("en-US", {
+                      minimumIntegerDigits: 2,
+                      useGrouping: false,
+                    })}
+              </div>
+              <div className={Styles["score-line-modal"]}> {"|"}</div>
+              <div className={Styles["score-line-modal"]}>
+                {" "}
+                {teamTwo.side == "L"
+                  ? score.left.toLocaleString("en-US", {
+                      minimumIntegerDigits: 2,
+                      useGrouping: false,
+                    })
+                  : score.right.toLocaleString("en-US", {
+                      minimumIntegerDigits: 2,
+                      useGrouping: false,
+                    })}
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+      <Modal
+        show={showWinner}
+        onHide={handleCloseWinner}
+        size="lg"
+        centered
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton className={Styles["modal-header"]}>
+          <div className={Styles["header-modal"]}>
+            <img
+              src={umisf_logo}
+              alt="umisf-logo"
+              className={Styles["umisf-logo-modal"]}
+             
+            />
+          </div>
+        </Modal.Header>
+        <Modal.Body className={Styles["modal-body-winner"]}>
+          <img src={celeb} alt="celebration-gif" className={Styles["celeb"]} />
+          <img src={teamOne.won > teamTwo.won ? match.playerOne.photo: match.playerTwo.photo} alt="winner-img" className={Styles["winner"]} />
+          <div className={Styles["player-container-modal"]}>
+          <div className={Styles["header-line-container-modal"]}>
+          <div className={Styles["header-line-modal"]}>{match.ageGroup}</div>
+          <div className={Styles["header-line-modal"]}> {"|"}</div>
+          <div className={Styles["header-line-modal"]}> {match.type}</div>
+          <div className={Styles["header-line-modal"]}> {"|"}</div>
+          <div className={Styles["header-line-modal"]}> {match.matchRound} </div>
+        </div>
+           </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
