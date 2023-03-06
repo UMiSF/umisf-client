@@ -24,6 +24,7 @@ import AdminUserAccountsPage from '../Views/AdminUserAccountsPage/AdminUserAccou
 import AdminUserAccountViewPage from "../Views/AdminUserAccountViewPage/AdminUserAccountViewPage";
 import AdminUserAccountEditPage from "../Views/AdminUserAccountEditPage/AdminUserAccountEditPage";
 import AdminTournamentPage from "../Views/AdminTournamentPage/AdminTournamentPage";
+import AdminCreateTournamentPage from "../Views/AdminCreateTournamentPage/AdminCreateTournamentPage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -73,6 +74,10 @@ export default function AppRouter() {
                 <Route
                   path="tournament"
                   element={<AdminTournamentPage />}
+                />
+                <Route
+                  path="tournament/create-tournament"
+                  element={<AdminCreateTournamentPage />}
                 />
                 <Route path="*" element={<NotFound />} />
               </Route>

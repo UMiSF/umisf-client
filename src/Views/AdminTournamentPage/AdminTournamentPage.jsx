@@ -28,7 +28,7 @@ const AdminTournamentPage = () => {
         <a href="/admin/tournament">Tournament</a>
       </div>
       <div className={`${styles["tool-bar"]}`}>
-        <a href="" className={isInitiatedTournament ? "btn disabled border-0" : ""} aria-disabled="true">
+        <a href="/admin/tournament/create-tournament" className={isInitiatedTournament ? "btn disabled border-0" : ""} aria-disabled="true">
           <img src={require("../../assests/images/add.png")} alt="" /> Create
           Tournament
         </a>
