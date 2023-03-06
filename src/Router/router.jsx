@@ -4,7 +4,12 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 // Route imports
 import HomePage from "../Views/HomePage/HomePage";
 import AboutPage from "../Views/AboutPage/AboutPage";
-import RegistrationPage from "../Views/RegistrationPage/RegistrationPage";
+import ContactUsPage from "../Views/ContactUsPage/ContactUs";
+import SingleRegistration from "../Views/RegistrationPage/SinglesRegistration/SingleRegistration";
+import DoubleRegistration from "../Views/RegistrationPage/DoublesRegistration/DoubleRegistration";
+import CompanyRegistration from "../Views/RegistrationPage/CompanyRegistration/CompanyRegistration";
+import UniversityRegistration from "../Views/RegistrationPage/UniversityRegistration/UniversityRegistration";
+import PlayerRegistration from "../Views/RegistrationPage/PlayerRegistration/PlayerRegistration";
 import DrawsPage from "../Views/DrawsPage/DrawsPage";
 import MatchSchedulePage from "../Views/MatchSchedulePage/MatchSchedulePage";
 import MatchResultsPage from "../Views/MatchResultsPage/MatchResultsPage";
@@ -31,10 +36,35 @@ export default function AppRouter() {
               path="about"
               element={<AboutPage />}
             />
-                        <Route
-              path="registration"
-              element={<RegistrationPage />}
+             <Route
+              path="contact-us"
+              element={<ContactUsPage />}
             />
+                        <Route
+              path="register"
+            
+            >
+                                      <Route
+              path="player"
+              element={<PlayerRegistration/>}
+            />
+                        <Route
+              path="single"
+              element={<SingleRegistration/>}
+            />
+                                    <Route
+              path="double"
+              element={<DoubleRegistration/>}
+            />
+                                    <Route
+              path="university"
+              element={<UniversityRegistration/>}
+            />
+                                    <Route
+              path="company"
+              element={<CompanyRegistration/>}
+            />
+            </Route>
                         <Route
               path="draws"
               element={<DrawsPage />}
