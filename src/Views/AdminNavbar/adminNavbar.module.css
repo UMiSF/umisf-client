@@ -8,6 +8,10 @@
   margin: 0 0.5vw;
 }
 
+.navbar-item a{
+  text-decoration: none;
+}
+
 .navbar-item-link {
   text-decoration: none;
   color: black;

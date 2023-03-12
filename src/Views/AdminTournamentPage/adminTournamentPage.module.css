@@ -86,3 +86,65 @@
     font-size: 18px;
     align-items: center;
   }
+
+  .tournament-details{
+    display:block;
+  }
+
+  .tournament-details-view{
+    background: white;
+    margin: 10px 10vw;
+    padding: 8px 13px;
+    font-family: "Hind";
+    font-size: 18px;
+  }
+
+  .form-field-container {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    margin-top: 15pt;
+  }
+  
+  .form-field-name {
+    flex-basis: 30%;
+    font-family: "Hind";
+    font-size: 16px;
+    color: black;
+  }
+  
+  .form-field-value {
+    flex-basis: 70%;
+    font-family: "Hind";
+    font-weight: 100;
+    font-size: 16px;
+    color: black;
+  }
+
+  .form-field-value-tshirt{
+    flex-basis: 70%;
+    font-family: "Hind";
+    font-weight: 100;
+    font-size: 16px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .t-shirt{
+    background-color: #f7f7fe;
+    flex-basis: 20%;
+   }
+
+   .t-shirt img{
+    width:200px
+   }
+
+   .flyer{
+    flex-basis: 20%;
+   }
+
+   .flyer img{
+    width:100%;
+   }

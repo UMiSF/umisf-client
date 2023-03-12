@@ -11,6 +11,7 @@ import Chip from "@mui/material/Chip";
 import AdminHeader from "../AdminHeaderPage/AdminHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminCreateTournamentPage.module.css";
+import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -36,8 +37,6 @@ const AdminCreateTournamentPage = () => {
   const [newTournament, setNewTournament] = useState({
     startingDate: "",
     description: "",
-    tShirtFront: "",
-    tShirtBack: "",
     flyers: [],
   });
 
@@ -53,6 +52,10 @@ const AdminCreateTournamentPage = () => {
     "Company",
   ]);
 
+  const [fileListFront, setFileListFront] = useState([]);
+  const [fileListBack, setFileListBack] = useState([]);
+
+
   const theme = useTheme();
   const [ageGroup, setAgeGroup] = useState([]);
 
@@ -65,6 +68,12 @@ const AdminCreateTournamentPage = () => {
     );
   };
 
+  const createTournament = (e)=>{
+    e.preventDefault()
+    console.log(newTournament)
+    console.log(ageGroup)
+  }
+
   return (
     <div className={`${styles["tournament-container"]}`}>
       <AdminHeader />
@@ -74,7 +83,7 @@ const AdminCreateTournamentPage = () => {
       </div>
       <div className={`${styles["main-title"]}`}>Create a Tournament</div>
       <div className={`${styles["form-container"]}`}>
-        <Form>
+        <Form onSubmit={createTournament}>
           <div className={`${styles["form-field-container"]}`}>
             <div className={`${styles["form-field-name"]}`}>Starting Date</div>
             <div className={`${styles["form-field-value"]}`}>
@@ -158,16 +167,45 @@ const AdminCreateTournamentPage = () => {
 
           <div className={`${styles["form-field-container"]}`}>
             <div className={`${styles["form-field-name"]}`}>T shirt</div>
-            <div className={`${styles["form-field-value"]}`}>
-              <div className={`${styles["t-shirt"]}`}> 
-                
+            <div className={`${styles["form-field-value-tshirt"]}`}>
+              <div className={`${styles["t-shirt"]}`}>
+              <div className={`${styles["t-shirt-label"]}`}>Front</div>
+                <ImageUploader
+                  fileList={fileListFront}
+                  setFileList={setFileListFront}
+                />
               </div>
-              <div className={`${styles["t-shirt"]}`}> 
-
+              <div className={`${styles["t-shirt"]}`}>
+              <div className={`${styles["t-shirt-label"]}`}>Back</div>
+                <ImageUploader
+                  fileList={fileListBack}
+                  setFileList={setFileListBack}
+                />
               </div>
             </div>
           </div>
           <hr />
+
+          <div className={`${styles["form-field-container"]}`}>
+            <div className={`${styles["form-field-name"]}`}>Flyers</div>
+            <div className={`${styles["form-field-value"]}`}>
+              <input
+                multiple
+                type="file"
+                className={`${styles["form-input"]}`}
+                value={newTournament.flyers}
+                placeholder="Enter your description here.."
+                onChange={(e) =>
+                  setNewTournament({
+                    ...newTournament,
+                    flyers: e.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+          <hr />
+          <button className={`${styles["form-submit-button"]}`}>Save</button>
         </Form>
       </div>
     </div>
