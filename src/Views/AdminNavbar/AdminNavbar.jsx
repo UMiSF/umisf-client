@@ -76,9 +76,9 @@ const AdminNavbar = (props) => {
         <div className={`${styles["navbar-sections"]}`}>
           <li className={`${styles["navbar-item"]}`}>
             <a
-              href="/admin/players"
+              href="/admin/universities"
               className={`${styles["navbar-item-link"]}`}
-              id='players'
+              id='universities'
             >
               <img src={require("../../assests/images/university.png")} alt="" />{" "}
               Universities
@@ -86,9 +86,9 @@ const AdminNavbar = (props) => {
           </li>
           <li className={`${styles["navbar-item"]}`}>
             <a
-              href="/admin/players"
+              href="/admin/companies"
               className={`${styles["navbar-item-link"]}`}
-              id='players'
+              id='companies'
             >
               <img src={require("../../assests/images/company.png")} alt="" />{" "}
               Companies
