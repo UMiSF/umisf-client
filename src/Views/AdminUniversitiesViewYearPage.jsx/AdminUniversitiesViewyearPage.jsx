@@ -116,7 +116,7 @@ const AdminUniversitiesViewYearPage = () => {
               className={`${styles["users-name-container"]}`}
             >
               <div className={`${styles["add-players"]}`}>
-                <a href={"/admin/universities/year/register"}>
+                <a href={"/admin/universities/"+year+"/"+university.name+"/register-player"}>
                   <img src={require("../../assests/images/edit.png")} alt="" />{" "}
                   Add new player
                 </a>
