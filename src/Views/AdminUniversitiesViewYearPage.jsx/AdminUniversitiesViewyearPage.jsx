@@ -116,14 +116,14 @@ const AdminUniversitiesViewYearPage = () => {
               className={`${styles["users-name-container"]}`}
             >
               <div className={`${styles["add-players"]}`}>
-                <a href={"/admin/universities/"+year+"/"+university.name+"/register-player"}>
+                <a href={`/admin/universities/${year}/${university.name}/register-player`}>
                   <img src={require("../../assests/images/edit.png")} alt="" />{" "}
                   Add new player
                 </a>
               </div>
               {university.players.map((player, index) => (
                 <a
-                  href={"universities/player" + index}
+                  href={`/admin/universities/${year}/${university.name}/view-player/${index}`}
                   className={`${styles["users-name"]}`}
                 >
                   {player}
