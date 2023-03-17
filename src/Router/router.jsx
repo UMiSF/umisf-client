@@ -36,7 +36,7 @@ import AdminUniversitiesViewYearPage from "../Views/AdminUniversitiesViewYearPag
 import AdminUniversityRegisterPage from "../Views/AdminUniversityRegisterPage/AdminUniversityRegisterPage";
 import AdminUniversityAddNewPlayerPage from "../Views/AdminUniversityAddNewPlayerPage/AdminUniversityAddNewPlayerPage";
 import AdminCompaniesPage from "../Views/AdminCompaniesPage/AdminCompaniesPage";
-import AdminCompaniesViewYearPage from "../Views/AdminCompaniesViewYearPage.jsx/AdminCompaniesViewyearPage";
+import AdminCompaniesViewYearPage from "../Views/AdminCompaniesViewYearPage/AdminCompaniesViewyearPage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
