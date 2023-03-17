@@ -3,15 +3,15 @@ import { Form, Input } from "reactstrap";
 import { useParams } from "react-router-dom";
 import AdminHeader from "../AdminHeaderPage/AdminHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
-import styles from "./adminUniversityRegisterPage.module.css";
+import styles from "./adminCompanyRegisterPage.module.css";
 import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
 
-const AdminUniversityRegisterPage = () => {
+const AdminCompanyRegisterPage = () => {
   let { year } = useParams();
 
   const [fileListPhoto, setFileListPhoto] = useState([]);
 
-  const [newUniversity, setNewUniversity] = useState({
+  const [newCompany, setNewCompany] = useState({
     name: "",
     gender: "",
     contactNumber: "",
@@ -40,9 +40,9 @@ const AdminUniversityRegisterPage = () => {
     },
   ]);
 
-  const createUniversity = (e) => {
+  const createCompany = (e) => {
     e.preventDefault();
-    console.log(newUniversity);
+    console.log(newCompany);
     console.log(players);
     console.log(fileListPhoto);
   };
@@ -64,31 +64,31 @@ const AdminUniversityRegisterPage = () => {
   return (
     <div className={`${styles["tournament-container"]}`}>
       <AdminHeader />
-      <AdminNavbar page="universities" />
+      <AdminNavbar page="companies" />
       <div className={`${styles["main-title"]}`}>
-        <a href="/admin/universities">Universities</a>
+        <a href="/admin/companies">Companies</a>
         <img
           src={require("../../assests/images/forward_arrow.png")}
           alt=""
         />{" "}
-        <a href={"/admin/universities/year/" + year}>{year}</a>
+        <a href={"/admin/companies/year/" + year}>{year}</a>
       </div>
-      <div className={`${styles["main-title"]}`}>Register a university</div>
+      <div className={`${styles["main-title"]}`}>Register a company</div>
       <div className={`${styles["form-container"]}`}>
-        <Form onSubmit={createUniversity}>
+        <Form onSubmit={createCompany}>
           <div className={`${styles["form-field-container"]}`}>
             <div className={`${styles["form-field-name"]}`}>
-              Name of the university
+              Name of the company
             </div>
             <div className={`${styles["form-field-value"]}`}>
               <input
                 type="text"
                 className={`${styles["form-input"]}`}
-                value={newUniversity.name}
+                value={newCompany.name}
                 placeholder="Enter name.."
                 onChange={(e) =>
-                  setNewUniversity({
-                    ...newUniversity,
+                  setNewCompany({
+                    ...newCompany,
                     name: e.target.value,
                   })
                 }
@@ -102,11 +102,11 @@ const AdminUniversityRegisterPage = () => {
               <input
                 type="text"
                 className={`${styles["form-input"]}`}
-                value={newUniversity.gender}
+                value={newCompany.gender}
                 placeholder="Enter the gender.."
                 onChange={(e) =>
-                  setNewUniversity({
-                    ...newUniversity,
+                  setNewCompany({
+                    ...newCompany,
                     gender: e.target.value,
                   })
                 }
@@ -120,11 +120,11 @@ const AdminUniversityRegisterPage = () => {
               <input
                 type="text"
                 className={`${styles["form-input"]}`}
-                value={newUniversity.contactNumber}
+                value={newCompany.contactNumber}
                 placeholder="Enter your contact number.."
                 onChange={(e) =>
-                  setNewUniversity({
-                    ...newUniversity,
+                  setNewCompany({
+                    ...newCompany,
                     contactNumber: e.target.value,
                   })
                 }
@@ -230,8 +230,8 @@ const AdminUniversityRegisterPage = () => {
                 name="paymentMethod"
                 defaultValue={"default"}
                 onChange={(e) =>
-                  setNewUniversity({
-                    ...newUniversity,
+                  setNewCompany({
+                    ...newCompany,
                     paymentMethod: e.target.value,
                   })
                 }
@@ -243,7 +243,7 @@ const AdminUniversityRegisterPage = () => {
             </div>
           </div>
           <hr />
-          {newUniversity["paymentMethod"] == "Bank Transfer" && (
+          {newCompany["paymentMethod"] == "Bank Transfer" && (
             <div>
               <div className={`${styles["form-field-container"]}`}>
                 <div className={`${styles["form-field-name"]}`}>
@@ -255,8 +255,8 @@ const AdminUniversityRegisterPage = () => {
                     type="file"
                     className={`${styles["form-input"]}`}
                     onChange={(e) =>
-                      setNewUniversity({
-                        ...newUniversity,
+                      setNewCompany({
+                        ...newCompany,
                         paymentSlip: e.target.files[0],
                       })
                     }
@@ -273,4 +273,4 @@ const AdminUniversityRegisterPage = () => {
   );
 };
 
-export default AdminUniversityRegisterPage;
+export default AdminCompanyRegisterPage;
