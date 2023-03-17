@@ -9,7 +9,7 @@ const AdminTournamentPage = () => {
     setIsClickedCurrent(!isClickedCurrent);
   };
 
-  const [isInitiatedTournament, setIsInitiatedTournament] = useState(false);
+  const [isInitiatedTournament, setIsInitiatedTournament] = useState(true);
 
   const rotateLeftStyle = { transform: "rotate(-360deg)" };
   const rotateRightStyle = { transform: "rotate(90deg)" };
@@ -59,7 +59,7 @@ const AdminTournamentPage = () => {
           style={{ color: "red" }}
           className={
             isInitiatedTournament
-              ? "btn padding-none border-0"
+              ? "btn padding-none border-0 shadow-none"
               : "btn disabled padding-none border-0 shadow-none"
           }
         >
@@ -111,7 +111,7 @@ const AdminTournamentPage = () => {
           Current Tournament
         </a>
       </div>
-      {isInitiatedTournament
+      {! isInitiatedTournament
         ? isClickedCurrent && (
             <div id="message" className={`${styles["message"]}`}>
               No tournaments have been initiated yet
