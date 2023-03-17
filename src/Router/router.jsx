@@ -36,6 +36,7 @@ import AdminUniversitiesViewYearPage from "../Views/AdminUniversitiesViewYearPag
 import AdminUniversityRegisterPage from "../Views/AdminUniversityRegisterPage/AdminUniversityRegisterPage";
 import AdminUniversityAddNewPlayerPage from "../Views/AdminUniversityAddNewPlayerPage/AdminUniversityAddNewPlayerPage";
 import AdminCompaniesPage from "../Views/AdminCompaniesPage/AdminCompaniesPage";
+import AdminCompaniesViewYearPage from "../Views/AdminCompaniesViewYearPage.jsx/AdminCompaniesViewyearPage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -114,9 +115,10 @@ export default function AppRouter() {
                   path="universities/:year/:university/register-player"
                   element={<AdminUniversityAddNewPlayerPage />}
                 />
+                <Route path="companies" element={<AdminCompaniesPage />} />
                 <Route
-                  path="companies"
-                  element={<AdminCompaniesPage />}
+                  path="companies/year/:year"
+                  element={<AdminCompaniesViewYearPage />}
                 />
                 <Route path="*" element={<NotFound />} />
               </Route>

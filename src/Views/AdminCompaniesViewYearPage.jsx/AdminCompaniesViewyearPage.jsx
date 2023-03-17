@@ -3,41 +3,43 @@ import { useParams } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import AdminHeader from "../AdminHeaderPage/AdminHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
-import styles from "./adminUniversitiesViewYearPage.module.css";
+import styles from "./adminCompaniesViewYearPage.module.css";
 
-const AdminUniversitiesViewYearPage = () => {
+const AdminCompaniesViewYearPage = () => {
   let { year } = useParams();
 
-  const [universities, setUniversities] = useState([
+  const [companies, setCompanies] = useState([
     {
-      name: "University of Colombo",
+      name: "H2O.ai",
       players: ["Poorna Cooray", "Poorna Cooray"],
     },
     {
-      name: "University of Sri Jayawardanapura",
+      name: "WealthOS",
       players: ["Poorna Cooray", "Poorna Cooray"],
     },
     {
-      name: "University of Sabaragamuwa",
+      name: "Insighture",
       players: ["Poorna Cooray", "Poorna Cooray"],
     },
     {
-      name: "University of Jaffna",
+      name: "WSO2",
       players: ["Poorna Cooray", "Poorna Cooray"],
     },
   ]);
 
-  const [universityToBeUnregistered, setUniversityToBeUnregistered] =
-    useState([]);
+  const [companyToBeUnregistered, setCompanyToBeUnregistered] = useState([]);
 
-  const loadPlayers = (university) => {
-    if (document.querySelector("#" + university).style.display === "none") {
-      document.querySelector("#" + university).style.display = "block";
-      document.querySelector("#arrow" + university).style.transform =
+  const loadPlayers = (company) => {
+    company = company.includes(".")
+      ? company.split(".").join("")
+      : company.split(" ").join("");
+    if (document.querySelector("#" + company).style.display === "none") {
+      document.querySelector("#" + company).style.display = "block";
+      document.querySelector("#arrow" + company).style.transform =
         "rotate(90deg)";
     } else {
-      document.querySelector("#" + university).style.display = "none";
-      document.querySelector("#arrow" + university).style.transform =
+      document.querySelector("#" + company).style.display = "none";
+      document.querySelector("#arrow" + company).style.transform =
         "rotate(-360deg)";
     }
   };
@@ -52,17 +54,19 @@ const AdminUniversitiesViewYearPage = () => {
     setShow(true);
   };
 
-  const unregisterUniversity = (e) => {
+  const unregisterCompany = (e) => {
     e.preventDefault();
-    console.log(universityToBeUnregistered)
+    console.log(companyToBeUnregistered);
     setShow(false);
   };
 
   useEffect(() => {
-    universities.map(
-      (university) =>
+    companies.map(
+      (company) =>
         (document.querySelector(
-          "#" + university.name.split(" ").join("")
+          company.name.includes(".")
+          ? "#" +  company.name.split(".").join("")
+          : "#" +  company.name.split(" ").join("")
         ).style.display = "none")
     );
   }, []);
@@ -70,9 +74,9 @@ const AdminUniversitiesViewYearPage = () => {
   return (
     <div className={`${styles["gallery-container"]}`}>
       <AdminHeader />
-      <AdminNavbar page="universities" />
+      <AdminNavbar page="companies" />
       <div className={`${styles["main-title"]}`}>
-        <a href="/admin/universities">Universities</a>
+        <a href="/admin/companies">Companies</a>
         <img
           src={require("../../assests/images/forward_arrow.png")}
           alt=""
@@ -80,7 +84,7 @@ const AdminUniversitiesViewYearPage = () => {
         {year}
       </div>
       <div className={`${styles["tool-bar"]}`}>
-        <a href={"/admin/universities/"+year+"/register"}>
+        <a href={"/admin/companies/" + year + "/register"}>
           <img src={require("../../assests/images/edit.png")} alt="" /> Register
         </a>
 
@@ -91,39 +95,49 @@ const AdminUniversitiesViewYearPage = () => {
       </div>
 
       <div className={`${styles["users-container"]}`}>
-        {universities.map((university, index) => (
+        {companies.map((company, index) => (
           <div className={`${styles["user"]}`}>
             <button
               className={`${styles["user-type-container"]}`}
-              onClick={() => loadPlayers(university.name.split(" ").join(""))}
+              onClick={() => loadPlayers(company.name)}
             >
               <img
                 src={require("../../assests/images/forward_arrow.png")}
                 alt=""
                 style={{ width: "15px" }}
                 className={`${styles["user-type-arrow"]}`}
-                id={"arrow" + university.name.split(" ").join("")}
+                id={
+                   company.name.includes(".")
+                    ? "arrow" + company.name.split(".").join("")
+                    : "arrow" + company.name.split(" ").join("")
+                }
               />
               <img
                 src={require("../../assests/images/players.png")}
                 alt=""
                 className={`${styles["user-type-img"]}`}
               />
-              {university.name}
+              {company.name}
             </button>
             <div
-              id={university.name.split(" ").join("")}
+              id={
+                company.name.includes(".")
+                  ? company.name.split(".").join("")
+                  : company.name.split(" ").join("")
+              }
               className={`${styles["users-name-container"]}`}
             >
               <div className={`${styles["add-players"]}`}>
-                <a href={`/admin/universities/${year}/${university.name}/register-player`}>
+                <a
+                  href={`/admin/companies/${year}/${company.name}/register-player`}
+                >
                   <img src={require("../../assests/images/edit.png")} alt="" />{" "}
                   Add new player
                 </a>
               </div>
-              {university.players.map((player, index) => (
+              {company.players.map((player, index) => (
                 <a
-                  href={`/admin/universities/${year}/${university.name}/view-player/${index}`}
+                  href={`/admin/companies/${year}/${company.name}/view-player/${index}`}
                   className={`${styles["users-name"]}`}
                 >
                   {player}
@@ -142,7 +156,7 @@ const AdminUniversitiesViewYearPage = () => {
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header style={{ backgroundColor: "#f5f6fa" }}>
           <Modal.Title style={{ fontFamily: "Hind", fontSize: "18px" }}>
-            Unregister a University
+            Unregister a Company
           </Modal.Title>
         </Modal.Header>
         <form style={{ backgroundColor: "#f5f6fa" }}>
@@ -150,21 +164,19 @@ const AdminUniversitiesViewYearPage = () => {
             <div className="row">
               <div className="col-11">
                 <h5 style={{ fontFamily: "Hind", fontSize: "18px" }}>
-                  Select the university that you want to unregister.
+                  Select the company that you want to unregister.
                 </h5>
                 <select
                   style={{ fontFamily: "Hind", fontSize: "18px" }}
                   className="form-select form-select-sm"
-                  onChange={(e) =>
-                    setUniversityToBeUnregistered(e.target.value)
-                  }
+                  onChange={(e) => setCompanyToBeUnregistered(e.target.value)}
                 >
-                  {universities.map((university) => (
+                  {companies.map((company) => (
                     <option
                       style={{ fontFamily: "Hind", fontSize: "18px" }}
-                      value={university.name}
+                      value={company.name}
                     >
-                      {university.name}
+                      {company.name}
                     </option>
                   ))}
                 </select>
@@ -183,7 +195,7 @@ const AdminUniversitiesViewYearPage = () => {
             <button
               type="submit"
               className="btn btn-light"
-              onClick={unregisterUniversity}
+              onClick={unregisterCompany}
               style={{
                 fontFamily: "Hind",
                 fontSize: "18px",
@@ -200,4 +212,4 @@ const AdminUniversitiesViewYearPage = () => {
   );
 };
 
-export default AdminUniversitiesViewYearPage;
+export default AdminCompaniesViewYearPage;
