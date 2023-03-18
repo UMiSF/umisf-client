@@ -21,7 +21,6 @@ import OrganizerHomePage from "../Views/OrganizerHomePage/OrganizerHomePage";
 import TableHomePage from "../Views/TableHomePage/TableHomePage";
 import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
 
-import AdminHeader from "../Views/AdminHeaderPage/AdminHeader";
 import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
 import AdminGalleryViewYearPage from "../Views/AdminGalleyViewYearPage/AdminGalleryViewYearPage";

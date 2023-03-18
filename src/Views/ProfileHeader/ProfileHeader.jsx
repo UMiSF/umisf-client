@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./adminHeader.module.css";
+import styles from "./profileHeader.module.css";
 
-const AdminHeader = (props) => {
+const ProfileHeader = (props) => {
   return (
     <div>
       <div className={`${styles["header-container"]}`}>
@@ -12,7 +12,7 @@ const AdminHeader = (props) => {
           ></img>
         </div>
         <div className={`${styles["header-admin-profile"]}`}>
-          <div className={`${styles["header-admin"]}`}>{props.user_type}</div>
+          <div className={`${styles["header-admin"]}`}>{props.user_type.split("-").join(" ").toUpperCase()}</div>
           <div className={`${styles["header-dropdown"]}`}>
             <img
               className={`${styles["header-drop-down-logo"]}`}
@@ -36,4 +36,4 @@ const AdminHeader = (props) => {
   );
 };
 
-export default AdminHeader;
+export default ProfileHeader;

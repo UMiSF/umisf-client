@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { Form, Input } from "reactstrap";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
-import AdminHeader from "../AdminHeaderPage/AdminHeader";
+import ProfileHeader from '../ProfileHeader/ProfileHeader'
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminCreateTournamentPage.module.css";
 import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
@@ -76,7 +74,7 @@ const AdminCreateTournamentPage = () => {
 
   return (
     <div className={`${styles["tournament-container"]}`}>
-      <AdminHeader />
+      <ProfileHeader user_type={"admin"} />
       <AdminNavbar page="tournament" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/tournament">Tournament</a>
