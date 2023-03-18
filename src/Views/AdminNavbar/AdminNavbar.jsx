@@ -51,7 +51,7 @@ const AdminNavbar = (props) => {
           </li>
           <li className={`${styles["navbar-item"]}`}>
             <a
-              href="/admin/user-accounts"
+              href="/admin/payments"
               className={`${styles["navbar-item-link"]}`}
               id='payments'
             >
@@ -177,7 +177,7 @@ const AdminNavbar = (props) => {
           </li>
           <li className={`${styles["navbar-item"]}`}>
             <a
-              href="/admin/user-accounts"
+              href="/admin/payments"
               className={`${styles["navbar-item-link"]}`}
               id='payments'
             >

@@ -25,12 +25,13 @@ import AdminHeader from "../Views/AdminHeaderPage/AdminHeader";
 import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
 import AdminGalleryViewYearPage from "../Views/AdminGalleyViewYearPage/AdminGalleryViewYearPage";
-import AdminUserAccountsPage from '../Views/AdminUserAccountsPage/AdminUserAccountsPage'
+import AdminUserAccountsPage from "../Views/AdminUserAccountsPage/AdminUserAccountsPage";
 import AdminUserAccountViewPage from "../Views/AdminUserAccountViewPage/AdminUserAccountViewPage";
 import AdminUserAccountEditPage from "../Views/AdminUserAccountEditPage/AdminUserAccountEditPage";
 import AdminTournamentPage from "../Views/AdminTournamentPage/AdminTournamentPage";
 import AdminCreateTournamentPage from "../Views/AdminCreateTournamentPage/AdminCreateTournamentPage";
 import AdminEditTournamentPage from "../Views/AdminEditTournamentPage/AdminEditTournamentPage";
+import AdminPaymentsPage from "../Views/AdminPaymentsPage/AdminPaymentsPage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -39,64 +40,22 @@ export default function AppRouter() {
     <BrowserRouter>
       <>
         <Routes>
-
-          <Route exact path="/" element={<HomePage />}/>
-            <Route
-              path="about"
-              element={<AboutPage />}
-            />
-             <Route
-              path="contact-us"
-              element={<ContactUsPage />}
-            />
-                        <Route
-              path="register"
-            
-            >
-            <Route
-              path="player"
-              element={<PlayerRegistration/>}
-            />
-            <Route
-              path="single"
-              element={<SingleRegistration/>}
-            />
-                                    <Route
-              path="double"
-              element={<DoubleRegistration/>}
-            />
-                                    <Route
-              path="university"
-              element={<UniversityRegistration/>}
-            />
-                                    <Route
-              path="company"
-              element={<CompanyRegistration/>}
-            />
-            </Route>
-                        <Route
-              path="draws"
-              element={<DrawsPage />}
-            />
-                        <Route
-              path="scheduled-matches"
-              element={<MatchSchedulePage />}
-            />
-                                    <Route
-              path="match-results"
-              element={<MatchResultsPage />}
-            />
-                                    <Route
-              path="scheduled-matches"
-              element={<MatchSchedulePage />}
-            />
-                                    <Route
-              path="photos"
-              element={<PhotosPage />}
-            />
-            <Route path="*" element={<NotFound />} />
-          
-
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="contact-us" element={<ContactUsPage />} />
+          <Route path="register">
+            <Route path="player" element={<PlayerRegistration />} />
+            <Route path="single" element={<SingleRegistration />} />
+            <Route path="double" element={<DoubleRegistration />} />
+            <Route path="university" element={<UniversityRegistration />} />
+            <Route path="company" element={<CompanyRegistration />} />
+          </Route>
+          <Route path="draws" element={<DrawsPage />} />
+          <Route path="scheduled-matches" element={<MatchSchedulePage />} />
+          <Route path="match-results" element={<MatchResultsPage />} />
+          <Route path="scheduled-matches" element={<MatchSchedulePage />} />
+          <Route path="photos" element={<PhotosPage />} />
+          <Route path="*" element={<NotFound />} />
 
           {/*type1: admin  admin/page_name*/}
           {/*type2: organizer       oragnozierer/page_name*/}
@@ -126,10 +85,7 @@ export default function AppRouter() {
                   path="user-accounts/edit/:user"
                   element={<AdminUserAccountEditPage />}
                 />
-                <Route
-                  path="tournament"
-                  element={<AdminTournamentPage />}
-                />
+                <Route path="tournament" element={<AdminTournamentPage />} />
                 <Route
                   path="tournament/create-tournament"
                   element={<AdminCreateTournamentPage />}
@@ -138,6 +94,7 @@ export default function AppRouter() {
                   path="tournament/edit-tournament"
                   element={<AdminEditTournamentPage />}
                 />
+                <Route path="payments" element={<AdminPaymentsPage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />
