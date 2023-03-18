@@ -51,6 +51,19 @@ const AdminNavbar = (props) => {
           </li>
           <li className={`${styles["navbar-item"]}`}>
             <a
+              href="/admin/user-accounts"
+              className={`${styles["navbar-item-link"]}`}
+              id='payments'
+            >
+              <img
+                src={require("../../assests/images/payments.png")}
+                alt=""
+              />{" "}
+              Payments
+            </a>
+          </li>
+          <li className={`${styles["navbar-item"]}`}>
+            <a
               href="/admin/tournament"
               className={`${styles["navbar-item-link"]}`}
               id='tournament'
@@ -160,6 +173,19 @@ const AdminNavbar = (props) => {
                 alt=""
               />{" "}
               User Accounts
+            </a>
+          </li>
+          <li className={`${styles["navbar-item"]}`}>
+            <a
+              href="/admin/user-accounts"
+              className={`${styles["navbar-item-link"]}`}
+              id='payments'
+            >
+              <img
+                src={require("../../assests/images/payments.png")}
+                alt=""
+              />{" "}
+              Payments
             </a>
           </li>
           <li className={`${styles["navBarItem"]}`}>
