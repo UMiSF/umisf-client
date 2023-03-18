@@ -1,13 +1,13 @@
 import React from 'react';
 import AdminHeader from '../AdminHeaderPage/AdminHeader';
-import AdminNavbar from '../AdminNavbar/AdminNavbar'
+import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
 import styles from './adminPaymentsPage.module.css'
 
 const AdminPaymentsPage = () => {
     return (
         <div className={`${styles["home-container"]}`}>
             <AdminHeader/>
-            <AdminNavbar page='payments'/>
+            <ProfileNavbar page='payments'/>
             Home
         </div>
     );

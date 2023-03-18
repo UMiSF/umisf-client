@@ -9,7 +9,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import AdminHeader from "../AdminHeaderPage/AdminHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import ProfileNavbar from '../ProfileNavbar/ProfileNavbar'
 import styles from "./adminCreateTournamentPage.module.css";
 import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
 
@@ -77,7 +77,7 @@ const AdminCreateTournamentPage = () => {
   return (
     <div className={`${styles["tournament-container"]}`}>
       <AdminHeader />
-      <AdminNavbar page="tournament" />
+      <ProfileNavbar page="tournament" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/tournament">Tournament</a>
       </div>

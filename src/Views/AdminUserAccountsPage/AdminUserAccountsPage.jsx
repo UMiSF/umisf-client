@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminHeader from "../AdminHeaderPage/AdminHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
 import styles from "./adminUserAccountsPage.module.css";
 
 const AdminUserAccountsPage = () => {
@@ -32,7 +32,7 @@ const AdminUserAccountsPage = () => {
   return (
     <div className={`${styles["accounts-container"]}`}>
       <AdminHeader />
-      <AdminNavbar page="user_accounts" />
+      <ProfileNavbar page="user_accounts" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/user-accounts">User Accounts</a>
       </div>

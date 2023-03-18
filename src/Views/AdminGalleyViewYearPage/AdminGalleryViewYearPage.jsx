@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { useParams } from "react-router-dom";
 import AdminHeader from "../AdminHeaderPage/AdminHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
 import styles from "./adminGalleryViewYearPage.module.css";
 import PhotoItem from "./PhotoItem";
 
@@ -24,7 +24,7 @@ const AdminGalleryViewYearPage = () => {
   return (
     <div className={`${styles["gallery-container"]}`}>
       <AdminHeader />
-      <AdminNavbar page="gallery" />
+      <ProfileNavbar page="gallery" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/gallery">Gallery</a>
         <img

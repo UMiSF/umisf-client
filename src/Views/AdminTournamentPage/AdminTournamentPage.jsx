@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AdminHeader from "../AdminHeaderPage/AdminHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
 import styles from "./adminTournamentPage.module.css";
 
 const AdminTournamentPage = () => {
@@ -36,7 +36,7 @@ const AdminTournamentPage = () => {
   return (
     <div className={`${styles["tournament-container"]}`}>
       <AdminHeader />
-      <AdminNavbar page="tournament" />
+      <ProfileNavbar page="tournament" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/tournament">Tournament</a>
       </div>

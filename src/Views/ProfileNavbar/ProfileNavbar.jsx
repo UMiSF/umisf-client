@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import styles from "./adminNavbar.module.css";
+import styles from "./profileNavbar.module.css";
 
-const AdminNavbar = (props) => {
+const ProfileNavbar = (props) => {
   const loadSideBar = () => {
     let display = document.querySelector("#navSideBar").style.display;
     display === "block"
@@ -154,4 +154,4 @@ const AdminNavbar = (props) => {
   );
 };
 
-export default AdminNavbar;
+export default ProfileNavbar;
