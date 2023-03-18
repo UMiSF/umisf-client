@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./adminHeader.module.css";
 
-const AdminHeader = () => {
+const AdminHeader = (props) => {
   return (
     <div>
       <div className={`${styles["header-container"]}`}>
@@ -12,7 +12,7 @@ const AdminHeader = () => {
           ></img>
         </div>
         <div className={`${styles["header-admin-profile"]}`}>
-          <div className={`${styles["header-admin"]}`}>ADMIN</div>
+          <div className={`${styles["header-admin"]}`}>{props.user_type}</div>
           <div className={`${styles["header-dropdown"]}`}>
             <img
               className={`${styles["header-drop-down-logo"]}`}
