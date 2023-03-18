@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { Form, Input } from "reactstrap";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
 import styles from "./adminUserAccountEditPage.module.css";
 
 const AdminUserAccountEditPage = () => {
@@ -39,8 +39,10 @@ const AdminUserAccountEditPage = () => {
 
   return (
     <div className={`${styles["account-container"]}`}>
+
       <ProfileHeader user_type={"admin"} />
-      <AdminNavbar page="user_accounts" />
+      <ProfileNavbar page="user_accounts" />
+
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/user-accounts">User Accounts</a>
         <img
