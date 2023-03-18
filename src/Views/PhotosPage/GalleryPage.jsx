@@ -3,6 +3,8 @@ import Styles from "./GalleryPage.module.css";
 import AlbumCard from "./AlbumCard";
 import { useState } from "react";
 import image from './Images/TempImg/1.jpg';
+import HeaderPage from "../HeaderPage/HeaderPage";
+
 
 const GalleryPage = () => {
   const [titles, setTitles] = useState([
@@ -31,7 +33,9 @@ const GalleryPage = () => {
 
   return (
     <div className={`${Styles["body"]}`}>
+     
       <div className={`${Styles["cover-img"]}`}>
+      <HeaderPage/>
         <div className={`${Styles["cover-title"]}`}>
           <h1
             style={{ color: "white", fontFamily: "Lobster" }}

@@ -32,75 +32,25 @@ export default function AppRouter() {
     <BrowserRouter>
       <>
         <Routes>
-          <Route exact path="/" element={<HomePage />}/>
-            <Route
-              path="about"
-              element={<AboutPage />}
-            />
-             <Route
-              path="contact-us"
-              element={<ContactUsPage />}
-            />
-                        <Route
-              path="register"
-            
-            >
-                                      <Route
-              path="player"
-              element={<PlayerRegistration/>}
-            />
-                        <Route
-              path="single"
-              element={<SingleRegistration/>}
-            />
-                                    <Route
-              path="double"
-              element={<DoubleRegistration/>}
-            />
-                                    <Route
-              path="university"
-              element={<UniversityRegistration/>}
-            />
-                                    <Route
-              path="company"
-              element={<CompanyRegistration/>}
-            />
-            </Route>
-                        <Route
-              path="draws"
-              element={<DrawsPage />}
-            />
-
-            <Route
-              path="draws-edit"
-              element={<DrawEditPage />} />
-                        <Route
-              path="scheduled-matches"
-              element={<MatchSchedulePage />}
-            />
-                                    <Route
-              path="match-results"
-              element={<MatchResultsPage />}
-            />
-                                    <Route
-              path="scheduled-matches"
-              element={<MatchSchedulePage />}
-            />
-                                    <Route
-              path="photos"
-              element={<PhotosPage />}
-            />
-            <Route path="*" element={<NotFound />} />
-          
-
           <Route exact path="/" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="registration" element={<RegistrationPage />} />
+          <Route path="contact-us" element={<ContactUsPage />} />
+          <Route path="register">
+            <Route path="player" element={<PlayerRegistration />} />
+            <Route path="single" element={<SingleRegistration />} />
+            <Route path="double" element={<DoubleRegistration />} />
+            <Route path="university" element={<UniversityRegistration />} />
+            <Route path="company" element={<CompanyRegistration />} />
+          </Route>
           <Route path="draws" element={<DrawsPage />} />
+
+          <Route path="draws-edit" element={<DrawEditPage />} />
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
           <Route path="match-results" element={<MatchResultsPage />} />
-
-          <Route path="match-results/:matchid" element={<FinishedMatchCard />} />
+          <Route
+            path="match-results/:matchid"
+            element={<FinishedMatchCard />}
+          />
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
           <Route path="photos" element={<GalleryPage />} />
           <Route path="photos/:title" element={<PhotosPage />} />
