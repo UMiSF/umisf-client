@@ -30,6 +30,13 @@
   font-size: 16px;
 }
 
+.tool-bar a{
+  text-decoration: none;
+  font-family: "Hind";
+  font-size: 18px;
+  color: black;
+}
+
 .tool-bar button {
   text-align: left;
   border: none;
