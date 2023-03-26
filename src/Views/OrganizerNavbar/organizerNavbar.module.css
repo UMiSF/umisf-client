@@ -8,7 +8,7 @@
   margin: 0 0.5vw;
 }
 
-.navbar-item a{
+.navbar-item a {
   text-decoration: none;
 }
 
@@ -43,11 +43,7 @@
 }
 
 @media only screen and (max-width: 1390px) {
-  .navbar-ul {
-    display: block;
-  }
-
-  .navbar-item-link{
+  .navbar-item-link {
     font-size: 15px;
   }
 
@@ -62,7 +58,7 @@
 }
 
 @media only screen and (max-width: 770px) {
-  .navbar-item-link{
+  .navbar-item-link {
     font-size: 13px;
   }
 }
@@ -116,7 +112,7 @@
 
   .navBarItem {
     display: block;
-    margin:25px;
+    margin: 25px;
     top: 10vh;
     justify-content: center;
     align-items: center;
@@ -133,10 +129,10 @@
 
   .navbar-item-link:hover {
     background: white;
-    color:black
+    color: black;
   }
 
-  .navbar-item-link:hover img{
+  .navbar-item-link:hover img {
     -webkit-filter: invert(0%);
     filter: invert(0%);
   }
