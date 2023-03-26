@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
@@ -21,6 +21,10 @@ const AdminGalleryViewYearPage = () => {
     "10.jpg",
   ]);
 
+
+  const [files, setFiles] = useState([]);
+  const inputFile = useRef(null);
+
   return (
     <div className={`${styles["gallery-container"]}`}>
 
@@ -29,18 +33,22 @@ const AdminGalleryViewYearPage = () => {
       
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/gallery">Gallery</a>
-        <img
-          src={require("../../assests/images/forward_arrow.png")}
-          alt=""
-        />{" "}
-        {year}
+        <img src={require("../../assests/images/forward_arrow.png")} alt="" /> {year}
       </div>
       <div className={`${styles["tool-bar"]}`}>
-        <button>
+        <button onClick={() => inputFile.current.click()}>
           <img src={require("../../assests/images/add.png")} alt="" />
           Upload
         </button>
+        <input
+          multiple
+          type="file"
+          onChange={(e) => setFiles([...files, e.target.files])}
+          ref={inputFile}
+          style={{display:"none"}}
+        />
       </div>
+      {console.log(files)}
       <div className={`${styles["images-container"]}`}>
         <div className={`${styles["gallery"]}`}>
           {images?.map((img, index) => {
