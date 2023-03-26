@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
-import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
+import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from './adminHomePage.module.css'
 
 const AdminHomePage = () => {
@@ -8,7 +8,7 @@ const AdminHomePage = () => {
         <div className={`${styles["home-container"]}`}>
 
             <ProfileHeader user_type={"admin"} />
-            <ProfileNavbar page='home'/>
+            <AdminNavbar page='home'/>
             
             Home
         </div>

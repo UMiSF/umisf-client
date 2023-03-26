@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import AdminHeader from "../AdminHeaderPage/AdminHeader";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminUniversitiesPage.module.css";
 
@@ -10,7 +10,7 @@ const AdminUniversitiesPage = () => {
 
   return (
     <div className={`${styles["gallery-container"]}`}>
-      <AdminHeader />
+      <ProfileHeader user_type={"admin"} />
       <AdminNavbar page='universities'/>
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/universities">Universities</a>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Form } from "reactstrap";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import ProfileNavbar from '../ProfileNavbar/ProfileNavbar'
+import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminEditTournamentPage.module.css";
 import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
 
@@ -82,7 +82,7 @@ const AdminEditTournamentPage = (props) => {
     <div className={`${styles["tournament-container"]}`}>
 
       <ProfileHeader user_type={"admin"} />
-      <ProfileNavbar page="tournament" />
+      <AdminNavbar page="tournament" />
       
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/tournament">Tournament</a>

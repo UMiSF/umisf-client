@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import AdminHeader from "../AdminHeaderPage/AdminHeader";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminCompaniesViewYearPage.module.css";
 
@@ -73,7 +73,7 @@ const AdminCompaniesViewYearPage = () => {
 
   return (
     <div className={`${styles["gallery-container"]}`}>
-      <AdminHeader />
+      <ProfileHeader user_type={"admin"} />
       <AdminNavbar page="companies" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/companies">Companies</a>

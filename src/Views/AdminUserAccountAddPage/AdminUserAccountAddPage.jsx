@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Form, Input } from "reactstrap";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
+import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminUserAccountAddPage.module.css";
 import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
 
@@ -51,7 +51,7 @@ const AdminUserAccountAddPage = () => {
   return (
     <div className={`${styles["account-container"]}`}>
       <ProfileHeader user_type={"admin"} />
-      <ProfileNavbar page="user_accounts" />
+      <AdminNavbar page="user_accounts" />
 
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/user-accounts">User Accounts</a>

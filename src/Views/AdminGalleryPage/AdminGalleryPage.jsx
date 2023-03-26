@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
+import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminGalleryPage.module.css";
 import { Modal } from "react-bootstrap";
 
@@ -31,7 +31,7 @@ const AdminGalleryPage = () => {
     <div className={`${styles["gallery-container"]}`}>
 
       <ProfileHeader user_type={"admin"} />
-      <ProfileNavbar page='gallery'/>
+      <AdminNavbar page='gallery'/>
       
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/gallery">Gallery</a>

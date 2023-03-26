@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
+import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminPaymentsPage.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -71,7 +71,7 @@ const AdminPaymentsPage = () => {
   return (
     <div className={`${styles["tournament-container"]}`}>
       <ProfileHeader user_type={"admin"} />
-      <ProfileNavbar page="payments" />
+      <AdminNavbar page="payments" />
 
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/payments">Payments</a>

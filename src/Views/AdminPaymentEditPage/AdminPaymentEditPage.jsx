@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { Form, Input } from "reactstrap";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
+import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminPaymentEditPage.module.css";
 
 const AdminPaymentEditPage = (props) => {
@@ -47,7 +47,7 @@ const AdminPaymentEditPage = (props) => {
   return (
     <div className={`${styles["account-container"]}`}>
       <ProfileHeader user_type={"admin"} />
-      <ProfileNavbar page="payments" />
+      <AdminNavbar page="payments" />
 
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/payments">Payments</a>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Input } from "reactstrap";
 import { useParams } from "react-router-dom";
-import AdminHeader from "../AdminHeaderPage/AdminHeader";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminCompanyAddNewPlayer.module.css";
 import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
@@ -30,7 +30,7 @@ const AdminCompanyAddNewPlayerPage = () => {
 
   return (
     <div className={`${styles["tournament-container"]}`}>
-      <AdminHeader />
+      <ProfileHeader user_type={"admin"} />
       <AdminNavbar page="universities" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/companies">Companies</a>
