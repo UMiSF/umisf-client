@@ -143,6 +143,13 @@
   cursor: pointer;
 }
 
+.profile-image{
+  background-color: #d7d8ed;
+  padding: 40px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
 @media only screen and (max-width: 460px) {
   .profile-field-container {
     display: block;

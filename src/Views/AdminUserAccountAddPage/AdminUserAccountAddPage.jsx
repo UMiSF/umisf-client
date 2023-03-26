@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Modal } from "react-bootstrap";
 import { Form, Input } from "reactstrap";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
-import styles from "./adminUserAccountEditPage.module.css";
+import styles from "./adminUserAccountAddPage.module.css";
+import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
 
-const AdminUserAccountEditPage = () => {
+const AdminUserAccountAddPage = () => {
   let { user } = useParams();
 
   const [userDetails, setUserdetails] = useState({
-    name: "Poorna Cooray",
-    email: "poorna.cooray@h2o.ai",
-    password: "poorna",
-    role: "Admin,Umpire",
-    contactNumber: "0764197848",
+    name: "",
+    email: "",
+    password: "",
+    role: "",
+    contactNumber: "",
   });
 
   const [passwords, setPasswords] = useState({
@@ -28,22 +28,9 @@ const AdminUserAccountEditPage = () => {
 
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 
-  const [show, setShow] = useState(false);
+  const [profileImage, setProfileImage] = useState([]);
 
-  const handleClose = (e) => {
-    e.preventDefault();
-    setShow(false);
-  };
-  const handleShow = () => {
-    setShow(true);
-  };
-
-  const deleteUser = (e) => {
-    e.preventDefault();
-    setShow(false);
-  };
-
-  const editUser = (e) => {
+  const addUser = (e) => {
     e.preventDefault();
     console.log(userDetails);
   };
@@ -61,10 +48,6 @@ const AdminUserAccountEditPage = () => {
     }
   };
 
-  useEffect(() => {
-    setSelectedUserRoles(userDetails.role.split(","));
-  }, []);
-
   return (
     <div className={`${styles["account-container"]}`}>
       <ProfileHeader user_type={"admin"} />
@@ -72,21 +55,15 @@ const AdminUserAccountEditPage = () => {
 
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/user-accounts">User Accounts</a>
-        <img src={require("../../assests/images/forward_arrow.png")} alt="" />{" "}
-        <a href={"/admin/user-accounts/" + user} style={{ fontSize: "18px" }}>
-          {userDetails.name}
-        </a>
       </div>
-      <div className={`${styles["tool-bar"]}`}>
-        <button onClick={handleShow}>
-          <img src={require("../../assests/images/delete.png")} alt="" /> Delete Account
-        </button>
-      </div>
+      <div className={`${styles["tool-bar"]}`}>Add new user account</div>
       <div className={`${styles["profile-container"]}`}>
-        <img src={require("../../assests/images/user.jpeg")} alt="" srcSet="" />
-        <div className={`${styles["profile-type"]}`}></div>
-        <hr />
-        <Form onSubmit={editUser}>
+        <Form onSubmit={addUser}>
+          <div className={`${styles["profile-image"]}`}>
+            {" "}
+            <ImageUploader fileList={profileImage} setFileList={setProfileImage} />
+          </div>
+          <hr />
           <div className={`${styles["profile-field-container"]}`}>
             <div className={`${styles["profile-field-name"]}`}>Name</div>
             <div className={`${styles["profile-field-value"]}`}>
@@ -171,7 +148,9 @@ const AdminUserAccountEditPage = () => {
                 type="password"
                 className={`${styles["form-input"]}`}
                 value={passwords.confirmedNewPassword}
-                onChange={(e) => setPasswords({ ...passwords, confirmedNewPassword: e.target.value })}
+                onChange={(e) =>
+                  setPasswords({ ...passwords, confirmedNewPassword: e.target.value })
+                }
               />
             </div>
           </div>
@@ -189,53 +168,11 @@ const AdminUserAccountEditPage = () => {
             </div>
           </div>
           <hr />
-          <button className={`${styles["form-submit-button"]}`}>Update</button>
+          <button className={`${styles["form-submit-button"]}`}>Add User</button>
         </Form>
       </div>
-      {/* modal for adding img */}
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header style={{ backgroundColor: "#f5f6fa" }}>
-          <Modal.Title style={{ fontFamily: "Hind", fontSize: "18px" }}>
-            Delete User Account
-          </Modal.Title>
-        </Modal.Header>
-        <form style={{ backgroundColor: "#f5f6fa" }}>
-          <Modal.Body>
-            <div className="row">
-              <div className="col-11">
-                <h5 style={{ fontFamily: "Hind", fontSize: "18px" }}>
-                  Are you sure you want to delete this user account?{" "}
-                </h5>
-              </div>
-            </div>
-          </Modal.Body>
-
-          <Modal.Footer>
-            <button
-              onClick={handleClose}
-              className="btn btn-secondary"
-              style={{ fontFamily: "Hind", fontSize: "18px" }}
-            >
-              Close
-            </button>
-            <button
-              type="submit"
-              className="btn btn-light"
-              onClick={deleteUser}
-              style={{
-                fontFamily: "Hind",
-                fontSize: "18px",
-                background: "red",
-                color: "white",
-              }}
-            >
-              Delete
-            </button>
-          </Modal.Footer>
-        </form>
-      </Modal>
     </div>
   );
 };
 
-export default AdminUserAccountEditPage;
+export default AdminUserAccountAddPage;

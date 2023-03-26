@@ -39,10 +39,10 @@ const AdminUserAccountsPage = () => {
         <a href="/admin/user-accounts">User Accounts</a>
       </div>
       <div className={`${styles["tool-bar"]}`}>
-        <button>
+        <a href="/admin/user-accounts/add-new-user">
           <img src={require("../../assests/images/add.png")} alt="" /> Add
           Account
-        </button>
+        </a>
       </div>
       <div className={`${styles["users-container"]}`}>
         {users.map((userType, index) => (

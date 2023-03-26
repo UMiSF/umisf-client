@@ -26,6 +26,7 @@ import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
 import AdminGalleryViewYearPage from "../Views/AdminGalleyViewYearPage/AdminGalleryViewYearPage";
 import AdminUserAccountsPage from "../Views/AdminUserAccountsPage/AdminUserAccountsPage";
 import AdminUserAccountViewPage from "../Views/AdminUserAccountViewPage/AdminUserAccountViewPage";
+import AdminUserAccountAddPage from "../Views/AdminUserAccountAddPage/AdminUserAccountAddPage";
 import AdminUserAccountEditPage from "../Views/AdminUserAccountEditPage/AdminUserAccountEditPage";
 import AdminTournamentPage from "../Views/AdminTournamentPage/AdminTournamentPage";
 import AdminCreateTournamentPage from "../Views/AdminCreateTournamentPage/AdminCreateTournamentPage";
@@ -85,6 +86,10 @@ export default function AppRouter() {
                 <Route
                   path="user-accounts/edit/:user"
                   element={<AdminUserAccountEditPage />}
+                />
+                <Route
+                  path="user-accounts/add-new-user"
+                  element={<AdminUserAccountAddPage />}
                 />
                 <Route path="tournament" element={<AdminTournamentPage />} />
                 <Route
