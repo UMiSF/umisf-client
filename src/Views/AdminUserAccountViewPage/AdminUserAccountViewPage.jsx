@@ -100,7 +100,7 @@ const AdminUserAccountViewPage = () => {
         </div>
         <hr />
       </div>
-      {/* modal for adding img */}
+      {/* modal for deleting */}
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header style={{ backgroundColor: "#f5f6fa" }}>
           <Modal.Title style={{fontFamily:'Hind',fontSize:'18px'}}>Delete User Account</Modal.Title>
