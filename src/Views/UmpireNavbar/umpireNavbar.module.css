@@ -43,9 +43,6 @@
 }
 
 @media only screen and (max-width: 1390px) {
-  .navbar-ul {
-    display: block;
-  }
 
   .navbar-item-link{
     font-size: 15px;
