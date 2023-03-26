@@ -43,8 +43,12 @@ import AdminCompaniesViewYearPage from "../Views/AdminCompaniesViewYearPage/Admi
 import AdminCompanyRegisterPage from "../Views/AdminCompanyRegisterPage/AdminCompanyRegisterPage";
 import AdminCompanyAddNewPlayerPage from "../Views/AdminCompanyAddNewPlayerPage/AdminCompanyAddNewPlayerPage";
 
+import OrganizerPaymentCreatePage from "../Views/OrganizerPaymentCreatePage/OrganizerPaymentCreatePage";
+import OrganizerPaymentsPage from '../Views/OrganizerPaymentsPage/OrganizerPaymentsPage'
+import OrganizerPaymentEditPage from "../Views/OrganizerPaymentEditPage/OrganizerPaymentEditPage";
+
 export default function AppRouter() {
-  let type = 1; //todo: this should change according to the user
+  let type = 2; //todo: this should change according to the user
 
   return (
     <BrowserRouter>
@@ -79,47 +83,23 @@ export default function AppRouter() {
               <Route exact path="admin">
                 <Route path="" element={<AdminHomePage />} />
                 <Route path="gallery" element={<AdminGalleryPage />} />
-                <Route
-                  path="gallery/year/:year"
-                  element={<AdminGalleryViewYearPage />}
-                />
-                <Route
-                  path="user-accounts"
-                  element={<AdminUserAccountsPage />}
-                />
-                <Route
-                  path="user-accounts/:user"
-                  element={<AdminUserAccountViewPage />}
-                />
-                <Route
-                  path="user-accounts/edit/:user"
-                  element={<AdminUserAccountEditPage />}
-                />
-                <Route
-                  path="user-accounts/add-new-user"
-                  element={<AdminUserAccountAddPage />}
-                />
+                <Route path="gallery/year/:year" element={<AdminGalleryViewYearPage />} />
+                <Route path="user-accounts" element={<AdminUserAccountsPage />} />
+                <Route path="user-accounts/:user" element={<AdminUserAccountViewPage />} />
+                <Route path="user-accounts/edit/:user" element={<AdminUserAccountEditPage />} />
+                <Route path="user-accounts/add-new-user" element={<AdminUserAccountAddPage />} />
                 <Route path="tournament" element={<AdminTournamentPage />} />
                 <Route
                   path="tournament/create-tournament"
                   element={<AdminCreateTournamentPage />}
                 />
-                <Route
-                  path="tournament/edit-tournament"
-                  element={<AdminEditTournamentPage />}
-                />
+                <Route path="tournament/edit-tournament" element={<AdminEditTournamentPage />} />
                 <Route path="payments" element={<AdminPaymentsPage />} />
                 <Route path="payments/edit-payment" element={<AdminPaymentEditPage />} />
                 <Route path="payments/add-new-payment" element={<AdminPaymentCreatePage />} />
 
-                <Route
-                  path="universities"
-                  element={<AdminUniversitiesPage />}
-                />
-                <Route
-                  path="universities/year/:year"
-                  element={<AdminUniversitiesViewYearPage />}
-                />
+                <Route path="universities" element={<AdminUniversitiesPage />} />
+                <Route path="universities/year/:year" element={<AdminUniversitiesViewYearPage />} />
                 <Route
                   path="universities/:year/register"
                   element={<AdminUniversityRegisterPage />}
@@ -129,14 +109,8 @@ export default function AppRouter() {
                   element={<AdminUniversityAddNewPlayerPage />}
                 />
                 <Route path="companies" element={<AdminCompaniesPage />} />
-                <Route
-                  path="companies/year/:year"
-                  element={<AdminCompaniesViewYearPage />}
-                />
-                <Route
-                  path="companies/:year/register"
-                  element={<AdminCompanyRegisterPage />}
-                />
+                <Route path="companies/year/:year" element={<AdminCompaniesViewYearPage />} />
+                <Route path="companies/:year/register" element={<AdminCompanyRegisterPage />} />
                 <Route
                   path="companies/:year/:company/register-player"
                   element={<AdminCompanyAddNewPlayerPage />}
@@ -147,8 +121,11 @@ export default function AppRouter() {
             </Route>
           ) : type === 2 ? (
             <Route>
-              <Route exact path="organizer" element={<HeaderPage type={2} />}>
+              <Route exact path="organizer">
                 <Route path="" element={<OrganizerHomePage />} />
+                <Route path="payments" element={<OrganizerPaymentsPage />} />
+                <Route path="payments/edit-payment" element={<OrganizerPaymentEditPage />} />
+                <Route path="payments/add-new-payment" element={<OrganizerPaymentCreatePage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />
