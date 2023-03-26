@@ -1,9 +1,16 @@
 import React from 'react';
+import ProfileHeader from '../ProfileHeader/ProfileHeader';
+import TableNavbar from '../TableNavbar/TableNavbar';
+import styles from './tableHomePage.module.css'
 
 const TableHomePage = () => {
     return (
-        <div>
-            <h1>Table Home Page</h1>
+        <div className={`${styles["home-container"]}`}>
+
+            <ProfileHeader user_type={"table-organizer"} />
+            <TableNavbar page='home'/>
+            
+            Home
         </div>
     );
 };
