@@ -44,11 +44,11 @@ import AdminCompanyRegisterPage from "../Views/AdminCompanyRegisterPage/AdminCom
 import AdminCompanyAddNewPlayerPage from "../Views/AdminCompanyAddNewPlayerPage/AdminCompanyAddNewPlayerPage";
 
 import OrganizerPaymentCreatePage from "../Views/OrganizerPaymentCreatePage/OrganizerPaymentCreatePage";
-import OrganizerPaymentsPage from '../Views/OrganizerPaymentsPage/OrganizerPaymentsPage'
+import OrganizerPaymentsPage from "../Views/OrganizerPaymentsPage/OrganizerPaymentsPage";
 import OrganizerPaymentEditPage from "../Views/OrganizerPaymentEditPage/OrganizerPaymentEditPage";
 
 export default function AppRouter() {
-  let type = 2; //todo: this should change according to the user
+  let type = 3; //todo: this should change according to the user
 
   return (
     <BrowserRouter>
@@ -72,8 +72,8 @@ export default function AppRouter() {
           <Route path="*" element={<NotFound />} />
 
           {/*type1: admin  admin/page_name*/}
-          {/*type2: organizer       oragnozierer/page_name*/}
-          {/*type3: table       table/page_name*/}
+          {/*type2: organizer       organizer/page_name*/}
+          {/*type3: table       table-organizer/page_name*/}
           {/*type4: umpire           umpire/page_name*/}
           {/*type5: player           /page_name*/}
           {/*todo: conditions should change*/}
@@ -132,7 +132,7 @@ export default function AppRouter() {
             </Route>
           ) : type === 3 ? (
             <Route>
-              <Route exact path="table" element={<HeaderPage type={3} />}>
+              <Route exact path="table-organizer">
                 <Route path="" element={<TableHomePage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
