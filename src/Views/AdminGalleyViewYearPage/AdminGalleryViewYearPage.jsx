@@ -48,7 +48,6 @@ const AdminGalleryViewYearPage = () => {
           style={{display:"none"}}
         />
       </div>
-      {console.log(files)}
       <div className={`${styles["images-container"]}`}>
         <div className={`${styles["gallery"]}`}>
           {images?.map((img, index) => {
