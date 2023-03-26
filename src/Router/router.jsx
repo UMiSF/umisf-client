@@ -4,7 +4,12 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 // Route imports
 import HomePage from "../Views/HomePage/HomePage";
 import AboutPage from "../Views/AboutPage/AboutPage";
-import RegistrationPage from "../Views/RegistrationPage/RegistrationPage";
+import ContactUsPage from "../Views/ContactUsPage/ContactUs";
+import SingleRegistration from "../Views/RegistrationPage/SinglesRegistration/SingleRegistration";
+import DoubleRegistration from "../Views/RegistrationPage/DoublesRegistration/DoubleRegistration";
+import CompanyRegistration from "../Views/RegistrationPage/CompanyRegistration/CompanyRegistration";
+import UniversityRegistration from "../Views/RegistrationPage/UniversityRegistration/UniversityRegistration";
+import PlayerRegistration from "../Views/RegistrationPage/PlayerRegistration/PlayerRegistration";
 import DrawsPage from "../Views/DrawsPage/DrawsPage";
 import MatchSchedulePage from "../Views/MatchSchedulePage/MatchSchedulePage";
 import MatchResultsPage from "../Views/MatchResultsPage/MatchResultsPage";
@@ -16,13 +21,18 @@ import OrganizerHomePage from "../Views/OrganizerHomePage/OrganizerHomePage";
 import TableHomePage from "../Views/TableHomePage/TableHomePage";
 import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
 
-import AdminHeader from "../Views/AdminHeaderPage/AdminHeader";
 import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
 import AdminGalleryViewYearPage from "../Views/AdminGalleyViewYearPage/AdminGalleryViewYearPage";
-import AdminUserAccountsPage from '../Views/AdminUserAccountsPage/AdminUserAccountsPage'
+import AdminUserAccountsPage from "../Views/AdminUserAccountsPage/AdminUserAccountsPage";
 import AdminUserAccountViewPage from "../Views/AdminUserAccountViewPage/AdminUserAccountViewPage";
 import AdminUserAccountEditPage from "../Views/AdminUserAccountEditPage/AdminUserAccountEditPage";
+import AdminTournamentPage from "../Views/AdminTournamentPage/AdminTournamentPage";
+import AdminCreateTournamentPage from "../Views/AdminCreateTournamentPage/AdminCreateTournamentPage";
+import AdminEditTournamentPage from "../Views/AdminEditTournamentPage/AdminEditTournamentPage";
+import AdminPaymentsPage from "../Views/AdminPaymentsPage/AdminPaymentsPage";
+import AdminPaymentEditPage from "../Views/AdminPaymentEditPage/AdminPaymentEditPage";
+import AdminPaymentCreatePage from "../Views/AdminPaymentCreatePage/AdminPaymentCreatePage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -33,7 +43,14 @@ export default function AppRouter() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="registration" element={<RegistrationPage />} />
+          <Route path="contact-us" element={<ContactUsPage />} />
+          <Route path="register">
+            <Route path="player" element={<PlayerRegistration />} />
+            <Route path="single" element={<SingleRegistration />} />
+            <Route path="double" element={<DoubleRegistration />} />
+            <Route path="university" element={<UniversityRegistration />} />
+            <Route path="company" element={<CompanyRegistration />} />
+          </Route>
           <Route path="draws" element={<DrawsPage />} />
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
           <Route path="match-results" element={<MatchResultsPage />} />
@@ -69,6 +86,18 @@ export default function AppRouter() {
                   path="user-accounts/edit/:user"
                   element={<AdminUserAccountEditPage />}
                 />
+                <Route path="tournament" element={<AdminTournamentPage />} />
+                <Route
+                  path="tournament/create-tournament"
+                  element={<AdminCreateTournamentPage />}
+                />
+                <Route
+                  path="tournament/edit-tournament"
+                  element={<AdminEditTournamentPage />}
+                />
+                <Route path="payments" element={<AdminPaymentsPage />} />
+                <Route path="payments/edit-payment" element={<AdminPaymentEditPage />} />
+                <Route path="payments/add-new-payment" element={<AdminPaymentCreatePage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />

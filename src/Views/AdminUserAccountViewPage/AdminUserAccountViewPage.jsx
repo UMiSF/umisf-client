@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import AdminHeader from "../AdminHeaderPage/AdminHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
+import ProfileNavbar from "../ProfileNavbar/ProfileNavbar";
 import styles from "./adminUserAccountViewPage.module.css";
 
 const AdminUserAccountViewPage = () => {
@@ -33,8 +33,10 @@ const AdminUserAccountViewPage = () => {
 
   return (
     <div className={`${styles["account-container"]}`}>
-      <AdminHeader />
-      <AdminNavbar page="user_accounts" />
+
+      <ProfileHeader user_type={"admin"} />
+      <ProfileNavbar page="user_accounts" />
+
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/user-accounts">User Accounts</a>
         <img
