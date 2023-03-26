@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "./profileNavbar.module.css";
+import styles from "./organizerNavbar.module.css";
 
 const OrganizerNavbar = (props) => {
   const loadSideBar = () => {
