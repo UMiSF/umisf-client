@@ -48,7 +48,7 @@ import OrganizerPaymentsPage from "../Views/OrganizerPaymentsPage/OrganizerPayme
 import OrganizerPaymentEditPage from "../Views/OrganizerPaymentEditPage/OrganizerPaymentEditPage";
 
 export default function AppRouter() {
-  let type = 3; //todo: this should change according to the user
+  let type = 4; //todo: this should change according to the user
 
   return (
     <BrowserRouter>
@@ -140,7 +140,7 @@ export default function AppRouter() {
             </Route>
           ) : type === 4 ? (
             <Route>
-              <Route exact path="umpire" element={<HeaderPage type={4} />}>
+              <Route exact path="umpire" >
                 <Route path="" element={<UmpireHomePage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
