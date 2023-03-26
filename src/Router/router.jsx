@@ -31,6 +31,8 @@ import AdminTournamentPage from "../Views/AdminTournamentPage/AdminTournamentPag
 import AdminCreateTournamentPage from "../Views/AdminCreateTournamentPage/AdminCreateTournamentPage";
 import AdminEditTournamentPage from "../Views/AdminEditTournamentPage/AdminEditTournamentPage";
 import AdminPaymentsPage from "../Views/AdminPaymentsPage/AdminPaymentsPage";
+import AdminPaymentEditPage from "../Views/AdminPaymentEditPage/AdminPaymentEditPage";
+import AdminPaymentCreatePage from "../Views/AdminPaymentCreatePage/AdminPaymentCreatePage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -94,6 +96,8 @@ export default function AppRouter() {
                   element={<AdminEditTournamentPage />}
                 />
                 <Route path="payments" element={<AdminPaymentsPage />} />
+                <Route path="payments/edit-payment" element={<AdminPaymentEditPage />} />
+                <Route path="payments/add-new-payment" element={<AdminPaymentCreatePage />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />
