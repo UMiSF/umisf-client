@@ -76,7 +76,7 @@ const PlayerRegistration = () => {
       formData.append("playerData", [player]);
 
       try {
-        Axios.post("http://localhost:3001/player/add", [player], {
+        Axios.post(process.env.REACT_APP_API_URL + "/player/add", [player], {
           headers:{},
         }).then((res) => {
           console.log(res.data);
