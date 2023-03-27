@@ -3,25 +3,22 @@ import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
-import {
-  MDBContainer,
-  MDBInput,
-  MDBBtn,
-  MDBCol,
-} from "mdb-react-ui-kit";
+import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
+import Axios from "axios";
 
 const PlayerRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
   const [player, setPlayer] = useState({
-    match_event: "School",
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     dob: "",
-    school: "",
+    institute: "",
     gender: "",
-    contact_number: "",
+    contactNumber: "",
     email: "",
+    photo: "samplePhoto.jpeg",
+    performanceThreshold: 100,
   });
   const [fileList, setFileList] = useState([]);
 
@@ -32,21 +29,21 @@ const PlayerRegistration = () => {
       setPlayer((prevValue) => {
         return { ...prevValue, gender: value };
       });
-    } else if (name == "first_name") {
+    } else if (name == "firstName") {
       setPlayer((prevValue) => {
-        return { ...prevValue, first_name: value };
+        return { ...prevValue, firstName: value };
       });
-    } else if (name == "last_name") {
+    } else if (name == "lastName") {
       setPlayer((prevValue) => {
-        return { ...prevValue, last_name: value };
+        return { ...prevValue, lastName: value };
       });
-    } else if (name == "school") {
+    } else if (name == "institute") {
       setPlayer((prevValue) => {
-        return { ...prevValue, school: value };
+        return { ...prevValue, institute: value };
       });
-    } else if (name == "contact_number") {
+    } else if (name == "contactNumber") {
       setPlayer((prevValue) => {
-        return { ...prevValue, contact_number: value };
+        return { ...prevValue, contactNumber: value };
       });
     } else if (name == "dob") {
       setPlayer((prevValue) => {
@@ -56,17 +53,36 @@ const PlayerRegistration = () => {
       setPlayer((prevValue) => {
         return { ...prevValue, email: value };
       });
+    } else if (name == "photo") {
+      setPlayer((prevValue) => {
+        return { ...prevValue, photo: value };
+      });
     }
   };
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Form submitted: ", player);
-    const form = e.currentTarget
+    const form = e.currentTarget;
     //form validation
     if (form.checkValidity() === false) {
-      e.stopPropagation()
+      e.stopPropagation();
     }
-    setValidated(true)
+    setValidated(true);
+    if (!Object.values(player).includes("")) {
+      const formData = new FormData();
+
+      //append data to formData
+
+      formData.append("playerData", [player]);
+
+      try {
+        Axios.post(process.env.REACT_APP_API_URL + "/player/add", formData, {
+          headers:{"Accept":"application/json, text/plain, /","Content-Type": "multipart/form-data"},
+        }).then((res) => {
+          console.log(res.data);
+        });
+      } catch (error) {}
+    }
   }
   return (
     <div className={`${Styles["body"]}`}>
@@ -75,40 +91,30 @@ const PlayerRegistration = () => {
       <div className={`${Styles["info-container"]}`}>
         <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
         <div className={`${Styles["info"]}`}>
-          Please note that first you have to register as a player through this
-          portal before applying for single/double events. The Player ID given
-          upon successful registration should be used for all the future events
-          including upcoming years.
+          Please note that first you have to register as a player through this portal before applying for single/double events. The Player ID given upon successful registration
+          should be used for all the future events including upcoming years.
         </div>
       </div>
       <div className={`${Styles["register-form"]}`}>
         {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
         <MDBContainer className="flex">
-          <Form
-            noValidate
-            validated={validated}
-            onSubmit={handleSubmit}
-            className={`${Styles["register-form-content"]}`}
-          >
+          <Form noValidate validated={validated} onSubmit={handleSubmit} encType="multipart/form-data" className={`${Styles["register-form-content"]}`}>
             <div className="d-flex flex-row mb-4 ">
-              <MDBCol className="d-flex align-items-center justify-content-center">
-                <ImageUploader fileList={fileList} setFileList={setFileList} />
-              </MDBCol>
+              <MDBCol className="d-flex align-items-center justify-content-center">{/* <ImageUploader fileList={fileList} setFileList={setFileList} /> */}</MDBCol>
               <MDBCol>
-
-                    <MDBInput
-                      wrapperClass="mb-4"
-                      label="Gender"
-                      labelClass="text-white"
-                      name="gender"
-                      type="text"
-                      style={{ fontFamily: 'Hind", sans-serif' }}
-                      value={player.gender}
-                      onChange={handleChange}
-                      required
-                      contrast
-                      className="bg-primary bg-opacity-25"
-                    />
+                <MDBInput
+                  wrapperClass="mb-4"
+                  label="Gender"
+                  labelClass="text-white"
+                  name="gender"
+                  type="text"
+                  style={{ fontFamily: 'Hind", sans-serif' }}
+                  value={player.gender}
+                  onChange={handleChange}
+                  required
+                  contrast
+                  className="bg-primary bg-opacity-25"
+                />
               </MDBCol>
             </div>
             <div className="d-flex flex-row mb-4 ">
@@ -117,9 +123,9 @@ const PlayerRegistration = () => {
                   wrapperClass="mb-4"
                   label="First Name"
                   labelClass="text-white"
-                  name="first_name"
+                  name="firstName"
                   type="text"
-                  value={player.first_name}
+                  value={player.firstName}
                   onChange={handleChange}
                   required
                   contrast
@@ -131,9 +137,9 @@ const PlayerRegistration = () => {
                   wrapperClass="mb-4"
                   label="School"
                   labelClass="text-white"
-                  name="school"
+                  name="institute"
                   type="text"
-                  value={player.school}
+                  value={player.institute}
                   onChange={handleChange}
                   required
                   contrast
@@ -147,9 +153,9 @@ const PlayerRegistration = () => {
                   wrapperClass="mb-4"
                   label="Last Name"
                   labelClass="text-white"
-                  name="last_name"
+                  name="lastName"
                   type="text"
-                  value={player.last_name}
+                  value={player.lastName}
                   onChange={handleChange}
                   required
                   contrast
@@ -161,9 +167,9 @@ const PlayerRegistration = () => {
                   wrapperClass="mb-4"
                   label="Contact Number"
                   labelClass="text-white"
-                  name="contact_number"
+                  name="contactNumber"
                   type="text"
-                  value={player.contact_number}
+                  value={player.contactNumber}
                   onChange={handleChange}
                   required
                   contrast
