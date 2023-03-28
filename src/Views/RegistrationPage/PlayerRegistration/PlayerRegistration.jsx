@@ -22,8 +22,8 @@ const PlayerRegistration = () => {
     performanceThreshold: 100,
   });
   const [fileList, setFileList] = useState([]);
-  const [isChecked, setIsChecked] = useState(true)
-  const [playerID,setPlayerID]=useState('e234563gh')
+  const [isChecked, setIsChecked] = useState(false)
+  const [playerID,setPlayerID]=useState('')
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const PlayerRegistration = () => {
       // show loading message
       message.loading('Submitting form...');
     }
-  }, [isSubmitting]);
+  }, [isSubmitting,isChecked]);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -91,9 +91,12 @@ const PlayerRegistration = () => {
         Axios.post(process.env.REACT_APP_API_URL + "/player/add",{playerData:[player]} , {
           headers:{},
         })
-        .then((res, error) => {
+        .then((res) => {
           console.log(res.data);
-          message.success( res.message)
+          message.success( res.data.message);
+          console.log("Here")
+          setPlayerID(res.data.data[0]['_id'])
+          setIsChecked(true);
         })
         .catch (error =>{
           console.log("Error: ", error)
