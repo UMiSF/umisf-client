@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
@@ -6,6 +6,7 @@ import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import Axios from "axios";
+import { message } from 'antd';
 
 const PlayerRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
@@ -21,6 +22,14 @@ const PlayerRegistration = () => {
     performanceThreshold: 100,
   });
   const [fileList, setFileList] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      // show loading message
+      message.loading('Submitting form...');
+    }
+  }, [isSubmitting]);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -59,9 +68,10 @@ const PlayerRegistration = () => {
       });
     }
   };
-  function handleSubmit(e) {
+  function handleSubmit (e) {
     e.preventDefault();
     console.log("Form submitted: ", player);
+    setIsSubmitting(true);
     const form = e.currentTarget;
     //form validation
     if (form.checkValidity() === false) {
@@ -69,19 +79,26 @@ const PlayerRegistration = () => {
     }
     setValidated(true);
     if (!Object.values(player).includes("")) {
+
       const formData = new FormData();
 
       //append data to formData
 
       formData.append("playerData", [player]);
 
-      try {
-        Axios.post(process.env.REACT_APP_API_URL + "/player/add", [player], {
+        Axios.post(process.env.REACT_APP_API_URL + "/player/add",{playerData:[player]} , {
           headers:{},
-        }).then((res) => {
+        })
+        .then((res, error) => {
           console.log(res.data);
-        });
-      } catch (error) {}
+          message.success( res.message)
+        })
+        .catch (error =>{
+          console.log("Error: ", error)
+          message.error( error.response.data.message)
+        })
+        setIsSubmitting(false);
+      
     }
   }
   return (
