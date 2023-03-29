@@ -73,15 +73,16 @@ const PlayerRegistration = () => {
   function handleSubmit (e) {
     e.preventDefault();
     console.log("Form submitted: ", player);
-    setIsSubmitting(true);
+    
     const form = e.currentTarget;
     //form validation
     if (form.checkValidity() === false) {
       e.stopPropagation();
     }
     setValidated(true);
+    
     if (!Object.values(player).includes("")) {
-
+      setIsSubmitting(true);
       const formData = new FormData();
 
       //append data to formData
