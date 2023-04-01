@@ -52,10 +52,10 @@ const HeaderPage = () => {
               <a href="/">Home</a>
             </li>
             <li className={`${styles["navBarItem"]}`}>
-              <a href="#">About</a>
+              <a href="/about">About</a>
             </li>
             <li className={`${styles["navBarItem"]}`}>
-              <a href="#">Contact Us</a>
+              <a href="/contact-us">Contact Us</a>
             </li>
             <li className={`${styles["navBarItem"]}`}>
               <a href="#">Gallery</a>
