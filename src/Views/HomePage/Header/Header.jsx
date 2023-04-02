@@ -10,12 +10,9 @@ const HomePage = () => {
         <div className={`${styles["UMiSF-container"]}`}>
           <h1>UMiSF</h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. A 
-            facere eligendi esse explicabo laborum repudiandae corporis 
-            praesentium et ducimus quod ut veniam deleniti periam
+            The official Badminton tournament of<br/>
+            University of Moratuwa
           </p>
-
-          <a href="/about" type="button">View More</a>
         </div>
       </div>
     </div>

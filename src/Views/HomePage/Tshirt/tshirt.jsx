@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./tshirt.module.css";
 
-function Tshirt() {
+const Tshirt = () => {
   return (
     <div className={`${styles["tshirt-container"]}`}>
       <div className={`${styles["tshirt-front"]}`}>
@@ -16,6 +16,6 @@ function Tshirt() {
       </div>
     </div>
   );
-}
+};
 
 export default Tshirt;

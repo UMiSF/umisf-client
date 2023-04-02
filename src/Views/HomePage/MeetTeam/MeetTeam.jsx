@@ -10,8 +10,7 @@ const MeetTeam = () => {
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque tempora perferendis
           magnam repellat adipisci similique facilis repudiandae. Consequuntur, eos debitis, harum
           facilis esse eaque quos praesentium autem, vero hic dolor.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque tempora perferendis
-          magnam repellat adipisci similique facilis repudiandae. Consequuntur, eos debitis, harum
-          facilis esse eaque quos praesentium autem, vero hic dolor.
+          magnam repellat adipisci similique facilis repudiandae.
         </div>
       </div>
       <div className={`${styles["team-photo"]}`}>

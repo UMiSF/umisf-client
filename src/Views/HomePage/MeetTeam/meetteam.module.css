@@ -8,21 +8,21 @@
 }
 
 .team-title{
-  padding: 100px;
+  padding: 5vw;
   padding-bottom: 0;
   font-family: 'Hind', sans-serif;
-  font-size: 80px;
+  font-size: 5vw;
   color: white;
 }
 
 .team-title p{
   font-family: 'Hind', sans-serif;
-  font-size: 80px;
+  font-size: 5vw;
 }
 
 .team-description {
-  padding: 100px;
-  padding-top: 10px;
+  padding: 5vw;
+  padding-top: 0;
   font-family: 'Hind', sans-serif;
   font-size: 16px;
   color: white;
@@ -32,42 +32,51 @@
   height: 500px;
   width: fit-content;
 }
-
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1190px) {
   .team-description {
-    padding: 7vw;
-    padding-top: 60px;
-    padding-bottom: 0;
-    font-size: 15px;
+    padding: 4vw;
+    padding-top: 0;
   }
 
   .team-title {
-    font-size: 40px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .team-description {
-    padding: 5vw;
-    padding-top: 60px;
+    padding: 4vw;
     padding-bottom: 0;
   }
 
-  .group-photo img {
-    height: 65vw;
-    object-fit: scale-down;
+  .team-photo img{
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .team-description {
+    padding: 3vw;
+    padding-top: 0;
   }
 
   .team-title {
-    font-size: 35px;
+    padding: 3vw;
+    padding-bottom: 0;
+  }
+
+  .team-photo img{
+    height: 340px;
   }
 }
-@media screen and (max-width: 425px) {
 
-  .team-description {
-    padding: 5vw;
-    padding-bottom: 0;
-    font-size: 12px;
-    padding-top: 30px;
+@media screen and (max-width: 920px) {
+  .team-container{
+    background-image: url('../../../assests/images/team.jpeg');
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .team-photo{
+    display: none;
+  }
+
+  .team {
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }

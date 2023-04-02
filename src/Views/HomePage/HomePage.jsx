@@ -5,14 +5,18 @@ import MeetTeam from "./MeetTeam/MeetTeam";
 import Footer from "./Footer/footer";
 import Tshirt from "./Tshirt/tshirt";
 import Why from "./why/why";
+import Gallery from "./Gallery/gallery";
+import Flyer from "./Flyer/flyer";
 
 const HomePage = () => {
   return (
     <div>
       <Header />
-      <CountDownTimer />
+      {/* <CountDownTimer /> */}
+      <Flyer />
       <Why />
       <MeetTeam />
+      <Gallery />
       <Tshirt />
       <Footer />
 
