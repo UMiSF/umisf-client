@@ -10,7 +10,7 @@ const HeaderPage = () => {
   };
 
   return (
-    <div>
+    <div className={`${styles["nav-container"]}`}>
       <div className={`${styles["navBarList"]}`}>
         <img src={require("../../assests/images/umisf_logo.png")} alt={"logo"}></img>
         <ul>

@@ -1,18 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./gallery.module.css";
 
-function Gallery() {
-  const gallery = [
-    "2017.jpeg",
-    "2.jpg",
-    "3.jpg",
-    "4.jpg",
-    "6.jpg",
-    "7.jpg",
-    "8.jpg",
-    "9.jpg",
-    "10.jpg",
-  ];
+function Gallery(props) {
+  const [gallery,setGallery] = useState(props.gallery);
   return (
     <div className={`${styles["gallery-container"]}`}>
       <div className={`${styles["gallery-title"]}`}>

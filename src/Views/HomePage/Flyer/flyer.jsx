@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./flyer.module.css";
 
-const Flyer = () => {
-    const date = ["21","May","2023"]
-    const venue = "University Gymnasium"
-    const before = ["22", "May", "2023"]
+const Flyer = (props) => {
+    const [date,setDate] = useState(props.starttingDate)
+    const [venue,setVenue] = useState(props.venue)
+    const [before,setBefore] = useState(props.registrationsClosingDate)
 
     const superscript = (letter) => {
         if(letter == "1"){
@@ -33,17 +33,17 @@ const Flyer = () => {
         from
       </div>
       <div className={`${styles["day"]}`}>
-        {date[0] + " "}<sup style={{fontSize:"1.5vw"}}>{superscript(date[0].charAt(date[0].length - 1))}</sup>
+        {date[2] + " "}<sup style={{fontSize:"1.5vw"}}>{superscript(date[2].charAt(date[2].length - 1))}</sup>
       </div>
       <div className={`${styles["month"]}`}>
-        {date[1]+" , "+ date[2]}
+        {date[1]+" , "+ date[0]}
       </div>
       <div className={`${styles["venue"]}`}>
         {"at " + venue}
       </div>
       <a className={`${styles["register"]}`} href="#">Register</a>
       <div className={`${styles["before"]}`}>
-        {`before ${before[0]}`} <sup style={{fontSize:"1vw"}}>{`${superscript(before[0].charAt(before[0].length - 1))}`}</sup> {`${before[1]} ${before[2]}`}
+        {`before ${before[2]}`} <sup style={{fontSize:"1vw"}}>{`${superscript(before[2].charAt(before[2].length - 1))}`}</sup> {`${before[1]} ${before[0]}`}
       </div>
       <div className={`${styles["more-info"]}`}>
         {"For more info, refer "}<a href="#">Tournament Details and Registration Guidlines</a>
