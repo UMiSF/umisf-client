@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
-import plus from "../../../assests/images/plus.png";
 import Styles from "./CompanyRegistration.module.css";
+import Axios from "axios";
+import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 
+
+import { message } from "antd";
 const CompanyRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
   const [company, setCompany] = useState({
@@ -26,9 +29,14 @@ const CompanyRegistration = () => {
   ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
-  const inputStyle = {
-    border: '0',
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      // show loading message
+      message.loading("Submitting form...");
+    }
+  }, [isSubmitting]);
 
   const handleChange = (e) => {
     console.log("Past performance array: ", playersArray);
@@ -93,7 +101,14 @@ const CompanyRegistration = () => {
       setPlayersArray(newArray);
     }
   };
-
+  const updatePlayerCommonData = ()=>{
+    const tempArray = []
+    for (const player of playersArray){
+      let tempObj = {email:company.email, institute:company.name, contactNumber:company.contactNumber,  ... player}
+      tempArray.push(tempObj)
+    }
+    return tempArray
+  }
   const AddAnotherRow = () => {
     setCount(count + 1);
     setPlayersArray((prevValue) => {
@@ -101,16 +116,57 @@ const CompanyRegistration = () => {
     });
     count == 7 && setExceeded(true);
   };
+  const RemoveanotherRow = () => {
+    if (playersArray.length > 3) {
+      const tmpArray = playersArray.slice(0, playersArray.length - 1);
+      setPlayersArray(tmpArray);
+    }
+  };
+  const isValidPlayerArray = (players) => {
+    if (players.length < 5) {
+      return false;
+    }
+    for (const player of players) {
+      if (Object.values(player).includes("")) return false;
+    }
+    return true;
+  };
   function handleSubmit(e) {
     //TODO: add player array
     e.preventDefault();
     console.log("Form submitted", company);
     const form = e.currentTarget;
+    const isPlayerArrayValid = isValidPlayerArray(playersArray)
     //form validation
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || !isPlayerArrayValid) {
       e.stopPropagation();
+      !isPlayerArrayValid && message.error("Please fill players' details correctly !")
     }
     setValidated(true);
+    if ((Object.values(company).includes("") && company.paymentMethod == "On-site" && company.paymentSlip == "") || !Object.values(company).includes("")) {
+      console.log("Here")
+      const players = updatePlayerCommonData()
+      console.log(players)
+      Axios.post(
+        process.env.REACT_APP_API_URL + "/company/add",
+        { companyDetails:company, players:players},
+        {
+          headers: {},
+        }
+      )
+        .then((res) => {
+          console.log(res.data);
+          message.success(res.data.message);
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2000);
+        })
+        .catch((error) => {
+          console.log("Error: ", error);
+          message.error(error.response.data.message);
+        });
+      setIsSubmitting(false);
+    }
   }
   return (
     <div className={`${Styles["body"]}`}>
@@ -146,7 +202,6 @@ const CompanyRegistration = () => {
                   required
                   contrast
                   className={`bg-primary bg-opacity-25`}
-                  
                 />
               </MDBCol>
               <MDBCol>
@@ -214,13 +269,8 @@ const CompanyRegistration = () => {
                   />
                 );
               })}
-              <img
-                src={plus}
-                alt="plus"
-                className={`${Styles["plus"]}`}
-                onClick={AddAnotherRow}
-                hidden={exceeded}
-              />
+              <PlusCircleTwoTone onClick={AddAnotherRow} />
+              <MinusCircleTwoTone onClick={RemoveanotherRow} />
             </div>
 
             <div className="d-flex flex-row mb-4 ">
