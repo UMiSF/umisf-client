@@ -2,10 +2,8 @@ import React from "react";
 import Styles from "./TableRow.module.css";
 import { MDBCol, MDBInput } from "mdb-react-ui-kit";
 
-//TODO: at least 5 players should be added
-//TODO: a row cannot be partially filled
 const TableRow = (props) => {
-    console.log('Props of table row: ',props)
+    // console.log('Props of table row: ',props)
   return (
     <div className="d-flex flex-row ">
              <MDBCol>

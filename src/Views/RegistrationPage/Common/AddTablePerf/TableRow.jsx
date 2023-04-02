@@ -3,7 +3,7 @@ import Styles from "./TableRow.module.css";
 import { MDBCol, MDBInput } from "mdb-react-ui-kit";
 
 const TableRow = (props) => {
-    console.log('Props of table row: ',props)
+    // console.log('Props of table row: ',props)
   return (
     <div className="d-flex flex-row ">
              <MDBCol>
