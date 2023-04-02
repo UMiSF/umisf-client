@@ -13,7 +13,7 @@ import PlayerRegistration from "../Views/RegistrationPage/PlayerRegistration/Pla
 import DrawsPage from "../Views/DrawsPage/DrawsPage";
 import MatchSchedulePage from "../Views/MatchSchedulePage/MatchSchedulePage";
 import MatchResultsPage from "../Views/MatchResultsPage/MatchResultsPage";
-import GalleryPage from "../Views/PhotosPage/GalleryPage";
+
 import NotFound from "../Views/NotFoundPage/NotFound";
 import Unauth from "../Views/UnauthPage/Unauth";
 import HeaderPage from "../Views/HeaderPage/HeaderPage";
@@ -80,10 +80,7 @@ export default function AppRouter() {
               path="scheduled-matches"
               element={<MatchSchedulePage />}
             />
-                                    <Route
-              path="photos"
-              element={<PhotosPage />}
-            />
+                                    
             <Route path="*" element={<NotFound />} />
           
 

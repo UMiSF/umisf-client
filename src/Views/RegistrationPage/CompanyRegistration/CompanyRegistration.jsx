@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
-import plus from "../../../assests/images/plus.png";
 import Styles from "./CompanyRegistration.module.css";
+import Axios from "axios";
+import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 
+
+import { message } from "ant-design/icons";
 const CompanyRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
   const [company, setCompany] = useState({
-    company: "",
+    name: "",
     email: "",
     contact_number: "",
-    players: [],
+    type:"",
     payment_method: "",
     payment_slip: "",
   });
@@ -26,9 +29,13 @@ const CompanyRegistration = () => {
   ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
-  const inputStyle = {
-    border: '0',
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  useEffect(() => {
+    if (isSubmitting) {
+      // show loading message
+      message.loading("Submitting form...");
+    }
+  }, [isSubmitting]);
 
   const handleChange = (e) => {
     console.log("Past performance array: ", playersArray);
@@ -100,6 +107,12 @@ const CompanyRegistration = () => {
       return [...playersArray, { name: "", id: "", photo: "" }];
     });
     count == 7 && setExceeded(true);
+  };
+  const RemoveanotherRow = () => {
+    if (playersArray.length > 3) {
+      const tmpArray = playersArray.slice(0, playersArray.length - 1);
+      setPlayersArray(tmpArray);
+    }
   };
   function handleSubmit(e) {
     //TODO: add player array
@@ -214,13 +227,8 @@ const CompanyRegistration = () => {
                   />
                 );
               })}
-              <img
-                src={plus}
-                alt="plus"
-                className={`${Styles["plus"]}`}
-                onClick={AddAnotherRow}
-                hidden={exceeded}
-              />
+              <PlusCircleTwoTone onClick={AddAnotherRow} />
+              <MinusCircleTwoTone onClick={RemoveanotherRow} />
             </div>
 
             <div className="d-flex flex-row mb-4 ">
