@@ -2,12 +2,13 @@ import React from "react";
 import styles from "./footer.module.css";
 
 function Footer() {
+  //year
   return (
     <div className={`${styles["footer-container"]}`}>
       <div className={`${styles["footer-left"]}`}>
         <img src={require("../../../assests/images/umisf_logo.png")} />
         <div className={`${styles["quick-tabs"]}`}>
-          <a href="#">Home</a>|<a href="#">About</a>|<a href="#">Contact Us</a>|
+          <a href="/">Home</a>|<a href="/about">About</a>|<a href="/contact-us">Contact Us</a>|
           <a href="#">Gallery</a>|<a href="#">Register</a>
         </div>
         <p className={`${styles["copyright"]}`}>

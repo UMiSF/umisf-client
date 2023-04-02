@@ -1,18 +1,20 @@
 .team {
-  height: 30vw;
-  width: 100%;
-  padding: 1vw;
+  height: 513px;
+  width: fit-content;
+  padding: 17px;
   align-items: center;
-  background: url("../../../assests/images/team.jpeg");
+  background-image: url("../../../assests/images/team.jpeg");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  /* background-size: contain; */
 }
 
+
 .team-overlay {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-  height: 28vw;
-  padding: 6vw;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6));
+  height: 479px;
+  padding: 70px;
   text-align: center;
 }
 
@@ -22,58 +24,38 @@
   color: white;
   overflow: hidden;
   font-family: "Roboto";
-  font-size: 3vw;
+  font-size: 50px;
 }
-
-/* .group-photo{
-    filter: grayscale(100%);
-    width: 100%;
-}
-
-.team-title-span{
-    padding: 1vw;
-}
-
-.team-title-span span{
-    font-family: 'roboto';
-    font-size: 4vw;
-} */
 
 .team-description {
   color: white;
   padding: 19vw;
-  padding-top: 3vw;
-  font-size: 1.2vw;
+  padding-top: 60px;
+  padding-bottom: 0;
+  font-size: 18px;
   font-family: "Montserrat";
   font-weight: bold;
+  text-shadow: 1.5px 1.5px 6px black;
 }
 
-@media screen and (max-width: 1050px) {
-  .captain-contaier {
-    margin-left: 21.5%;
+@media screen and (max-width: 900px) {
+  .team-description {
+    padding: 7vw;
+    padding-top: 60px;
+    padding-bottom: 0;
+    font-size: 15px;
   }
 
-  .member {
-    margin: 1vw -0.9vw;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .captain-contaier {
-    margin-left: 20.5%;
-  }
-  .member {
-    margin: 1vw -0.5vw;
+  .team-title {
+    font-size: 40px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .team {
-    height: 140vw;
-  }
-
-  .container {
-    display: block;
+  .team-description {
+    padding: 5vw;
+    padding-top: 60px;
+    padding-bottom: 0;
   }
 
   .group-photo img {
@@ -81,21 +63,16 @@
     object-fit: scale-down;
   }
 
-  .member {
-    margin: 1vw 9.5vw;
+  .team-title {
+    font-size: 35px;
   }
 }
 @media screen and (max-width: 425px) {
-  .team {
-    height: 150vw;
-  }
 
-  .captain-contaier {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .member {
-    margin: 1vw 9.5vw;
+  .team-description {
+    padding: 5vw;
+    padding-bottom: 0;
+    font-size: 12px;
+    padding-top: 30px;
   }
 }

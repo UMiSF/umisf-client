@@ -10,12 +10,12 @@ const HomePage = () => {
         <div className={`${styles["UMiSF-container"]}`}>
           <h1>UMiSF</h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. A <br />
-            facere eligendi esse explicabo laborum repudiandae corporis <br />
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. A 
+            facere eligendi esse explicabo laborum repudiandae corporis 
             praesentium et ducimus quod ut veniam deleniti periam
           </p>
 
-          <button type="button">View More</button>
+          <a href="/about" type="button">View More</a>
         </div>
       </div>
     </div>

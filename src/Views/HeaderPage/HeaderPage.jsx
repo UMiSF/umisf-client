@@ -11,61 +11,70 @@ const HeaderPage = () => {
 
   return (
     <div>
-        <div className={`${styles["navBarList"]}`}>
-          <img
-            src={require("../../assests/images/umisf_logo.png")}
-            alt={"logo"}
-          ></img>
-          <ul>
-            <a href="/" className={`${styles["navBarItemLink"]}`}>
-              <li className={`${styles["navBarItem"]}`}>Home</li>
-            </a>
-            <a href="/about" className={`${styles["navBarItemLink"]}`}>
-              <li className={`${styles["navBarItem"]}`}>About</li>
-            </a>
-            <a href="/contact-us" className={`${styles["navBarItemLink"]}`}>
-              <li className={`${styles["navBarItem"]}`}>Contact Us</li>
-            </a>
-            <a href="#" className={`${styles["navBarItemLink"]}`}>
-              <li className={`${styles["navBarItem"]}`}>Gallery</li>
-            </a>
-            <a href="#" className={`${styles["navBarItemLink"]}`}>
-              <li className={`${styles["navBarItem"]}`}>Register</li>
-            </a>
-          </ul>
-        </div>
-        {/* minimized side nav bar */}
-        <i
-          id="toggle-btn"
-          className={`${styles["toggle-button"]} bx bx-menu`}
-          onClick={loadSideBar}
-        ></i>
-        <img
-          id="side-img"
-          className={`${styles["side-img"]}`}
-          src={require("../../assests/images/umisf_logo.png")}
-          alt={"logo"}
-        ></img>
-        <div id="navSideBar" className={`${styles["navSideBar"]}`}>
-          <ul>
-            <li className={`${styles["navBarItem"]}`}>
-              <a href="/">Home</a>
-            </li>
-            <li className={`${styles["navBarItem"]}`}>
-              <a href="/about">About</a>
-            </li>
-            <li className={`${styles["navBarItem"]}`}>
-              <a href="/contact-us">Contact Us</a>
-            </li>
-            <li className={`${styles["navBarItem"]}`}>
-              <a href="#">Gallery</a>
-            </li>
-            <li className={`${styles["navBarItem"]}`}>
-              <a href="#">Register</a>
-            </li>
-          </ul>
-        </div> 
+      <div className={`${styles["navBarList"]}`}>
+        <img src={require("../../assests/images/umisf_logo.png")} alt={"logo"}></img>
+        <ul>
+          <a href="/" className={`${styles["navBarItemLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>Home</li>
+          </a>
+          <a href="/about" className={`${styles["navBarItemLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>About</li>
+          </a>
+          <a href="#" className={`${styles["navBarItemLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>Register</li>
+          </a>
+          <a href="#" className={`${styles["navBarItemLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>Draws</li>
+          </a>
+          <a href="#" className={`${styles["navBarItemLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>Gallery</li>
+          </a>
+          <a href="#" className={`${styles["navBarItemLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>Developers</li>
+          </a>
+          <a href="/contact-us" className={`${styles["navBarItemLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>Contact Us</li>
+          </a>
+        </ul>
       </div>
+      {/* minimized side nav bar */}
+      <i
+        id="toggle-btn"
+        className={`${styles["toggle-button"]} bx bx-menu`}
+        onClick={loadSideBar}
+      ></i>
+      <img
+        id="side-img"
+        className={`${styles["side-img"]}`}
+        src={require("../../assests/images/umisf_logo.png")}
+        alt={"logo"}
+      ></img>
+      <div id="navSideBar" className={`${styles["navSideBar"]}`}>
+        <ul>
+          <a href="/" className={`${styles["minNavLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>Home</li>
+          </a>
+          <a href="/about" className={`${styles["navBarItem"]}`}>
+            <li>About</li>
+          </a>
+          <a href="/contact-us" className={`${styles["navBarItem"]}`}>
+            <li>Register</li>
+          </a>
+          <a href="/contact-us" className={`${styles["navBarItem"]}`}>
+            <li>Draws</li>
+          </a>
+          <a href="#" className={`${styles["navBarItem"]}`}>
+            <li>Gallery</li>
+          </a>
+          <a href="/contact-us" className={`${styles["navBarItem"]}`}>
+            <li>Developers</li>
+          </a>
+          <a href="#" className={`${styles["navBarItem"]}`}>
+            <li>Contact Us</li>
+          </a>
+        </ul>
+      </div>
+    </div>
   );
 };
 
