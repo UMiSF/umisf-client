@@ -7,6 +7,7 @@ import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import Axios from "axios";
 import { message } from 'antd';
+import trophy from '../../../assests/images/trophy.gif';
 
 const PlayerRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
@@ -22,7 +23,7 @@ const PlayerRegistration = () => {
     performanceThreshold: 100,
   });
   const [fileList, setFileList] = useState([]);
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState(true)
   const [playerID,setPlayerID]=useState('')
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -170,7 +171,7 @@ const PlayerRegistration = () => {
                 <MDBCol>
                   <MDBInput
                     wrapperClass="mb-4"
-                    label="School"
+                    label="Institute"
                     labelClass="text-white"
                     name="institute"
                     type="text"
@@ -252,6 +253,7 @@ const PlayerRegistration = () => {
         </div>
       </>}
       {isChecked && <div className={`${Styles["success-msg-box"]}`}>
+      {/* <img src={trophy} className={`${Styles[""]}`}/> */}
         <div className={`${Styles["success-msg"]}`}>
           Thank you for registering with us ! Your player ID {playerID} will be used for registering for the future events including next years.
           <div className={`${Styles["image-trophy"]}`}>

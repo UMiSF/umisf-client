@@ -7,9 +7,9 @@ import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePerf/TableRow";
 import plus from "../../../assests/images/plus.png";
 import Axios from "axios";
-import { CheckCircleTwoTone, ExclamationCircleTwoTone,PlusCircleTwoTone ,MinusCircleTwoTone} from "@ant-design/icons";
-import {  Modal } from "antd";
-import { message } from 'antd';
+import { CheckCircleTwoTone, ExclamationCircleTwoTone, PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
+import { Modal } from "antd";
+import { message } from "antd";
 const SingleRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
   const [single, setSingle] = useState({
@@ -32,7 +32,7 @@ const SingleRegistration = () => {
   useEffect(() => {
     if (isSubmitting) {
       // show loading message
-      message.loading('Submitting form...');
+      message.loading("Submitting form...");
     }
   }, [isSubmitting]);
 
@@ -40,11 +40,11 @@ const SingleRegistration = () => {
     confirm({
       title: title,
       icon: success ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
-      content: content,   //TODO: content for success should be displayed properly (create a proper description using the object sent in content) -> VINUL 
+      content: content, //TODO: content for success should be displayed properly (create a proper description using the object sent in content) -> VINUL
       onOk() {
         console.log("OK");
         if (success) {
-          setIsSubmitting(true)
+          setIsSubmitting(true);
           Axios.post(
             process.env.REACT_APP_API_URL + "/single/add",
             { singleData: [single] },
@@ -56,7 +56,9 @@ const SingleRegistration = () => {
               console.log(res.data);
               message.success(res.data.message);
               console.log("Here");
-         
+              setTimeout(() => {
+                window.location.reload(true);
+              }, 2000);
             })
             .catch((error) => {
               console.log("Error: ", error);
@@ -70,6 +72,7 @@ const SingleRegistration = () => {
       },
     });
   };
+
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -129,13 +132,12 @@ const SingleRegistration = () => {
     });
   };
 
-  const RemoveanotherRow = () =>{
-    if(pastPerformanceArray.length > 3){
-      const tmpArray = pastPerformanceArray.slice(0, pastPerformanceArray.length - 1)
-      setPastPerformanceArray(tmpArray); 
+  const RemoveanotherRow = () => {
+    if (pastPerformanceArray.length > 3) {
+      const tmpArray = pastPerformanceArray.slice(0, pastPerformanceArray.length - 1);
+      setPastPerformanceArray(tmpArray);
     }
-
-  }
+  };
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Form submitted", single);
@@ -145,13 +147,13 @@ const SingleRegistration = () => {
       e.stopPropagation();
     }
     setValidated(true);
-    single.pastPerformance = pastPerformanceArray ;
- 
+    single.pastPerformance = pastPerformanceArray;
+
     if ((Object.values(single).includes("") && single.paymentMethod == "On-site" && single.paymentSlip == "") || !Object.values(single).includes("")) {
       Axios.get(process.env.REACT_APP_API_URL + "/player/getByObjectId/" + single.player, {
         headers: {},
       })
-        .then((res) => {
+        .then(async (res) => {
           console.log("Result from get player by id", res.data);
           showConfirm("Confirm your data !", true, res.data.toString());
         })
@@ -195,7 +197,7 @@ const SingleRegistration = () => {
               </MDBCol>
             </div>
             <div className="mb-1">
-            <div className="d-flex flex-row mb-1"> Past Performance</div>
+              <div className="d-flex flex-row mb-1"> Past Performance</div>
               <div className="d-flex flex-row mb-1">
                 <MDBCol>
                   <div>Tournament Name</div>

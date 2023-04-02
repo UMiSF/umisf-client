@@ -1,69 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderPage from "../../HeaderPage/HeaderPage";
-import info from "../../../assests/images/info.gif";
+// import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
-import plus from "../../../assests/images/plus.png";
 import Styles from "./UniversityRegistration.module.css";
+import Axios from "axios";
+import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
+
+
+import { message } from "antd";
 const UniversityRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
   const [university, setUniversity] = useState({
-    university: "",
-    gender: "",
+    name: "",
+    matchType: "",
     email: "",
-    contact_number: "",
-    players: [],
-    payment_method: "",
-    payment_slip: "",
+    contactNumber: "",
+    paymentMethod: "",
+    paymentSlip: "",
   });
 
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
-    { name: "", id: "", photo: "" },
-    { name: "", id: "", photo: "" },
-    { name: "", id: "", photo: "" },
-  ]);
+    { firstName: "", lastName: "", photo: "" ,},
+    { firstName: "", lastName: "", photo: "" ,},
+    { firstName: "", lastName: "", photo: "" , },])
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      // show loading message
+      message.loading("Submitting form...");
+    }
+  }, [isSubmitting]);
 
   const handleChange = (e) => {
     console.log("Past performance array: ", playersArray);
     const name = e.target.name;
     const value = e.target.value;
-    if (name == "university") {
+    if (name == "name") {
       setUniversity((prevValue) => {
-        return { ...prevValue, university: value };
+        return { ...prevValue, name: value };
       });
-    } else if (name == "gender") {
+    } else if (name == "matchType") {
       setUniversity((prevValue) => {
-        return { ...prevValue, gender: value };
+        return { ...prevValue, matchType: value };
       });
     } else if (name == "email") {
       setUniversity((prevValue) => {
         return { ...prevValue, email: value };
       });
-    } else if (name == "contact_number") {
+    } else if (name == "contactNumber") {
       setUniversity((prevValue) => {
-        return { ...prevValue, contact_number: value };
+        return { ...prevValue, contactNumber: value };
       });
-    } else if (name == "payment_method") {
+    } else if (name == "paymentMethod") {
       setUniversity((prevValue) => {
-        return { ...prevValue, payment_method: value };
+        return { ...prevValue, paymentMethod: value };
       });
       console.log("isBankTransfer: ", value == "On-Site");
-      value == "Bank Transfer"
-        ? setIsBankTransfer(true)
-        : setIsBankTransfer(false);
-    } else if (name == "payment_slip") {
+      value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+    } else if (name == "paymentSlip") {
       setUniversity((prevValue) => {
-        return { ...prevValue, payment_slip: value };
+        return { ...prevValue, paymentSlip: value };
       });
-    } else if (
-      name.includes("name") ||
-      name.includes("id") ||
-      name.includes("photo")
-    ) {
+    } else if (name.includes("name") || name.includes("id") || name.includes("photo")) {
       const field = name.split("-")[0];
       const position = parseInt(name.split("-")[1]);
       console.log("Table Values: ", field, position, value);
@@ -71,22 +75,22 @@ const UniversityRegistration = () => {
       switch (field) {
         case "name":
           newArray[position] = {
-            name: value,
-            id: newArray[position].id,
+            firstName: value,
+            lastName: newArray[position].lastName,
             photo: newArray[position].photo,
           };
           break;
         case "id":
           newArray[position] = {
-            name: newArray[position].name,
-            id: value,
+            firstName: newArray[position].firstName,
+            lastName: value,
             photo: newArray[position].photo,
           };
           break;
         case "photo":
           newArray[position] = {
-            name: newArray[position].name,
-            id: newArray[position].id,
+            firstName: newArray[position].firstName,
+            lastName: newArray[position].lastName,
             photo: value,
           };
           break;
@@ -95,52 +99,94 @@ const UniversityRegistration = () => {
     }
   };
 
+  const updatePlayerCommonData = ()=>{
+    const tempArray = []
+    for (const player of playersArray){
+      let tempObj = {email:university.email, institute:university.name, contactNumber:university.contactNumber, gender:university.matchType, ... player}
+      tempArray.push(tempObj)
+    }
+    return tempArray
+  }
   const AddAnotherRow = () => {
-
-        setCount(count + 1);
-        setPlayersArray((prevValue) => {
-            return [...playersArray, { name: "", id: "", photo: "" }];
-          })
-          count == 7 && setExceeded(true)
-    
-
+    setCount(count + 1);
+    setPlayersArray((prevValue) => {
+      return [...playersArray, { Firstname: "", lastName: "", photo: "" , email:university.email, contactNumber:university.contactNumber, institute:university.name, gender:university.matchType},];
+    });
+    count == 7 && setExceeded(true);
   };
+
+  const RemoveanotherRow = () => {
+    if (playersArray.length > 3) {
+      const tmpArray = playersArray.slice(0, playersArray.length - 1);
+      setPlayersArray(tmpArray);
+    }
+  };
+
+  const isValidPlayerArray = (players) => {
+    if (players.length < 5) {
+      return false;
+    }
+    for (const player of players) {
+      if (Object.values(player).includes("")) return false;
+    }
+    return true;
+  };
+
   function handleSubmit(e) {
-    //TODO: add player array
     e.preventDefault();
     console.log("Form submitted", university);
     const form = e.currentTarget;
+    const isPlayerArrayValid = isValidPlayerArray(playersArray)
     //form validation
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || !isPlayerArrayValid) {
       e.stopPropagation();
+      !isPlayerArrayValid && message.error("Please fill players' details correctly !")
     }
     setValidated(true);
+    if ((Object.values(university).includes("") && university.paymentMethod == "On-site" && university.paymentSlip == "") || !Object.values(university).includes("")) {
+      console.log("Here")
+      const players = updatePlayerCommonData()
+      console.log(players)
+      Axios.post(
+        process.env.REACT_APP_API_URL + "/university/add",
+        { universityDetails:university, players:players},
+        {
+          headers: {},
+        }
+      )
+        .then((res) => {
+          console.log(res.data);
+          message.success(res.data.message);
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2000);
+        })
+        .catch((error) => {
+          console.log("Error: ", error);
+          message.error(error.response.data.message);
+        });
+      setIsSubmitting(false);
+    }
+
   }
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
-      <div className={`${Styles["title"]}`}>
-        Event Registration - University
-      </div>
+      <div className={`${Styles["title"]}`}>Event Registration - University</div>
 
       <div className={`${Styles["register-form"]}`}>
         {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
         <MDBContainer className="flex">
-          <Form
-            noValidate
-            validated={validated}
-            onSubmit={handleSubmit}
-            className={`${Styles["register-form-content"]}`}
-          >
+          <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${Styles["register-form-content"]}`}>
             <div className="d-flex flex-row mb-1 ">
               <MDBCol>
                 <MDBInput
                   wrapperClass="mb-1"
                   label="University"
                   labelClass="text-white"
-                  name="university"
+                  name="name"
                   type="text"
-                  value={university.university}
+                  value={university.name}
                   onChange={handleChange}
                   required
                   contrast
@@ -152,9 +198,9 @@ const UniversityRegistration = () => {
                   wrapperClass="mb-1"
                   label="Gender"
                   labelClass="text-white"
-                  name="gender"
+                  name="matchType"
                   type="text"
-                  value={university.gender}
+                  value={university.matchType}
                   onChange={handleChange}
                   required
                   contrast
@@ -182,9 +228,9 @@ const UniversityRegistration = () => {
                   wrapperClass="mb-1"
                   label="Contact Number"
                   labelClass="text-white"
-                  name="contact_number"
+                  name="contactNumber"
                   type="text"
-                  value={university.contact_number}
+                  value={university.contactNumber}
                   onChange={handleChange}
                   required
                   contrast
@@ -205,21 +251,10 @@ const UniversityRegistration = () => {
                 </MDBCol>
               </div>
               {playersArray?.map((player, index) => {
-                return (
-                  <TableRow
-                    player={player}
-                    index={index}
-                    handleChange={handleChange}
-                  />
-                );
+                return <TableRow player={player} index={index} handleChange={handleChange} />;
               })}
-              <img
-                src={plus}
-                alt="plus"
-                className={`${Styles["plus"]}`}
-                onClick={AddAnotherRow}
-                hidden={exceeded}
-              />
+              <PlusCircleTwoTone onClick={AddAnotherRow} />
+              <MinusCircleTwoTone onClick={RemoveanotherRow} />
             </div>
 
             <div className="d-flex flex-row mb-4 ">
@@ -228,9 +263,9 @@ const UniversityRegistration = () => {
                   wrapperClass="mb-4"
                   label="Payment Method"
                   labelClass="text-white"
-                  name="payment_method"
+                  name="paymentMethod"
                   type="text"
-                  value={university.payment_method}
+                  value={university.paymentMethod}
                   onChange={handleChange}
                   required
                   contrast
@@ -243,9 +278,9 @@ const UniversityRegistration = () => {
                     wrapperClass="mb-4"
                     label="Payment Slip"
                     labelClass="text-white"
-                    name="payment_slip"
+                    name="paymentSlip"
                     type="text"
-                    value={university.payment_slip}
+                    value={university.paymentSlip}
                     onChange={handleChange}
                     contrast
                     className="bg-primary bg-opacity-25"
