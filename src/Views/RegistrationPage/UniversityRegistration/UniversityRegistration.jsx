@@ -141,6 +141,7 @@ const UniversityRegistration = () => {
     if (form.checkValidity() === false || !isPlayerArrayValid) {
       e.stopPropagation();
       !isPlayerArrayValid && message.error("Please fill players' details correctly !")
+      
     }
     setValidated(true);
     if ((Object.values(university).includes("") && university.paymentMethod == "On-site" && university.paymentSlip == "") || !Object.values(university).includes("")) {

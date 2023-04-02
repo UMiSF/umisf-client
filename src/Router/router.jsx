@@ -24,7 +24,7 @@ import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
 import DrawEditPage from "../Views/DrawEditPage/DrawEditPage";
 import FinishedMatchCard from "../Views/MatchResultsPage/FinishedMatchCard";
 import PhotosPage from "../Views/PhotosPage/PhotosPage";
-
+import RegisterAll from "../Views/RegistrationPage/RegisterAll/RegisterAll";
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
 
@@ -37,6 +37,7 @@ export default function AppRouter() {
           <Route path="contact-us" element={<ContactUsPage />} />
           <Route path="register">
             <Route path="player" element={<PlayerRegistration />} />
+            <Route path="all" element={<RegisterAll/>} />
             <Route path="single" element={<SingleRegistration />} />
             <Route path="double" element={<DoubleRegistration />} />
             <Route path="university" element={<UniversityRegistration />} />
