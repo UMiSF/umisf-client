@@ -23,7 +23,7 @@ const PlayerRegistration = () => {
     performanceThreshold: 100,
   });
   const [fileList, setFileList] = useState([]);
-  const [isChecked, setIsChecked] = useState(true)
+  const [isChecked, setIsChecked] = useState(false)
   const [playerID,setPlayerID]=useState('')
   const [isSubmitting, setIsSubmitting] = useState(false);
 
