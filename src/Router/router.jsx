@@ -23,6 +23,10 @@ import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
 import AdminGalleryViewYearPage from "../Views/AdminGalleyViewYearPage/AdminGalleryViewYearPage";
 import AdminYearlyConfigurations from "../Views/AdminYearlyConfigurations/AdminYearlyConfigurations";
 import AdminDrawPage from "../Views/AdminDrawPage/AdminDrawPage";
+import AdminPlayersPage from "../Views/AdminPlayerdPage/AdminPlayersPage";
+import AdminPlayerViewPage from "../Views/AdminPlayerViewPage/AdminPlayerViewPage.jsx";
+// import AdminPlayerViewPage from "../Views/AdminPlayerViewPage/AdminPlayerViewPage";
+
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -59,6 +63,8 @@ export default function AppRouter() {
                 />
                 <Route path="config" element={<AdminYearlyConfigurations />} />
                 <Route path="draws" element={<AdminDrawPage/>}/>
+                <Route path='players' element={<AdminPlayersPage/>}/>
+                <Route path="players/:name" element={<AdminPlayerViewPage/>}/> 
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="*" element={<Unauth />} />

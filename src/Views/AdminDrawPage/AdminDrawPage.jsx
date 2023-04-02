@@ -4,6 +4,7 @@ import AdminHeader from "../AdminHeaderPage/AdminHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
+import AdminPlayerViewPage from "../AdminPlayerViewPage/AdminPlayerViewPage";
 const AdminDrawPage = () => {
   const [drawCatogory, setdrawCatogory] = useState({
     "under-19-men": [
@@ -136,10 +137,10 @@ const AdminDrawPage = () => {
         {Object.entries(drawCatogory).map(([key, value]) => (
           <div>
             <div className={`${styles["folder"]}`}>
-              {/* <a href={`gallery/year/${key}`}> */}
+              
                 <img src={require("../../assests/images/draws.png")} alt="" />{" "}
                 {key}
-              {/* </a> */}
+             
             </div>
 
             <div className={`${styles["draws-grid-container"]}`}>
@@ -261,6 +262,7 @@ const AdminDrawPage = () => {
           </Modal.Footer>
         </form>
       </Modal>
+      
     </div>
   );
 };
