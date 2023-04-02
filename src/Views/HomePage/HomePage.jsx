@@ -4,12 +4,14 @@ import CountDownTimer from "./CountDown/CountDownTimer";
 import MeetTeam from "./MeetTeam/MeetTeam";
 import Footer from "./Footer/footer";
 import Tshirt from "./Tshirt/tshirt";
+import Why from "./why/why";
 
 const HomePage = () => {
   return (
     <div>
       <Header />
       <CountDownTimer />
+      <Why />
       <MeetTeam />
       <Tshirt />
       <Footer />
