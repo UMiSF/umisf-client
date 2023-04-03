@@ -13,7 +13,7 @@ const HomePage = () => {
   const [starttingDate, setStartingDate] = useState("2023-05-31");
   const [venue, setVenue] = useState("University gymnasium");
   const [registrationsClosingDate, setRegistrationsClosingDate] = useState("2023-05-23");
-  const [teamPhoto, setTeamPhoto] = useState("team.jpeg");
+  const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
 
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -55,8 +55,6 @@ const HomePage = () => {
       <Gallery gallery={gallery}/>
       <Tshirt tShirtFront={tShirtFront} tShirtBack={tShirtBack}/>
       <Footer />
-
-      {/* University of Moratuwa International Shuttlers' Fest (UMiSF) is a badminton tournament organized by the badminton team in collaboration with the Division of Physical Education of University of Moratuwa. The tournament consists of an international inter-university event and an all island age group event and will be held for the 7th consecutive year in 2017, bigger than ever!! */}
     </div>
   );
 };

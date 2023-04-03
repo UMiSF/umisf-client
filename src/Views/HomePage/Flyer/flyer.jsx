@@ -43,7 +43,7 @@ const Flyer = (props) => {
       </div>
       <a className={`${styles["register"]}`} href="#">Register</a>
       <div className={`${styles["before"]}`}>
-        {`before ${before[2]}`} <sup style={{fontSize:"1vw"}}>{`${superscript(before[2].charAt(before[2].length - 1))}`}</sup> {`${before[1]} ${before[0]}`}
+        {`before ${before[2]}`} <sup style={{fontSize:"0.6vw"}}>{`${superscript(before[2].charAt(before[2].length - 1))}`}</sup> {`${before[1]} ${before[0]}`}
       </div>
       <div className={`${styles["more-info"]}`}>
         {"For more info, refer "}<a href="#">Tournament Details and Registration Guidlines</a>
