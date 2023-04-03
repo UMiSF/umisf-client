@@ -103,20 +103,20 @@ const HeaderPage = () => {
 
               <MenuItem onClick={handleClose}>
                 <a
-                  href="/register/single"
+                  href="/register/single-double"
                   className={`${styles["drop-down-item"]}`}
                 >
-                  Single
+                  Single & Double
                 </a>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              {/* <MenuItem onClick={handleClose}>
                 <a
                   href="/register/double"
                   className={`${styles["drop-down-item"]}`}
                 >
                   Double
                 </a>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={handleClose}>
                 <a
                   href="/register/university"
@@ -224,20 +224,20 @@ const HeaderPage = () => {
 
               <MenuItem onClick={handleClose}>
                 <a
-                  href="/register/single"
+                  href="/register/single-double"
                   className={`${styles["drop-down-item"]}`}
                 >
-                  Single
+                  Single & Double
                 </a>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              {/* <MenuItem onClick={handleClose}>
                 <a
                   href="/register/double"
                   className={`${styles["drop-down-item"]}`}
                 >
                   Double
                 </a>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={handleClose}>
                 <a
                   href="/register/university"

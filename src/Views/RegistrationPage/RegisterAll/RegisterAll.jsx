@@ -65,9 +65,9 @@ const RegisterAll = () => {
   const [isPlayingSingle, setIsplayingSingle] = useState(true);
   const [isPlayingDouble, setIsplayingDouble] = useState(true);
   const ageOptions = ['Under 9', 'Under 11', 'Under 13', 'Under 15', 'Staff']
-  const [ageGrpup, setAgeGroup] = useState("Select Age Group");
+  const [ageGrpup, setAgeGroup] = useState("");
   const paymentOptions = ['On-site', 'Bank Transfer']
-  const [payment, setPayment] = useState("Select Payment Method");
+  const [payment, setPayment] = useState("");
   //const [isPlayingMix, setIsplayingMix] = useState(true);
   let doneSingle = { success: false, message: "", valid: false, data: "" };
   let doneDouble = { success: false, message: "", valid: false, validP: false, data: "", dataP: "" };
@@ -210,9 +210,10 @@ const RegisterAll = () => {
     });
   };
 
-  const changeSinglePastPerformanceArray = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const changeSinglePastPerformanceArray = (option, id) => {
+    console.log("Event from root", option, id)
+    const name = id;
+    const value = option;
     const field = name.split("-")[0];
     const position = parseInt(name.split("-")[1]);
     console.log("Table Values: ", field, position, value);
@@ -243,9 +244,9 @@ const RegisterAll = () => {
     setSinglePastPerformanceArray(newArray);
   };
 
-  const changeDoublePastPerformanceArray = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const changeDoublePastPerformanceArray = (option, id) => {
+    const name = id;
+    const value = option;
     const field = name.split("-")[0];
     const position = parseInt(name.split("-")[1]);
     console.log("Table Values: ", field, position, value);
@@ -332,27 +333,33 @@ const RegisterAll = () => {
   //       setMixPastPerformanceArray(tmpArray);
   //     }
   //   };
+
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log("Form submitted" );
     const form = e.currentTarget;
     const singlePerf = arrangePerformanceArray(singlePastPerformanceArray);
     const doublePerf = arrangePerformanceArray(doublePastPerformanceArray);
-
+    let perfError = false;
+    console.log("Perfs:", singlePerf);
+    console.log("perfd", doublePerf);
     //form validation
     if (form.checkValidity() === false || (isPlayingDouble && double.player === double.playerPartner)) {
       e.stopPropagation();
       isPlayingDouble && double.player === double.playerPartner && message.error("Player and the Partner have the same ID !! ");
     }
     if (singlePerf.includes("~error~") || doublePerf.includes("~error~")) {
+      perfError = true
+      message.error("Please fill your performance correctly !")
       e.stopPropagation();
     }
+
     setValidated(true);
 
     single.pastPerformance = singlePerf;
     double.pastPerformance = doublePerf;
 
-    if ((isPlayingSingle && Object.values(single).includes("") && single.paymentMethod == "On-site" && single.paymentSlip == "") || !Object.values(single).includes("")) {
+    if (((isPlayingSingle && Object.values(single).includes("") && single.paymentMethod == "On-site" && single.paymentSlip == "") || !Object.values(single).includes("")) && !perfError) {
       try {
         const res = await Axios.get(
           process.env.REACT_APP_API_URL + "/player/getByObjectId",
@@ -375,7 +382,7 @@ const RegisterAll = () => {
       }
     }
 
-    if ((isPlayingDouble && Object.values(double).includes("") && double.paymentMethod == "On-site" && double.paymentSlip == "") || !Object.values(double).includes("")) {
+    if (((isPlayingDouble && Object.values(double).includes("") && double.paymentMethod == "On-site" && double.paymentSlip == "") || !Object.values(double).includes("")) && !perfError) {
       Axios.get(
         process.env.REACT_APP_API_URL + "/player/getByObjectId",
         { params: { ids: double.player + "," + double.playerPartner } },
@@ -546,7 +553,7 @@ const RegisterAll = () => {
                     required
                     contrast
                   /> */}
-                  <Dropdown options = {ageOptions} handleClick={(option)=>{setAgeGroup(option); changeAgeGroup(option)}} value={ageGrpup}/>
+                  <Dropdown options = {ageOptions} handleClick={(option)=>{setAgeGroup(option); changeAgeGroup(option)}} value={ageGrpup} lable={"Age Group"}/>
 
                 </MDBCol>
               </div>
@@ -702,7 +709,7 @@ const RegisterAll = () => {
             {(isPlayingDouble || isPlayingSingle) && (
               <div className="d-flex flex-row mb-4 ">
                 <MDBCol>
-                <Dropdown options = {paymentOptions} handleClick={(option)=>{setPayment(option); changePaymentMethod(option)}} value={payment}/>
+                <Dropdown options = {paymentOptions} handleClick={(option)=>{setPayment(option); changePaymentMethod(option)}} value={payment} lable={"Payment Method"}/>
                 </MDBCol>
                 {isBankTransfer && (
                   <MDBCol>

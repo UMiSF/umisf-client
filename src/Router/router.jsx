@@ -5,8 +5,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HomePage from "../Views/HomePage/HomePage";
 import AboutPage from "../Views/AboutPage/AboutPage";
 import ContactUsPage from "../Views/ContactUsPage/ContactUs";
-import SingleRegistration from "../Views/RegistrationPage/SinglesRegistration/SingleRegistration";
-import DoubleRegistration from "../Views/RegistrationPage/DoublesRegistration/DoubleRegistration";
+// import SingleRegistration from "../Views/RegistrationPage/SinglesRegistration/SingleRegistration";
+// import DoubleRegistration from "../Views/RegistrationPage/DoublesRegistration/DoubleRegistration";
 import CompanyRegistration from "../Views/RegistrationPage/CompanyRegistration/CompanyRegistration";
 import UniversityRegistration from "../Views/RegistrationPage/UniversityRegistration/UniversityRegistration";
 import PlayerRegistration from "../Views/RegistrationPage/PlayerRegistration/PlayerRegistration";
@@ -37,9 +37,9 @@ export default function AppRouter() {
           <Route path="contact-us" element={<ContactUsPage />} />
           <Route path="register">
             <Route path="player" element={<PlayerRegistration />} />
-            <Route path="all" element={<RegisterAll/>} />
-            <Route path="single" element={<SingleRegistration />} />
-            <Route path="double" element={<DoubleRegistration />} />
+            <Route path="single-double" element={<RegisterAll/>} />
+            {/* <Route path="single" element={<SingleRegistration />} />
+            <Route path="double" element={<DoubleRegistration />} /> */}
             <Route path="university" element={<UniversityRegistration />} />
             <Route path="company" element={<CompanyRegistration />} />
           </Route>

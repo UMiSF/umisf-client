@@ -7,7 +7,7 @@ import TableRow from "../Common/AddTablePlayer/TableRow";
 import Styles from "./UniversityRegistration.module.css";
 import Axios from "axios";
 import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
-
+import Dropdown from "../../../common/Dropdown/Dropdown";
 
 import { message } from "antd";
 const UniversityRegistration = () => {
@@ -23,12 +23,17 @@ const UniversityRegistration = () => {
 
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
-    { firstName: "", lastName: "", photo: "" ,},
-    { firstName: "", lastName: "", photo: "" ,},
-    { firstName: "", lastName: "", photo: "" , },])
+    { firstName: "", lastName: "", photo: "" },
+    { firstName: "", lastName: "", photo: "" },
+    { firstName: "", lastName: "", photo: "" },
+  ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const genderOptions = ["Male", "Female"];
+  const [gender, setGender] = useState("");
+  const paymentOptions = ["On-site", "Bank Transfer"];
+  const [payment, setPayment] = useState("");
 
   useEffect(() => {
     if (isSubmitting) {
@@ -44,10 +49,6 @@ const UniversityRegistration = () => {
     if (name == "name") {
       setUniversity((prevValue) => {
         return { ...prevValue, name: value };
-      });
-    } else if (name == "matchType") {
-      setUniversity((prevValue) => {
-        return { ...prevValue, matchType: value };
       });
     } else if (name == "email") {
       setUniversity((prevValue) => {
@@ -99,18 +100,36 @@ const UniversityRegistration = () => {
     }
   };
 
-  const updatePlayerCommonData = ()=>{
-    const tempArray = []
-    for (const player of playersArray){
-      let tempObj = {email:university.email, institute:university.name, contactNumber:university.contactNumber, gender:university.matchType, ... player}
-      tempArray.push(tempObj)
+  const changeGender = (value) => {
+    setUniversity((prevValue) => {
+      return { ...prevValue, matchType: value };
+    });
+  };
+
+  const changePaymentMethod = (value) => {
+    setUniversity((prevValue) => {
+      return { ...prevValue, paymentMethod: value };
+    });
+    console.log("isBankTransfer: ", value == "On-Site");
+    value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+  };
+
+  const updatePlayerCommonData = () => {
+    const tempArray = [];
+    for (const player of playersArray) {
+      let tempObj = { email: university.email, institute: university.name, contactNumber: university.contactNumber, gender: university.matchType, ...player };
+      tempArray.push(tempObj);
     }
-    return tempArray
-  }
+    return tempArray;
+  };
+  
   const AddAnotherRow = () => {
     setCount(count + 1);
     setPlayersArray((prevValue) => {
-      return [...playersArray, { Firstname: "", lastName: "", photo: "" , email:university.email, contactNumber:university.contactNumber, institute:university.name, gender:university.matchType},];
+      return [
+        ...playersArray,
+        { Firstname: "", lastName: "", photo: "", email: university.email, contactNumber: university.contactNumber, institute: university.name, gender: university.matchType },
+      ];
     });
     count == 7 && setExceeded(true);
   };
@@ -136,15 +155,14 @@ const UniversityRegistration = () => {
     e.preventDefault();
     console.log("Form submitted", university);
     const form = e.currentTarget;
-    const isPlayerArrayValid = isValidPlayerArray(playersArray)
+    const isPlayerArrayValid = isValidPlayerArray(playersArray);
     //form validation
     if (form.checkValidity() === false || !isPlayerArrayValid) {
       e.stopPropagation();
-      !isPlayerArrayValid && message.error("Please fill players' details correctly !")
-      
+      !isPlayerArrayValid && message.error("Please fill players' details correctly !");
     }
     setValidated(true);
-    if ((Object.values(university).includes("") && university.paymentMethod == "On-site" && university.paymentSlip == "") || !Object.values(university).includes("")) {
+    if (((Object.values(university).includes("") && university.paymentMethod == "On-site" && university.paymentSlip == "") || !Object.values(university).includes("")) && isPlayerArrayValid) {
       console.log("Here")
       const players = updatePlayerCommonData()
       console.log(players)
@@ -168,7 +186,6 @@ const UniversityRegistration = () => {
         });
       setIsSubmitting(false);
     }
-
   }
   return (
     <div className={`${Styles["body"]}`}>
@@ -195,17 +212,14 @@ const UniversityRegistration = () => {
                 />
               </MDBCol>
               <MDBCol>
-                <MDBInput
-                  wrapperClass="mb-1"
-                  label="Gender"
-                  labelClass="text-white"
-                  name="matchType"
-                  type="text"
-                  value={university.matchType}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
+                <Dropdown
+                  options={genderOptions}
+                  handleClick={(option) => {
+                    setGender(option);
+                    changeGender(option);
+                  }}
+                  value={gender}
+                  lable={"Gender"}
                 />
               </MDBCol>
             </div>
@@ -260,17 +274,14 @@ const UniversityRegistration = () => {
 
             <div className="d-flex flex-row mb-4 ">
               <MDBCol>
-                <MDBInput
-                  wrapperClass="mb-4"
-                  label="Payment Method"
-                  labelClass="text-white"
-                  name="paymentMethod"
-                  type="text"
-                  value={university.paymentMethod}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
+                <Dropdown
+                  options={paymentOptions}
+                  handleClick={(option) => {
+                    setPayment(option);
+                    changePaymentMethod(option);
+                  }}
+                  value={payment}
+                  lable={"Payment"}
                 />
               </MDBCol>
               {isBankTransfer && (

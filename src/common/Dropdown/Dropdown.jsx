@@ -2,7 +2,7 @@
 import React, { useState} from 'react';
 import styles from './Dropdown.module.css';
 import { DownOutlined } from '@ant-design/icons';
-const Dropdown = ({ options, value, handleClick}) => {
+const Dropdown = ({ options, value, name, lable, handleClick}) => {
   const [isOpen, setIsOpen] = useState(false);
  
   const toggleOpen = () => {
@@ -13,6 +13,9 @@ const Dropdown = ({ options, value, handleClick}) => {
 
   return (
     <div className={styles.selectContainer}>
+      <div className={styles.lable} hidden={value !== ''}>
+            {"Select " + lable}
+      </div>
       <div className={styles.selectedValue} onClick={toggleOpen}>
         {value}
         <DownOutlined  className={styles.down}/>
@@ -24,7 +27,8 @@ const Dropdown = ({ options, value, handleClick}) => {
             <div
               key={option}
               className={styles.option}
-              onClick={() => {handleClick(option); toggleOpen()}}
+              onClick={() => {handleClick(option,name); toggleOpen()}}
+              name={name}
             >
               {option}
             </div>
