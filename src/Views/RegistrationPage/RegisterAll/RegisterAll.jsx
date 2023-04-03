@@ -5,18 +5,15 @@ import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePerf/TableRow";
-import plus from "../../../assests/images/plus.png";
 import Axios from "axios";
-import { CheckCircleTwoTone, ExclamationCircleTwoTone, PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
-import { Modal } from "antd";
-import { message } from "antd";
-import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import { Switch } from "antd";
+import { CheckCircleTwoTone, ExclamationCircleTwoTone, PlusCircleTwoTone, MinusCircleTwoTone, CheckOutlined, CloseOutlined, DownOutlined } from "@ant-design/icons";
+import { Modal, message, Switch, Select, Space } from "antd";
+import Dropdown from "../../../common/Dropdown/Dropdown";
 const RegisterAll = () => {
   const [validated, setValidated] = useState(false); //form validation
   const [single, setSingle] = useState({
     player: "",
-    ageGroup: "",
+    ageGroup: "Select Age Group",
     pastPerformance: [],
     paymentMethod: "",
     paymentSlip: "",
@@ -25,12 +22,25 @@ const RegisterAll = () => {
   const [double, setDouble] = useState({
     player: "",
     playerPartner: "",
-    ageGroup: "",
+    ageGroup: "Select Age Group",
     pastPerformance: [],
     paymentMethod: "",
     paymentSlip: "",
   });
-
+  const items = [
+    {
+      key: "1",
+      label: "Item 1",
+    },
+    {
+      key: "2",
+      label: "Item 2",
+    },
+    {
+      key: "3",
+      label: "Item 3",
+    },
+  ];
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [singlePastPerformanceArray, setSinglePastPerformanceArray] = useState([
     { name: "", level: "", place: "" },
@@ -54,9 +64,14 @@ const RegisterAll = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPlayingSingle, setIsplayingSingle] = useState(true);
   const [isPlayingDouble, setIsplayingDouble] = useState(true);
+  const ageOptions = ['Under 9', 'Under 11', 'Under 13', 'Under 15', 'Staff']
+  const [ageGrpup, setAgeGroup] = useState("Select Age Group");
+  const paymentOptions = ['On-site', 'Bank Transfer']
+  const [payment, setPayment] = useState("Select Payment Method");
   //const [isPlayingMix, setIsplayingMix] = useState(true);
   let doneSingle = { success: false, message: "", valid: false, data: "" };
   let doneDouble = { success: false, message: "", valid: false, validP: false, data: "", dataP: "" };
+  
   useEffect(() => {
     if (isSubmitting) {
       // show loading message
@@ -159,9 +174,8 @@ const RegisterAll = () => {
     });
   };
 
-  const changeAgeGroup = (e) => {
-    const value = e.target.value;
-
+  const changeAgeGroup = (value) => {
+  
     setSingle((prevValue) => {
       return { ...prevValue, ageGroup: value };
     });
@@ -171,8 +185,7 @@ const RegisterAll = () => {
     });
   };
 
-  const changePaymentMethod = (e) => {
-    const value = e.target.value;
+  const changePaymentMethod = (value) => {
 
     setSingle((prevValue) => {
       return { ...prevValue, paymentMethod: value };
@@ -327,13 +340,12 @@ const RegisterAll = () => {
     const doublePerf = arrangePerformanceArray(doublePastPerformanceArray);
 
     //form validation
-    if (form.checkValidity() === false || (isPlayingDouble && (double.player === double.playerPartner))) {
+    if (form.checkValidity() === false || (isPlayingDouble && double.player === double.playerPartner)) {
       e.stopPropagation();
-      (isPlayingDouble && (double.player === double.playerPartner)) && message.error("Player and the Partner have the same ID !! ")
+      isPlayingDouble && double.player === double.playerPartner && message.error("Player and the Partner have the same ID !! ");
     }
     if (singlePerf.includes("~error~") || doublePerf.includes("~error~")) {
       e.stopPropagation();
-     
     }
     setValidated(true);
 
@@ -523,7 +535,7 @@ const RegisterAll = () => {
                   />
                 </MDBCol>
                 <MDBCol>
-                  <MDBInput
+                  {/* <MDBInput
                     wrapperClass="mb-1"
                     label="Age Group"
                     labelClass="text-white"
@@ -533,7 +545,9 @@ const RegisterAll = () => {
                     onChange={changeAgeGroup}
                     required
                     contrast
-                  />
+                  /> */}
+                  <Dropdown options = {ageOptions} handleClick={(option)=>{setAgeGroup(option); changeAgeGroup(option)}} value={ageGrpup}/>
+
                 </MDBCol>
               </div>
               <div className="mb-1">
@@ -688,17 +702,7 @@ const RegisterAll = () => {
             {(isPlayingDouble || isPlayingSingle) && (
               <div className="d-flex flex-row mb-4 ">
                 <MDBCol>
-                  <MDBInput
-                    wrapperClass="mb-4"
-                    label="Payment Method"
-                    labelClass="text-white"
-                    name="paymentMethod"
-                    type="text"
-                    value={isPlayingSingle ? single.paymentMethod : double.paymentMethod}
-                    onChange={changePaymentMethod}
-                    required
-                    contrast
-                  />
+                <Dropdown options = {paymentOptions} handleClick={(option)=>{setPayment(option); changePaymentMethod(option)}} value={payment}/>
                 </MDBCol>
                 {isBankTransfer && (
                   <MDBCol>
