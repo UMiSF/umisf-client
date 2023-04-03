@@ -30,6 +30,8 @@ function ContactUs() {
               <div className={`${styles['member']}`}>
               <Member img={'ViceCaptain_male.jpg'} name={'Vinul Fernando'} tag={'Vice Captain'} phone={'0764197875'}/>
               </div>
+              </div>
+              <div className={`${styles['captain-contaier']}`}>
               <div className={`${styles['member']}`}>
                 <Member img={'Captain_female.JPG'} name={'Nethmi Jayakody'} tag={'Captain'} phone={'0764197875'}/>
               </div>

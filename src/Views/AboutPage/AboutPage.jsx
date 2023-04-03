@@ -116,7 +116,7 @@ const AboutPage = () => {
         </div>
       </section>
       <section className={`${styles["testimonials"]}`}>
-        <h1>Massages from Organizing commitee</h1>
+        <h1>Masseges from Organizing commitee</h1>
         <p>
           Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing
           industries for previewing layouts and visual mockups. LOREM IPSUM GENERATOR

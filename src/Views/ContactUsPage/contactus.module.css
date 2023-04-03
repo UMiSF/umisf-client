@@ -3,11 +3,12 @@
     padding: 7vw;
     padding-top: 5vw;
     border: 0.5px rgb(224, 220, 220) solid;
+    background-color: #F1F4F6;
 }
 
 .label{
     font-size: 15px;
-    font-family: 'montserrat';
+    font-family: 'Hind';
     font-weight: bold;
 }
 
@@ -19,7 +20,7 @@
     width:150px;
     margin-top: 15px;
     font-size: 14px;
-    font-family:'montserrat';
+    font-family:'Hind';
 }
 
 .headerDiv{
@@ -52,8 +53,9 @@
 
 
 .container{
-    display: block;
-    /* background-color: #102c42; */
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
     width: 100%;
     padding-top: 1.5vw;
     /* height: 15vw; */
@@ -62,7 +64,7 @@
 .captain-contaier{
     display: flex;
     flex-direction: row;
-    margin-left: 12%;
+    justify-content: center;
 }
 
 .captains,.vice-captains{
@@ -73,10 +75,9 @@
     margin: 1vw 2vw;
 }
 
-@media screen and (max-width:770px){
-    .UMiSF-container h1{
-        font-size: 5em;
-        text-shadow: 1px 1px 5px black ;
+@media screen and (max-width:760px){
+    .container{
+        flex-direction: column;
     }
 }
 
@@ -84,15 +85,6 @@
     .UMiSF-container h1{
         font-size: 4.5em;
         text-shadow: 1px 1px 5px black ;
-    }
-
-
-    .navBarItem{
-        display: block;
-        margin: 30px;
-        top:10vh;
-        justify-content: center;
-        align-items: center;
     }
 
 }

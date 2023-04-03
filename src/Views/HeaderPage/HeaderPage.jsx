@@ -11,6 +11,7 @@ const HeaderPage = () => {
 
   return (
     <div className={`${styles["nav-container"]}`}>
+      <div className={`${styles["nav-bars"]}`}>
       <div className={`${styles["navBarList"]}`}>
         <img src={require("../../assests/images/umisf_logo.png")} alt={"logo"}></img>
         <ul>
@@ -36,6 +37,7 @@ const HeaderPage = () => {
             <li className={`${styles["navBarItem"]}`}>Contact Us</li>
           </a>
         </ul>
+      </div>
       </div>
       {/* minimized side nav bar */}
       <i
@@ -69,7 +71,7 @@ const HeaderPage = () => {
           <a href="/contact-us" className={`${styles["navBarItem"]}`}>
             <li>Developers</li>
           </a>
-          <a href="#" className={`${styles["navBarItem"]}`}>
+          <a href="/contact-us" className={`${styles["navBarItem"]}`}>
             <li>Contact Us</li>
           </a>
         </ul>
