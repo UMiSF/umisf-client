@@ -10,8 +10,8 @@ const HomePage = () => {
         <div className={`${styles["UMiSF-container"]}`}>
           <h1>UMiSF</h1>
           <p>
-            The official Badminton tournament of<br/>
-            University of Moratuwa
+            University of Moratuwa<br/>
+            International Shuttlers Fest
           </p>
         </div>
       </div>
