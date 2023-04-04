@@ -5,8 +5,9 @@ import { MDBCol, MDBInput } from "mdb-react-ui-kit";
 const TableRow = (props) => {
     // console.log('Props of table row: ',props)
   return (
-    <div className="d-flex flex-row ">
-             <MDBCol>
+    <div>
+    <div className="row">
+    <MDBCol className="" lg="4" md="12" sm="12">
                 <MDBInput
                   wrapperClass=""
                   labelClass="text-white"
@@ -17,9 +18,10 @@ const TableRow = (props) => {
                   contrast
                   className="bg-primary bg-opacity-25"
                   required
+                  label='Full Name'
                 />
               </MDBCol>
-              <MDBCol>
+              <MDBCol className="" lg="4" md="12" sm="12">
                 <MDBInput
                   wrapperClass="mb-1"
                   labelClass="text-white"
@@ -32,7 +34,7 @@ const TableRow = (props) => {
                   required
                 />
               </MDBCol>
-              <MDBCol>
+              <MDBCol className="" lg="4" md="12" sm="12">
                 <MDBInput
                   wrapperClass="mb-1"
                   labelClass="text-white"
@@ -46,6 +48,12 @@ const TableRow = (props) => {
                 />
               </MDBCol>
     </div>
+    <div class="row d-lg-none mt-6 mb-6 d-xl-none">
+       
+      </div>
+    
+    </div>
+
   );
 };
 
