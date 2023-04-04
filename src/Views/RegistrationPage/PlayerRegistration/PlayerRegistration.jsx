@@ -124,37 +124,50 @@ const PlayerRegistration = () => {
           <div className={`${Styles["info-container"]}`}>
             <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
             <div className={`${Styles["info"]}`}>
-              Please note that first you have to register as a player through this portal before applying for single/double events. The Player ID given upon successful registration
+              Please note that first you have to register as a player through this portal before
+              applying for single/double events. The Player ID given upon successful registration
               should be used for all the future events including upcoming years.
             </div>
           </div>
           <div className={`${Styles["register-form"]}`}>
             {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
             <MDBContainer className="flex">
-              <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${Styles["register-form-content"]}`}>
-                <div className="d-flex flex-row mb-4 ">
-                  <MDBCol className="d-flex align-items-center justify-content-center">{/* <ImageUploader fileList={fileList} setFileList={setFileList} /> */}</MDBCol>
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+                className={`${Styles["register-form-content"]}`}
+              >
+                <div className={`${Styles["input-row"]}`} style={{marginBottom:"2vw"}}>
+                  <MDBCol className="d-flex align-items-center justify-content-center">
+                    {/* <ImageUploader fileList={fileList} setFileList={setFileList} /> */}
+                  </MDBCol>
                   <MDBCol>
                     <Dropdown
                       options={genderOptions}
                       handleClick={(option) => {
                         setGender(option);
                         changeGender(option);
-                       
                       }}
                       value={gender}
                       lable={"Gender"}
                     />
                   </MDBCol>
                 </div>
-                <div className="d-flex flex-row mb-4 ">
+                <div className={`${Styles["input-row"]}`}>
                   <MDBCol>
                     <MDBInput
                       wrapperClass="mb-4"
                       label="First Name"
-                      labelClass="text-white"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
                       name="firstName"
                       type="text"
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       value={player.firstName}
                       onChange={handleChange}
                       required
@@ -166,6 +179,13 @@ const PlayerRegistration = () => {
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Institute"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       labelClass="text-white"
                       name="institute"
                       type="text"
@@ -177,11 +197,18 @@ const PlayerRegistration = () => {
                     />
                   </MDBCol>
                 </div>
-                <div className="d-flex flex-row mb-4 ">
+                <div className={`${Styles["input-row"]}`}>
                   <MDBCol>
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Last Name"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       labelClass="text-white"
                       name="lastName"
                       type="text"
@@ -196,6 +223,13 @@ const PlayerRegistration = () => {
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Contact Number"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       labelClass="text-white"
                       name="contactNumber"
                       type="text"
@@ -207,12 +241,19 @@ const PlayerRegistration = () => {
                     />
                   </MDBCol>
                 </div>
-                <div className="d-flex flex-row mb-4">
+                <div className={`${Styles["input-row"]}`}>
                   <MDBCol>
                     <div className={`${Styles["picker-bg"]}`} />
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Date of Birth"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       labelClass="text-white"
                       name="dob"
                       type="date"
@@ -228,6 +269,13 @@ const PlayerRegistration = () => {
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Email"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       labelClass="text-white"
                       name="email"
                       type="email"
@@ -239,9 +287,9 @@ const PlayerRegistration = () => {
                     />
                   </MDBCol>
                 </div>
-                <MDBBtn className={`${Styles["btn"]}`} type="submit">
+                <button className={`${Styles["btn"]}`} type="submit">
                   Register
-                </MDBBtn>
+                </button>
               </Form>
             </MDBContainer>
           </div>
@@ -251,7 +299,8 @@ const PlayerRegistration = () => {
         <div className={`${Styles["success-msg-box"]}`}>
           {/* <img src={trophy} className={`${Styles[""]}`}/> */}
           <div className={`${Styles["success-msg"]}`}>
-            Thank you for registering with us ! Your player ID {playerID} will be used for registering for the future events including next years.
+            Thank you for registering with us ! Your player ID {playerID} will be used for
+            registering for the future events including next years.
             <div className={`${Styles["image-trophy"]}`}></div>
           </div>
 
