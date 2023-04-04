@@ -64,14 +64,14 @@ const RegisterAll = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPlayingSingle, setIsplayingSingle] = useState(true);
   const [isPlayingDouble, setIsplayingDouble] = useState(true);
-  const ageOptions = ['Under 9', 'Under 11', 'Under 13', 'Under 15', 'Staff']
+  const ageOptions = ["Under 9", "Under 11", "Under 13", "Under 15", "Staff"];
   const [ageGrpup, setAgeGroup] = useState("");
-  const paymentOptions = ['On-site', 'Bank Transfer']
+  const paymentOptions = ["On-site", "Bank Transfer"];
   const [payment, setPayment] = useState("");
   //const [isPlayingMix, setIsplayingMix] = useState(true);
   let doneSingle = { success: false, message: "", valid: false, data: "" };
   let doneDouble = { success: false, message: "", valid: false, validP: false, data: "", dataP: "" };
-  
+
   useEffect(() => {
     if (isSubmitting) {
       // show loading message
@@ -175,7 +175,6 @@ const RegisterAll = () => {
   };
 
   const changeAgeGroup = (value) => {
-  
     setSingle((prevValue) => {
       return { ...prevValue, ageGroup: value };
     });
@@ -186,7 +185,6 @@ const RegisterAll = () => {
   };
 
   const changePaymentMethod = (value) => {
-
     setSingle((prevValue) => {
       return { ...prevValue, paymentMethod: value };
     });
@@ -211,7 +209,7 @@ const RegisterAll = () => {
   };
 
   const changeSinglePastPerformanceArray = (option, id) => {
-    console.log("Event from root", option, id)
+    console.log("Event from root", option, id);
     const name = id;
     const value = option;
     const field = name.split("-")[0];
@@ -336,7 +334,7 @@ const RegisterAll = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form submitted" );
+    console.log("Form submitted");
     const form = e.currentTarget;
     const singlePerf = arrangePerformanceArray(singlePastPerformanceArray);
     const doublePerf = arrangePerformanceArray(doublePastPerformanceArray);
@@ -349,8 +347,8 @@ const RegisterAll = () => {
       isPlayingDouble && double.player === double.playerPartner && message.error("Player and the Partner have the same ID !! ");
     }
     if (singlePerf.includes("~error~") || doublePerf.includes("~error~")) {
-      perfError = true
-      message.error("Please fill your performance correctly !")
+      perfError = true;
+      message.error("Please fill your performance correctly !");
       e.stopPropagation();
     }
 
@@ -359,7 +357,10 @@ const RegisterAll = () => {
     single.pastPerformance = singlePerf;
     double.pastPerformance = doublePerf;
 
-    if (((isPlayingSingle && Object.values(single).includes("") && single.paymentMethod == "On-site" && single.paymentSlip == "") || !Object.values(single).includes("")) && !perfError) {
+    if (
+      ((isPlayingSingle && Object.values(single).includes("") && single.paymentMethod == "On-site" && single.paymentSlip == "") || !Object.values(single).includes("")) &&
+      !perfError
+    ) {
       try {
         const res = await Axios.get(
           process.env.REACT_APP_API_URL + "/player/getByObjectId",
@@ -382,7 +383,10 @@ const RegisterAll = () => {
       }
     }
 
-    if (((isPlayingDouble && Object.values(double).includes("") && double.paymentMethod == "On-site" && double.paymentSlip == "") || !Object.values(double).includes("")) && !perfError) {
+    if (
+      ((isPlayingDouble && Object.values(double).includes("") && double.paymentMethod == "On-site" && double.paymentSlip == "") || !Object.values(double).includes("")) &&
+      !perfError
+    ) {
       Axios.get(
         process.env.REACT_APP_API_URL + "/player/getByObjectId",
         { params: { ids: double.player + "," + double.playerPartner } },
@@ -524,11 +528,11 @@ const RegisterAll = () => {
           </MDBRow>
         </MDBContainer>
 
-        <MDBContainer className="flex">
+        <MDBContainer className="">
           <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${Styles["register-form-content"]}`}>
             <div hidden={!isPlayingSingle}>
-              <div className="d-flex flex-row mb-1 ">
-                <MDBCol>
+              <div className="row mb-1 ">
+                <MDBCol className="" lg="6" md="12" sm="12">
                   <MDBInput
                     wrapperClass="mb-1"
                     label="Player ID"
@@ -541,7 +545,7 @@ const RegisterAll = () => {
                     contrast
                   />
                 </MDBCol>
-                <MDBCol>
+                <MDBCol className="" lg="6" md="12" sm="12">
                   {/* <MDBInput
                     wrapperClass="mb-1"
                     label="Age Group"
@@ -553,23 +557,20 @@ const RegisterAll = () => {
                     required
                     contrast
                   /> */}
-                  <Dropdown options = {ageOptions} handleClick={(option)=>{setAgeGroup(option); changeAgeGroup(option)}} value={ageGrpup} lable={"Age Group"}/>
-
+                  <Dropdown
+                    options={ageOptions}
+                    handleClick={(option) => {
+                      setAgeGroup(option);
+                      changeAgeGroup(option);
+                    }}
+                    value={ageGrpup}
+                    lable={"Age Group"}
+                  />
                 </MDBCol>
               </div>
               <div className="mb-1">
                 <div className="d-flex flex-row mb-1"> Singles : Past Performance</div>
-                <div className="d-flex flex-row mb-1">
-                  <MDBCol>
-                    <div>Tournament Name</div>
-                  </MDBCol>
-                  <MDBCol>
-                    <div>Level</div>
-                  </MDBCol>
-                  <MDBCol>
-                    <div>Winning Place</div>
-                  </MDBCol>
-                </div>
+
                 {singlePastPerformanceArray?.map((perf, index) => {
                   return <TableRow perf={perf} index={index} handleChange={changeSinglePastPerformanceArray} />;
                 })}
@@ -578,9 +579,9 @@ const RegisterAll = () => {
               </div>
             </div>
             <div hidden={!isPlayingDouble}>
-              <div className="d-flex flex-row mb-1 ">
+              <div className="row mb-1 ">
                 {!isPlayingSingle && (
-                  <MDBCol>
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Player ID"
@@ -596,7 +597,7 @@ const RegisterAll = () => {
                   </MDBCol>
                 )}
 
-                <MDBCol>
+                <MDBCol className="" lg="6" md="12" sm="12">
                   <MDBInput
                     wrapperClass="mb-1"
                     label="Partner ID"
@@ -615,9 +616,9 @@ const RegisterAll = () => {
                   />
                 </MDBCol>
               </div>
-              <div className="d-flex flex-row mb-1 ">
+              <div className="row mb-1 ">
                 {!isPlayingSingle && (
-                  <MDBCol>
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Age Group"
@@ -635,17 +636,7 @@ const RegisterAll = () => {
 
               <div className="mb-1">
                 <div className="d-flex flex-row mb-1"> Doubles : Past Performance</div>
-                <div className="d-flex flex-row mb-1">
-                  <MDBCol>
-                    <div>Tournament Name</div>
-                  </MDBCol>
-                  <MDBCol>
-                    <div>Level</div>
-                  </MDBCol>
-                  <MDBCol>
-                    <div>Winning Place</div>
-                  </MDBCol>
-                </div>
+
                 {doublePastPerformanceArray?.map((perf, index) => {
                   return <TableRow perf={perf} index={index} handleChange={changeDoublePastPerformanceArray} />; //TODO:
                 })}
@@ -707,12 +698,20 @@ const RegisterAll = () => {
 
             </div> */}
             {(isPlayingDouble || isPlayingSingle) && (
-              <div className="d-flex flex-row mb-4 ">
-                <MDBCol>
-                <Dropdown options = {paymentOptions} handleClick={(option)=>{setPayment(option); changePaymentMethod(option)}} value={payment} lable={"Payment Method"}/>
+              <div className="row mb-1 ">
+                <MDBCol className="" lg="6" md="12" sm="12">
+                  <Dropdown
+                    options={paymentOptions}
+                    handleClick={(option) => {
+                      setPayment(option);
+                      changePaymentMethod(option);
+                    }}
+                    value={payment}
+                    lable={"Payment Method"}
+                  />
                 </MDBCol>
                 {isBankTransfer && (
-                  <MDBCol>
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Payment Slip"

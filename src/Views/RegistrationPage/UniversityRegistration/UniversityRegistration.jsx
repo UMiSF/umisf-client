@@ -122,7 +122,7 @@ const UniversityRegistration = () => {
     }
     return tempArray;
   };
-  
+
   const AddAnotherRow = () => {
     setCount(count + 1);
     setPlayersArray((prevValue) => {
@@ -162,13 +162,16 @@ const UniversityRegistration = () => {
       !isPlayerArrayValid && message.error("Please fill players' details correctly !");
     }
     setValidated(true);
-    if (((Object.values(university).includes("") && university.paymentMethod == "On-site" && university.paymentSlip == "") || !Object.values(university).includes("")) && isPlayerArrayValid) {
-      console.log("Here")
-      const players = updatePlayerCommonData()
-      console.log(players)
+    if (
+      ((Object.values(university).includes("") && university.paymentMethod == "On-site" && university.paymentSlip == "") || !Object.values(university).includes("")) &&
+      isPlayerArrayValid
+    ) {
+      console.log("Here");
+      const players = updatePlayerCommonData();
+      console.log(players);
       Axios.post(
         process.env.REACT_APP_API_URL + "/university/add",
-        { universityDetails:university, players:players},
+        { universityDetails: university, players: players },
         {
           headers: {},
         }
@@ -194,10 +197,10 @@ const UniversityRegistration = () => {
 
       <div className={`${Styles["register-form"]}`}>
         {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
-        <MDBContainer className="flex">
+        <MDBContainer className="">
           <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${Styles["register-form-content"]}`}>
-            <div className="d-flex flex-row mb-1 ">
-              <MDBCol>
+            <div className="row mb-4">
+              <MDBCol className="" lg="6" md="12" sm="12">
                 <MDBInput
                   wrapperClass="mb-1"
                   label="University"
@@ -211,7 +214,7 @@ const UniversityRegistration = () => {
                   className="bg-primary bg-opacity-25"
                 />
               </MDBCol>
-              <MDBCol>
+              <MDBCol className="" lg="6" md="12" sm="12">
                 <Dropdown
                   options={genderOptions}
                   handleClick={(option) => {
@@ -223,8 +226,8 @@ const UniversityRegistration = () => {
                 />
               </MDBCol>
             </div>
-            <div className="d-flex flex-row mb-1 ">
-              <MDBCol>
+            <div className="row mb-4">
+              <MDBCol className="" lg="6" md="12" sm="12">
                 <MDBInput
                   wrapperClass="mb-1"
                   label="Email"
@@ -238,7 +241,7 @@ const UniversityRegistration = () => {
                   className="bg-primary bg-opacity-25"
                 />
               </MDBCol>
-              <MDBCol>
+              <MDBCol className="" lg="6" md="12" sm="12">
                 <MDBInput
                   wrapperClass="mb-1"
                   label="Contact Number"
@@ -254,17 +257,6 @@ const UniversityRegistration = () => {
               </MDBCol>
             </div>
             <div className="mb-1">
-              <div className="d-flex flex-row mb-1">
-                <MDBCol>
-                  <div>Player Name</div>
-                </MDBCol>
-                <MDBCol>
-                  <div>University ID</div>
-                </MDBCol>
-                <MDBCol>
-                  <div>Photo</div>
-                </MDBCol>
-              </div>
               {playersArray?.map((player, index) => {
                 return <TableRow player={player} index={index} handleChange={handleChange} />;
               })}
@@ -272,8 +264,8 @@ const UniversityRegistration = () => {
               <MinusCircleTwoTone onClick={RemoveanotherRow} />
             </div>
 
-            <div className="d-flex flex-row mb-4 ">
-              <MDBCol>
+            <div className="row mb-4">
+              <MDBCol className="" lg="6" md="12" sm="12">
                 <Dropdown
                   options={paymentOptions}
                   handleClick={(option) => {
@@ -285,7 +277,7 @@ const UniversityRegistration = () => {
                 />
               </MDBCol>
               {isBankTransfer && (
-                <MDBCol>
+                <MDBCol className="" lg="6" md="12" sm="12">
                   <MDBInput
                     wrapperClass="mb-4"
                     label="Payment Slip"

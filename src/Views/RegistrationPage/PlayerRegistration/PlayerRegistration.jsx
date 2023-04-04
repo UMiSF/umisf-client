@@ -130,25 +130,26 @@ const PlayerRegistration = () => {
           </div>
           <div className={`${Styles["register-form"]}`}>
             {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
-            <MDBContainer className="flex">
+            <MDBContainer className="">
               <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${Styles["register-form-content"]}`}>
-                <div className="d-flex flex-row mb-4 ">
-                  <MDBCol className="d-flex align-items-center justify-content-center">{/* <ImageUploader fileList={fileList} setFileList={setFileList} /> */}</MDBCol>
-                  <MDBCol>
+                <div className="row mb-4">
+                  <MDBCol className="align-items-center justify-content-center" lg="6" md="12" sm="12">
+                    <ImageUploader fileList={fileList} setFileList={setFileList} />
+                  </MDBCol>
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <Dropdown
                       options={genderOptions}
                       handleClick={(option) => {
                         setGender(option);
                         changeGender(option);
-                       
                       }}
                       value={gender}
                       lable={"Gender"}
                     />
                   </MDBCol>
                 </div>
-                <div className="d-flex flex-row mb-4 ">
-                  <MDBCol>
+                <div className="row mb-4">
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-4"
                       label="First Name"
@@ -162,7 +163,7 @@ const PlayerRegistration = () => {
                       className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
-                  <MDBCol>
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Institute"
@@ -177,8 +178,8 @@ const PlayerRegistration = () => {
                     />
                   </MDBCol>
                 </div>
-                <div className="d-flex flex-row mb-4 ">
-                  <MDBCol>
+                <div className="row mb-4">
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Last Name"
@@ -192,7 +193,7 @@ const PlayerRegistration = () => {
                       className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
-                  <MDBCol>
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Contact Number"
@@ -207,8 +208,8 @@ const PlayerRegistration = () => {
                     />
                   </MDBCol>
                 </div>
-                <div className="d-flex flex-row mb-4">
-                  <MDBCol>
+                <div className="row mb-4">
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <div className={`${Styles["picker-bg"]}`} />
                     <MDBInput
                       wrapperClass="mb-4"
@@ -224,7 +225,7 @@ const PlayerRegistration = () => {
                     ></MDBInput>
                   </MDBCol>
 
-                  <MDBCol>
+                  <MDBCol className="" lg="6" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Email"
