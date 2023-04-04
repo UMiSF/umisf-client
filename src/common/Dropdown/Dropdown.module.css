@@ -10,7 +10,7 @@
     rgb(22,35,74)
   );
   left: 5.5%;
-  top: -23%;
+  top: -12%;
   padding-bottom: 0;
   position: absolute;
   font-size: 18px;
@@ -23,7 +23,7 @@
   background-color: rgb(22,35,74);
   position: absolute;
   font-size: 23px;
-  top: 21%;
+  top: 13%;
   left: 6%;
   font-family: "Hind";
   cursor: pointer;
@@ -69,4 +69,20 @@
   float: right;
   width: 15px;
   margin-top: 9px;
+}
+
+@media (max-width: 992px) {
+  .lable{
+    top: 18%;
+    left: 3.5%;
+  }
+
+  .lableselected{
+    top: -20%;
+    left: 3.5%;
+  }
+
+  .optionsContainer {
+    width: 97%;
+  }
 }
