@@ -13,19 +13,19 @@ import { message } from "antd";
 const CompanyRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
   const [company, setCompany] = useState({
-    company: "",
+    name: "",
     email: "",
-    contact_number: "",
-    players: [],
-    payment_method: "",
-    payment_slip: "",
+    contactNumber: "",
+    paymentMethod: "",
+    paymentSlip: "",
+    matchType:"Catogary A",
   });
 
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
-    { name: "", id: "", photo: "" },
-    { name: "", id: "", photo: "" },
-    { name: "", id: "", photo: "" },
+    { firstName: "", lastName: "", photo: "" },
+    { firstName: "", lastName: "", photo: "" },
+    { firstName: "", lastName: "", photo: "" },
   ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
@@ -42,29 +42,29 @@ const CompanyRegistration = () => {
     console.log("Past performance array: ", playersArray);
     const name = e.target.name;
     const value = e.target.value;
-    if (name == "company") {
+    if (name == "name") {
       setCompany((prevValue) => {
-        return { ...prevValue, company: value };
+        return { ...prevValue, name: value };
       });
     } else if (name == "email") {
       setCompany((prevValue) => {
         return { ...prevValue, email: value };
       });
-    } else if (name == "contact_number") {
+    } else if (name == "contactNumber") {
       setCompany((prevValue) => {
-        return { ...prevValue, contact_number: value };
+        return { ...prevValue, contactNumber: value };
       });
-    } else if (name == "payment_method") {
+    } else if (name == "paymentMethod") {
       setCompany((prevValue) => {
-        return { ...prevValue, payment_method: value };
+        return { ...prevValue, paymentMethod: value };
       });
       console.log("isBankTransfer: ", value == "On-Site");
       value == "Bank Transfer"
         ? setIsBankTransfer(true)
         : setIsBankTransfer(false);
-    } else if (name == "payment_slip") {
+    } else if (name == "paymentSlip") {
       setCompany((prevValue) => {
-        return { ...prevValue, payment_slip: value };
+        return { ...prevValue, paymentSlip: value };
       });
     } else if (
       name.includes("name") ||
@@ -78,22 +78,22 @@ const CompanyRegistration = () => {
       switch (field) {
         case "name":
           newArray[position] = {
-            name: value,
-            id: newArray[position].id,
+            firstName: value,
+            lastName: newArray[position].lastName,
             photo: newArray[position].photo,
           };
           break;
         case "id":
           newArray[position] = {
-            name: newArray[position].name,
-            id: value,
+            firstName: newArray[position].firstName,
+            lastName: value,
             photo: newArray[position].photo,
           };
           break;
         case "photo":
           newArray[position] = {
-            name: newArray[position].name,
-            id: newArray[position].id,
+            firstName: newArray[position].firstName,
+            lastName: newArray[position].lastName,
             photo: value,
           };
           break;
@@ -135,6 +135,7 @@ const CompanyRegistration = () => {
     //TODO: add player array
     e.preventDefault();
     console.log("Form submitted", company);
+    console.log("players for submitted",playersArray);
     const form = e.currentTarget;
     const isPlayerArrayValid = isValidPlayerArray(playersArray)
     //form validation
@@ -143,12 +144,13 @@ const CompanyRegistration = () => {
       !isPlayerArrayValid && message.error("Please fill players' details correctly !")
     }
     setValidated(true);
-    if ((Object.values(company).includes("") && company.paymentMethod == "On-site" && company.paymentSlip == "") || !Object.values(company).includes("")) {
+    console.log('bolean',company.paymentMethod== "On-site")
+    if ((Object.values(company).includes('') && company.paymentMethod == "On-site" && company.paymentSlip == "") || !Object.values(company).includes("")) {
       console.log("Here")
       const players = updatePlayerCommonData()
       console.log(players)
       Axios.post(
-        process.env.REACT_APP_API_URL + "/company/add",
+        "http://localhost:3001/company/add",
         { companyDetails:company, players:players},
         {
           headers: {},
@@ -195,9 +197,9 @@ const CompanyRegistration = () => {
                   wrapperClass="mb-1"
                   label="Company"
                   labelClass="text-white"
-                  name="company"
+                  name="name"
                   type="text"
-                  value={company.company}
+                  value={company.name}
                   onChange={handleChange}
                   required
                   contrast
@@ -209,9 +211,9 @@ const CompanyRegistration = () => {
                   wrapperClass="mb-1"
                   label="Contact Number"
                   labelClass="text-white"
-                  name="contact_number"
+                  name="contactNumber"
                   type="text"
-                  value={company.contact_number}
+                  value={company.contactNumber}
                   onChange={handleChange}
                   required
                   contrast
@@ -279,7 +281,7 @@ const CompanyRegistration = () => {
                   wrapperClass="mb-4"
                   label="Payment Method"
                   labelClass="text-white"
-                  name="payment_method"
+                  name="paymentMethod"
                   type="text"
                   value={company.payment_method}
                   onChange={handleChange}
@@ -294,7 +296,7 @@ const CompanyRegistration = () => {
                     wrapperClass="mb-4"
                     label="Payment Slip"
                     labelClass="text-white"
-                    name="payment_slip"
+                    name="paymentSlip"
                     type="text"
                     value={company.payment_slip}
                     onChange={handleChange}
