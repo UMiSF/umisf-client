@@ -242,36 +242,19 @@
     width:100%;
 }
 
-.register-mobile{
-    list-style: none;
-    display: inline-block;
-    margin: 0 0.5em;
-    position:relative;
-    font-size: 10px;
-    font-weight: bold;
+.register-dropdown{
+    background: transparent;
+    border: none;
+    color: white;
     text-transform: uppercase;
-    color: #097dd6;
-    text-decoration: none;
     font-family: 'Montserrat';
-    margin-bottom: -100px;
-    width: 100%;
-}
-
-.register-mobile:hover{
-    text-decoration: none;
-}
-
-.register-mobile::after{
-    content: '';
-    height: 0.2em;
-    width:0;
-    background: #0984e3;
-    position: absolute;
-    left: 0;
-    bottom:-1em;
-    transition: 0.5s width;
-}
-
-.register-mobile:hover::after{
-    width:100%;
+    font-weight: bold;
+    text-align: center;
+    cursor:pointer;
+    font-size: 0.8em;
+    position: relative;
+    overflow:hidden;
+    transition: 0.8s;
+    z-index:0;
+    top: 75px;
 }

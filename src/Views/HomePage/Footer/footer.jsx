@@ -10,7 +10,8 @@ function Footer() {
           <img src={require("../../../assests/images/umisf_logo.png")} />
           <div className={`${styles["quick-tabs"]}`}>
             <a href="/">Home</a>|<a href="/about">About</a>|<a href="/register/player">Register</a>|
-            <a href="#">Draws</a>|<br/><a href="/photos">Gallery</a>|<a href="#">Developers</a>|
+            <a href="#">Draws</a>|<br />
+            <a href="/photos">Gallery</a>|<a href="#">Developers</a>|
             <a href="/contact-us">Contact Us</a>
           </div>
         </div>
@@ -37,10 +38,9 @@ function Footer() {
         <div className={`${styles["footer-right"]}`}>
           <h6>About</h6>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing <br />
-            elit. Reiciendis temporibus, est fugiat nihil
-            <br />
-            labore laboriosam.
+            UMiSF is the annual badminton tournament organized
+            by the badminton team of the University of Moratuwa,
+             in collaboration with the university's division of Physical Education. 
           </p>
           <div className={`${styles["footer-icons"]}`}>
             <a href="#">

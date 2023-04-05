@@ -49,7 +49,7 @@ const TableRow = (props) => {
             }}
             contrast
             className="bg-primary bg-opacity-25"
-            label="Winning place"
+            label="ID"
             required
           />
         </MDBCol>

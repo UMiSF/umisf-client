@@ -737,7 +737,7 @@ const RegisterAll = () => {
               <div className="row mb-2">
                 {!isPlayingSingle && (
                   <MDBCol className="mb-1" lg="12" md="12" sm="12">
-                    <MDBInput
+                    {/* <MDBInput
                       wrapperClass="mb-1"
                       label="Age Group"
                       labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
@@ -755,6 +755,15 @@ const RegisterAll = () => {
                       required
                       contrast
                       className="bg-primary bg-opacity-25"
+                    /> */}
+                    <Dropdown
+                      options={ageOptions}
+                      handleClick={(option) => {
+                        setAgeGroup(option);
+                        changeAgeGroup(option);
+                      }}
+                      value={ageGrpup}
+                      lable={"Age Group"}
                     />
                   </MDBCol>
                 )}

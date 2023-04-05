@@ -12,6 +12,7 @@
 .footer-left,
 .footer-middle,
 .footer-right {
+  flex-basis: 33%;
   box-sizing: border-box;
   padding: 2vh;
   transition: ease-in-out 0.7s;
@@ -30,7 +31,7 @@
 }
 
 .copyright {
-  font-family: "montserrat";
+  font-family: "Hind";
   padding-top: 2vw;
   font-size: 15px;
 }
@@ -72,14 +73,16 @@
 
 .footer-right h6 {
   color: white;
-  font-family: "roboto";
+  font-family: "Hind";
   font-size: 18px;
   font-weight: bold;
 }
 
 .footer-right p {
-  font-family: "montserrat";
+  font-family: "Hind";
   font-size: 15px;
+  width: 100%;
+  text-align: justify;
 }
 
 .footer-icons i {
