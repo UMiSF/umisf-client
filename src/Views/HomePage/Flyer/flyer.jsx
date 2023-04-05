@@ -41,7 +41,7 @@ const Flyer = (props) => {
       <div className={`${styles["venue"]}`}>
         {"at " + venue}
       </div>
-      <a className={`${styles["register"]}`} href="#">Register</a>
+      <a className={`${styles["register"]}`} href="/register/player" type="button">Register</a>
       <div className={`${styles["before"]}`}>
         {`before ${before[2]}`} <sup style={{fontSize:"0.6vw"}}>{`${superscript(before[2].charAt(before[2].length - 1))}`}</sup> {`${before[1]} ${before[0]}`}
       </div>

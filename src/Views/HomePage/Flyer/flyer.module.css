@@ -93,7 +93,7 @@
 
 .register {
   position: absolute;
-  top: 40vw;
+  top: 41vw;
   left: 69vw;
   padding: 6px 25px;
   text-decoration: none;
@@ -101,7 +101,15 @@
   background-color: #0984e3;
   cursor: pointer;
   font-family: "Hind";
+  transition: ease-in-out 1s;
 }
+
+.register:hover{
+  color: white;
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
 
 .before {
   position: absolute;

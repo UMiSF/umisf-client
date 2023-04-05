@@ -14,7 +14,7 @@ const TableRow = (props) => {
       <div className="row">
         <MDBCol className="" lg="4" md="12" sm="12">
           <MDBInput
-            wrapperClass=""
+            wrapperClass="mb-3"
             labelClass="text-white"
             name={"name-" + props.index}
             type="text"
@@ -25,6 +25,13 @@ const TableRow = (props) => {
             contrast
             className="bg-primary bg-opacity-25"
             label="Tournament"
+            labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+            style={{
+              fontFamily: "Hind",
+              fontSize: "18px",
+              padding: "15px",
+              minHeight: "40px",
+            }}
           />
         </MDBCol>
         <MDBCol className="" lg="4" md="12" sm="12">
@@ -52,9 +59,7 @@ const TableRow = (props) => {
           />
         </MDBCol>
       </div>
-      <div class="row d-lg-none mt-6 mb-6 d-xl-none">
-       
-      </div>
+      <div class="row d-lg-none mt-6 mb-6 d-xl-none"></div>
     </div>
   );
 };

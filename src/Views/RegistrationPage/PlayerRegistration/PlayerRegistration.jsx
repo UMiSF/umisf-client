@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
+import { Button, Divider, Space, Tour } from "antd";
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
@@ -115,6 +116,17 @@ const PlayerRegistration = () => {
       setIsSubmitting(false);
     }
   }
+  // guide for tournament details
+  const ref = useRef(null);
+  const [open, setOpen] = useState(true);
+  const steps = [
+    {
+      title: "Tournament Details and Registration Guidlines",
+      description: "Please refer the details and guidlines before the registration process.",
+      target: () => ref.current,
+    },
+  ];
+
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
@@ -126,15 +138,34 @@ const PlayerRegistration = () => {
             <div className={`${Styles["info"]}`}>
               Please note that first you have to register as a player through this portal before
               applying for single/double events. The Player ID given upon successful registration
-              should be used for all the future events including upcoming years.
+              should be used for all the future events including upcoming years. Please find the{" "}
+                <button ref={ref}>Tournament Details and Registration Guidlines</button>
+              {" "}here.
+              <Tour
+                placement="right"
+                open={open}
+                onClose={() => setOpen(false)}
+                steps={steps}
+                
+              />
             </div>
           </div>
           <div className={`${Styles["register-form"]}`}>
             {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
             <MDBContainer className="">
-              <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${Styles["register-form-content"]}`}>
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+                className={`${Styles["register-form-content"]}`}
+              >
                 <div className="row mb-4">
-                  <MDBCol className="align-items-center justify-content-center" lg="6" md="12" sm="12">
+                  <MDBCol
+                    className="align-items-center justify-content-center"
+                    lg="6"
+                    md="12"
+                    sm="12"
+                  >
                     <ImageUploader fileList={fileList} setFileList={setFileList} />
                   </MDBCol>
                   <MDBCol className="" lg="6" md="12" sm="12">
@@ -238,7 +269,6 @@ const PlayerRegistration = () => {
                 </div>
                 <div className="row mb-4">
                   <MDBCol className="" lg="6" md="12" sm="12">
-                    <div className={`${Styles["picker-bg"]}`} />
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Date of Birth"

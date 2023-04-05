@@ -26,7 +26,7 @@ const HeaderPage = () => {
     <div className={`${styles["nav-container"]}`}>
       <div className={`${styles["nav-bars"]}`}>
         <div className={`${styles["navBarList"]}`}>
-          <img src={require("../../assests/images/umisf_logo.png")} alt={"logo"}></img>
+          <a href="/"><img src={require("../../assests/images/umisf_logo.png")} alt={"logo"}></img></a>
           <ul>
             <a href="/" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>Home</li>

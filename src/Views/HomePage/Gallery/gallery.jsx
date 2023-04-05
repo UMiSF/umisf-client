@@ -11,7 +11,7 @@ function Gallery(props) {
       <div className={`${styles["gallery-box"]}`}>
         <div className={`${styles["gallery-box-row"]}`}>
           {gallery.slice(0, 3).map((image, index) => (
-            <figure>
+            <figure className='bg-image hover-zoom'>
               <img src={require(`../../../assests/images/gallery/${image}`)} key={index} />
             </figure>
           ))}
@@ -19,7 +19,7 @@ function Gallery(props) {
 
         <div className={`${styles["gallery-box-row"]}`}>
           {gallery.slice(3, 6).map((image, index) => (
-            <figure>
+            <figure className='bg-image hover-zoom'>
               <img src={require(`../../../assests/images/gallery/${image}`)} />
             </figure>
           ))}
@@ -27,14 +27,14 @@ function Gallery(props) {
 
         <div className={`${styles["gallery-box-row"]}`}>
           {gallery.slice(6, 9).map((image, index) => (
-            <figure>
+            <figure className='bg-image hover-zoom'>
               <img src={require(`../../../assests/images/gallery/${image}`)} />
             </figure>
           ))}
         </div>
       </div>
       <div className={`${styles["gallery-view-more"]}`}>
-        <a href="/about" type="button">
+        <a href="/photos" type="button">
           View More
         </a>
       </div>

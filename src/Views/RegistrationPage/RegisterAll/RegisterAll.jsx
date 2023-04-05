@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Styles from "./RegisterAll.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
-import { MDBContainer, MDBInput, MDBBtn, MDBCol, MDBRow } from "mdb-react-ui-kit";
+import { MDBContainer, MDBInput, MDBCol, MDBRow } from "mdb-react-ui-kit";
+import { Button, Divider, Space, Tour } from "antd";
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import TableRow from "../Common/AddTablePerf/TableRow";
 import Axios from "axios";
-import { CheckCircleTwoTone, ExclamationCircleTwoTone, PlusCircleTwoTone, MinusCircleTwoTone, CheckOutlined, CloseOutlined, DownOutlined } from "@ant-design/icons";
-import { Modal, message, Switch, Select, Space } from "antd";
+import { CheckCircleTwoTone, ExclamationCircleTwoTone } from "@ant-design/icons";
+import { Modal, message, Select } from "antd";
 import Dropdown from "../../../common/Dropdown/Dropdown";
 const RegisterAll = () => {
   const [validated, setValidated] = useState(false); //form validation
@@ -70,7 +73,14 @@ const RegisterAll = () => {
   const [payment, setPayment] = useState("");
   //const [isPlayingMix, setIsplayingMix] = useState(true);
   let doneSingle = { success: false, message: "", valid: false, data: "" };
-  let doneDouble = { success: false, message: "", valid: false, validP: false, data: "", dataP: "" };
+  let doneDouble = {
+    success: false,
+    message: "",
+    valid: false,
+    validP: false,
+    data: "",
+    dataP: "",
+  };
 
   useEffect(() => {
     if (isSubmitting) {
@@ -84,7 +94,11 @@ const RegisterAll = () => {
     let doubleRes = null;
     confirm({
       title: title,
-      icon: success ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
+      icon: success ? (
+        <CheckCircleTwoTone twoToneColor="#52c41a" />
+      ) : (
+        <ExclamationCircleTwoTone twoToneColor="#eb2f96" />
+      ),
       content: content, //TODO: content for success should be displayed properly (create a proper description using the object sent in content) -> VINUL
       async onOk() {
         console.log("OK");
@@ -275,26 +289,30 @@ const RegisterAll = () => {
     setDoublePastPerformanceArray(newArray);
   };
 
-  const AddAnotherRowS = () => {
+  const AddAnotherRowS = (e) => {
+    e.preventDefault();
     setSinglePastPerformanceArray((prevValue) => {
       return [...singlePastPerformanceArray, { name: "", level: "", place: "" }];
     });
   };
 
-  const RemoveanotherRowS = () => {
+  const RemoveanotherRowS = (e) => {
+    e.preventDefault();
     if (singlePastPerformanceArray.length > 3) {
       const tmpArray = singlePastPerformanceArray.slice(0, singlePastPerformanceArray.length - 1);
       setSinglePastPerformanceArray(tmpArray);
     }
   };
 
-  const AddAnotherRowD = () => {
+  const AddAnotherRowD = (e) => {
+    e.preventDefault();
     setDoublePastPerformanceArray((prevValue) => {
       return [...doublePastPerformanceArray, { name: "", level: "", place: "" }];
     });
   };
 
-  const RemoveanotherRowD = () => {
+  const RemoveanotherRowD = (e) => {
+    e.preventDefault();
     if (doublePastPerformanceArray.length > 3) {
       const tmpArray = doublePastPerformanceArray.slice(0, doublePastPerformanceArray.length - 1);
       setDoublePastPerformanceArray(tmpArray);
@@ -342,9 +360,14 @@ const RegisterAll = () => {
     console.log("Perfs:", singlePerf);
     console.log("perfd", doublePerf);
     //form validation
-    if (form.checkValidity() === false || (isPlayingDouble && double.player === double.playerPartner)) {
+    if (
+      form.checkValidity() === false ||
+      (isPlayingDouble && double.player === double.playerPartner)
+    ) {
       e.stopPropagation();
-      isPlayingDouble && double.player === double.playerPartner && message.error("Player and the Partner have the same ID !! ");
+      isPlayingDouble &&
+        double.player === double.playerPartner &&
+        message.error("Player and the Partner have the same ID !! ");
     }
     if (singlePerf.includes("~error~") || doublePerf.includes("~error~")) {
       perfError = true;
@@ -358,7 +381,11 @@ const RegisterAll = () => {
     double.pastPerformance = doublePerf;
 
     if (
-      ((isPlayingSingle && Object.values(single).includes("") && single.paymentMethod == "On-site" && single.paymentSlip == "") || !Object.values(single).includes("")) &&
+      ((isPlayingSingle &&
+        Object.values(single).includes("") &&
+        single.paymentMethod == "On-site" &&
+        single.paymentSlip == "") ||
+        !Object.values(single).includes("")) &&
       !perfError
     ) {
       try {
@@ -384,7 +411,11 @@ const RegisterAll = () => {
     }
 
     if (
-      ((isPlayingDouble && Object.values(double).includes("") && double.paymentMethod == "On-site" && double.paymentSlip == "") || !Object.values(double).includes("")) &&
+      ((isPlayingDouble &&
+        Object.values(double).includes("") &&
+        double.paymentMethod == "On-site" &&
+        double.paymentSlip == "") ||
+        !Object.values(double).includes("")) &&
       !perfError
     ) {
       Axios.get(
@@ -421,7 +452,13 @@ const RegisterAll = () => {
           console.log("Here");
           console.log("Error: ", error.response.data.message);
           //showConfirm("Error Loading Player !", false, error.response.data.message);
-          doneDouble = { ...doneDouble, valid: false, validP: false, data: error.response.data.message, dataP: error.response.data.message };
+          doneDouble = {
+            ...doneDouble,
+            valid: false,
+            validP: false,
+            data: error.response.data.message,
+            dataP: error.response.data.message,
+          };
           check();
         });
     }
@@ -429,7 +466,13 @@ const RegisterAll = () => {
 
   const createDoneDouble = (player, data, doneDouble) => {
     if (Object.values(data).includes(player)) {
-      return { ...doneDouble, valid: true, validP: false, data: data, dataP: "Invalid ID included for Partner" };
+      return {
+        ...doneDouble,
+        valid: true,
+        validP: false,
+        data: data,
+        dataP: "Invalid ID included for Partner",
+      };
     }
     return { ...doneDouble, valid: false, validP: true, data: "Invalid ID included", dataP: data };
   };
@@ -456,7 +499,14 @@ const RegisterAll = () => {
     } else if (isPlayingSingle && !isPlayingDouble) {
       // console.log("doneSingle", doneSingle.data);
       doneSingle.valid
-        ? (message = "Player: " + doneSingle.data.firstName + " " + doneSingle.data.lastName + " , " + "Gender: " + doneSingle.data.gender)
+        ? (message =
+            "Player: " +
+            doneSingle.data.firstName +
+            " " +
+            doneSingle.data.lastName +
+            " , " +
+            "Gender: " +
+            doneSingle.data.gender)
         : (message = doneSingle.data);
     } else if (!isPlayingSingle && isPlayingDouble) {
       doneDouble.valid && doneDouble.validP
@@ -478,12 +528,26 @@ const RegisterAll = () => {
     }
     console.log("Message : ", message);
     console.log(doneSingle.valid, doneDouble.valid, doneDouble.validP);
-    if ((isPlayingDouble && (doneDouble.valid == false || doneDouble.validP == false)) || (isPlayingSingle && doneSingle.valid == false)) {
+    if (
+      (isPlayingDouble && (doneDouble.valid == false || doneDouble.validP == false)) ||
+      (isPlayingSingle && doneSingle.valid == false)
+    ) {
       showConfirm("Error Loading Player !", false, message);
     } else {
       showConfirm("Confirm your data !", true, message);
     }
   };
+
+  // guide for tournament details
+  const ref = useRef(null);
+  const [open, setOpen] = useState(true);
+  const steps = [
+    {
+      title: "Tournament Details and Registration Guidlines",
+      description: "Please refer the details and guidlines before the registration process.",
+      target: () => ref.current,
+    },
+  ];
 
   return (
     <div className={`${Styles["body"]}`}>
@@ -492,34 +556,44 @@ const RegisterAll = () => {
       <div className={`${Styles["info-container"]}`}>
         <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
         <div className={`${Styles["info"]}`}>
-          Please note that first you have to register as a player through player registration portal before applying for single/double events. The Player ID given upon successful
-          registration should be used as Player ID here .
+          Please note that first you have to register as a player through player registration portal
+          before applying for single/double events. The Player ID given upon successful registration
+          should be used as Player ID here .Please find the{" "}
+          <Space>
+            <button ref={ref}>Tournament Details and Registration Guidlines</button>
+          </Space>{" "}
+          here.
+          <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
         </div>
       </div>
       <div className={`${Styles["register-form"]}`}>
         {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
         <MDBContainer>
-          <MDBRow>
-            <MDBCol start size="3">
-              <small>Single</small>{" "}
-              <Switch
-                checkedChildren={<CheckOutlined />}
-                unCheckedChildren={<CloseOutlined />}
-                defaultChecked
-                onClick={() => {
-                  setIsplayingSingle(!isPlayingSingle);
-                }}
+          <MDBRow className="mt-4">
+            <MDBCol>
+              <FormControlLabel
+                control={
+                  <Switch
+                    defaultChecked
+                    onClick={() => {
+                      setIsplayingSingle(!isPlayingSingle);
+                    }}
+                  />
+                }
+                label="Single"
               />
             </MDBCol>
-            <MDBCol end size="3">
-              <small>Double</small>{" "}
-              <Switch
-                checkedChildren={<CheckOutlined />}
-                unCheckedChildren={<CloseOutlined />}
-                defaultChecked
-                onClick={() => {
-                  setIsplayingDouble(!isPlayingDouble);
-                }}
+            <MDBCol>
+              <FormControlLabel
+                control={
+                  <Switch
+                    defaultChecked
+                    onClick={() => {
+                      setIsplayingDouble(!isPlayingDouble);
+                    }}
+                  />
+                }
+                label="Double"
               />
             </MDBCol>
             {/* <MDBCol end size="4">
@@ -529,13 +603,25 @@ const RegisterAll = () => {
         </MDBContainer>
 
         <MDBContainer className="">
-          <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${Styles["register-form-content"]}`}>
+          <Form
+            noValidate
+            validated={validated}
+            onSubmit={handleSubmit}
+            className={`${Styles["register-form-content"]}`}
+          >
             <div hidden={!isPlayingSingle}>
               <div className="row mb-1 ">
-                <MDBCol className="" lg="6" md="12" sm="12">
+                <MDBCol className="mb-1" lg="6" md="12" sm="12">
                   <MDBInput
                     wrapperClass="mb-1"
                     label="Player ID"
+                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                    style={{
+                      fontFamily: "Hind",
+                      fontSize: "18px",
+                      padding: "15px",
+                      minHeight: "40px",
+                    }}
                     labelClass="text-white"
                     name="player"
                     type="text"
@@ -543,9 +629,10 @@ const RegisterAll = () => {
                     onChange={changePlayer}
                     required
                     contrast
+                    className="bg-primary bg-opacity-25"
                   />
                 </MDBCol>
-                <MDBCol className="" lg="6" md="12" sm="12">
+                <MDBCol className="mb-1" lg="6" md="12" sm="12">
                   {/* <MDBInput
                     wrapperClass="mb-1"
                     label="Age Group"
@@ -568,14 +655,29 @@ const RegisterAll = () => {
                   />
                 </MDBCol>
               </div>
-              <div className="mb-1">
-                <div className="d-flex flex-row mb-1"> Singles : Past Performance</div>
+              <div className="mb-2">
+                <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
+                  {" "}
+                  Singles : Past Performance
+                </div>
 
                 {singlePastPerformanceArray?.map((perf, index) => {
-                  return <TableRow perf={perf} index={index} handleChange={changeSinglePastPerformanceArray} />;
+                  return (
+                    <TableRow
+                      perf={perf}
+                      index={index}
+                      handleChange={changeSinglePastPerformanceArray}
+                    />
+                  );
                 })}
-                <PlusCircleTwoTone onClick={AddAnotherRowS} />
-                <MinusCircleTwoTone onClick={RemoveanotherRowS} />
+                <div className={`${Styles["plus-minus"]}`}>
+                  <button className={`${Styles["plus-btn"]}`} onClick={AddAnotherRowS}>
+                    <img src={require(`../../../assests/images/plus-row.png`)} />
+                  </button>
+                  <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRowS}>
+                    <img src={require(`../../../assests/images/minus-row.png`)} />
+                  </button>
+                </div>
               </div>
             </div>
             <div hidden={!isPlayingDouble}>
@@ -585,6 +687,13 @@ const RegisterAll = () => {
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Player ID"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       labelClass="text-white"
                       name="player"
                       type="text"
@@ -593,14 +702,22 @@ const RegisterAll = () => {
                       required
                       contrast
                       display="none"
+                      className="bg-primary bg-opacity-25"
                     />{" "}
                   </MDBCol>
                 )}
 
-                <MDBCol className="" lg="6" md="12" sm="12">
+                <MDBCol className="mb-1" lg={isPlayingSingle ? "12" : "6"} md="12" sm="12">
                   <MDBInput
                     wrapperClass="mb-1"
                     label="Partner ID"
+                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                    style={{
+                      fontFamily: "Hind",
+                      fontSize: "18px",
+                      padding: "15px",
+                      minHeight: "40px",
+                    }}
                     labelClass="text-white"
                     name="d-partner"
                     type="text"
@@ -613,15 +730,23 @@ const RegisterAll = () => {
                     }}
                     required
                     contrast
+                    className="bg-primary bg-opacity-25"
                   />
                 </MDBCol>
               </div>
-              <div className="row mb-1 ">
+              <div className="row mb-2">
                 {!isPlayingSingle && (
-                  <MDBCol className="" lg="6" md="12" sm="12">
+                  <MDBCol className="mb-1" lg="12" md="12" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Age Group"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       labelClass="text-white"
                       name="ageGroup"
                       type="text"
@@ -629,19 +754,35 @@ const RegisterAll = () => {
                       onChange={changeAgeGroup}
                       required
                       contrast
+                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
                 )}
               </div>
 
-              <div className="mb-1">
-                <div className="d-flex flex-row mb-1"> Doubles : Past Performance</div>
+              <div className="mb-2">
+                <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
+                  {" "}
+                  Doubles : Past Performance
+                </div>
 
                 {doublePastPerformanceArray?.map((perf, index) => {
-                  return <TableRow perf={perf} index={index} handleChange={changeDoublePastPerformanceArray} />; //TODO:
+                  return (
+                    <TableRow
+                      perf={perf}
+                      index={index}
+                      handleChange={changeDoublePastPerformanceArray}
+                    />
+                  ); //TODO:
                 })}
-                <PlusCircleTwoTone onClick={AddAnotherRowD} />
-                <MinusCircleTwoTone onClick={RemoveanotherRowD} />
+                <div className={`${Styles["plus-minus"]}`}>
+                  <button className={`${Styles["plus-btn"]}`} onClick={AddAnotherRowD}>
+                    <img src={require(`../../../assests/images/plus-row.png`)} />
+                  </button>
+                  <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRowD}>
+                    <img src={require(`../../../assests/images/minus-row.png`)} />
+                  </button>
+                </div>
               </div>
             </div>
             {/* <div hidden={!isPlayingMix}>
@@ -698,8 +839,8 @@ const RegisterAll = () => {
 
             </div> */}
             {(isPlayingDouble || isPlayingSingle) && (
-              <div className="row mb-1 ">
-                <MDBCol className="" lg="6" md="12" sm="12">
+              <div className="row mb-4 mt-2">
+                <MDBCol className="mb-1">
                   <Dropdown
                     options={paymentOptions}
                     handleClick={(option) => {
@@ -711,10 +852,17 @@ const RegisterAll = () => {
                   />
                 </MDBCol>
                 {isBankTransfer && (
-                  <MDBCol className="" lg="6" md="12" sm="12">
+                  <MDBCol className="" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Payment Slip"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
                       labelClass="text-white"
                       name="paymentSlip"
                       type="text"
@@ -727,9 +875,13 @@ const RegisterAll = () => {
               </div>
             )}
 
-            <MDBBtn className={`${Styles["btn"]}`} type="submit" hidden={!isPlayingDouble && !isPlayingSingle}>
+            <button
+              className={`${Styles["btn"]}`}
+              type="submit"
+              hidden={!isPlayingDouble && !isPlayingSingle}
+            >
               Register
-            </MDBBtn>
+            </button>
           </Form>
         </MDBContainer>
       </div>

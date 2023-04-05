@@ -1,6 +1,6 @@
 .selectContainer {
-  width: 100%;
   color: white;
+  margin-bottom: 20px;
 }
 
 .lableselected{
@@ -9,8 +9,8 @@
     rgb(5, 9, 34),
     rgb(22,35,74)
   );
-  left: 5.5%;
-  top: -12%;
+  left: 30px;
+  top: -12px;
   padding-bottom: 0;
   position: absolute;
   font-size: 18px;
@@ -23,11 +23,12 @@
   background-color: rgb(22,35,74);
   position: absolute;
   font-size: 23px;
-  top: 13%;
-  left: 6%;
+  top: 10px;
+  left: 30px;
   font-family: "Hind";
   cursor: pointer;
   font-weight: lighter;
+  z-index: 10;
 }
 
 .selectedValue {
@@ -49,7 +50,7 @@
   overflow-y: auto;
   background-color: #111c4e;
   border: 1px solid #ccc;
-  z-index: 1;
+  z-index: 100;
 }
 
 .option {
@@ -69,6 +70,7 @@
   float: right;
   width: 15px;
   margin-top: 9px;
+  z-index: 20;
 }
 
 @media (max-width: 992px) {
@@ -84,5 +86,35 @@
 
   .optionsContainer {
     width: 97%;
+  }
+}
+
+@media (max-width: 440px) {
+  .lable{
+    font-size: 20px;
+  }
+
+  .optionsContainer {
+    width: 95%;
+  }
+}
+
+@media (max-width: 420px) {
+  .lable{
+    left: 5.5%;
+  }
+
+  .lableselected{
+    left: 5%;
+  }
+
+  .optionsContainer {
+    width: 95%;
+  }
+}
+
+@media (max-width: 360px) {
+  .lable{
+    font-size: 18px;
   }
 }
