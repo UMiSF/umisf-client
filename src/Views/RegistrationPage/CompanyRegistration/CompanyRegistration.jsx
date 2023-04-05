@@ -8,7 +8,7 @@ import TableRow from "../Common/AddTablePlayer/TableRow";
 import Styles from "./CompanyRegistration.module.css";
 import Axios from "axios";
 import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
-
+import Dropdown from "../../../common/Dropdown/Dropdown";
 
 import { message } from "antd";
 const CompanyRegistration = () => {
@@ -19,9 +19,17 @@ const CompanyRegistration = () => {
     contactNumber: "",
     paymentMethod: "",
     paymentSlip: "",
-    matchType:"Catogary A",
+    matchType:"Men",
   });
-
+  const isValidPlayerArray = (players) => {
+    if (players.length < 5) {
+      return false;
+    }
+    for (const player of players) {
+      if (Object.values(player).includes("")) return false;
+    }
+    return true;
+  };
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
     { firstName: "", lastName: "", photo: "" },
@@ -31,7 +39,9 @@ const CompanyRegistration = () => {
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const isPlayerArrayValid = isValidPlayerArray(playersArray);
+  const paymentOptions = ["On-site", "Bank Transfer"];
+  const [payment, setPayment] = useState("");
   useEffect(() => {
     if (isSubmitting) {
       // show loading message
@@ -72,18 +82,19 @@ const CompanyRegistration = () => {
       const position = parseInt(name.split("-")[1]);
       console.log("Table Values: ", field, position, value);
       const newArray = [...playersArray];
+      console.log('name',name);
       switch (field) {
         case "name":
           newArray[position] = {
-            firstName: value,
-            lastName: newArray[position].lastName,
+            firstName: value.split(' ')[0],
+            lastName: value.split(' ')[1],
             photo: newArray[position].photo,
           };
           break;
         case "id":
           newArray[position] = {
             firstName: newArray[position].firstName,
-            lastName: value,
+            lastName:newArray[position].lastName,
             photo: newArray[position].photo,
           };
           break;
@@ -106,6 +117,13 @@ const CompanyRegistration = () => {
     }
     return tempArray
   }
+  const changePaymentMethod = (value) => {
+    setCompany((prevValue) => {
+      return { ...prevValue, paymentMethod: value };
+    });
+    console.log("isBankTransfer: ", value == "On-Site");
+    value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+  };
   const AddAnotherRow = () => {
     setCount(count + 1);
     setPlayersArray((prevValue) => {
@@ -212,7 +230,7 @@ const CompanyRegistration = () => {
                     padding: "15px",
                     minHeight: "40px",
                   }}
-                  name="company"
+                  name="name"
                   type="text"
                   value={company.name}
                   onChange={handleChange}
@@ -296,32 +314,22 @@ const CompanyRegistration = () => {
               </div>
             </div>
 
-            <div className="row mb-2">
-              <MDBCol>
-                <MDBInput
-                  wrapperClass="mb-2"
-                  label="Payment Method"
-                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    padding: "15px",
-                    minHeight: "40px",
+            <div className="row mb-4 mt-2">
+              <MDBCol className="mb-1">
+                <Dropdown
+                  options={paymentOptions}
+                  handleClick={(option) => {
+                    setPayment(option);
+                    changePaymentMethod(option);
                   }}
-                  labelClass="text-white"
-                  name="paymentMethod"
-                  type="text"
-                  value={company.payment_method}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
+                  value={payment}
+                  lable={"Payment"}
                 />
               </MDBCol>
               {isBankTransfer && (
-                <MDBCol className="" lg="6" md="6" sm="12">
+                <MDBCol className="mb-1" lg="6" md="6" sm="12">
                   <MDBInput
-                    wrapperClass="mb-2"
+                    wrapperClass="mb-4"
                     label="Payment Slip"
                     labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
                     style={{
@@ -333,7 +341,7 @@ const CompanyRegistration = () => {
                     labelClass="text-white"
                     name="paymentSlip"
                     type="text"
-                    value={company.payment_slip}
+                    value={company.paymentSlip}
                     onChange={handleChange}
                     contrast
                     className="bg-primary bg-opacity-25"
