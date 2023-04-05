@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminUserAccountsPage.module.css";
+import { Link } from "react-router-dom";
+import Axios from "axios";
+import {message} from 'antd';
 
 const AdminUserAccountsPage = () => {
   const [users, setUsers] = useState([
-    { type: "admins", names: ["Poorna Cooray", "Poorna Cooray"] },
-    { type: "organizers", names: ["Poorna Cooray", "Poorna Cooray"] },
-    { type: "umpires", names: ["Poorna Cooray", "Poorna Cooray"] },
-    { type: "table_organizers", names: ["Poorna Cooray", "Poorna Cooray"] },
+    { type: "admins", names: [] },
+    { type: "organizers", names: [] },
+    { type: "umpires", names: [] },
+    { type: "table_organizers", names: [] },
   ]);
 
   const loadUserNames = (userType) => {
@@ -24,9 +27,24 @@ const AdminUserAccountsPage = () => {
   };
 
   useEffect(() => {
-    users.map(
+    users?.map(
       (user) => (document.querySelector("#" + user.type).style.display = "none")
     );
+
+    Axios.get(
+      process.env.REACT_APP_API_URL + "/user/getAll",
+      {
+        headers: {},
+      }
+    ).then((res)=>{
+      console.log(res)
+      setUsers(res.data.data)
+    })
+    .catch ((error) =>{
+      console.log("Error loading users", error);
+      message.error(error.response.data.message);
+    })
+
   }, []);
 
   return (
@@ -45,7 +63,7 @@ const AdminUserAccountsPage = () => {
         </a>
       </div>
       <div className={`${styles["users-container"]}`}>
-        {users.map((userType, index) => (
+        {users?.map((userType, index) => (
           <div className={`${styles["user"]}`}>
             <button
               className={`${styles["user-type-container"]}`}
@@ -69,14 +87,16 @@ const AdminUserAccountsPage = () => {
               id={userType.type}
               className={`${styles["users-name-container"]}`}
             >
-              {userType.names.map((user, index) => (
-                <a href={"user-accounts/"+index} className={`${styles["users-name"]}`}>
-                  {user}
+              {userType.names?.map((user, index) => (
+                <Link to={"user-accounts/"+user.email} className={`${styles["users-name"]}`} state={{ obj: user }}
+                key={index}>
+                  {user.name}
                   <img
                     src={require("../../assests/images/double_arrows.png")}
                     alt=""
                   />
-                </a>
+                </Link>
+                                    
               ))}
             </div>
           </div>
