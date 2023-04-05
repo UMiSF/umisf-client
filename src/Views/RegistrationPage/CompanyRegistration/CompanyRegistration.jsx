@@ -1,7 +1,8 @@
-import React, { useState,useEffect } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
+import { Button, Divider, Space, Tour } from "antd";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
 import Styles from "./CompanyRegistration.module.css";
@@ -66,11 +67,7 @@ const CompanyRegistration = () => {
       setCompany((prevValue) => {
         return { ...prevValue, paymentSlip: value };
       });
-    } else if (
-      name.includes("name") ||
-      name.includes("id") ||
-      name.includes("photo")
-    ) {
+    } else if (name.includes("name") || name.includes("id") || name.includes("photo")) {
       const field = name.split("-")[0];
       const position = parseInt(name.split("-")[1]);
       console.log("Table Values: ", field, position, value);
@@ -116,21 +113,17 @@ const CompanyRegistration = () => {
     });
     count == 7 && setExceeded(true);
   };
-  const RemoveanotherRow = () => {
+
+  const RemoveanotherRow = (e) => {
+    e.preventDefault();
+    setCount(count - 1);
     if (playersArray.length > 3) {
       const tmpArray = playersArray.slice(0, playersArray.length - 1);
       setPlayersArray(tmpArray);
+      count < 9 && exceeded && setExceeded(false);
     }
   };
-  const isValidPlayerArray = (players) => {
-    if (players.length < 5) {
-      return false;
-    }
-    for (const player of players) {
-      if (Object.values(player).includes("")) return false;
-    }
-    return true;
-  };
+
   function handleSubmit(e) {
     //TODO: add player array
     e.preventDefault();
@@ -170,6 +163,17 @@ const CompanyRegistration = () => {
       setIsSubmitting(false);
     }
   }
+
+  // guide for tournament details
+  const ref = useRef(null);
+  const [open, setOpen] = useState(true);
+  const steps = [
+    {
+      title: "Tournament Details and Registration Guidlines",
+      description: "Please refer the details and guidlines before the registration process.",
+      target: () => ref.current,
+    },
+  ];
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
@@ -177,27 +181,38 @@ const CompanyRegistration = () => {
       <div className={`${Styles["info-container"]}`}>
         <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
         <div className={`${Styles["info"]}`}>
-          Please note that we only allow companies which have been invited for
-          the event this year . Your invitations have already been sent to the
-          relevant email addresses .
+          Please note that we only allow companies which have been invited for the event this year .
+          Your invitations have already been sent to the relevant email addresses .Please find the{" "}
+          <Space>
+            <button ref={ref}>Tournament Details and Registration Guidlines</button>
+          </Space>{" "}
+          here.
+          <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
         </div>
       </div>
       <div className={`${Styles["register-form"]}`}>
         {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
-        <MDBContainer className="flex">
+        <MDBContainer className="">
           <Form
             noValidate
             validated={validated}
             onSubmit={handleSubmit}
             className={`${Styles["register-form-content"]}`}
           >
-            <div className="d-flex flex-row mb-1 ">
-              <MDBCol>
+            <div className="row mb-2 ">
+              <MDBCol className="" lg="6" md="6" sm="12">
                 <MDBInput
-                  wrapperClass="mb-1"
+                  wrapperClass="mb-2"
                   label="Company"
                   labelClass="text-white"
-                  name="name"
+                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                  style={{
+                    fontFamily: "Hind",
+                    fontSize: "18px",
+                    padding: "15px",
+                    minHeight: "40px",
+                  }}
+                  name="company"
                   type="text"
                   value={company.name}
                   onChange={handleChange}
@@ -206,10 +221,18 @@ const CompanyRegistration = () => {
                   className={`bg-primary bg-opacity-25`}
                 />
               </MDBCol>
-              <MDBCol>
+              <MDBCol className="" lg="6" md="6" sm="12">
                 <MDBInput
-                  wrapperClass="mb-1"
+                  wrapperClass="mb-2"
                   label="Contact Number"
+                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                  style={{
+                    fontFamily: "Hind",
+                    fontSize: "18px",
+                    padding: "15px",
+                    minHeight: "40px",
+                  }}
+                  v
                   labelClass="text-white"
                   name="contactNumber"
                   type="text"
@@ -221,11 +244,18 @@ const CompanyRegistration = () => {
                 />
               </MDBCol>
             </div>
-            <div className="d-flex flex-row mb-1 ">
-              <MDBCol>
+            <div className="row mb-2 ">
+              <MDBCol className="" lg="6" md="6" sm="12">
                 <MDBInput
-                  wrapperClass="mb-1"
+                  wrapperClass="mb-2"
                   label="Email"
+                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                  style={{
+                    fontFamily: "Hind",
+                    fontSize: "18px",
+                    padding: "15px",
+                    minHeight: "40px",
+                  }}
                   labelClass="text-white"
                   name="email"
                   type="email"
@@ -236,50 +266,48 @@ const CompanyRegistration = () => {
                   className="bg-primary bg-opacity-25"
                 />
               </MDBCol>
-              <MDBCol>
+              <MDBCol className="" lg="6" md="6" sm="12">
                 <div className={`${Styles["info-container-form"]}`}>
-                  <img
-                    src={info}
-                    alt="info-icon"
-                    className={`${Styles["info-logo"]}`}
-                  />
+                  <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
                   <div className={`${Styles["info"]}`}>
-                    Please provide the email to which we have sent the
-                    invitation
+                    Please provide the email to which we have sent the invitation
                   </div>
                 </div>
               </MDBCol>
             </div>
-            <div className="mb-1">
-              <div className="d-flex flex-row mb-1">
-                <MDBCol>
-                  <div>Player Name</div>
-                </MDBCol>
-                <MDBCol>
-                  <div>Company/National ID</div>
-                </MDBCol>
-                <MDBCol>
-                  <div>Photo</div>
-                </MDBCol>
+            <div className="mb-2">
+              <div className="mb-2">
+                <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>Team</div>
               </div>
               {playersArray?.map((player, index) => {
-                return (
-                  <TableRow
-                    player={player}
-                    index={index}
-                    handleChange={handleChange}
-                  />
-                );
+                return <TableRow player={player} index={index} handleChange={handleChange} />;
               })}
-              <PlusCircleTwoTone onClick={AddAnotherRow} />
-              <MinusCircleTwoTone onClick={RemoveanotherRow} />
+              <div className={`${Styles["plus-minus"]}`}>
+                <button
+                  hidden={exceeded}
+                  className={`${Styles["plus-btn"]}`}
+                  onClick={AddAnotherRow}
+                >
+                  <img src={require(`../../../assests/images/plus-row.png`)} />
+                </button>
+                <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
+                  <img src={require(`../../../assests/images/minus-row.png`)} />
+                </button>
+              </div>
             </div>
 
-            <div className="d-flex flex-row mb-4 ">
+            <div className="row mb-2">
               <MDBCol>
                 <MDBInput
-                  wrapperClass="mb-4"
+                  wrapperClass="mb-2"
                   label="Payment Method"
+                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                  style={{
+                    fontFamily: "Hind",
+                    fontSize: "18px",
+                    padding: "15px",
+                    minHeight: "40px",
+                  }}
                   labelClass="text-white"
                   name="paymentMethod"
                   type="text"
@@ -291,10 +319,17 @@ const CompanyRegistration = () => {
                 />
               </MDBCol>
               {isBankTransfer && (
-                <MDBCol>
+                <MDBCol className="" lg="6" md="6" sm="12">
                   <MDBInput
-                    wrapperClass="mb-4"
+                    wrapperClass="mb-2"
                     label="Payment Slip"
+                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                    style={{
+                      fontFamily: "Hind",
+                      fontSize: "18px",
+                      padding: "15px",
+                      minHeight: "40px",
+                    }}
                     labelClass="text-white"
                     name="paymentSlip"
                     type="text"
@@ -307,9 +342,9 @@ const CompanyRegistration = () => {
               )}
             </div>
 
-            <MDBBtn className={`${Styles["btn"]}`} type="submit">
+            <button className={`${Styles["btn"]}`} type="submit">
               Register
-            </MDBBtn>
+            </button>
           </Form>
         </MDBContainer>
       </div>

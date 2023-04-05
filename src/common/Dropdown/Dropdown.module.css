@@ -1,0 +1,120 @@
+.selectContainer {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.lableselected{
+  background-image: linear-gradient(
+    to bottom,
+    rgb(5, 9, 34),
+    rgb(22,35,74)
+  );
+  left: 30px;
+  top: -12px;
+  padding-bottom: 0;
+  position: absolute;
+  font-size: 18px;
+  font-family: "Hind";
+  cursor: pointer;
+  font-weight: lighter;
+}
+
+.lable{
+  background-color: rgb(22,35,74);
+  position: absolute;
+  font-size: 23px;
+  top: 10px;
+  left: 30px;
+  font-family: "Hind";
+  cursor: pointer;
+  font-weight: lighter;
+  z-index: 10;
+}
+
+.selectedValue {
+  background-color: rgb(22,35,74);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 20px;
+  min-height: 60px;
+  padding: 13px;
+  font-family: "Hind";
+  cursor: pointer;
+}
+
+.optionsContainer {
+  position: absolute;
+  width: 93%;
+  margin-top: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #111c4e;
+  border: 1px solid #ccc;
+  z-index: 100;
+}
+
+.option {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Hind";
+  transition: ease-in-out 1s;
+}
+
+.option:hover {
+  background-color: rgb(16, 23, 60);
+}
+
+.down {
+  cursor: pointer;
+  float: right;
+  width: 15px;
+  margin-top: 9px;
+  z-index: 20;
+}
+
+@media (max-width: 992px) {
+  .lable{
+    top: 18%;
+    left: 3.5%;
+  }
+
+  .lableselected{
+    top: -20%;
+    left: 3.5%;
+  }
+
+  .optionsContainer {
+    width: 97%;
+  }
+}
+
+@media (max-width: 440px) {
+  .lable{
+    font-size: 20px;
+  }
+
+  .optionsContainer {
+    width: 95%;
+  }
+}
+
+@media (max-width: 420px) {
+  .lable{
+    left: 5.5%;
+  }
+
+  .lableselected{
+    left: 5%;
+  }
+
+  .optionsContainer {
+    width: 95%;
+  }
+}
+
+@media (max-width: 360px) {
+  .lable{
+    font-size: 18px;
+  }
+}
