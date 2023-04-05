@@ -88,7 +88,7 @@ const AdminUserAccountsPage = () => {
               className={`${styles["users-name-container"]}`}
             >
               {userType.names?.map((user, index) => (
-                <Link to={"user-accounts/"+user.email} className={`${styles["users-name"]}`} state={{ obj: user }}
+                <Link to={"../user-accounts/"+user.email} className={`${styles["users-name"]}`} state={{ userDetails: user }}
                 key={index}>
                   {user.name}
                   <img
