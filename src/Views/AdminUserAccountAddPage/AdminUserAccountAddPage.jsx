@@ -39,6 +39,12 @@ const AdminUserAccountAddPage = () => {
   const addUser = async (e) => {
     e.preventDefault();
     console.log(userDetails);
+    const form = e.currentTarget;
+    //form validation
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+    setValidated(true);
     setIsSubmitting(true);
     try {
       const result = await Axios.post(
