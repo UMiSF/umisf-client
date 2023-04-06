@@ -1,11 +1,12 @@
-import {React,useState} from "react";
+import { React, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Styles from "./PhotosPage.module.css";
+import HeaderPage from "../HeaderPage/HeaderPage";
 import PhotoItem from "./PhotoItem";
 import PreviewBox from "./PreviewBox";
+import Footer from "../HomePage/Footer/footer";
 
 const PhotosPage = (props) => {
-
   let location = useLocation();
   let { obj } = location.state;
   const [photos, setPhotos] = useState([
@@ -22,18 +23,27 @@ const PhotosPage = (props) => {
   ]);
   return (
     <div className={`${Styles["body"]}`}>
+      <HeaderPage />
       <div className={`${Styles["title"]}`}>
-        <h1 style={{fontFamily:'Cormorant SC' , fontSize:'6vw'}}>{obj.title}</h1>
+        <h1 style={{ fontFamily: "Hind", color: "#0984E3", fontSize: "4vw" }}>
+          UMiSF{" - "}
+          {obj.title}
+        </h1>
+        <p>
+          {" "}
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi alias, d at blanditiis
+          labore magni dolore s praesentium impedit assumenda? Non, deserunt dolore. amet
+          consectetur adipisicing elit. Eligendi alias, d at blanditiis labore
+        </p>
       </div>
 
       <div className={`${Styles["gallery"]}`}>
+        {photos?.map((img, index) => {
+          return <PhotoItem key={index} image={img} id={index} />;
+        })}
+      </div>
 
-            {photos?.map((img,index)=>{
-                return <PhotoItem key = {index} image={img} id={index}/>
-            })}
-      </div> 
-
-
+      <Footer />
     </div>
   );
 };

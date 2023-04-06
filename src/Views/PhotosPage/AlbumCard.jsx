@@ -5,14 +5,15 @@ import {FcImageFile} from 'react-icons/fc'
 const AlbumCard = (props) => {
   return (
     <div className={`${Styles["card"]} `}>
-      <FcImageFile className = {`${Styles["icon"]}`}/>
+      
       <Link
         to={`../photos/${props.title}`}
         state={{obj: {photos:props.photos, title: props.title} }}
         style={{ textDecoration: "none"}}
         className = {`${Styles["link"]}`}
       >
-       UMiSF {" "}{props.title}
+        <img src={require('../../assests/images/folder.png')} />
+      {props.title}
       </Link>
     </div>
   );

@@ -1,16 +1,22 @@
 .body {
   margin: 0;
   height: fit-content;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: #F7F7FE;
 }
 
 .title {
-  height: 10%;
   position: relative;
   text-align: center;
   padding: 50px;
+  padding-top: 150px;
   font-weight: bold;
- 
+}
+
+.title p{
+  font-size: 16px;
+  padding: 0 7vw;
+  font-family: "Hind";
+  font-weight: lighter;
 }
 
 .gallery {
@@ -20,7 +26,8 @@
   -webkit-column-width: 33%;
   -moz-column-width: 33%;
   column-width: 33%;
-  padding: 0px 12px;
+  padding: 0px 8.5vw;
+  margin-bottom: 10vw;
 }
 
 @media (max-width: 991px) {
@@ -40,8 +47,7 @@
     column-width: 33%;
     column-count: 1;
   }
-  .title h1{
+  .title h1 {
     font-size: 9vw;
   }
 }
-

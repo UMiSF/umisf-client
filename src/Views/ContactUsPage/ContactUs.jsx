@@ -108,6 +108,7 @@ function ContactUs() {
               <input
                 type="text"
                 className={`${styles['input']} form-control`}
+                style={{fontSize:"18px", fontFamily:"Hind"}}
                 id="Firstname"
                 placeholder="First name"
                 required
@@ -127,6 +128,7 @@ function ContactUs() {
               <input
                 type="text"
                 className={`${styles['input']} form-control`}
+                style={{fontSize:"18px", fontFamily:"Hind"}}
                 id="Lastname"
                 placeholder="Last name"
                 required
@@ -146,6 +148,7 @@ function ContactUs() {
               <input
                 type="email"
                 className={`${styles['input']} form-control`}
+                style={{fontSize:"18px", fontFamily:"Hind"}}
                 id="Email"
                 placeholder="Email"
                 required
@@ -164,6 +167,7 @@ function ContactUs() {
             </label>
             <textarea
               className={`${styles['input']} form-control`}
+              style={{fontSize:"18px", fontFamily:"Hind"}}
               id="message"
               placeholder="Type your message here.."
               rows="3"
