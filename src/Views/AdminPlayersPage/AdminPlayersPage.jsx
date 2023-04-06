@@ -3,6 +3,7 @@ import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminPlayersPage.module.css";
 import { useState } from "react";
+import { Modal } from "react-bootstrap";
 const AdminPlayersPage = () => {
   const [playerCatogory, setplayerCatogory] = useState({
     "under-19-men": [
@@ -33,18 +34,28 @@ const AdminPlayersPage = () => {
     ],
   });
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showDrawModal, setShowDrawModal] = useState(false);
+  const [showPlayersModal, setShowPlayersModal] = useState(false);
   const [folderToBeDeleted, setFolderToBeDeleted] = useState("");
-
+  const handleDelete = (index, key) => {
+    setplayerCatogory(prevState => {
+      const newPlayers = [...prevState[key]];
+      newPlayers.splice(index, 1);
+      return {...prevState, [key]: newPlayers};
+    });
+  };
   const handleShow = (index, key) => {
     setShowDeleteModal(true);
     console.log(index, key);
     setFolderToBeDeleted(index);
   };
 
-  const handleShowDraws = (index, key) => {
-    setShowDrawModal(true);
+  const handleShowPlayers = (index, key) => {
+    setShowPlayersModal(true);
     console.log(index, key);
+  };
+  const handleClose = (e) => {
+    e.preventDefault();
+   
   };
   return (
     <div className={`${styles["players-full-container"]}`}>
@@ -52,6 +63,12 @@ const AdminPlayersPage = () => {
       <AdminNavbar page="players" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/players">Players</a>
+      </div>
+      <div className={`${styles["tool-bar"]}`}>
+        <a href="/admin/players/add-new-player">
+          <img src={require("../../assests/images/add.png")} alt="" /> Add
+          Account
+        </a>
       </div>
 
       <div className={`${styles["players-container"]}`}>
@@ -67,13 +84,13 @@ const AdminPlayersPage = () => {
                 <div className={`${styles["player-each"]}`}>
                   <button
                     className={`${styles["player-btn"]}`}
-                    onClick={() => handleShowDraws(index, key)}
+                    onClick={() => handleShowPlayers(index, key)}
                   >
                     <a href={`players/${player}`} className={`${styles["player-name"]}`}>{player}</a>
                   </button>
                   <button
                     className={`${styles["player-btn"]}`}
-                    onClick={() => handleShow(index, key)}
+                    onClick={() => handleDelete(index, key)}
                   >
                     <img
                       src={require("../../assests/images/delete.png")}
@@ -86,7 +103,14 @@ const AdminPlayersPage = () => {
           </div>
         ))}
       </div>
+
+
+
+     
     </div>
+
+
+
   );
 };
 export default AdminPlayersPage;

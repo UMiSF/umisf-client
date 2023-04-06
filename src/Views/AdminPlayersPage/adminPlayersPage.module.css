@@ -18,6 +18,34 @@
     text-decoration: none;
     color: #0c0744;
   }
+  .tool-bar {
+    background: white;
+    color: #0c0744;
+    margin: 20px 10vw;
+    padding: 8px 13px;
+    font-family: "Hind";
+    font-weight: lighter;
+    font-size: 16px;
+  }
+  
+  .tool-bar a{
+    text-decoration: none;
+    font-family: "Hind";
+    font-size: 18px;
+    color: black;
+  }
+  
+  .tool-bar button {
+    text-align: left;
+    border: none;
+    background: transparent;
+  }
+  
+  .tool-bar img {
+    width: 20px;
+    margin-right: 1vw;
+  }
+  
   .players-container {
     background: white;
     color: black;

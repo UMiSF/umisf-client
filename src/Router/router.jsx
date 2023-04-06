@@ -47,6 +47,7 @@ import AdminCompanyRegisterPage from "../Views/AdminCompanyRegisterPage/AdminCom
 import AdminCompanyAddNewPlayerPage from "../Views/AdminCompanyAddNewPlayerPage/AdminCompanyAddNewPlayerPage";
 import AdminPlayerViewPage from "../Views/AdminPlayersViewPage/AdminPlayersViewPage";
 import AdminPlayersPage from "../Views/AdminPlayersPage/AdminPlayersPage";
+import AdminPlayersAddPage from "../Views/AdminPlayersAddPage/AdminPlayersAddPage";
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
 
@@ -90,6 +91,11 @@ export default function AppRouter() {
                 <Route path="config" element={<AdminYearlyConfigurations />} />
                 <Route path="draws" element={<AdminDrawPage/>}/>
                 <Route path="players" element={<AdminPlayersPage/>}/>
+                <Route path="players/:name" element={<AdminPlayerViewPage/>}/> 
+                <Route
+                  path="players/add-new-player"
+                  element={<AdminPlayersAddPage/>}
+                />
                 <Route
                   path="user-accounts"
                   element={<AdminUserAccountsPage />}
