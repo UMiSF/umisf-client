@@ -45,7 +45,8 @@ import AdminCompaniesPage from "../Views/AdminCompaniesPage/AdminCompaniesPage";
 import AdminCompaniesViewYearPage from "../Views/AdminCompaniesViewYearPage/AdminCompaniesViewyearPage";
 import AdminCompanyRegisterPage from "../Views/AdminCompanyRegisterPage/AdminCompanyRegisterPage";
 import AdminCompanyAddNewPlayerPage from "../Views/AdminCompanyAddNewPlayerPage/AdminCompanyAddNewPlayerPage";
-
+import AdminPlayerViewPage from "../Views/AdminPlayersViewPage/AdminPlayersViewPage";
+import AdminPlayersPage from "../Views/AdminPlayersPage/AdminPlayersPage";
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
 
