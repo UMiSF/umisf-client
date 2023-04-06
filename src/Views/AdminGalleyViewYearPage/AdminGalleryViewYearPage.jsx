@@ -1,39 +1,59 @@
-import React, { Component, useState } from "react";
+import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import AdminHeader from "../AdminHeaderPage/AdminHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
+import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminGalleryViewYearPage.module.css";
+import PhotoItem from "./PhotoItem";
 
 const AdminGalleryViewYearPage = () => {
   let { year } = useParams();
-  const [images, setImages] = useState([
 
+  const [images, setImages] = useState([
+    "1.jpg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg",
+    "5.jpg",
+    "6.jpg",
+    "7.jpg",
+    "8.jpg",
+    "9.jpg",
+    "10.jpg",
   ]);
+
+
+  const [files, setFiles] = useState([]);
+  const inputFile = useRef(null);
+
   return (
     <div className={`${styles["gallery-container"]}`}>
-      <AdminHeader />
-      <AdminNavbar page='gallery'/>
+
+      <ProfileHeader user_type={"admin"} />
+      <AdminNavbar page="gallery" />
+      
       <div className={`${styles["main-title"]}`}>
-      <a href="/admin/gallery">Gallery</a>
-        <img
-          src={require("../../assests/images/forward_arrow.png")}
-          alt=""
-        />{" "}
-        {year}
+        <a href="/admin/gallery">Gallery</a>
+        <img src={require("../../assests/images/forward_arrow.png")} alt="" /> {year}
       </div>
       <div className={`${styles["tool-bar"]}`}>
-      <button>
-        <img src={require("../../assests/images/add.png")} alt="" /> 
-        Upload
+        <button onClick={() => inputFile.current.click()}>
+          <img src={require("../../assests/images/add.png")} alt="" />
+          Upload
         </button>
+        <input
+          multiple
+          type="file"
+          onChange={(e) => setFiles([...files, e.target.files])}
+          ref={inputFile}
+          style={{display:"none"}}
+        />
       </div>
-      <div className={`${styles["image-container"]}`}>
-        {images.map((image) => (
-          <a href={`gallery/year/${image}`} className={`${styles["folder"]}`}>
-            <img src={require("../../assests/images/folder.png")} alt="" />{" "}
-            {year}
-          </a>
-        ))}
+      <div className={`${styles["images-container"]}`}>
+        <div className={`${styles["gallery"]}`}>
+          {images?.map((img, index) => {
+            return <PhotoItem key={index} image={img} id={index} />;
+          })}
+        </div>
       </div>
     </div>
   );

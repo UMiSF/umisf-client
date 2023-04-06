@@ -1,13 +1,15 @@
 import React from 'react';
-import AdminHeader from '../AdminHeaderPage/AdminHeader';
+import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from './adminHomePage.module.css'
 
 const AdminHomePage = () => {
     return (
         <div className={`${styles["home-container"]}`}>
-            <AdminHeader/>
+
+            <ProfileHeader user_type={"admin"} />
             <AdminNavbar page='home'/>
+            
             Home
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import styles from "./adminNavbar.module.css";
+import styles from "./profileNavbar.module.css";
 
-const AdminNavbar = (props) => {
+const ProfileNavbar = (props) => {
   const loadSideBar = () => {
     let display = document.querySelector("#navSideBar").style.display;
     display === "block"
@@ -9,117 +9,119 @@ const AdminNavbar = (props) => {
       : (document.querySelector("#navSideBar").style.display = "block");
   };
 
-  useEffect(()=>{
+  const navLinksSectionOne = [
+    {
+      title: "Home",
+      image: "home.png",
+      id: "home",
+      link: "",
+    },
+    {
+      title: "Yearly Configurations",
+      image: "yearly_configurations.png",
+      id: "yearly_configurations",
+      link: "yearly-configurations",
+    },
+    {
+      title: "User Accounts",
+      image: "user_accounts.png",
+      id: "user_accounts",
+      link: "user-accounts",
+    },
+    {
+      title: "Payments",
+      image: "payments.png",
+      id: "payments",
+      link: "payments",
+    },
+    {
+      title: "Tournament",
+      image: "tournament.png",
+      id: "tournament",
+      link: "tournament",
+    },
+  ];
+
+  const navLinksSectionTwo = [
+    {
+      title: "Players",
+      image: "players.png",
+      id: "players",
+      link: "players",
+    },
+    {
+      title: "Universities",
+      image: "university.png",
+      id: "universities",
+      link: "universities",
+    },
+    {
+      title: "Companies",
+      image: "company.png",
+      id: "companies",
+      link: "companies",
+    },
+    {
+      title: "Draws",
+      image: "draws.png",
+      id: "draws",
+      link: "draws",
+    },
+    {
+      title: "Results",
+      image: "results.png",
+      id: "results",
+      link: "results",
+    },
+    {
+      title: "Gallery",
+      image: "gallery.png",
+      id: "gallery",
+      link: "gallery",
+    },
+  ];
+
+  useEffect(() => {
     let id = "#" + props.page;
-    document.querySelector(id).style.background = "white"
-  },[])
+    document.querySelector(id).style.background = "white";
+  }, []);
 
   return (
     <div className={`${styles["navbar-container"]}`}>
       <ul className={`${styles["navbar-ul"]}`}>
         <div className={`${styles["navbar-sections"]}`}>
-          <li className={`${styles["navbar-item"]}`}>
-            <a href="/admin" className={`${styles["navbar-item-link"]}`} id='home'>
-              <img src={require("../../assests/images/home.png")} alt="" /> Home
-            </a>
-          </li>
-          <li className={`${styles["navbar-item"]}`}>
-            <a
-              href="/admin/yearly_configurations"
-              className={`${styles["navbar-item-link"]}`}
-              id='yearly_configurations'
-            >
-              <img
-                src={require("../../assests/images/yearly_configurations.png")}
-                alt=""
-              />{" "}
-              Yearly Configurations
-            </a>
-          </li>
-          <li className={`${styles["navbar-item"]}`}>
-            <a
-              href="/admin/user_accounts"
-              className={`${styles["navbar-item-link"]}`}
-              id='user_accounts'
-            >
-              <img
-                src={require("../../assests/images/user_accounts.png")}
-                alt=""
-              />{" "}
-              User Accounts
-            </a>
-          </li>
-          <li className={`${styles["navbar-item"]}`}>
-            <a
-              href="/admin/tournament"
-              className={`${styles["navbar-item-link"]}`}
-              id='tournament'
-            >
-              <img
-                src={require("../../assests/images/tournament.png")}
-                alt=""
-              />{" "}
-              Tournament
-            </a>
-          </li>
-          <li className={`${styles["navbar-item"]}`}>
-            <a
-              href="/admin/players"
-              className={`${styles["navbar-item-link"]}`}
-              id='players'
-            >
-              <img src={require("../../assests/images/players.png")} alt="" />{" "}
-              Players
-            </a>
-          </li>
+          {navLinksSectionOne.map((navLink, index) => (
+            <li className={`${styles["navbar-item"]}`} key={index}>
+              <a
+                href={`/admin/${navLink.link}`}
+                className={`${styles["navbar-item-link"]}`}
+                id={navLink.id}
+              >
+                <img
+                  src={require(`../../assests/images/${navLink.image}`)}
+                  alt=""
+                />{" "}
+                {navLink.title}
+              </a>
+            </li>
+          ))}
         </div>
         <div className={`${styles["navbar-sections"]}`}>
-          <li className={`${styles["navbar-item"]}`}>
-            <a
-              href="/admin/players"
-              className={`${styles["navbar-item-link"]}`}
-              id='players'
-            >
-              <img src={require("../../assests/images/university.png")} alt="" />{" "}
-              Universities
-            </a>
-          </li>
-          <li className={`${styles["navbar-item"]}`}>
-            <a
-              href="/admin/players"
-              className={`${styles["navbar-item-link"]}`}
-              id='players'
-            >
-              <img src={require("../../assests/images/company.png")} alt="" />{" "}
-              Companies
-            </a>
-          </li>
-          <li className={`${styles["navbar-item"]}`}>
-            <a href="/admin/draws" className={`${styles["navbar-item-link"]}`} id='draws'>
-              <img src={require("../../assests/images/draws.png")} alt="" />{" "}
-              Draws
-            </a>
-          </li>
-          <li className={`${styles["navbar-item"]}`}>
-            <a
-              href="/admin/results"
-              className={`${styles["navbar-item-link"]}`}
-              id='results'
-            >
-              <img src={require("../../assests/images/results.png")} alt="" />{" "}
-              Results
-            </a>
-          </li>
-          <li className={`${styles["navbar-item"]}`}>
-            <a
-              href="/admin/gallery"
-              className={`${styles["navbar-item-link"]}`}
-              id='gallery'
-            >
-              <img src={require("../../assests/images/gallery.png")} alt="" />{" "}
-              Gallery
-            </a>
-          </li>
+          {navLinksSectionTwo.map((navLink, index) => (
+            <li className={`${styles["navbar-item"]}`} key={index}>
+              <a
+                href={`/admin/${navLink.link}`}
+                className={`${styles["navbar-item-link"]}`}
+                id={navLink.id}
+              >
+                <img
+                  src={require(`../../assests/images/${navLink.image}`)}
+                  alt=""
+                />{" "}
+                {navLink.title}
+              </a>
+            </li>
+          ))}
         </div>
       </ul>
 
@@ -131,91 +133,25 @@ const AdminNavbar = (props) => {
       ></i>
       <div id="navSideBar" className={`${styles["navSideBar"]}`}>
         <ul>
-          <li className={`${styles["navBarItem"]}`}>
-            <a href="/admin" className={`${styles["navbar-item-link"]}`} id='home'>
-              <img src={require("../../assests/images/home.png")} alt="" /> Home
-            </a>
-          </li>
-          <li className={`${styles["navBarItem"]}`}>
-            <a
-              href="/admin/yearly_configurations"
-              className={`${styles["navbar-item-link"]}`}
-              id='yearly_configurations'
-            >
-              <img
-                src={require("../../assests/images/yearly_configurations.png")}
-                alt=""
-              />{" "}
-              Yearly Configurations
-            </a>
-          </li>
-          <li className={`${styles["navBarItem"]}`}>
-            <a
-              href="/admin/user_accounts"
-              className={`${styles["navbar-item-link"]}`}
-              id='user_accounts'
-            >
-              <img
-                src={require("../../assests/images/user_accounts.png")}
-                alt=""
-              />{" "}
-              User Accounts
-            </a>
-          </li>
-          <li className={`${styles["navBarItem"]}`}>
-            <a
-              href="/admin/tournament"
-              className={`${styles["navbar-item-link"]}`}
-              id='tournament'
-            >
-              <img
-                src={require("../../assests/images/tournament.png")}
-                alt=""
-              />{" "}
-              Tournament
-            </a>
-          </li>
-
-          <li className={`${styles["navBarItem"]}`}>
-            <a
-              href="/admin/players"
-              className={`${styles["navbar-item-link"]}`}
-              id='players'
-            >
-              <img src={require("../../assests/images/players.png")} alt="" />{" "}
-              Players
-            </a>
-          </li>
-          <li className={`${styles["navBarItem"]}`}>
-            <a href="/admin/draws" className={`${styles["navbar-item-link"]}`} id='draws'>
-              <img src={require("../../assests/images/draws.png")} alt="" />{" "}
-              Draws
-            </a>
-          </li>
-          <li className={`${styles["navBarItem"]}`}>
-            <a
-              href="/admin/results"
-              className={`${styles["navbar-item-link"]}`}
-              id='results'
-            >
-              <img src={require("../../assests/images/results.png")} alt="" />{" "}
-              Results
-            </a>
-          </li>
-          <li className={`${styles["navBarItem"]}`}>
-            <a
-              href="/admin/gallery"
-              className={`${styles["navbar-item-link"]}`}
-              id='gallery'
-            >
-              <img src={require("../../assests/images/gallery.png")} alt="" />{" "}
-              Gallery
-            </a>
-          </li>
+          {navLinksSectionOne.concat(navLinksSectionTwo).map((navLink, index) => (
+            <li className={`${styles["navBarItem"]}`} key={index}>
+              <a
+                href={`/admin/${navLink.link}`}
+                className={`${styles["navbar-item-link"]}`}
+                id={navLink.id}
+              >
+                <img
+                  src={require(`../../assests/images/${navLink.image}`)}
+                  alt=""
+                />{" "}
+                {navLink.title}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
   );
 };
 
-export default AdminNavbar;
+export default ProfileNavbar;
