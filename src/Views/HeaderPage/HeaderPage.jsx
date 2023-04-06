@@ -125,17 +125,19 @@ const HeaderPage = () => {
       </div>
 
       {/* minimized side nav bar */}
+      <div className={`${styles["mini-nav"]}`}>
       <i
         id="toggle-btn"
         className={`${styles["toggle-button"]} bx bx-menu`}
         onClick={loadSideBar}
       ></i>
-      <img
+      {/* <img
         id="side-img"
         className={`${styles["side-img"]}`}
         src={require("../../assests/images/umisf_logo.png")}
         alt={"logo"}
-      ></img>
+      ></img> */}
+      </div>
       <div id="navSideBar" className={`${styles["navSideBar"]}`}>
         <ul>
           <a href="/" className={`${styles["minNavLink"]}`}>

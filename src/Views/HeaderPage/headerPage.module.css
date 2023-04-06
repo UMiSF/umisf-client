@@ -5,6 +5,9 @@
     z-index: 20;
 }
 
+.mini-nav{
+}
+
 
 .navBarList{
     display: flex;
@@ -39,7 +42,7 @@
     right: 7vw;
     top:7vw;
     display: none;
-    z-index: 15;
+    z-index: 20;
 }
 
 .navBarItem{
