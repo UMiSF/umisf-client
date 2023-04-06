@@ -88,6 +88,7 @@ export default function AppRouter() {
                 />
                 <Route path="config" element={<AdminYearlyConfigurations />} />
                 <Route path="draws" element={<AdminDrawPage/>}/>
+                <Route path="players" element={<AdminPlayersPage/>}/>
                 <Route
                   path="user-accounts"
                   element={<AdminUserAccountsPage />}

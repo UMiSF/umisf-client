@@ -1,6 +1,6 @@
 import { React } from "react";
 import styles from "./adminDrawPage.module.css";
-import AdminHeader from "../AdminHeaderPage/AdminHeader";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
@@ -126,7 +126,7 @@ const AdminDrawPage = () => {
   };
   return (
     <div className={`${styles["draw-container"]}`}>
-      <AdminHeader />
+     <ProfileHeader user_type={"admin"} />
       <AdminNavbar page="draws" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/draws">Draws</a>

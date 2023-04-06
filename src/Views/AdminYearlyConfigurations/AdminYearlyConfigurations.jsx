@@ -1,5 +1,5 @@
 import { React, useRef, useState } from "react";
-import AdminHeader from "../AdminHeaderPage/AdminHeader";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminYearlyConfigurations.module.css";
 import Modal from "react-bootstrap/Modal";
@@ -52,7 +52,7 @@ const AdminYearlyConfigurations = ({ onChange }) => {
   };
   return (
     <div className={`${styles["Admin-yearly-configurations-container"]}`}>
-      <AdminHeader />
+      <ProfileHeader user_type={"admin"} />
       <AdminNavbar page="yearly_configurations" />
 
       <div className={`${styles["main-title"]}`}>
