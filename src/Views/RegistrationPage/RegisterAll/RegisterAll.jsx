@@ -1,60 +1,60 @@
-import React, { useRef, useState, useEffect } from "react";
-import Styles from "./RegisterAll.module.css";
-import HeaderPage from "../../HeaderPage/HeaderPage";
-import info from "../../../assests/images/info.gif";
-import { Form } from "react-bootstrap";
-import { MDBContainer, MDBInput, MDBCol, MDBRow } from "mdb-react-ui-kit";
-import { Button, Divider, Space, Tour } from "antd";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import TableRow from "../Common/AddTablePerf/TableRow";
-import Axios from "axios";
-import { CheckCircleTwoTone, ExclamationCircleTwoTone } from "@ant-design/icons";
-import { Modal, message, Select } from "antd";
-import Dropdown from "../../../common/Dropdown/Dropdown";
+import React, { useRef, useState, useEffect } from 'react';
+import Styles from './RegisterAll.module.css';
+import HeaderPage from '../../HeaderPage/HeaderPage';
+import info from '../../../assests/images/info.gif';
+import { Form } from 'react-bootstrap';
+import { MDBContainer, MDBInput, MDBCol, MDBRow } from 'mdb-react-ui-kit';
+import { Button, Divider, Space, Tour } from 'antd';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import TableRow from '../Common/AddTablePerf/TableRow';
+import Axios from 'axios';
+import { CheckCircleTwoTone, ExclamationCircleTwoTone } from '@ant-design/icons';
+import { Modal, message, Select } from 'antd';
+import Dropdown from '../../../common/Dropdown/Dropdown';
 const RegisterAll = () => {
   const [validated, setValidated] = useState(false); //form validation
   const [single, setSingle] = useState({
-    player: "",
-    ageGroup: "Select Age Group",
+    player: '',
+    ageGroup: 'Select Age Group',
     pastPerformance: [],
-    paymentMethod: "",
-    paymentSlip: "",
+    paymentMethod: '',
+    paymentSlip: '',
   });
 
   const [double, setDouble] = useState({
-    player: "",
-    playerPartner: "",
-    ageGroup: "Select Age Group",
+    player: '',
+    playerPartner: '',
+    ageGroup: 'Select Age Group',
     pastPerformance: [],
-    paymentMethod: "",
-    paymentSlip: "",
+    paymentMethod: '',
+    paymentSlip: '',
   });
   const items = [
     {
-      key: "1",
-      label: "Item 1",
+      key: '1',
+      label: 'Item 1',
     },
     {
-      key: "2",
-      label: "Item 2",
+      key: '2',
+      label: 'Item 2',
     },
     {
-      key: "3",
-      label: "Item 3",
+      key: '3',
+      label: 'Item 3',
     },
   ];
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [singlePastPerformanceArray, setSinglePastPerformanceArray] = useState([
-    { name: "", level: "", place: "" },
-    { name: "", level: "", place: "" },
-    { name: "", level: "", place: "" },
+    { name: '', level: '', place: '' },
+    { name: '', level: '', place: '' },
+    { name: '', level: '', place: '' },
   ]);
 
   const [doublePastPerformanceArray, setDoublePastPerformanceArray] = useState([
-    { name: "", level: "", place: "" },
-    { name: "", level: "", place: "" },
-    { name: "", level: "", place: "" },
+    { name: '', level: '', place: '' },
+    { name: '', level: '', place: '' },
+    { name: '', level: '', place: '' },
   ]);
 
   //   const [mixPastPerformanceArray, setMixPastPerformanceArray] = useState([
@@ -67,25 +67,25 @@ const RegisterAll = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPlayingSingle, setIsplayingSingle] = useState(true);
   const [isPlayingDouble, setIsplayingDouble] = useState(true);
-  const ageOptions = ["Under 9", "Under 11", "Under 13", "Under 15", "Staff"];
-  const [ageGrpup, setAgeGroup] = useState("");
-  const paymentOptions = ["On-site", "Bank Transfer"];
-  const [payment, setPayment] = useState("");
+  const ageOptions = ['Under 9', 'Under 11', 'Under 13', 'Under 15', 'Staff'];
+  const [ageGrpup, setAgeGroup] = useState('');
+  const paymentOptions = ['On-site', 'Bank Transfer'];
+  const [payment, setPayment] = useState('');
   //const [isPlayingMix, setIsplayingMix] = useState(true);
-  let doneSingle = { success: false, message: "", valid: false, data: "" };
+  let doneSingle = { success: false, message: '', valid: false, data: '' };
   let doneDouble = {
     success: false,
-    message: "",
+    message: '',
     valid: false,
     validP: false,
-    data: "",
-    dataP: "",
+    data: '',
+    dataP: '',
   };
 
   useEffect(() => {
     if (isSubmitting) {
       // show loading message
-      message.loading("Submitting form...");
+      message.loading('Submitting form...');
     }
   }, [isSubmitting]);
 
@@ -94,50 +94,49 @@ const RegisterAll = () => {
     let doubleRes = null;
     confirm({
       title: title,
-      icon: success ? (
-        <CheckCircleTwoTone twoToneColor="#52c41a" />
-      ) : (
-        <ExclamationCircleTwoTone twoToneColor="#eb2f96" />
-      ),
+      icon: success ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : <ExclamationCircleTwoTone twoToneColor="#eb2f96" />,
       content: content, //TODO: content for success should be displayed properly (create a proper description using the object sent in content) -> VINUL
       async onOk() {
-        console.log("OK");
+        console.log('OK');
         if (success) {
           setIsSubmitting(true);
-          try {
-            singleRes =
-              isPlayingSingle &&
-              (await Axios.post(
-                process.env.REACT_APP_API_URL + "/single/add",
+          if (isPlayingSingle) {
+            try {
+              singleRes = await Axios.post(
+                process.env.REACT_APP_API_URL + '/single/add',
                 { singleData: [single] },
                 {
                   headers: {},
                 }
-              ));
-            console.log(singleRes.data);
-            doneSingle = { ...doneSingle, success: true, message: singleRes.data.message };
-          } catch (error) {
-            console.log("Error: ", error);
-            doneSingle = { ...doneSingle, message: error.response.data.message };
-            //message.error(error.response.data.message);
+              );
+              console.log(singleRes.data);
+              doneSingle = { ...doneSingle, success: true, message: singleRes.data.message };
+            } catch (error) {
+              console.log('Error: ', error);
+              doneSingle = { ...doneSingle, message: error.response.data.message };
+              //message.error(error.response.data.message);
+            }
+          }else{
+            doneSingle = { ...doneSingle, success: true};
           }
-
-          try {
-            doubleRes =
-              isPlayingSingle &&
-              (await Axios.post(
-                process.env.REACT_APP_API_URL + "/double/add",
+          if (isPlayingDouble) {
+            try {
+              doubleRes = await Axios.post(
+                process.env.REACT_APP_API_URL + '/double/add',
                 { data: [double] },
                 {
                   headers: {},
                 }
-              ));
-            console.log(doubleRes.data);
-            doneDouble = { ...doneDouble, success: true, message: doubleRes.data.message };
-          } catch (error) {
-            console.log("Error: ", error);
-            doneDouble = { ...doneDouble, message: error.response.data.message };
-            //message.error(error.response.data.message);
+              );
+              console.log(doubleRes.data);
+              doneDouble = { ...doneDouble, success: true, message: doubleRes.data.message };
+            } catch (error) {
+              console.log('Error: ', error);
+              doneDouble = { ...doneDouble, message: error.response.data.message };
+              //message.error(error.response.data.message);
+            }
+          }else{
+            doneDouble = { ...doneDouble, success: true};
           }
 
           //   .then((res) => {
@@ -152,12 +151,12 @@ const RegisterAll = () => {
 
           //   });
           setIsSubmitting(false);
-          let msg = "";
+          let msg = '';
 
           if (isPlayingSingle) {
             msg += doneSingle.message;
           }
-          if (isPlayingDouble && isPlayingSingle) msg += " & ";
+          if (isPlayingDouble && isPlayingSingle) msg += ' & ';
 
           if (isPlayingDouble) {
             msg += doneDouble.message;
@@ -165,13 +164,17 @@ const RegisterAll = () => {
 
           if (!doneDouble.success || !doneSingle.success) {
             message.error(msg);
+            
           } else {
             message.success(msg);
+            setTimeout(() => {
+              window.location.reload(true);
+            }, 3000);
           }
         }
       },
       onCancel() {
-        console.log("Cancel");
+        console.log('Cancel');
       },
     });
   };
@@ -206,8 +209,8 @@ const RegisterAll = () => {
     setDouble((prevValue) => {
       return { ...prevValue, paymentMethod: value };
     });
-    console.log("isBankTransfer: ", value == "On-Site");
-    value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+    console.log('isBankTransfer: ', value == 'On-Site');
+    value == 'Bank Transfer' ? setIsBankTransfer(true) : setIsBankTransfer(false);
   };
 
   const changePaymentSlip = (e) => {
@@ -223,29 +226,29 @@ const RegisterAll = () => {
   };
 
   const changeSinglePastPerformanceArray = (option, id) => {
-    console.log("Event from root", option, id);
+    console.log('Event from root', option, id);
     const name = id;
     const value = option;
-    const field = name.split("-")[0];
-    const position = parseInt(name.split("-")[1]);
-    console.log("Table Values: ", field, position, value);
+    const field = name.split('-')[0];
+    const position = parseInt(name.split('-')[1]);
+    console.log('Table Values: ', field, position, value);
     const newArray = [...singlePastPerformanceArray];
     switch (field) {
-      case "name":
+      case 'name':
         newArray[position] = {
           name: value,
           level: newArray[position].level,
           place: newArray[position].place,
         };
         break;
-      case "level":
+      case 'level':
         newArray[position] = {
           name: newArray[position].name,
           level: value,
           place: newArray[position].place,
         };
         break;
-      case "place":
+      case 'place':
         newArray[position] = {
           name: newArray[position].name,
           level: newArray[position].level,
@@ -259,26 +262,26 @@ const RegisterAll = () => {
   const changeDoublePastPerformanceArray = (option, id) => {
     const name = id;
     const value = option;
-    const field = name.split("-")[0];
-    const position = parseInt(name.split("-")[1]);
-    console.log("Table Values: ", field, position, value);
+    const field = name.split('-')[0];
+    const position = parseInt(name.split('-')[1]);
+    console.log('Table Values: ', field, position, value);
     const newArray = [...doublePastPerformanceArray];
     switch (field) {
-      case "name":
+      case 'name':
         newArray[position] = {
           name: value,
           level: newArray[position].level,
           place: newArray[position].place,
         };
         break;
-      case "level":
+      case 'level':
         newArray[position] = {
           name: newArray[position].name,
           level: value,
           place: newArray[position].place,
         };
         break;
-      case "place":
+      case 'place':
         newArray[position] = {
           name: newArray[position].name,
           level: newArray[position].level,
@@ -292,7 +295,7 @@ const RegisterAll = () => {
   const AddAnotherRowS = (e) => {
     e.preventDefault();
     setSinglePastPerformanceArray((prevValue) => {
-      return [...singlePastPerformanceArray, { name: "", level: "", place: "" }];
+      return [...singlePastPerformanceArray, { name: '', level: '', place: '' }];
     });
   };
 
@@ -307,7 +310,7 @@ const RegisterAll = () => {
   const AddAnotherRowD = (e) => {
     e.preventDefault();
     setDoublePastPerformanceArray((prevValue) => {
-      return [...doublePastPerformanceArray, { name: "", level: "", place: "" }];
+      return [...doublePastPerformanceArray, { name: '', level: '', place: '' }];
     });
   };
 
@@ -322,13 +325,13 @@ const RegisterAll = () => {
   const arrangePerformanceArray = (arr) => {
     const newArr = [];
     for (const value of arr) {
-      if (Object.values(value).includes("")) {
+      if (Object.values(value).includes('')) {
         const { name, level, place } = value;
-        if (name == "" && level == "" && place == "") {
+        if (name == '' && level == '' && place == '') {
           //nothing
-          console.log("nothing");
+          console.log('nothing');
         } else {
-          return ["~error~"];
+          return ['~error~'];
         }
       } else {
         newArr.push(value);
@@ -352,26 +355,21 @@ const RegisterAll = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log('Form submitted');
     const form = e.currentTarget;
     const singlePerf = arrangePerformanceArray(singlePastPerformanceArray);
     const doublePerf = arrangePerformanceArray(doublePastPerformanceArray);
     let perfError = false;
-    console.log("Perfs:", singlePerf);
-    console.log("perfd", doublePerf);
+    console.log('Perfs:', singlePerf);
+    console.log('perfd', doublePerf);
     //form validation
-    if (
-      form.checkValidity() === false ||
-      (isPlayingDouble && double.player === double.playerPartner)
-    ) {
+    if (form.checkValidity() === false || (isPlayingDouble && double.player === double.playerPartner)) {
       e.stopPropagation();
-      isPlayingDouble &&
-        double.player === double.playerPartner &&
-        message.error("Player and the Partner have the same ID !! ");
+      isPlayingDouble && double.player === double.playerPartner && message.error('Player and the Partner have the same ID !! ');
     }
-    if (singlePerf.includes("~error~") || doublePerf.includes("~error~")) {
+    if (singlePerf.includes('~error~') || doublePerf.includes('~error~')) {
       perfError = true;
-      message.error("Please fill your performance correctly !");
+      message.error('Please fill your performance correctly !');
       e.stopPropagation();
     }
 
@@ -381,29 +379,25 @@ const RegisterAll = () => {
     double.pastPerformance = doublePerf;
 
     if (
-      ((isPlayingSingle &&
-        Object.values(single).includes("") &&
-        single.paymentMethod == "On-site" &&
-        single.paymentSlip == "") ||
-        !Object.values(single).includes("")) &&
+      ((isPlayingSingle && Object.values(single).includes('') && single.paymentMethod == 'On-site' && single.paymentSlip == '') || !Object.values(single).includes('')) &&
       !perfError
     ) {
       try {
         const res = await Axios.get(
-          process.env.REACT_APP_API_URL + "/player/getByObjectId",
+          process.env.REACT_APP_API_URL + '/player/getByObjectId',
           { params: { ids: single.player } },
           {
             headers: {},
           }
         );
 
-        console.log("Result from get player by id", res.data.data);
+        console.log('Result from get player by id', res.data.data);
         // showConfirm("Confirm your data !", true, res.data.toString());
         doneSingle = { ...doneSingle, valid: true, data: res.data.data[0] };
         !isPlayingDouble && check();
-        console.log("SUPUN");
+        console.log('SUPUN');
       } catch (error) {
-        console.log("Error: ", error.response.data.message);
+        console.log('Error: ', error.response.data.message);
         //showConfirm("Error Loading Player !", false, error.response.data.message);
         doneSingle = { ...doneSingle, data: error.response.data.message };
         !isPlayingDouble && check();
@@ -411,22 +405,18 @@ const RegisterAll = () => {
     }
 
     if (
-      ((isPlayingDouble &&
-        Object.values(double).includes("") &&
-        double.paymentMethod == "On-site" &&
-        double.paymentSlip == "") ||
-        !Object.values(double).includes("")) &&
+      ((isPlayingDouble && Object.values(double).includes('') && double.paymentMethod == 'On-site' && double.paymentSlip == '') || !Object.values(double).includes('')) &&
       !perfError
     ) {
       Axios.get(
-        process.env.REACT_APP_API_URL + "/player/getByObjectId",
-        { params: { ids: double.player + "," + double.playerPartner } },
+        process.env.REACT_APP_API_URL + '/player/getByObjectId',
+        { params: { ids: double.player + ',' + double.playerPartner } },
         {
           headers: {},
         }
       )
         .then(async (res) => {
-          console.log("Result from get player by id", res.data);
+          console.log('Result from get player by id', res.data);
           // showConfirm("Confirm your data !", true, res.data.toString());
           if (res.data.data.length == 2) {
             doneDouble = {
@@ -436,21 +426,21 @@ const RegisterAll = () => {
               data: res.data.data[0]._id === double.player ? res.data.data[0] : res.data.data[1],
               dataP: res.data.data[1]._id === double.player ? res.data.data[0] : res.data.data[1],
             };
-            console.log("Below");
+            console.log('Below');
             check();
           } else if (res.data.data.length == 1) {
-            console.log("Here");
+            console.log('Here');
             doneDouble = createDoneDouble(double.player, res.data.data[0], doneDouble);
 
             check();
           } else {
             console.log(res.data);
-            alert("Something went wrong !!");
+            alert('Something went wrong !!');
           }
         })
         .catch((error) => {
-          console.log("Here");
-          console.log("Error: ", error.response.data.message);
+          console.log('Here');
+          console.log('Error: ', error.response.data.message);
           //showConfirm("Error Loading Player !", false, error.response.data.message);
           doneDouble = {
             ...doneDouble,
@@ -471,70 +461,63 @@ const RegisterAll = () => {
         valid: true,
         validP: false,
         data: data,
-        dataP: "Invalid ID included for Partner",
+        dataP: 'Invalid ID included for Partner',
       };
     }
-    return { ...doneDouble, valid: false, validP: true, data: "Invalid ID included", dataP: data };
+    return { ...doneDouble, valid: false, validP: true, data: 'Invalid ID included', dataP: data };
   };
 
   const check = () => {
-    let message = "";
+    let message = '';
     if (isPlayingSingle && isPlayingDouble) {
+      console.log('single double');
       doneDouble.valid && doneDouble.validP
         ? (message =
-            "Player: " +
+            'Player: ' +
             doneDouble.data.firstName +
-            " " +
+            ' ' +
             doneDouble.data.lastName +
-            " " +
-            ", Partner: " +
+            ' ' +
+            ', Partner: ' +
             doneDouble.dataP.firstName +
-            " " +
+            ' ' +
             doneDouble.dataP.lastName +
-            " , Gender: " +
+            ' , Gender: ' +
             doneDouble.data.gender)
         : doneDouble.valid && !doneDouble.validP
         ? (message = doneDouble.dataP)
         : (message = doneDouble.data);
     } else if (isPlayingSingle && !isPlayingDouble) {
+      console.log('single');
       // console.log("doneSingle", doneSingle.data);
       doneSingle.valid
-        ? (message =
-            "Player: " +
-            doneSingle.data.firstName +
-            " " +
-            doneSingle.data.lastName +
-            " , " +
-            "Gender: " +
-            doneSingle.data.gender)
+        ? (message = 'Player: ' + doneSingle.data.firstName + ' ' + doneSingle.data.lastName + ' , ' + 'Gender: ' + doneSingle.data.gender)
         : (message = doneSingle.data);
     } else if (!isPlayingSingle && isPlayingDouble) {
+      console.log('double');
       doneDouble.valid && doneDouble.validP
         ? (message =
-            "Player: " +
+            'Player: ' +
             doneDouble.data.firstName +
-            " " +
+            ' ' +
             doneDouble.data.lastName +
-            " " +
-            ", Partner: " +
+            ' ' +
+            ', Partner: ' +
             doneDouble.dataP.firstName +
-            " " +
+            ' ' +
             doneDouble.dataP.lastName +
-            " , Gender: " +
+            ' , Gender: ' +
             doneDouble.data.gender)
         : doneDouble.valid && !doneDouble.validP
         ? (message = doneDouble.dataP)
         : (message = doneDouble.data);
     }
-    console.log("Message : ", message);
+    console.log('Message : ', message);
     console.log(doneSingle.valid, doneDouble.valid, doneDouble.validP);
-    if (
-      (isPlayingDouble && (doneDouble.valid == false || doneDouble.validP == false)) ||
-      (isPlayingSingle && doneSingle.valid == false)
-    ) {
-      showConfirm("Error Loading Player !", false, message);
+    if ((isPlayingDouble && (doneDouble.valid == false || doneDouble.validP == false)) || (isPlayingSingle && doneSingle.valid == false)) {
+      showConfirm('Error Loading Player !', false, message);
     } else {
-      showConfirm("Confirm your data !", true, message);
+      showConfirm('Confirm your data !', true, message);
     }
   };
 
@@ -543,30 +526,29 @@ const RegisterAll = () => {
   const [open, setOpen] = useState(true);
   const steps = [
     {
-      title: "Tournament Details and Registration Guidlines",
-      description: "Please refer the details and guidlines before the registration process.",
+      title: 'Tournament Details and Registration Guidlines',
+      description: 'Please refer the details and guidlines before the registration process.',
       target: () => ref.current,
     },
   ];
 
   return (
-    <div className={`${Styles["body"]}`}>
+    <div className={`${Styles['body']}`}>
       <HeaderPage />
-      <div className={`${Styles["title"]}`}>Event Registration</div>
-      <div className={`${Styles["info-container"]}`}>
-        <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
-        <div className={`${Styles["info"]}`}>
-          Please note that first you have to register as a player through player registration portal
-          before applying for single/double events. The Player ID given upon successful registration
-          should be used as Player ID here .Please find the{" "}
+      <div className={`${Styles['title']}`}>Event Registration</div>
+      <div className={`${Styles['info-container']}`}>
+        <img src={info} alt="info-icon" className={`${Styles['info-logo']}`} />
+        <div className={`${Styles['info']}`}>
+          Please note that first you have to register as a player through player registration portal before applying for single/double events. The Player ID given upon successful
+          registration should be used as Player ID here .Please find the{' '}
           <Space>
             <button ref={ref}>Tournament Details and Registration Guidlines</button>
-          </Space>{" "}
+          </Space>{' '}
           here.
           <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
         </div>
       </div>
-      <div className={`${Styles["register-form"]}`}>
+      <div className={`${Styles['register-form']}`}>
         {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
         <MDBContainer>
           <MDBRow className="mt-4">
@@ -603,24 +585,19 @@ const RegisterAll = () => {
         </MDBContainer>
 
         <MDBContainer className="">
-          <Form
-            noValidate
-            validated={validated}
-            onSubmit={handleSubmit}
-            className={`${Styles["register-form-content"]}`}
-          >
+          <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${Styles['register-form-content']}`}>
             <div hidden={!isPlayingSingle}>
               <div className="row mb-1 ">
                 <MDBCol className="mb-1" lg="6" md="12" sm="12">
                   <MDBInput
                     wrapperClass="mb-1"
                     label="Player ID"
-                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                    labelStyle={{ color: 'white', fontFamily: 'Hind', fontSize: '23px' }}
                     style={{
-                      fontFamily: "Hind",
-                      fontSize: "18px",
-                      padding: "15px",
-                      minHeight: "40px",
+                      fontFamily: 'Hind',
+                      fontSize: '18px',
+                      padding: '15px',
+                      minHeight: '40px',
                     }}
                     labelClass="text-white"
                     name="player"
@@ -651,30 +628,21 @@ const RegisterAll = () => {
                       changeAgeGroup(option);
                     }}
                     value={ageGrpup}
-                    lable={"Age Group"}
+                    lable={'Age Group'}
                   />
                 </MDBCol>
               </div>
               <div className="mb-2">
-                <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
-                  {" "}
-                  Singles : Past Performance
-                </div>
+                <div style={{ fontWeight: 'bold', fontFamily: 'Hind', fontSize: '25px' }}> Singles : Past Performance</div>
 
                 {singlePastPerformanceArray?.map((perf, index) => {
-                  return (
-                    <TableRow
-                      perf={perf}
-                      index={index}
-                      handleChange={changeSinglePastPerformanceArray}
-                    />
-                  );
+                  return <TableRow perf={perf} index={index} handleChange={changeSinglePastPerformanceArray} />;
                 })}
-                <div className={`${Styles["plus-minus"]}`}>
-                  <button className={`${Styles["plus-btn"]}`} onClick={AddAnotherRowS}>
+                <div className={`${Styles['plus-minus']}`}>
+                  <button className={`${Styles['plus-btn']}`} onClick={AddAnotherRowS}>
                     <img src={require(`../../../assests/images/plus-row.png`)} />
                   </button>
-                  <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRowS}>
+                  <button className={`${Styles['plus-btn']}`} onClick={RemoveanotherRowS}>
                     <img src={require(`../../../assests/images/minus-row.png`)} />
                   </button>
                 </div>
@@ -687,12 +655,12 @@ const RegisterAll = () => {
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Player ID"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      labelStyle={{ color: 'white', fontFamily: 'Hind', fontSize: '23px' }}
                       style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
+                        fontFamily: 'Hind',
+                        fontSize: '18px',
+                        padding: '15px',
+                        minHeight: '40px',
                       }}
                       labelClass="text-white"
                       name="player"
@@ -703,20 +671,20 @@ const RegisterAll = () => {
                       contrast
                       display="none"
                       className="bg-primary bg-opacity-25"
-                    />{" "}
+                    />{' '}
                   </MDBCol>
                 )}
 
-                <MDBCol className="mb-1" lg={isPlayingSingle ? "12" : "6"} md="12" sm="12">
+                <MDBCol className="mb-1" lg={isPlayingSingle ? '12' : '6'} md="12" sm="12">
                   <MDBInput
                     wrapperClass="mb-1"
                     label="Partner ID"
-                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                    labelStyle={{ color: 'white', fontFamily: 'Hind', fontSize: '23px' }}
                     style={{
-                      fontFamily: "Hind",
-                      fontSize: "18px",
-                      padding: "15px",
-                      minHeight: "40px",
+                      fontFamily: 'Hind',
+                      fontSize: '18px',
+                      padding: '15px',
+                      minHeight: '40px',
                     }}
                     labelClass="text-white"
                     name="d-partner"
@@ -763,32 +731,23 @@ const RegisterAll = () => {
                         changeAgeGroup(option);
                       }}
                       value={ageGrpup}
-                      lable={"Age Group"}
+                      lable={'Age Group'}
                     />
                   </MDBCol>
                 )}
               </div>
 
               <div className="mb-2">
-                <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
-                  {" "}
-                  Doubles : Past Performance
-                </div>
+                <div style={{ fontWeight: 'bold', fontFamily: 'Hind', fontSize: '25px' }}> Doubles : Past Performance</div>
 
                 {doublePastPerformanceArray?.map((perf, index) => {
-                  return (
-                    <TableRow
-                      perf={perf}
-                      index={index}
-                      handleChange={changeDoublePastPerformanceArray}
-                    />
-                  ); //TODO:
+                  return <TableRow perf={perf} index={index} handleChange={changeDoublePastPerformanceArray} />; //TODO:
                 })}
-                <div className={`${Styles["plus-minus"]}`}>
-                  <button className={`${Styles["plus-btn"]}`} onClick={AddAnotherRowD}>
+                <div className={`${Styles['plus-minus']}`}>
+                  <button className={`${Styles['plus-btn']}`} onClick={AddAnotherRowD}>
                     <img src={require(`../../../assests/images/plus-row.png`)} />
                   </button>
-                  <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRowD}>
+                  <button className={`${Styles['plus-btn']}`} onClick={RemoveanotherRowD}>
                     <img src={require(`../../../assests/images/minus-row.png`)} />
                   </button>
                 </div>
@@ -857,7 +816,7 @@ const RegisterAll = () => {
                       changePaymentMethod(option);
                     }}
                     value={payment}
-                    lable={"Payment Method"}
+                    lable={'Payment Method'}
                   />
                 </MDBCol>
                 {isBankTransfer && (
@@ -865,12 +824,12 @@ const RegisterAll = () => {
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Payment Slip"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      labelStyle={{ color: 'white', fontFamily: 'Hind', fontSize: '23px' }}
                       style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
+                        fontFamily: 'Hind',
+                        fontSize: '18px',
+                        padding: '15px',
+                        minHeight: '40px',
                       }}
                       labelClass="text-white"
                       name="paymentSlip"
@@ -884,11 +843,7 @@ const RegisterAll = () => {
               </div>
             )}
 
-            <button
-              className={`${Styles["btn"]}`}
-              type="submit"
-              hidden={!isPlayingDouble && !isPlayingSingle}
-            >
+            <button className={`${Styles['btn']}`} type="submit" hidden={!isPlayingDouble && !isPlayingSingle}>
               Register
             </button>
           </Form>
