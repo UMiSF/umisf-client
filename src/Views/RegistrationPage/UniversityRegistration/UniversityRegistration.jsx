@@ -9,9 +9,11 @@ import Styles from "./UniversityRegistration.module.css";
 import Axios from "axios";
 import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 import Dropdown from "../../../common/Dropdown/Dropdown";
-
+import NotAvailablePage from "../../../common/notAvailablePage/NotAvailablePage";
 import { message } from "antd";
+
 const UniversityRegistration = () => {
+  const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
   const [validated, setValidated] = useState(false); //form validation
   const [university, setUniversity] = useState({
     name: "",
@@ -227,166 +229,174 @@ const UniversityRegistration = () => {
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
-      <div className={`${Styles["title"]}`}>Event Registration - University</div>
-      <div className={`${Styles["info-container"]}`}>
-        <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
-        <div className={`${Styles["info"]}`}>
-          Please find the{" "}
-          <Space>
-            <button ref={ref}>Tournament Details and Registration Guidlines</button>
-          </Space>{" "}
-          here.
-          <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
-        </div>
-      </div>
-      <div className={`${Styles["register-form"]}`}>
-        {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
-        <MDBContainer className="">
-          <Form
-            noValidate
-            validated={validated}
-            onSubmit={handleSubmit}
-            className={`${Styles["register-form-content"]}`}
-          >
-            <div className="row mb-4">
-              <MDBCol className="mb-1" lg="6" md="12" sm="12">
-                <MDBInput
-                  wrapperClass="mb-1"
-                  label="University"
-                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    padding: "15px",
-                    minHeight: "40px",
-                  }}
-                  labelClass="text-white"
-                  name="name"
-                  type="text"
-                  value={university.name}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
-                />
-              </MDBCol>
-              <MDBCol className="" lg="6" md="12" sm="12">
-                <Dropdown
-                  options={genderOptions}
-                  handleClick={(option) => {
-                    setGender(option);
-                    changeGender(option);
-                  }}
-                  value={gender}
-                  lable={"Gender"}
-                />
-              </MDBCol>
+      {isRegistrationsOpen ? (
+        <>
+          <div className={`${Styles["title"]}`}>Event Registration - University</div>
+          <div className={`${Styles["info-container"]}`}>
+            <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
+            <div className={`${Styles["info"]}`}>
+              Please find the{" "}
+              <Space>
+                <button ref={ref}>Tournament Details and Registration Guidlines</button>
+              </Space>{" "}
+              here.
+              <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
             </div>
-            <div className="row mb-2">
-              <MDBCol className="mb-1" lg="6" md="12" sm="12">
-                <MDBInput
-                  wrapperClass="mb-1"
-                  label="Email"
-                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    padding: "15px",
-                    minHeight: "40px",
-                  }}
-                  labelClass="text-white"
-                  name="email"
-                  type="email"
-                  value={university.email}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
-                />
-              </MDBCol>
-              <MDBCol className="mb-1" lg="6" md="12" sm="12">
-                <MDBInput
-                  wrapperClass="mb-1"
-                  label="Contact Number"
-                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    padding: "15px",
-                    minHeight: "40px",
-                  }}
-                  labelClass="text-white"
-                  name="contactNumber"
-                  type="text"
-                  value={university.contactNumber}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
-                />
-              </MDBCol>
-            </div>
-            <div className="mb-2">
-              <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>Team</div>
-              {playersArray?.map((player, index) => {
-                return <TableRow player={player} index={index} handleChange={handleChange} />;
-              })}
-              <div className={`${Styles["plus-minus"]}`}>
-                <button
-                  hidden={exceeded}
-                  className={`${Styles["plus-btn"]}`}
-                  onClick={AddAnotherRow}
-                >
-                  <img src={require(`../../../assests/images/plus-row.png`)} />
-                </button>
-                <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
-                  <img src={require(`../../../assests/images/minus-row.png`)} />
-                </button>
-              </div>
-            </div>
+          </div>
+          <div className={`${Styles["register-form"]}`}>
+            {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
+            <MDBContainer className="">
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+                className={`${Styles["register-form-content"]}`}
+              >
+                <div className="row mb-4">
+                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                    <MDBInput
+                      wrapperClass="mb-1"
+                      label="University"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
+                      labelClass="text-white"
+                      name="name"
+                      type="text"
+                      value={university.name}
+                      onChange={handleChange}
+                      required
+                      contrast
+                      className="bg-primary bg-opacity-25"
+                    />
+                  </MDBCol>
+                  <MDBCol className="" lg="6" md="12" sm="12">
+                    <Dropdown
+                      options={genderOptions}
+                      handleClick={(option) => {
+                        setGender(option);
+                        changeGender(option);
+                      }}
+                      value={gender}
+                      lable={"Gender"}
+                    />
+                  </MDBCol>
+                </div>
+                <div className="row mb-2">
+                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                    <MDBInput
+                      wrapperClass="mb-1"
+                      label="Email"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
+                      labelClass="text-white"
+                      name="email"
+                      type="email"
+                      value={university.email}
+                      onChange={handleChange}
+                      required
+                      contrast
+                      className="bg-primary bg-opacity-25"
+                    />
+                  </MDBCol>
+                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                    <MDBInput
+                      wrapperClass="mb-1"
+                      label="Contact Number"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
+                      labelClass="text-white"
+                      name="contactNumber"
+                      type="text"
+                      value={university.contactNumber}
+                      onChange={handleChange}
+                      required
+                      contrast
+                      className="bg-primary bg-opacity-25"
+                    />
+                  </MDBCol>
+                </div>
+                <div className="mb-2">
+                  <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
+                    Team
+                  </div>
+                  {playersArray?.map((player, index) => {
+                    return <TableRow player={player} index={index} handleChange={handleChange} />;
+                  })}
+                  <div className={`${Styles["plus-minus"]}`}>
+                    <button
+                      hidden={exceeded}
+                      className={`${Styles["plus-btn"]}`}
+                      onClick={AddAnotherRow}
+                    >
+                      <img src={require(`../../../assests/images/plus-row.png`)} />
+                    </button>
+                    <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
+                      <img src={require(`../../../assests/images/minus-row.png`)} />
+                    </button>
+                  </div>
+                </div>
 
-            <div className="row mb-4 mt-2">
-              <MDBCol className="mb-1">
-                <Dropdown
-                  options={paymentOptions}
-                  handleClick={(option) => {
-                    setPayment(option);
-                    changePaymentMethod(option);
-                  }}
-                  value={payment}
-                  lable={"Payment"}
-                />
-              </MDBCol>
-              {isBankTransfer && (
-                <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                  <MDBInput
-                    wrapperClass="mb-4"
-                    label="Payment Slip"
-                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                    style={{
-                      fontFamily: "Hind",
-                      fontSize: "18px",
-                      padding: "15px",
-                      minHeight: "40px",
-                    }}
-                    labelClass="text-white"
-                    name="paymentSlip"
-                    type="text"
-                    value={university.paymentSlip}
-                    onChange={handleChange}
-                    contrast
-                    className="bg-primary bg-opacity-25"
-                  />
-                </MDBCol>
-              )}
-            </div>
+                <div className="row mb-4 mt-2">
+                  <MDBCol className="mb-1">
+                    <Dropdown
+                      options={paymentOptions}
+                      handleClick={(option) => {
+                        setPayment(option);
+                        changePaymentMethod(option);
+                      }}
+                      value={payment}
+                      lable={"Payment"}
+                    />
+                  </MDBCol>
+                  {isBankTransfer && (
+                    <MDBCol className="mb-1" lg="6" md="6" sm="12">
+                      <MDBInput
+                        wrapperClass="mb-4"
+                        label="Payment Slip"
+                        labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                        style={{
+                          fontFamily: "Hind",
+                          fontSize: "18px",
+                          padding: "15px",
+                          minHeight: "40px",
+                        }}
+                        labelClass="text-white"
+                        name="paymentSlip"
+                        type="text"
+                        value={university.paymentSlip}
+                        onChange={handleChange}
+                        contrast
+                        className="bg-primary bg-opacity-25"
+                      />
+                    </MDBCol>
+                  )}
+                </div>
 
-            <button className={`${Styles["btn"]}`} type="submit">
-              Register
-            </button>
-          </Form>
-        </MDBContainer>
-      </div>
+                <button className={`${Styles["btn"]}`} type="submit">
+                  Register
+                </button>
+              </Form>
+            </MDBContainer>
+          </div>
+        </>
+      ) : (
+        <NotAvailablePage />
+      )}
     </div>
   );
 };

@@ -7,8 +7,10 @@ import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
 import plus from "../../../assests/images/plus.png";
 import Styles from "./CompanyRegistration.module.css";
+import NotAvailablePage from "../../../common/notAvailablePage/NotAvailablePage";
 
 const CompanyRegistration = () => {
+  const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
   const [validated, setValidated] = useState(false); //form validation
   const [company, setCompany] = useState({
     company: "",
@@ -133,177 +135,186 @@ const CompanyRegistration = () => {
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
-      <div className={`${Styles["title"]}`}>Event Registration - Company</div>
-      <div className={`${Styles["info-container"]}`}>
-        <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
-        <div className={`${Styles["info"]}`}>
-          Please note that we only allow companies which have been invited for the event this year .
-          Your invitations have already been sent to the relevant email addresses .Please find the{" "}
-          <Space>
-            <button ref={ref}>Tournament Details and Registration Guidlines</button>
-          </Space>{" "}
-          here.
-          <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
-        </div>
-      </div>
-      <div className={`${Styles["register-form"]}`}>
-        {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
-        <MDBContainer className="">
-          <Form
-            noValidate
-            validated={validated}
-            onSubmit={handleSubmit}
-            className={`${Styles["register-form-content"]}`}
-          >
-            <div className="row mb-2 ">
-              <MDBCol className="" lg="6" md="6" sm="12">
-                <MDBInput
-                  wrapperClass="mb-2"
-                  label="Company"
-                  labelClass="text-white"
-                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    padding: "15px",
-                    minHeight: "40px",
-                  }}
-                  name="company"
-                  type="text"
-                  value={company.company}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className={`bg-primary bg-opacity-25`}
-                />
-              </MDBCol>
-              <MDBCol className="" lg="6" md="6" sm="12">
-                <MDBInput
-                  wrapperClass="mb-2"
-                  label="Contact Number"
-                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    padding: "15px",
-                    minHeight: "40px",
-                  }}
-                  v
-                  labelClass="text-white"
-                  name="contact_number"
-                  type="text"
-                  value={company.contact_number}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
-                />
-              </MDBCol>
+      {isRegistrationsOpen ? (
+        <>
+          <div className={`${Styles["title"]}`}>Event Registration - Company</div>
+          <div className={`${Styles["info-container"]}`}>
+            <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
+            <div className={`${Styles["info"]}`}>
+              Please note that we only allow companies which have been invited for the event this
+              year . Your invitations have already been sent to the relevant email addresses .Please
+              find the{" "}
+              <Space>
+                <button ref={ref}>Tournament Details and Registration Guidlines</button>
+              </Space>{" "}
+              here.
+              <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
             </div>
-            <div className="row mb-2 ">
-              <MDBCol className="" lg="6" md="6" sm="12">
-                <MDBInput
-                  wrapperClass="mb-2"
-                  label="Email"
-                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    padding: "15px",
-                    minHeight: "40px",
-                  }}
-                  labelClass="text-white"
-                  name="email"
-                  type="email"
-                  value={company.email}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
-                />
-              </MDBCol>
-              <MDBCol className="" lg="6" md="6" sm="12">
-                <div className={`${Styles["info-container-form"]}`}>
-                  <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
-                  <div className={`${Styles["info"]}`}>
-                    Please provide the email to which we have sent the invitation
+          </div>
+          <div className={`${Styles["register-form"]}`}>
+            {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
+            <MDBContainer className="">
+              <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+                className={`${Styles["register-form-content"]}`}
+              >
+                <div className="row mb-2 ">
+                  <MDBCol className="" lg="6" md="6" sm="12">
+                    <MDBInput
+                      wrapperClass="mb-2"
+                      label="Company"
+                      labelClass="text-white"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
+                      name="company"
+                      type="text"
+                      value={company.company}
+                      onChange={handleChange}
+                      required
+                      contrast
+                      className={`bg-primary bg-opacity-25`}
+                    />
+                  </MDBCol>
+                  <MDBCol className="" lg="6" md="6" sm="12">
+                    <MDBInput
+                      wrapperClass="mb-2"
+                      label="Contact Number"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
+                      v
+                      labelClass="text-white"
+                      name="contact_number"
+                      type="text"
+                      value={company.contact_number}
+                      onChange={handleChange}
+                      required
+                      contrast
+                      className="bg-primary bg-opacity-25"
+                    />
+                  </MDBCol>
+                </div>
+                <div className="row mb-2 ">
+                  <MDBCol className="" lg="6" md="6" sm="12">
+                    <MDBInput
+                      wrapperClass="mb-2"
+                      label="Email"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
+                      labelClass="text-white"
+                      name="email"
+                      type="email"
+                      value={company.email}
+                      onChange={handleChange}
+                      required
+                      contrast
+                      className="bg-primary bg-opacity-25"
+                    />
+                  </MDBCol>
+                  <MDBCol className="" lg="6" md="6" sm="12">
+                    <div className={`${Styles["info-container-form"]}`}>
+                      <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
+                      <div className={`${Styles["info"]}`}>
+                        Please provide the email to which we have sent the invitation
+                      </div>
+                    </div>
+                  </MDBCol>
+                </div>
+                <div className="mb-2">
+                  <div className="mb-2">
+                    <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
+                      Team
+                    </div>
+                  </div>
+                  {playersArray?.map((player, index) => {
+                    return <TableRow player={player} index={index} handleChange={handleChange} />;
+                  })}
+                  <div className={`${Styles["plus-minus"]}`}>
+                    <button
+                      hidden={exceeded}
+                      className={`${Styles["plus-btn"]}`}
+                      onClick={AddAnotherRow}
+                    >
+                      <img src={require(`../../../assests/images/plus-row.png`)} />
+                    </button>
+                    <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
+                      <img src={require(`../../../assests/images/minus-row.png`)} />
+                    </button>
                   </div>
                 </div>
-              </MDBCol>
-            </div>
-            <div className="mb-2">
-              <div className="mb-2">
-                <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>Team</div>
-              </div>
-              {playersArray?.map((player, index) => {
-                return <TableRow player={player} index={index} handleChange={handleChange} />;
-              })}
-              <div className={`${Styles["plus-minus"]}`}>
-                <button
-                  hidden={exceeded}
-                  className={`${Styles["plus-btn"]}`}
-                  onClick={AddAnotherRow}
-                >
-                  <img src={require(`../../../assests/images/plus-row.png`)} />
-                </button>
-                <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
-                  <img src={require(`../../../assests/images/minus-row.png`)} />
-                </button>
-              </div>
-            </div>
 
-            <div className="row mb-2">
-              <MDBCol>
-                <MDBInput
-                  wrapperClass="mb-2"
-                  label="Payment Method"
-                  labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    padding: "15px",
-                    minHeight: "40px",
-                  }}
-                  labelClass="text-white"
-                  name="payment_method"
-                  type="text"
-                  value={company.payment_method}
-                  onChange={handleChange}
-                  required
-                  contrast
-                  className="bg-primary bg-opacity-25"
-                />
-              </MDBCol>
-              {isBankTransfer && (
-                <MDBCol className="" lg="6" md="6" sm="12">
-                  <MDBInput
-                    wrapperClass="mb-2"
-                    label="Payment Slip"
-                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                    style={{
-                      fontFamily: "Hind",
-                      fontSize: "18px",
-                      padding: "15px",
-                      minHeight: "40px",
-                    }}
-                    labelClass="text-white"
-                    name="payment_slip"
-                    type="text"
-                    value={company.payment_slip}
-                    onChange={handleChange}
-                    contrast
-                    className="bg-primary bg-opacity-25"
-                  />
-                </MDBCol>
-              )}
-            </div>
+                <div className="row mb-2">
+                  <MDBCol>
+                    <MDBInput
+                      wrapperClass="mb-2"
+                      label="Payment Method"
+                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                      style={{
+                        fontFamily: "Hind",
+                        fontSize: "18px",
+                        padding: "15px",
+                        minHeight: "40px",
+                      }}
+                      labelClass="text-white"
+                      name="payment_method"
+                      type="text"
+                      value={company.payment_method}
+                      onChange={handleChange}
+                      required
+                      contrast
+                      className="bg-primary bg-opacity-25"
+                    />
+                  </MDBCol>
+                  {isBankTransfer && (
+                    <MDBCol className="" lg="6" md="6" sm="12">
+                      <MDBInput
+                        wrapperClass="mb-2"
+                        label="Payment Slip"
+                        labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                        style={{
+                          fontFamily: "Hind",
+                          fontSize: "18px",
+                          padding: "15px",
+                          minHeight: "40px",
+                        }}
+                        labelClass="text-white"
+                        name="payment_slip"
+                        type="text"
+                        value={company.payment_slip}
+                        onChange={handleChange}
+                        contrast
+                        className="bg-primary bg-opacity-25"
+                      />
+                    </MDBCol>
+                  )}
+                </div>
 
-            <button className={`${Styles["btn"]}`} type="submit">
-              Register
-            </button>
-          </Form>
-        </MDBContainer>
-      </div>
+                <button className={`${Styles["btn"]}`} type="submit">
+                  Register
+                </button>
+              </Form>
+            </MDBContainer>
+          </div>
+        </>
+      ) : (
+        <NotAvailablePage />
+      )}
     </div>
   );
 };
