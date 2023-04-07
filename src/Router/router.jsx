@@ -25,6 +25,8 @@ import DrawEditPage from "../Views/DrawEditPage/DrawEditPage";
 import FinishedMatchCard from "../Views/MatchResultsPage/FinishedMatchCard";
 import PhotosPage from "../Views/PhotosPage/PhotosPage";
 import RegisterAll from "../Views/RegistrationPage/RegisterAll/RegisterAll";
+import DevelopersPage from "../Views/DevelopersPage/DevelopersPage";
+
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
 
@@ -55,6 +57,7 @@ export default function AppRouter() {
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
           <Route path="photos" element={<GalleryPage />} />
           <Route path="photos/:title" element={<PhotosPage />} />
+          <Route path="developers" element={<DevelopersPage />} />
           <Route path="*" element={<NotFound />} />
 
           {/*type1: admin  admin/page_name*/}
