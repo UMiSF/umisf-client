@@ -1,101 +1,82 @@
+.team-container{
+  display: flex;
+  flex-direction: row;
+}
+
 .team {
-  height: 30vw;
-  width: 100%;
-  padding: 1vw;
-  align-items: center;
-  background: url("../../../assests/images/team.jpeg");
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #302D2D;
 }
 
-.team-overlay {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-  height: 28vw;
-  padding: 6vw;
-  text-align: center;
-}
-
-.team-title {
-  width: 100%;
-  text-transform: uppercase;
+.team-title{
+  padding: 5vw;
+  padding-bottom: 0;
+  font-family: 'Hind', sans-serif;
+  font-size: 5vw;
   color: white;
-  overflow: hidden;
-  font-family: "Roboto";
-  font-size: 3vw;
 }
 
-/* .group-photo{
-    filter: grayscale(100%);
-    width: 100%;
+.team-title p{
+  font-family: 'Hind', sans-serif;
+  font-size: 5vw;
 }
-
-.team-title-span{
-    padding: 1vw;
-}
-
-.team-title-span span{
-    font-family: 'roboto';
-    font-size: 4vw;
-} */
 
 .team-description {
+  padding: 5vw;
+  padding-top: 0;
+  font-family: 'Hind', sans-serif;
+  font-size: 16px;
   color: white;
-  padding: 19vw;
-  padding-top: 3vw;
-  font-size: 1.2vw;
-  font-family: "Montserrat";
-  font-weight: bold;
 }
 
-@media screen and (max-width: 1050px) {
-  .captain-contaier {
-    margin-left: 21.5%;
-  }
-
-  .member {
-    margin: 1vw -0.9vw;
-  }
+.team-photo img{
+  height: 500px;
+  width: fit-content;
 }
-
-@media screen and (max-width: 800px) {
-  .captain-contaier {
-    margin-left: 20.5%;
+@media screen and (max-width: 1190px) {
+  .team-description {
+    padding: 4vw;
+    padding-top: 0;
   }
-  .member {
-    margin: 1vw -0.5vw;
+
+  .team-title {
+    padding: 4vw;
+    padding-bottom: 0;
+  }
+
+  .team-photo img{
+    height: 400px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1190px) {
+  .team-description {
+    padding: 3vw;
+    padding-top: 0;
+  }
+
+  .team-title {
+    padding: 3vw;
+    padding-bottom: 0;
+  }
+
+  .team-photo img{
+    height: 340px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .team-container{
+    background-image: url('../../../assests/images/team-image.jpeg');
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .team-photo{
+    display: none;
+  }
+
   .team {
-    height: 140vw;
-  }
-
-  .container {
-    display: block;
-  }
-
-  .group-photo img {
-    height: 65vw;
-    object-fit: scale-down;
-  }
-
-  .member {
-    margin: 1vw 9.5vw;
-  }
-}
-@media screen and (max-width: 425px) {
-  .team {
-    height: 150vw;
-  }
-
-  .captain-contaier {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .member {
-    margin: 1vw 9.5vw;
+    background-color: rgba(48, 73, 105, 0.5);
   }
 }

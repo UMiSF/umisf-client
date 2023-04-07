@@ -1,17 +1,17 @@
 .body {
   background: #040924;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   font-family: "Hind", sans-serif;
-  display: block;
   overflow: auto;
 }
 
 .title {
   color: #185de1;
   font-family: "Hind", sans-serif;
-  font-size: 3vw;
+  font-size: 60px;
   text-align: center;
+  padding-top: 100px;
 }
 
 .info-container {
@@ -37,21 +37,32 @@
   padding: 3px;
 }
 .info {
-  font-size: 1vw;
+  font-size: 17px;
+  font-family: "Hind", sans-serif;
+}
+
+.info button {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 18px;
   font-family: "Hind", sans-serif;
 }
 
 .info-logo {
-  height: 1vw;
-  margin-top: 0.15%;
+  height: 15px;
+  margin-top: 0.2%;
 }
 
 .register-form {
   background-image: url("../../../assests/images/register-bg.png");
+  background-position: center;
   height: 30vw;
+  width: 60%;
   background-repeat: no-repeat;
-  margin-left: 22vw;
-  margin-right: 22vw;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .uploader {
@@ -61,12 +72,30 @@
 
 .register-form-content {
   /* position: absolute; */
-  width: 50vw;
-  margin-top: 2vw;
+  width: 100%;
+  margin-top: 3vw;
 }
 
 .input-text {
   font-family: "Hind", sans-serif;
+}
+
+.btn {
+  margin-right: 7px;
+  float: right;
+  width: 200px;
+  height: 50px;
+  font-family: "Hind";
+  font-size: 20px;
+  border-radius: 7px;
+  background: transparent;
+  color: white;
+  border: 0.5px solid rgb(218, 214, 214);
+  transition: ease-in-out 1s;
+}
+
+.btn:hover {
+  background: rgb(46, 92, 217);
 }
 
 @media (max-width: 2175px) {
@@ -91,19 +120,31 @@
   }
 }
 
+@media (max-width: 1037px) {
+  .info {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .title {
+    font-size: 40px;
+  }
+
+  .btn {
+    width: 150px;
+  }
+
+  .info,
+  .info button {
+    font-size: 15px;
+  }
+}
+
 @media (max-width: 1500px) {
   .picker-bg {
     right: 2.25vw;
   }
-}
-
-.btn {
-  position: absolute;
-  float: right;
-  right: 1vw;
-  margin-right: -20vw;
-  margin-top: -4vw;
-  width: 18vw;
 }
 
 .plus {
@@ -115,3 +156,18 @@
   cursor: pointer;
 }
 
+.plus-minus {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.plus-btn {
+  background: transparent;
+  border: none;
+  margin-left: 10px;
+}
+
+.plus-btn img {
+  width: 20px;
+}

@@ -2,9 +2,9 @@ import React from "react";
 import Styles from "./GalleryPage.module.css";
 import AlbumCard from "./AlbumCard";
 import { useState } from "react";
-import image from './Images/TempImg/1.jpg';
+import image from "./Images/TempImg/1.jpg";
 import HeaderPage from "../HeaderPage/HeaderPage";
-
+import Footer from "../HomePage/Footer/footer";
 
 const GalleryPage = () => {
   const [titles, setTitles] = useState([
@@ -33,43 +33,27 @@ const GalleryPage = () => {
 
   return (
     <div className={`${Styles["body"]}`}>
-     
       <div className={`${Styles["cover-img"]}`}>
-      <HeaderPage/>
+        <HeaderPage />
         <div className={`${Styles["cover-title"]}`}>
-          <h1
-            style={{ color: "white", fontFamily: "Lobster" }}
-            id="h1"
-            className={`${Styles["typing-demo"]}`}
-          >
+          <h1 id="h1" className={`${Styles["typing-demo"]}`}>
             {" "}
-            Memories ....
+            MEMORIES ....
           </h1>
+          <div className={`${Styles["bottom-para"]}`}>
+            <p>Let's dive into our good old days!</p>
+          </div>
         </div>
       </div>
-      <div
-        className={`${Styles["bottom-para"]} align-items-center text-center`}
-      >
-        <p style={{ fontWeight: "bold" }}>
-          LET US DIVE INTO OUR GOOD OLD DAYS!
-        </p>
-        <img
-          src="./umisf_logo.jpg"
-          alt="logo"
-          style={{ height: "4%", width: "4%" }}
-        />
-      </div>
-      <div className={`${Styles["gallery"]}`}>
-        <div className={`${Styles["gallery-title"]}`}>
-          <h1 style={{ color: "white" }}>Gallery</h1>
-        </div>
-
+      <div className={`${Styles["gallery"]} `}>
         <div className={`${Styles["gallery-content"]} `}>
           {titles?.map((title, index) => {
-            return <AlbumCard key={index} title={title} photos={photos}/>;
+            return <AlbumCard key={index} title={title} photos={photos} />;
           })}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

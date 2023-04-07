@@ -1,6 +1,5 @@
 import React from "react";
 import Styles from "./PhotoItem.module.css";
-import image from "./Images/TempImg/1.jpg";
 import { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import DownloadIcon from '@mui/icons-material/Download';
