@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './notAvailablePage.module.css'
 
-const DrawsPage = () => {
+const NotAvailablePage = () => {
   return (
     <div className={`${styles["not-available-content"]}`}>
       <div className={`${styles["sad-face"]}`}>{":("}</div>
@@ -18,4 +18,4 @@ const DrawsPage = () => {
   );
 };
 
-export default DrawsPage;
+export default NotAvailablePage;

@@ -8,7 +8,7 @@ function DevelopersPage() {
   const [developers, setDevelopers] = useState([
     {
       name: "Nethmi Jayakody",
-      working_place: "Trainee Software engineer@ WealthOS",
+      working_place: "Trainee Software Engineer@ WealthOS",
       image: "nethmi.JPG",
       position: "Team Lead| Full Stack Developer",
       linkedin: 'https://www.linkedin.com/in/nethmi-jayakody/',
@@ -17,7 +17,7 @@ function DevelopersPage() {
     },
     {
       name: "Supun Dasanayaka",
-      working_place: "Trainee Software engineer@ Insighture",
+      working_place: "Trainee Software Engineer@ Insighture",
       image: "supun.jpeg",
       position: "Full Stack Developer",
       linkedin: 'https://www.linkedin.com/in/supun-dhananjaya/',
@@ -26,7 +26,7 @@ function DevelopersPage() {
     },
     {
       name: "Harshani Bandara",
-      working_place: "Trainee Software engineer@ Dialog Axiata",
+      working_place: "Trainee Software Engineer@ Dialog Axiata",
       image: "harshani.jpeg",
       position: "Full Stack Developer",
       linkedin: 'https://www.linkedin.com/in/harshanibandara/',
@@ -35,9 +35,9 @@ function DevelopersPage() {
     },
     {
       name: "Vinul Fernando",
-      working_place: "Trainee Software engineer@ GTN",
+      working_place: "Trainee Software Engineer@ GTN",
       image: "vinul.jpg",
-      position: "Full Stack Developer",
+      position: "Frontend Developer",
       linkedin: 'https://www.linkedin.com/in/vinul-fernando-1239761a0/',
       facebook:'https://web.facebook.com/vinul.fernando.7',
       github: 'Vinuhans'
@@ -45,8 +45,8 @@ function DevelopersPage() {
     
     {
       name: "Kumuthu Athukorala",
-      working_place: "Trainee Software engineer@ Codegen",
-      image: "harshani.jpeg",
+      working_place: "Trainee Software Engineer@ Codegen",
+      image: "kumuthu.jpeg",
       position: "Full Stack Developer",
       linkedin: 'https://www.linkedin.com/in/kumuthu-athukorala/',
       facebook:'https://web.facebook.com/kumuthu.athukorala',
@@ -55,15 +55,15 @@ function DevelopersPage() {
     {
       name: "Yasira Punsith",
       working_place: "CSE undergraduate@ UOM",
-      image: "harshani.jpeg",
-      position: "Full Stack Developer",
+      image: "yasira.jpg",
+      position: "Frontend Developer",
       linkedin: 'https://www.linkedin.com/in/yasira-punsith-839121266/',
       facebook:'https://web.facebook.com/profile.php?id=100006817725111',
       github: 'yasira2000'
     },
     {
       name: "Poorna Cooray",
-      working_place: "Trainee Software engineer@ H2O.ai",
+      working_place: "Trainee Software Engineer@ H2O.ai",
       image: "poorna.jpg",
       position: "Full Stack Developer",
       linkedin: 'https://www.linkedin.com/in/poorna-cooray-64430721b/',

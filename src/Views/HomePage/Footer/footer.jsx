@@ -46,14 +46,14 @@ function Footer() {
             <a href="https://twitter.com/MoratuwaUni" target='_blank'>
               <i className="bx bxl-twitter"></i>
             </a>
-            <a href="https://www.facebook.com/mrt.ac.lk" target='_blank'>
+            <a href="https://www.facebook.com/UMiSFMora?mibextid=LQQJ4d" target='_blank'>
               <i className="bx bxl-facebook"></i>
             </a>
           </div>
         </div>
       </div>
 
-      <div className={`${styles["bottom-row"]}`}>Copyright © 2022 University of Moratuwa</div>
+      <div className={`${styles["bottom-row"]}`}>Copyright © 2022 developers@umisf.web</div>
     </div>
   );
 }

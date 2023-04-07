@@ -9,7 +9,7 @@ import Styles from "./UniversityRegistration.module.css";
 import Axios from "axios";
 import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 import Dropdown from "../../../common/Dropdown/Dropdown";
-import NotAvailablePage from "../../../common/notAvailablePage/NotAvailablePage";
+import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import { message } from "antd";
 
 const UniversityRegistration = () => {
@@ -395,7 +395,7 @@ const UniversityRegistration = () => {
           </div>
         </>
       ) : (
-        <NotAvailablePage />
+        <RegistrationsNotOpen/>
       )}
     </div>
   );

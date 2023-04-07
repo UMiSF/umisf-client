@@ -9,9 +9,11 @@ import Gallery from "./Gallery/gallery";
 import Flyer from "./Flyer/flyer";
 
 const HomePage = () => {
-  const [isCounterStarted, setIsCounterStarted] = useState(false)
-  const [starttingDate, setStartingDate] = useState("2023-05-21");
-  const [venue, setVenue] = useState(["University gymnasium","S. Thomas' College, Mount Lavinia"]);
+  const [isCounterStarted, setIsCounterStarted] = useState(false);
+  // const [starttingDate, setStartingDate] = useState("2023-05-21T08:00:00.000");
+  const [starttingDate, setStartingDate] = useState("2023-05-21T08:00:00.000");
+  const [remainingTime, setRemainingTime] = useState("");
+  const [venue, setVenue] = useState(["University gymnasium", "S. Thomas' College, Mount Lavinia"]);
   const [registrationsDeadlines, setRegistrationsDealines] = useState(["2023-04-13", "2023-04-30"]);
   const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
 
@@ -30,22 +32,54 @@ const HomePage = () => {
   const [tShirtFront, setTShirtFront] = useState("tshirt-front.png");
   const [tShirtBack, setTShirtBack] = useState("tshirt-back.png");
 
-  useEffect((()=>{
-    let currentDate = new Date().toJSON().slice(0, 10);
-    if (starttingDate.startsWith(currentDate.slice(0,9)) && parseInt(starttingDate.slice(8,10)) - currentDate.slice(8,10) == 1){
-      setIsCounterStarted(true)
+  const calculateTimeDiffrence = (currentDate, startingDate) => {
+    let timeDifference = {
+      hours: "",
+      mins: "",
+      seconds: "",
+    };
+
+    console.log()
+    timeDifference.seconds = 60 - currentDate.getSeconds();
+    timeDifference.mins = 59 - currentDate.getMinutes();
+
+    if (currentDate.getHours() < startingDate.getHours()) {
+      timeDifference.hours = startingDate.getHours() - currentDate.getHours() - 1;
+    } else {
+      timeDifference.hours = 25 - currentDate.getHours() + startingDate.getHours();
     }
-  }),[])
+
+    return timeDifference;
+  };
+
+  useEffect(() => {
+    let currentDate = new Date();
+    let startingDate = new Date(starttingDate);
+    if (
+      (startingDate.getDate() - currentDate.getDate() == 1 &&
+        currentDate.getHours() >= startingDate.getHours()) ||
+      (startingDate.getDate() == currentDate.getDate() &&
+        currentDate.getHours() <= startingDate.getHours())
+    ) {
+      setIsCounterStarted(true);
+      setRemainingTime(calculateTimeDiffrence(currentDate, startingDate));
+      console.log(calculateTimeDiffrence(currentDate, startingDate));
+    }
+  }, []);
 
   return (
     <div>
       <Header />
-      {isCounterStarted && <CountDownTimer />}
-      <Flyer starttingDate={starttingDate.split("-")} venue={venue} registrationsDeadlines={registrationsDeadlines}/>
+      {isCounterStarted && <CountDownTimer remainingTime={remainingTime} />}
+      <Flyer
+        starttingDate={starttingDate.slice(0, 10).split("-")}
+        venue={venue}
+        registrationsDeadlines={registrationsDeadlines}
+      />
       <Why />
-      <MeetTeam teamPhoto={teamPhoto}/>
-      <Gallery gallery={gallery}/>
-      <Tshirt tShirtFront={tShirtFront} tShirtBack={tShirtBack}/>
+      <MeetTeam teamPhoto={teamPhoto} />
+      <Gallery gallery={gallery} />
+      <Tshirt tShirtFront={tShirtFront} tShirtBack={tShirtBack} />
       <Footer />
     </div>
   );
