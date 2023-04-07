@@ -31,9 +31,7 @@ const PhotosPage = (props) => {
         </h1>
         <p>
           {" "}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi alias, d at blanditiis
-          labore magni dolore s praesentium impedit assumenda? Non, deserunt dolore. amet
-          consectetur adipisicing elit. Eligendi alias, d at blanditiis labore
+          Step back in time to experience the nostalgia and excitment of previous years' of UMISF and relive the highlights through this collection of retrospective photos.
         </p>
       </div>
 

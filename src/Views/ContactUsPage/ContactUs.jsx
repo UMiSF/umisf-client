@@ -69,6 +69,50 @@ function ContactUs() {
     }
   }
 
+  const [captainMaleDetails, setCaptainMaleDetails] = useState([
+    {
+      name:'Bhagya Ranasinghe',
+      tag:'Captain',
+      phone:'0764197875',
+      email: "",
+      facebook:"https://www.facebook.com/bhagya.ranasinghe.522",
+      linkedin:"",
+      image:'captain-male.jpg'
+    },
+    {
+      name:'Ruchira Wijayasena',
+      tag:'Vice Captain',
+      phone:'0764197875',
+      email: "",
+      facebook:"",
+      linkedin:"",
+      image:'viceCaptain-male.jpg'
+    },
+    
+  ])
+
+  const [captainFeMaleDetails, setCaptainFemaleDetails] = useState([
+    {
+      name:'Nethmi Jayakody',
+      tag:'Captain',
+      phone:'0705246536',
+      email: "nethmik99@gmail.com",
+      facebook:"https://web.facebook.com/nethmi.jayakody.52",
+      linkedin:"https://www.linkedin.com/in/nethmi-jayakody/",
+      image:'captain-female.jpg'
+    },
+    {
+      name:'Pamodya Kodithuwakku',
+      tag:'Vice Captain',
+      phone:'0764197875',
+      email: "",
+      facebook:"",
+      linkedin:"",
+      image:'viceCaptain-female.jpeg'
+    },
+    
+  ])
+
   return (
     <div>
       <div className={`${styles['headerDiv']}`}>
@@ -81,20 +125,20 @@ function ContactUs() {
 
       <div className={`${styles['container']}`}>
         <div className={`${styles['captain-contaier']}`}>
-          <div className={`${styles['member']}`}>
-            <Member img={'Captain_male.jpg'} name={'Nadun Gunawardana'} tag={'Captain'} phone={'0764197875'} />
+          {captainMaleDetails.map((captain,index)=>(
+            <div className={`${styles['member']}`}>
+            <Member details={captain} />
           </div>
-          <div className={`${styles['member']}`}>
-            <Member img={'ViceCaptain_male.jpg'} name={'Vinul Fernando'} tag={'Vice Captain'} phone={'0764197875'} />
-          </div>
+          ))}
+          
+          
         </div>
         <div className={`${styles['captain-contaier']}`}>
-          <div className={`${styles['member']}`}>
-            <Member img={'Captain_female.JPG'} name={'Nethmi Jayakody'} tag={'Captain'} phone={'0764197875'} />
+        {captainFeMaleDetails.map((captain,index)=>(
+            <div className={`${styles['member']}`}>
+            <Member details={captain} />
           </div>
-          <div className={`${styles['member']}`}>
-            <Member img={'ViceCaptain_female.jpg'} name={'Dulja Bamunusinghe'} tag={'Vice Captain'} phone={'0764197875'} />
-          </div>
+          ))}
         </div>
       </div>
 

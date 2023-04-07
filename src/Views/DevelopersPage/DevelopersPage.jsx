@@ -16,13 +16,13 @@ function DevelopersPage() {
       github: 'neth99-coder'
     },
     {
-      name: "Vinul Fernando",
-      working_place: "Trainee Software engineer@ GTN",
-      image: "vinul.jpg",
+      name: "Supun Dasanayaka",
+      working_place: "Trainee Software engineer@ Insighture",
+      image: "supun.jpeg",
       position: "Full Stack Developer",
-      linkedin: 'https://www.linkedin.com/in/vinul-fernando-1239761a0/',
-      facebook:'https://web.facebook.com/vinul.fernando.7',
-      github: 'Vinuhans'
+      linkedin: 'https://www.linkedin.com/in/supun-dhananjaya/',
+      facebook:'https://web.facebook.com/supun.dhananjaya.5817',
+      github: 'SupunDhananjaya'
     },
     {
       name: "Harshani Bandara",
@@ -34,14 +34,15 @@ function DevelopersPage() {
       github: 'HarshaniBandara'
     },
     {
-      name: "Supun Dasanayaka",
-      working_place: "Trainee Software engineer@ Insighture",
-      image: "supun.jpeg",
+      name: "Vinul Fernando",
+      working_place: "Trainee Software engineer@ GTN",
+      image: "vinul.jpg",
       position: "Full Stack Developer",
-      linkedin: 'https://www.linkedin.com/in/supun-dhananjaya/',
-      facebook:'https://web.facebook.com/supun.dhananjaya.5817',
-      github: 'SupunDhananjaya'
+      linkedin: 'https://www.linkedin.com/in/vinul-fernando-1239761a0/',
+      facebook:'https://web.facebook.com/vinul.fernando.7',
+      github: 'Vinuhans'
     },
+    
     {
       name: "Kumuthu Athukorala",
       working_place: "Trainee Software engineer@ Codegen",
@@ -52,15 +53,6 @@ function DevelopersPage() {
       github: 'KumuthuA'
     },
     {
-      name: "Poorna Cooray",
-      working_place: "Trainee Software engineer@ H2O.ai",
-      image: "poorna.jpg",
-      position: "Full Stack Developer",
-      linkedin: 'https://www.linkedin.com/in/poorna-cooray-64430721b/',
-      facebook:'https://web.facebook.com/prn.savindi',
-      github: 'poornaSavindi'
-    },
-    {
       name: "Yasira Punsith",
       working_place: "CSE undergraduate@ UOM",
       image: "harshani.jpeg",
@@ -69,6 +61,16 @@ function DevelopersPage() {
       facebook:'https://web.facebook.com/profile.php?id=100006817725111',
       github: 'yasira2000'
     },
+    {
+      name: "Poorna Cooray",
+      working_place: "Trainee Software engineer@ H2O.ai",
+      image: "poorna.jpg",
+      position: "Full Stack Developer",
+      linkedin: 'https://www.linkedin.com/in/poorna-cooray-64430721b/',
+      facebook:'https://web.facebook.com/prn.savindi',
+      github: 'poornaSavindi'
+    },
+    
   ]);
   return (
     <div>
