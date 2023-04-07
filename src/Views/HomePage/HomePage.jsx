@@ -10,12 +10,10 @@ import Flyer from "./Flyer/flyer";
 
 const HomePage = () => {
   const [isCounterStarted, setIsCounterStarted] = useState(false)
-  const [starttingDate, setStartingDate] = useState("2023-05-31");
-  const [venue, setVenue] = useState("University gymnasium");
-  const [registrationsClosingDate, setRegistrationsClosingDate] = useState("2023-05-23");
+  const [starttingDate, setStartingDate] = useState("2023-05-21");
+  const [venue, setVenue] = useState(["University gymnasium","S. Thomas' College, Mount Lavinia"]);
+  const [registrationsDeadlines, setRegistrationsDealines] = useState(["2023-04-13", "2023-04-30"]);
   const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
-
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
   const [gallery, setGallery] = useState([
     "2017.jpeg",
@@ -32,12 +30,6 @@ const HomePage = () => {
   const [tShirtFront, setTShirtFront] = useState("tshirt-front.png");
   const [tShirtBack, setTShirtBack] = useState("tshirt-back.png");
 
-  const formatDate = (date) =>{
-    let dayList = date.slice(0,10).split("-")
-    let month = months[parseInt(dayList[1]) - 1];
-    return [dayList[0],month,dayList[2]]
-  }
-
   useEffect((()=>{
     let currentDate = new Date().toJSON().slice(0, 10);
     if (starttingDate.startsWith(currentDate.slice(0,9)) && parseInt(starttingDate.slice(8,10)) - currentDate.slice(8,10) == 1){
@@ -49,7 +41,7 @@ const HomePage = () => {
     <div>
       <Header />
       {isCounterStarted && <CountDownTimer />}
-      <Flyer starttingDate={starttingDate.split("-")} venue={venue} registrationsClosingDate={()=>formatDate(registrationsClosingDate)}/>
+      <Flyer starttingDate={starttingDate.split("-")} venue={venue} registrationsDeadlines={registrationsDeadlines}/>
       <Why />
       <MeetTeam teamPhoto={teamPhoto}/>
       <Gallery gallery={gallery}/>

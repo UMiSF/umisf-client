@@ -34,7 +34,7 @@ function Gallery(props) {
         </div>
       </div>
       <div className={`${styles["gallery-view-more"]}`}>
-        <a href="/photos" type="button">
+        <a href="/photos" type="button" target='_blank'>
           View More
         </a>
       </div>
