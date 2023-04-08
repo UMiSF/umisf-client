@@ -23,7 +23,7 @@ const AboutPage = () => {
           all island age group event and will be held for the 14th time in 2023,
           bigger than ever!!
         </p>
-        <div class={`${styles["row"]}`}>
+        <div class={`${styles["history-row"]}`}>
           <div class={`${styles["objectives-col"]}`}>
             <h3>VISION</h3>
             <p>
@@ -59,7 +59,6 @@ const AboutPage = () => {
           <p
             style={{
               display: "inline-block",
-              fontSize: "60px",
               color: "#0984E3",
               fontFamily: "Hind",
             }}
