@@ -155,49 +155,6 @@
     color: white;
 }
 
-@media screen and (max-width:670px){
-    .navBarItem{
-        font-size: 9px;
-    }
-}
-
-@media screen and (max-width:570px){
-
-    .toggle-button{
-        display: block;
-    }
-
-    .navBarItem{
-        display: block;
-        margin: 30px;
-        top:10vh;
-        justify-content: center;
-        align-items: center;
-    }
-    .navBarList{
-        display: none;
-    } 
-
-    .side-img{
-        display: block;
-    }
-
-    .timer-blocks{
-        width: 60px;
-    }
-
-}
-
-@media screen and (min-width:571px){
-    .navSideBar{
-        width: 0;
-    }
-
-    .navSideBar li{
-        display: none;
-    }
-}
-
 .drop-down-item{
     text-decoration: none;
     list-style: none;
@@ -262,3 +219,62 @@
     z-index:0;
     top: 75px;
 }
+
+@media screen and (max-width:980px){
+    .navBarItem{
+        font-size: 0.9vw;
+    }
+
+    .register{
+        font-size: 0.9vw;
+        margin: 0.2em 0.5em;
+    }
+}
+
+@media screen and (max-width:670px){
+    .navBarItem{
+        font-size: 8px;
+    }
+
+    .register{
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width:570px){
+
+    .toggle-button{
+        display: block;
+    }
+
+    .navBarItem{
+        display: block;
+        margin: 30px;
+        top:10vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .navBarList{
+        display: none;
+    } 
+
+    .side-img{
+        display: block;
+    }
+
+    .timer-blocks{
+        width: 60px;
+    }
+
+}
+
+@media screen and (min-width:571px){
+    .navSideBar{
+        width: 0;
+    }
+
+    .navSideBar li{
+        display: none;
+    }
+}
+

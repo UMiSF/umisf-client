@@ -8,7 +8,6 @@
 .countdown-container {
   height: 35vw;
   background-color: #f1f4f6;
-  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
 }
 
 .rightdiv {
@@ -125,17 +124,4 @@
   font-size: 1rem;
   font-family: "Edu VIC WA NT Beginner", cursive;
   font-weight: bold;
-}
-
-@media screen and (max-width: 430px) {
-  .top,
-  .bottom,
-  .flip-card .top-flip,
-  .flip-card .bottom-flip {
-    font-size: 9vw;
-  }
-
-  .countdown-container {
-    height: 50vw;
-  }
 }

@@ -127,6 +127,18 @@
   }
 }
 
+@media screen and (max-width: 920px) {
+  .gallery-view-more a {
+    font-size: 1.5vw;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .gallery-view-more a {
+    font-size: 1.8vw;
+  }
+}
+
 @media screen and (max-width: 540px) {
   .gallery-box {
     display: block;
@@ -135,5 +147,16 @@
 
   .gallery-box-row {
     width: 100%;
+  }
+
+  .gallery-title,
+  .gallery-title p {
+    font-size: 5vw;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .gallery-view-more a {
+    font-size: 2vw;
   }
 }

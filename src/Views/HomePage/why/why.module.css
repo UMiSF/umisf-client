@@ -94,7 +94,22 @@
   }
 }
 
-@media screen and (max-width: 1190px) {
+@media screen and (max-width: 900px) {
+  .why-list {
+    font-size: 1.4vw;
+    line-height: 1.4vw;
+  }
+  .why-desc p {
+    font-size: 1.4vw;
+  }
+
+  .why-title, .why-title p{
+    font-size: 4vw;
+  }
+
+  .why-view-more a{
+    font-size: 1.4vw;
+  }
 }
 
 @media screen and (max-width: 920px) {
@@ -111,5 +126,41 @@
 
   .team {
     background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .why-list {
+    font-size: 2vw;
+    line-height: 2vw;
+  }
+  .why-desc p {
+    font-size: 2vw;
+  }
+
+  .why-title, .why-title p{
+    font-size: 5vw;
+  }
+
+  .why-view-more a{
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .why-list {
+    font-size: 3vw;
+    line-height: 3vw;
+  }
+  .why-desc p {
+    font-size: 3vw;
+  }
+
+  .why-title, .why-title p{
+    font-size: 6vw;
+  }
+
+  .why-view-more a{
+    font-size: 3vw;
   }
 }

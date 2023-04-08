@@ -12,7 +12,6 @@ const MeetTeam = (props) => {
               display: "inline-block",
               color: "#0984E3",
               borderTop: "2px solid #0984E3",
-              fontSize:"4vw"
             }}
           >
             TEAM
