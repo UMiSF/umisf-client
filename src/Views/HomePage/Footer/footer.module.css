@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background: rgba(0, 0, 0, 0.93);
+  background: #1B1919;
   color: white;
-  padding: 6vw 1vw;
+  padding: 0.5vw 1vw;
   width: 100%;
   height: auto;
 }
@@ -12,6 +12,7 @@
 .footer-left,
 .footer-middle,
 .footer-right {
+  flex-basis: 33%;
   box-sizing: border-box;
   padding: 2vh;
   transition: ease-in-out 0.7s;
@@ -24,15 +25,15 @@
 
 .quick-tabs a {
   text-decoration: none;
-  font-family: "roboto";
-  font-size: 2vh;
+  font-family: "Hind", sans-serif;
+  font-size: 15px;
   color: white;
 }
 
 .copyright {
-  font-family: "montserrat";
+  font-family: "Hind";
   padding-top: 2vw;
-  font-size: 1.8vh;
+  font-size: 15px;
 }
 
 .center-row {
@@ -43,17 +44,21 @@
 }
 
 .center-row i {
-  font-size: 3vh;
+  font-size: 18px;
   background: #0984e3;
   border-radius: 50%;
   padding: 0.8vw;
 }
 
 .center-row p {
-  font-size: 2.3vh;
+  font-size: 15px;
   padding-top: 1.1vw;
   padding-left: 2.3vw;
   transition: ease-in-out 0.5s;
+}
+
+.center-row a {
+  font-size: 15px;
 }
 
 .center-row p:hover {
@@ -68,18 +73,20 @@
 
 .footer-right h6 {
   color: white;
-  font-family: "roboto";
-  font-size: 2.6vh;
+  font-family: "Hind";
+  font-size: 18px;
   font-weight: bold;
 }
 
 .footer-right p {
-  font-family: "montserrat";
-  font-size: 1.8vh;
+  font-family: "Hind";
+  font-size: 15px;
+  width: 100%;
+  text-align: justify;
 }
 
 .footer-icons i {
-  font-size: 2.8vh;
+  font-size: 18px;
   background: #0984e3;
   border-radius: 50%;
   padding: 1.5vh;
@@ -87,7 +94,45 @@
   margin-right: 2.5vh;
 }
 
-@media screen and (max-width: 500px) {
+.bottom-row{
+  padding: 10px;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  background-color: #2D2A2A;
+}
+
+@media screen and (max-width: 900px) {
+  .quick-tabs a {
+    font-size: 13px;
+  }
+  
+  .center-row p {
+    font-size: 13px;
+  }
+
+  .center-row a {
+    font-size: 13px;
+  }
+
+  .footer-right h6 {
+    font-size: 16px;
+  }
+
+  .footer-right p {
+    font-size: 13px;
+  }
+
+  .footer-icons i {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .quick-tabs a {
+    font-size: 13px;
+  }
+
   .footer-container {
     flex-flow: wrap;
     flex-direction: column;

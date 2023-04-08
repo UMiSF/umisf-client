@@ -5,15 +5,15 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HomePage from "../Views/HomePage/HomePage";
 import AboutPage from "../Views/AboutPage/AboutPage";
 import ContactUsPage from "../Views/ContactUsPage/ContactUs";
-import SingleRegistration from "../Views/RegistrationPage/SinglesRegistration/SingleRegistration";
-import DoubleRegistration from "../Views/RegistrationPage/DoublesRegistration/DoubleRegistration";
+// import SingleRegistration from "../Views/RegistrationPage/SinglesRegistration/SingleRegistration";
+// import DoubleRegistration from "../Views/RegistrationPage/DoublesRegistration/DoubleRegistration";
 import CompanyRegistration from "../Views/RegistrationPage/CompanyRegistration/CompanyRegistration";
 import UniversityRegistration from "../Views/RegistrationPage/UniversityRegistration/UniversityRegistration";
 import PlayerRegistration from "../Views/RegistrationPage/PlayerRegistration/PlayerRegistration";
 import DrawsPage from "../Views/DrawsPage/DrawsPage";
 import MatchSchedulePage from "../Views/MatchSchedulePage/MatchSchedulePage";
 import MatchResultsPage from "../Views/MatchResultsPage/MatchResultsPage";
-import PhotosPage from "../Views/PhotosPage/PhotosPage";
+import GalleryPage from "../Views/PhotosPage/GalleryPage";
 import NotFound from "../Views/NotFoundPage/NotFound";
 import Unauth from "../Views/UnauthPage/Unauth";
 import HeaderPage from "../Views/HeaderPage/HeaderPage";
@@ -21,6 +21,11 @@ import OrganizerHomePage from "../Views/OrganizerHomePage/OrganizerHomePage";
 import TableHomePage from "../Views/TableHomePage/TableHomePage";
 import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
 import DrawEditPage from "../Views/DrawEditPage/DrawEditPage";
+
+import FinishedMatchCard from "../Views/MatchResultsPage/FinishedMatchCard";
+import PhotosPage from "../Views/PhotosPage/PhotosPage";
+import RegisterAll from "../Views/RegistrationPage/RegisterAll/RegisterAll";
+import DevelopersPage from "../Views/DevelopersPage/DevelopersPage";
 
 import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
@@ -48,6 +53,7 @@ import AdminCompanyAddNewPlayerPage from "../Views/AdminCompanyAddNewPlayerPage/
 import AdminPlayerViewPage from "../Views/AdminPlayersViewPage/AdminPlayersViewPage";
 import AdminPlayersPage from "../Views/AdminPlayersPage/AdminPlayersPage";
 import AdminPlayersAddPage from "../Views/AdminPlayersAddPage/AdminPlayersAddPage";
+
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
 
@@ -60,16 +66,25 @@ export default function AppRouter() {
           <Route path="contact-us" element={<ContactUsPage />} />
           <Route path="register">
             <Route path="player" element={<PlayerRegistration />} />
-            <Route path="single" element={<SingleRegistration />} />
-            <Route path="double" element={<DoubleRegistration />} />
+            <Route path="single-double" element={<RegisterAll/>} />
+            {/* <Route path="single" element={<SingleRegistration />} />
+            <Route path="double" element={<DoubleRegistration />} /> */}
             <Route path="university" element={<UniversityRegistration />} />
             <Route path="company" element={<CompanyRegistration />} />
           </Route>
           <Route path="draws" element={<DrawsPage />} />
+
+          <Route path="draws-edit" element={<DrawEditPage />} />
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
           <Route path="match-results" element={<MatchResultsPage />} />
+          <Route
+            path="match-results/:matchid"
+            element={<FinishedMatchCard />}
+          />
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
-          <Route path="photos" element={<PhotosPage />} />
+          <Route path="photos" element={<GalleryPage />} />
+          <Route path="photos/:title" element={<PhotosPage />} />
+          <Route path="developers" element={<DevelopersPage />} />
           <Route path="*" element={<NotFound />} />
 
           {/*type1: admin  admin/page_name*/}

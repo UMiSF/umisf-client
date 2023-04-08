@@ -10,12 +10,9 @@ const HomePage = () => {
         <div className={`${styles["UMiSF-container"]}`}>
           <h1>UMiSF</h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. A <br />
-            facere eligendi esse explicabo laborum repudiandae corporis <br />
-            praesentium et ducimus quod ut veniam deleniti periam
+            University of Moratuwa<br/>
+            International Shuttlers' Fest
           </p>
-
-          <button type="button">View More</button>
         </div>
       </div>
     </div>
