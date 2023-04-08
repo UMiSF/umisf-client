@@ -128,7 +128,7 @@ const AboutPage = () => {
         </div>
       </section>
       <section className={`${styles["testimonials"]}`}>
-        <h1>Masseges from Organizing commitee</h1>
+        <h1>Masseges from Organizing committee</h1>
         <p>
           Badminton has always been a popular sport among the undergraduate
           community of our university. Since the inauguration of annual
@@ -142,10 +142,10 @@ const AboutPage = () => {
         <div className={`${styles["row"]}`}>
           <div className={`${styles["testimanial-col"]}`}>
             <img
-              src={require("../../assests/images/Captain_male.jpg")}
+              src={require("../../assests/images/captain-male.jpg")}
               alt=""
             ></img>
-            <div>
+            <div className={`${styles["testimanial-col-content"]}`}>
               <p>
                 This is a great opportunity for university teams and school
                 players to showcase their skills and compete against each other
@@ -155,16 +155,16 @@ const AboutPage = () => {
                 a great time, make new friends, and create lasting memories.
                 Good luck to all the teams, and let the games begin!
               </p>
-              <h3>Nadun Gunawardana</h3>
-              <h6>Captain(2022-2023)</h6>
+              <h3>Bhagya Ranasinghe</h3>
+              <h6>Captain</h6>
             </div>
           </div>
           <div className={`${styles["testimanial-col"]}`}>
             <img
-              src={require("../../assests/images/Captain_female.JPG")}
+              src={require("../../assests/images/captain-female.jpg")}
               alt=""
             ></img>
-            <div>
+            <div className={`${styles["testimanial-col-content"]}`}>
               <p>
                 The UMISF is an incredible opportunity for us to showcase our
                 skills and compete against some of the best players around. As
@@ -174,18 +174,18 @@ const AboutPage = () => {
                 rewarding experience for all the participants and that we can
                 show what it means to play with passion and determination.
               </p>
-              <h3>Nethmi Jayakodi</h3>
-              <h6>Captain(2022-2023)</h6>
+              <h3>Nethmi Jayakody</h3>
+              <h6>Captain</h6>
             </div>
           </div>
         </div>
         <div className={`${styles["row"]}`}>
           <div className={`${styles["testimanial-col"]}`}>
             <img
-              src={require("../../assests/images/ViceCaptain_male.jpg")}
+              src={require("../../assests/images/viceCaptain-male.jpg")}
               alt=""
             ></img>
-            <div>
+            <div className={`${styles["testimanial-col-content"]}`}>
               <p>
                 I would want to express our pleasure and enthusiasm for this
                 competition as the vice captain of the men's team. We are
@@ -196,16 +196,16 @@ const AboutPage = () => {
                 memorable experience. Let's compete fiercely, fairly, and most
                 importantly, let's enjoy ourselves!
               </p>
-              <h3>Vinul Fernando</h3>
-              <h6>Vice Captain(2022-2023)</h6>
+              <h3>Ruchira Wijayasena</h3>
+              <h6>Vice Captain</h6>
             </div>
           </div>
           <div className={`${styles["testimanial-col"]}`}>
             <img
-              src={require("../../assests/images/ViceCaptain_female.jpg")}
+              src={require("../../assests/images/viceCaptain-female.jpeg")}
               alt=""
             ></img>
-            <div>
+            <div className={`${styles["testimanial-col-content"]}`}>
               <p>
                 This is a wonderful opportunity for us to come together and
                 showcase our love for this sport. I hope that we can all play
@@ -217,8 +217,8 @@ const AboutPage = () => {
                 let's make this tournament an experience that we will all
                 remember for years to come.
               </p>
-              <h3>Dulja Bamunusinghe</h3>
-              <h6>Vice Captain(2022-2023)</h6>
+              <h3>Pamodya Kodithuwakku</h3>
+              <h6>Vice Captain</h6>
             </div>
           </div>
         </div>

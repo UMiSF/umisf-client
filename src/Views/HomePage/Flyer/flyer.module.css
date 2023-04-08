@@ -8,7 +8,7 @@
   position: relative;
   top: 0;
   left: 17vw;
-  width: 60vw;
+  width: 62vw;
   z-index: -10;
   -webkit-animation: mover 2s infinite alternate;
   animation: mover 1s infinite alternate;
@@ -91,9 +91,16 @@
   font-size: 1.5vw;
 }
 
+.venue p{
+  font-size: 1.5vw;
+  font-family: "Roboto";
+  color: #7ba6c8;
+  line-height: 1vw;
+}
+
 .register {
   position: absolute;
-  top: 41vw;
+  top: 43vw;
   left: 69vw;
   padding: 6px 25px;
   text-decoration: none;
@@ -113,7 +120,7 @@
 
 .before {
   position: absolute;
-  top: 44vw;
+  top: 46vw;
   left: 75vw;
   padding: 6px 25px;
   font-family: "Hind";

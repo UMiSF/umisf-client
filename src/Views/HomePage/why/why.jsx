@@ -17,7 +17,7 @@ const Why = () => {
         passion for badminton.
       </div>
       <div className={`${styles["why-view-more"]}`}>
-        <a href="/about" type="button">
+        <a href="/about" type="button" target='_blank'>
           Read More
         </a>
       </div>

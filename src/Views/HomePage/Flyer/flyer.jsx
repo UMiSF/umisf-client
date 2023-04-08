@@ -4,7 +4,9 @@ import styles from "./flyer.module.css";
 const Flyer = (props) => {
     const [date,setDate] = useState(props.starttingDate)
     const [venue,setVenue] = useState(props.venue)
-    const [before,setBefore] = useState(props.registrationsClosingDate)
+    const [registrationPeriod,setRegistrationPeriod] = useState(props.registrationsDeadlines)
+
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     const superscript = (letter) => {
         if(letter == "1"){
@@ -17,6 +19,21 @@ const Flyer = (props) => {
             return "th"
         }
     }
+
+    const formatDate = (date) =>{
+      let dayList = date.slice(0,10).split("-")
+      let month = months[parseInt(dayList[1]) - 1];
+      return [dayList[0],month,dayList[2]]
+    }
+
+    useEffect((()=>{
+      let period = []
+      for (let i = 0; i < registrationPeriod.length; i++) {
+        period.push(formatDate(registrationPeriod[i]))
+      }
+
+      setRegistrationPeriod(period)
+    }),[])
 
   return (
     <div className={`${styles["flyer-container"]}`}>
@@ -39,11 +56,15 @@ const Flyer = (props) => {
         {date[1]+" , "+ date[0]}
       </div>
       <div className={`${styles["venue"]}`}>
-        {"at " + venue}
+        {venue.map((place,index)=>(
+          
+          <p> { index == 0 ? 'at '+ place: '& ' + place}</p>
+        ))}
       </div>
       <a className={`${styles["register"]}`} href="/register/player" type="button">Register</a>
       <div className={`${styles["before"]}`}>
-        {`before ${before[2]}`} <sup style={{fontSize:"0.6vw"}}>{`${superscript(before[2].charAt(before[2].length - 1))}`}</sup> {`${before[1]} ${before[0]}`}
+        {`from ${registrationPeriod[0][2]}`} <sup style={{fontSize:"0.6vw"}}>{`${superscript(registrationPeriod[0][2].charAt(registrationPeriod[0][2].length - 1))}`}</sup> {`${registrationPeriod[0][1]} ${registrationPeriod[0][0]}`}<br/>
+        {`to ${registrationPeriod[1][2]}`} <sup style={{fontSize:"0.6vw"}}>{`${superscript(registrationPeriod[1][2].charAt(registrationPeriod[1][2].length - 1))}`}</sup> {`${registrationPeriod[1][1]} ${registrationPeriod[1][0]}`}
       </div>
       <div className={`${styles["more-info"]}`}>
         {"For more info, refer "}<a href="#">Tournament Details and Registration Guidlines</a>

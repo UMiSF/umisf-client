@@ -126,3 +126,15 @@
 		opacity: 0;
 	}
 }
+
+@media screen and (max-width: 540px) {
+  .gallery-box {
+    display: block;
+    padding: 0 50px;
+  }
+
+  .gallery-box-row {
+    width: 100%;
+  }
+
+}

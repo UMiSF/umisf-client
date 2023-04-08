@@ -10,8 +10,8 @@ function Footer() {
           <img src={require("../../../assests/images/umisf_logo.png")} />
           <div className={`${styles["quick-tabs"]}`}>
             <a href="/">Home</a>|<a href="/about">About</a>|<a href="/register/player">Register</a>|
-            <a href="#">Draws</a>|<br />
-            <a href="/photos">Gallery</a>|<a href="#">Developers</a>|
+            <a href="/draws">Draws</a>|<br />
+            <a href="/photos">Gallery</a>|<a href="/developers">Developers</a>|
             <a href="/contact-us">Contact Us</a>
           </div>
         </div>
@@ -23,12 +23,12 @@ function Footer() {
           </div>
           <div className={`${styles["center-row"]}`}>
             <i class="bx bx-phone" style={{ color: "#ffffff" }}></i>
-            <p> 2640051, 2650301</p>
+            <p> 0112 640 051</p>
           </div>
           <div className={`${styles["center-row"]}`}>
-            <i className="bx bx-envelope" style={{ color: "#ffffff" }}></i>
+          <i class='bx bx-link-external' style={{color:'#ffffff'}} ></i>
             <p>
-              <a className={`${styles["uom-email"]}`} href="https://uom.lk">
+              <a className={`${styles["uom-email"]}`} href="https://uom.lk" target='_blank'>
                 uom.lk
               </a>
             </p>
@@ -43,17 +43,17 @@ function Footer() {
              in collaboration with the university's division of Physical Education. 
           </p>
           <div className={`${styles["footer-icons"]}`}>
-            <a href="#">
+            <a href="https://twitter.com/MoratuwaUni" target='_blank'>
               <i className="bx bxl-twitter"></i>
             </a>
-            <a href="#">
+            <a href="https://www.facebook.com/UMiSFMora?mibextid=LQQJ4d" target='_blank'>
               <i className="bx bxl-facebook"></i>
             </a>
           </div>
         </div>
       </div>
 
-      <div className={`${styles["bottom-row"]}`}>Copyright © 2022 University of Moratuwa</div>
+      <div className={`${styles["bottom-row"]}`}>Copyright © 2022 developers@umisf.web</div>
     </div>
   );
 }

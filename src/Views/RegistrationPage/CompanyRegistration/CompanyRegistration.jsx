@@ -7,7 +7,7 @@ import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
 import plus from "../../../assests/images/plus.png";
 import Styles from "./CompanyRegistration.module.css";
-import NotAvailablePage from "../../../common/notAvailablePage/NotAvailablePage";
+import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 
 const CompanyRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
@@ -313,7 +313,7 @@ const CompanyRegistration = () => {
           </div>
         </>
       ) : (
-        <NotAvailablePage />
+        <RegistrationsNotOpen/>
       )}
     </div>
   );
