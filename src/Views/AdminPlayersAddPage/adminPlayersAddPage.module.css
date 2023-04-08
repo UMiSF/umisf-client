@@ -159,3 +159,16 @@
   .pwd-visible:hover{
     cursor: pointer;
   }
+  
+  .dropdown {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .dropdown:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .dropdown:active {
+    background-color: #ddd;
+  }

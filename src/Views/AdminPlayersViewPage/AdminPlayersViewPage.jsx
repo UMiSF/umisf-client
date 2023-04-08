@@ -70,7 +70,7 @@ const AdminPlayersViewPage = () => {
       <div className={`${styles["players-details-container"]}`}>
         <div className={`${styles["photo-container"]}`}>
           <img
-            src={require("../../assests/images/Captain_female.JPG")}
+            src={require("../../assests/images/captain-female.jpg")}
             alt=""
           />
         </div>
@@ -146,6 +146,15 @@ const AdminPlayersViewPage = () => {
           </Modal.Footer>
         </form>
       </Modal>
+
+
+
+
+
+
+      {/* admin player modal with payements page  with filters*/}
+
+      
     </div>
   );
 };

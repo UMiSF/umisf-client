@@ -8,22 +8,30 @@ import Axios from 'axios';
 import { message } from 'antd';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import defualtUser from '../../assests/images/default-user.png'
+import Dropdown from "../../common/Dropdown/Dropdown";
+import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 const AdminPlayersAddPage = () => {
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
     DOB: "",
-    UID: "",
-    pastPerformance: [],
     gender: "",
     contactNumber: "",
     email: "",
+    institute:"",
     postalAddress: "",
+    performanceThreshold:"",
+    photo:"sample_photo.jpg",
   });
 
-  
-
-
+  const genderOptions = ["Male", "Female"];
+  const [gender, setGender] = useState("");
+  const [fileList, setFileList] = useState([]);
+  const changeGender = (value) => {
+    setUserDetails((prevValue) => {
+      return { ...prevValue, gender: value };
+    });
+  };
   const [validated, setValidated] = useState(false); //form validation
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -48,8 +56,8 @@ const AdminPlayersAddPage = () => {
     setIsSubmitting(true);
     try {
       const result = await Axios.post(
-        process.env.REACT_APP_API_URL + '/players/add',
-        { userData: [userDetails] },
+        process.env.REACT_APP_API_URL + '/player/add',
+        { playerData: [userDetails] },
         {
           headers: {},
         }
@@ -126,30 +134,34 @@ const AdminPlayersAddPage = () => {
           <div className={`${styles['profile-field-container']}`}>
             <div className={`${styles['profile-field-name']}`}>Gender</div>
             <div className={`${styles['profile-field-value']}`}>
-              <input
-                type="text"
-                className={`${styles['form-input']}`}
-                value={userDetails.gender}
-                placeholder="select your gender"
-                onChange={(e) => setUserDetails({ ...userDetails, gender: e.target.value })}
-              />
+              <MDBCol className="" lg="12" md="12" sm="12">
+                        <Dropdown
+                          options={genderOptions}
+                          handleClick={(option) => {
+                            setGender(option);
+                            changeGender(option);
+                          }}
+                          value={gender}
+                          lable={"Gender"}
+                        />
+                      </MDBCol>
             </div>
           </div>
           <hr />
-        
           <div className={`${styles['profile-field-container']}`}>
-            <div className={`${styles['profile-field-name']}`}>university Id</div>
+            <div className={`${styles['profile-field-name']}`}>institute</div>
             <div className={`${styles['profile-field-value']}`}>
               <input
                 type="text"
                 className={`${styles['form-input']}`}
-                value={userDetails.UID}
-                placeholder="enter id"
-                onChange={(e) => setUserDetails({ ...userDetails, UID: e.target.value })}
+                value={userDetails.institute}
+                placeholder="Enter the user institute"
+                onChange={(e) => setUserDetails({ ...userDetails, institute: e.target.value })}
               />
             </div>
           </div>
           <hr />
+         
           <div className={`${styles['profile-field-container']}`}>
             <div className={`${styles['profile-field-name']}`}>date of birth</div>
             <div className={`${styles['profile-field-value']}`}>
@@ -175,16 +187,17 @@ const AdminPlayersAddPage = () => {
               />
             </div>
           </div>
+       
           <hr />
           <div className={`${styles['profile-field-container']}`}>
-            <div className={`${styles['profile-field-name']}`}>Past performance</div>
+            <div className={`${styles['profile-field-name']}`}>Performace threshould</div>
             <div className={`${styles['profile-field-value']}`}>
               <input
                 type="text"
                 className={`${styles['form-input']}`}
-                value={userDetails.pastPerformance}
-                placeholder="add past performance"
-                onChange={(e) => setUserDetails({ ...userDetails, pastPerformance: e.target.value })}
+                value={userDetails.performanceThreshold}
+                placeholder="Enter the user performance threshould.."
+                onChange={(e) => setUserDetails({ ...userDetails, performanceThreshold: e.target.value })}
               />
             </div>
           </div>
@@ -199,6 +212,14 @@ const AdminPlayersAddPage = () => {
                 placeholder="enter postal address"
                 onChange={(e) => setUserDetails({ ...userDetails, postalAddress: e.target.value })}
               />
+            </div>
+          </div>
+          <hr />
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>photo</div>
+            <div className={`${styles['profile-field-value']}`}>
+              
+              <ImageUploader fileList={fileList} setFileList={setFileList} />
             </div>
           </div>
           <hr />
