@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
@@ -10,6 +11,8 @@ import {
   MDBCol,
 } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
+import { Modal, Button, Typography } from 'antd';
+import { Link } from 'react-router-dom';
 
 const PlayerRegistration = () => {
   const [validated, setValidated] = useState(false); //form validation
@@ -24,8 +27,11 @@ const PlayerRegistration = () => {
     email: "",
   });
   const [fileList, setFileList] = useState([]);
-  const [isChecked, setIsChecked] = useState(true)
-  const [playerID,setPlayerID]=useState('e234563gh')
+  const [isChecked, setIsChecked] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [playerID, setPlayerID] = useState('e234563gh')
+  const navigate = useNavigate();
+  const { Paragraph } = Typography;
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -69,12 +75,24 @@ const PlayerRegistration = () => {
       e.stopPropagation()
     }
     setValidated(true)
+    setIsChecked(true)
   }
+  function conquestSubmit(e) {
+    e.preventDefault()
+    setShowModal(true)
+    //setIsChecked(false)
+    console.log("Conquest Submitted", e.target)
+  }
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
       <div className={`${Styles["title"]}`}>Player Registration</div>
-      {(!isChecked) && <>
+      {(!isChecked) && !showModal && <>
 
         <div className={`${Styles["info-container"]}`}>
           <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
@@ -216,16 +234,43 @@ const PlayerRegistration = () => {
       </>}
       {isChecked && <div className={`${Styles["success-msg-box"]}`}>
         <div className={`${Styles["success-msg"]}`}>
-          Thank you for registering with us ! Your player ID {playerID} will be used for registering for the future events including next years.
+          Thank you for registering with us ! Your player ID <Paragraph copyable>{playerID}</Paragraph> will be used for registering for the future events including next years.
           <div className={`${Styles["image-trophy"]}`}>
           </div>
         </div>
-
-        <MDBBtn className={`${Styles["conquest-button"]}`} type="submit">
-          <div className={`${Styles["conquest"]}`}>Enter the conquest</div>
-        </MDBBtn>
-
+        <Form className={`${Styles["conquest-form"]}`} onSubmit={conquestSubmit}>
+          <MDBBtn className={`${Styles["conquest-button"]}`} type="submit">
+            <div className={`${Styles["conquest"]}`}>Enter the conquest</div>
+          </MDBBtn>
+        </Form>
       </div>}
+
+      <div style={{ backgroundColor: 'red' }}>
+        <Modal
+          open={showModal}
+          onCancel={handleModal}
+          footer={null}
+          style={{ top: '35%' }}
+        >
+          <div className={`${Styles["modal-box"]}`}>
+            <Link to="/register/single">
+              <Button style={{ marginRight: '8px' }} type="primary" onClick={handleModal}>
+                <div className={`${Styles["modal-message"]}`}>Singles</div>
+              </Button>
+            </Link>
+            {/* <Link to="/register/double">
+          <Button style={{ marginRight: '8px' }} type="primary" onClick={handleModal}>
+          <div className={`${Styles["modal-message"]}`}>Doubles</div>
+          </Button>
+        </Link> */}
+            <Link to="/">
+              <Button style={{}} type="primary" onClick={handleModal}>
+                <div className={`${Styles["modal-message"]}`}>Go to Home Page</div>
+              </Button>
+            </Link>
+          </div>
+        </Modal>
+      </div>
     </div>
   );
 };
