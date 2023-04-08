@@ -14,7 +14,7 @@
   color: #0984e3;
   border: 1px solid #0984e3;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1vw;
   position: relative;
   overflow: hidden;
   font-family: "Hind", sans-serif;
@@ -46,7 +46,7 @@
 .why-title,
 .why-title p {
   font-family: "Hind", sans-serif;
-  font-size: 50px;
+  font-size: 3vw;
   text-align: center;
 }
 
@@ -55,27 +55,27 @@
   text-align: center;
 }
 
-.why-desc p{
+.why-desc p {
   font-family: "Hind", sans-serif;
-  font-size: 15px;
+  font-size: 1vw;
 }
 
-.why-list{
-  text-align:left ;
+.why-list {
+  text-align: left;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
 }
 
-.why-list p{
+.why-list p {
   font-weight: bold;
-  line-height: 13px;
+  line-height: 1vw;
 }
 
-.why-view-more{
-    margin-top: 60px;
-    display: flex;
-    justify-content: center;
+.why-view-more {
+  margin-top: 3vw;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (max-width: 1190px) {
@@ -89,24 +89,23 @@
     padding-bottom: 0;
   }
 
-  .team-photo img{
+  .team-photo img {
     height: 400px;
   }
 }
 
 @media screen and (max-width: 1190px) {
-  
 }
 
 @media screen and (max-width: 920px) {
-  .team-container{
-    background-image: url('../../../assests/images/team.jpeg');
+  .team-container {
+    background-image: url("../../../assests/images/team.jpeg");
     background-attachment: fixed;
     background-size: contain;
     background-repeat: no-repeat;
   }
 
-  .team-photo{
+  .team-photo {
     display: none;
   }
 

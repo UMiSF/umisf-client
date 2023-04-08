@@ -3,24 +3,20 @@
   margin-bottom: 20px;
 }
 
-.lableselected{
-  background-image: linear-gradient(
-    to bottom,
-    rgb(5, 9, 34),
-    rgb(22,35,74)
-  );
+.lableselected {
+  background-image: linear-gradient(to bottom, rgb(5, 9, 34), rgb(22, 35, 74));
   left: 30px;
   top: -12px;
   padding-bottom: 0;
   position: absolute;
-  font-size: 18px;
+  font-size: 15px;
   font-family: "Hind";
   cursor: pointer;
   font-weight: lighter;
 }
 
-.lable{
-  background-color: rgb(22,35,74);
+.lable {
+  background-color: rgb(22, 35, 74);
   position: absolute;
   font-size: 23px;
   top: 10px;
@@ -32,7 +28,7 @@
 }
 
 .selectedValue {
-  background-color: rgb(22,35,74);
+  background-color: rgb(22, 35, 74);
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 20px;
@@ -74,12 +70,12 @@
 }
 
 @media (max-width: 992px) {
-  .lable{
+  .lable {
     top: 18%;
     left: 3.5%;
   }
 
-  .lableselected{
+  .lableselected {
     top: -20%;
     left: 3.5%;
   }
@@ -90,7 +86,7 @@
 }
 
 @media (max-width: 440px) {
-  .lable{
+  .lable {
     font-size: 20px;
   }
 
@@ -100,11 +96,11 @@
 }
 
 @media (max-width: 420px) {
-  .lable{
+  .lable {
     left: 5.5%;
   }
 
-  .lableselected{
+  .lableselected {
     left: 5%;
   }
 
@@ -114,7 +110,7 @@
 }
 
 @media (max-width: 360px) {
-  .lable{
-    font-size: 18px;
+  .lable {
+    font-size: 15px;
   }
 }

@@ -11,20 +11,20 @@
   padding: 5vw;
   padding-bottom: 0;
   font-family: 'Hind', sans-serif;
-  font-size: 5vw;
+  font-size: 4vw;
   color: white;
 }
 
 .team-title p{
   font-family: 'Hind', sans-serif;
-  font-size: 5vw;
+  font-size: 1vw;
 }
 
 .team-description {
   padding: 5vw;
   padding-top: 0;
   font-family: 'Hind', sans-serif;
-  font-size: 16px;
+  font-size: 1vw;
   color: white;
 }
 

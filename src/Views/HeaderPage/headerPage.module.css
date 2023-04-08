@@ -21,8 +21,8 @@
 }
 
 .navBarList img{
-    width:50px;
-    height: 46px;
+    width:30px;
+    height: 30px;
     margin-left: 4vw;
 }
 
@@ -50,7 +50,7 @@
     display: inline-block;
     margin: 0 0.5em;
     position:relative;
-    font-size: 11px;
+    font-size: 0.65vw;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -219,9 +219,10 @@
 .register{
     list-style: none;
     display: inline-block;
-    margin: 0 0.5em;
+    margin: 0.25em 0.5em;
+    margin-bottom: 0;
     position:relative;
-    font-size: 11px;
+    font-size: 0.65vw;
     font-weight: bold;
     text-transform: uppercase;
     color: white;

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background: #1B1919;
+  background: #1b1919;
   color: white;
   padding: 0.5vw 1vw;
   width: 100%;
@@ -26,14 +26,14 @@
 .quick-tabs a {
   text-decoration: none;
   font-family: "Hind", sans-serif;
-  font-size: 15px;
+  font-size: 1vw;
   color: white;
 }
 
 .copyright {
   font-family: "Hind";
   padding-top: 2vw;
-  font-size: 15px;
+  font-size: 1vw;
 }
 
 .center-row {
@@ -44,21 +44,26 @@
 }
 
 .center-row i {
-  font-size: 18px;
+  font-size: 1vw;
+  font-family: "Hind";
   background: #0984e3;
   border-radius: 50%;
   padding: 0.8vw;
 }
 
 .center-row p {
-  font-size: 15px;
+  font-size: 1vw;
   padding-top: 1.1vw;
   padding-left: 2.3vw;
+  font-family: "Hind";
+  font-weight: lighter;
   transition: ease-in-out 0.5s;
 }
 
 .center-row a {
-  font-size: 15px;
+  font-size: 1vw;
+  font-family: "Hind";
+  font-weight: lighter;
 }
 
 .center-row p:hover {
@@ -74,19 +79,19 @@
 .footer-right h6 {
   color: white;
   font-family: "Hind";
-  font-size: 18px;
+  font-size: 1vw;
   font-weight: bold;
 }
 
 .footer-right p {
   font-family: "Hind";
-  font-size: 15px;
+  font-size: 1vw;
   width: 100%;
   text-align: justify;
 }
 
 .footer-icons i {
-  font-size: 18px;
+  font-size: 1vw;
   background: #0984e3;
   border-radius: 50%;
   padding: 1.5vh;
@@ -94,19 +99,19 @@
   margin-right: 2.5vh;
 }
 
-.bottom-row{
+.bottom-row {
   padding: 10px;
-  font-size: 15px;
+  font-size: 1vw;
   text-align: center;
   color: white;
-  background-color: #2D2A2A;
+  background-color: #2d2a2a;
 }
 
 @media screen and (max-width: 900px) {
   .quick-tabs a {
     font-size: 13px;
   }
-  
+
   .center-row p {
     font-size: 13px;
   }

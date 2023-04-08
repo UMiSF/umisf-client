@@ -5,9 +5,13 @@
   padding: 2vw;
 }
 
+.sponsers img{
+  height: 2.5vw;
+}
+
 .sponsers p{
     font-family: "Hind";
-    font-size: 15px;
+    font-size: 1vw;
     font-weight: bold;
 }
 
