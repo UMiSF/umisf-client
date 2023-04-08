@@ -68,9 +68,7 @@ const AboutPage = () => {
           </p>
         </h1>
         <p>
-          Lorem ipsum is placeholder text commonly used in the graphic, print,
-          and publishing industries for previewing layouts and visual mockups.
-          LOREM IPSUM GENERATOR
+        UMISF has been held every year since 2007, providing a platform for badminton players to connect, compete, and hone their skills. After a two-year hiatus due to the pandemic and other unforeseen circumstances, the tournament has finally returned, and we're confident that this year's event will be a huge success too.
         </p>
         <div className={`${styles["row"]}`}>
           <div className={`${styles["past-section-col"]}`}>
@@ -128,7 +126,7 @@ const AboutPage = () => {
         </div>
       </section>
       <section className={`${styles["testimonials"]}`}>
-        <h1>Masseges from Organizing committee</h1>
+        <h1>Masseges From The Organizing Committee</h1>
         <p>
           Badminton has always been a popular sport among the undergraduate
           community of our university. Since the inauguration of annual

@@ -10,7 +10,8 @@ const RegistrationsNotOpen = () => {
 
       <div className={`${styles["content"]}`}>
         <h1>NOT AVAILABLE</h1>
-        <p> The registrations will be open {registrationPeriod[0]} onwards, untill {registrationPeriod[1]}.</p>
+        <p> The registrations will be open <b style={{fontFamily:"Hind", fontSize:"15px", color:"red"}}>{registrationPeriod[0]}{" "}</b>
+         onwards, untill <b style={{fontFamily:"Hind", fontSize:"15px", color:"red"}}>{registrationPeriod[1]}</b>.</p>
         <a href="/" className={`${styles["home-button"]}`}>
           {" "}
           Home Page

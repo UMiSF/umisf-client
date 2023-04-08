@@ -5,14 +5,15 @@ const Tshirt = (props) => {
   return (
     <div className={`${styles["tshirt-container"]}`}>
       <div className={`${styles["tshirt-front"]}`}>
-        <img src={require(`../../../assests/images/${props.tShirtFront}`)} />
+        <img src={require(`../../../assests/images/tshirts/${props.tShirtFront}`)} />
       </div>
       <div className={`${styles["tshirt-title"]}`}>
-        <span>Make I</span>
+        <span >Make I</span>
         <span style={{ color: "#0984e3" }}>t Yours</span>
+        <a href="#" className={`${styles["order-now"]}`}>Order Now</a>
       </div>
       <div className={`${styles["tshirt-back"]}`}>
-        <img src={require(`../../../assests/images/${props.tShirtBack}`)} />
+        <img src={require(`../../../assests/images/tshirts/${props.tShirtBack}`)} />
       </div>
     </div>
   );

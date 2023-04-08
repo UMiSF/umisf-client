@@ -137,7 +137,7 @@ const CompanyRegistration = () => {
       <HeaderPage />
       {isRegistrationsOpen ? (
         <>
-          <div className={`${Styles["title"]}`}>Event Registration - Company</div>
+          <div className={`${Styles["title"]}`}>Event Registration - Corporate</div>
           <div className={`${Styles["info-container"]}`}>
             <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
             <div className={`${Styles["info"]}`}>
@@ -164,7 +164,7 @@ const CompanyRegistration = () => {
                   <MDBCol className="" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-2"
-                      label="Company"
+                      label="Corporate"
                       labelClass="text-white"
                       labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
                       style={{

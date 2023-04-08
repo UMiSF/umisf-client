@@ -4,9 +4,11 @@ import Draw from "./Draw";
 import Header from "../HeaderPage/HeaderPage";
 import Footer from "../HomePage/Footer/footer";
 import styles from './drawsPage.module.css'
-import NotAvailablePage from "../../common/notAvailablePage/NotAvailablePage";
+import NotAvailablePage from "../../common/DrawsNotAvailablePage/NotAvailablePage";
 
 const DrawsPage = () => {
+
+  const [publishedDate, setPublishedDate] = useState("2023-05-14")
   const rounds = [
     {
       title: "Round one",
@@ -97,7 +99,7 @@ const DrawsPage = () => {
       <Header />
 
       {draws.length == 0 ? (
-        <NotAvailablePage />
+        <NotAvailablePage publishedDate={publishedDate}/>
       ) : (
         <div className={`${styles["content-container"]}`}>
           <Grid container>
