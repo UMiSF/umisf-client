@@ -235,9 +235,9 @@ const CompanyRegistration = () => {
                         padding: "15px",
                         minHeight: "40px",
                       }}
-                      name="company"
+                      name="name"
                       type="text"
-                      value={company.company}
+                      value={company.name}
                       onChange={handleChange}
                       required
                       contrast
@@ -257,9 +257,9 @@ const CompanyRegistration = () => {
                       }}
                       v
                       labelClass="text-white"
-                      name="contact_number"
+                      name="contactNumber"
                       type="text"
-                      value={company.contact_number}
+                      value={company.contactNumber}
                       onChange={handleChange}
                       required
                       contrast
