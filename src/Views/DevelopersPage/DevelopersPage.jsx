@@ -105,16 +105,14 @@ function DevelopersPage() {
                 <a href={`${developer.linkedin}`} target="_blank">
                   <img
                     src={require(`../../assests/images/linkedin.png`)}
-                    style={{ width: "35px" }}
                   />
                 </a>
-                <a href={`https://github.com/${developer.github}`} target="_blank">
-                  <img src={require(`../../assests/images/github.png`)} style={{ width: "45px" }} />
+                <a className={`${styles["github"]}`} href={`https://github.com/${developer.github}`} target="_blank">
+                  <img src={require(`../../assests/images/github.png`)} />
                 </a>
                 <a href={`${developer.facebook}`} target="_blank">
                   <img
                     src={require(`../../assests/images/facebook.png`)}
-                    style={{ width: "35px" }}
                   />
                 </a>
               </div>
