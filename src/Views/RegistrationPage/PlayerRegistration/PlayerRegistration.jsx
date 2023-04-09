@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
-import { Button, Divider, Space, Tour } from "antd";
+import {  Button,  Space, notification } from "antd";
+import {RadiusBottomrightOutlined} from '@ant-design/icons';
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
@@ -35,6 +36,7 @@ const PlayerRegistration = () => {
   const [gender, setGender] = useState("");
 
   useEffect(() => {
+    openNotification('topRight')
     if (isSubmitting) {
       // show loading message
       message.loading("Submitting form...");
@@ -120,11 +122,24 @@ const PlayerRegistration = () => {
       setIsSubmitting(false);
     }
   }
-  
+
+  const Context = React.createContext({
+    name: 'Default',
+  });
+
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = (placement) => {
+    api.info({
+      message: `Tournament Details and Registrations Guidlines`,
+      description: <Context.Consumer>{({ name }) => {<a>dcdscdfc</a>}}</Context.Consumer>,
+      placement,
+    });
+  };
 
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
+      {contextHolder}
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Player Registration</div>
