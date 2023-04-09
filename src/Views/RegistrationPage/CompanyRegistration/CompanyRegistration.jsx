@@ -1,88 +1,109 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
 import { Button, Divider, Space, Tour } from "antd";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
-import plus from "../../../assests/images/plus.png";
 import Styles from "./CompanyRegistration.module.css";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
+import Axios from "axios";
+import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
+import Dropdown from "../../../common/Dropdown/Dropdown";
 
+import { message } from "antd";
 const CompanyRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
   const [validated, setValidated] = useState(false); //form validation
   const [company, setCompany] = useState({
-    company: "",
+    name: "",
     email: "",
-    contact_number: "",
-    players: [],
-    payment_method: "",
-    payment_slip: "",
+    contactNumber: "",
+    paymentMethod: "",
+    paymentSlip: "",
+    matchType:"Men",
   });
-
+  const isValidPlayerArray = (players) => {
+    if (players.length < 5) {
+      return false;
+    }
+    for (const player of players) {
+      if (Object.values(player).includes("")) return false;
+    }
+    return true;
+  };
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
-    { name: "", id: "", photo: "" },
-    { name: "", id: "", photo: "" },
-    { name: "", id: "", photo: "" },
+    { firstName: "", lastName: "", photo: "" },
+    { firstName: "", lastName: "", photo: "" },
+    { firstName: "", lastName: "", photo: "" },
   ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
-  const inputStyle = {
-    border: "0",
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const isPlayerArrayValid = isValidPlayerArray(playersArray);
+  const paymentOptions = ["On-site", "Bank Transfer"];
+  const [payment, setPayment] = useState("");
+  useEffect(() => {
+    if (isSubmitting) {
+      // show loading message
+      message.loading("Submitting form...");
+    }
+  }, [isSubmitting]);
 
   const handleChange = (e) => {
     console.log("Past performance array: ", playersArray);
     const name = e.target.name;
     const value = e.target.value;
-    if (name == "company") {
+    if (name == "name") {
       setCompany((prevValue) => {
-        return { ...prevValue, company: value };
+        return { ...prevValue, name: value };
       });
     } else if (name == "email") {
       setCompany((prevValue) => {
         return { ...prevValue, email: value };
       });
-    } else if (name == "contact_number") {
+    } else if (name == "contactNumber") {
       setCompany((prevValue) => {
-        return { ...prevValue, contact_number: value };
+        return { ...prevValue, contactNumber: value };
       });
-    } else if (name == "payment_method") {
+    } else if (name == "paymentMethod") {
       setCompany((prevValue) => {
-        return { ...prevValue, payment_method: value };
+        return { ...prevValue, paymentMethod: value };
       });
       console.log("isBankTransfer: ", value == "On-Site");
-      value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
-    } else if (name == "payment_slip") {
+      value == "Bank Transfer"
+        ? setIsBankTransfer(true)
+        : setIsBankTransfer(false);
+    } else if (name == "paymentSlip") {
       setCompany((prevValue) => {
-        return { ...prevValue, payment_slip: value };
+        return { ...prevValue, paymentSlip: value };
       });
     } else if (name.includes("name") || name.includes("id") || name.includes("photo")) {
       const field = name.split("-")[0];
       const position = parseInt(name.split("-")[1]);
       console.log("Table Values: ", field, position, value);
       const newArray = [...playersArray];
+      console.log('name',name);
       switch (field) {
         case "name":
           newArray[position] = {
-            name: value,
-            id: newArray[position].id,
+            firstName: value.split(' ')[0],
+            lastName: value.split(' ')[1],
             photo: newArray[position].photo,
           };
           break;
         case "id":
           newArray[position] = {
-            name: newArray[position].name,
-            id: value,
+            firstName: newArray[position].firstName,
+            lastName:newArray[position].lastName,
             photo: newArray[position].photo,
           };
           break;
         case "photo":
           newArray[position] = {
-            name: newArray[position].name,
-            id: newArray[position].id,
+            firstName: newArray[position].firstName,
+            lastName: newArray[position].lastName,
             photo: value,
           };
           break;
@@ -90,9 +111,22 @@ const CompanyRegistration = () => {
       setPlayersArray(newArray);
     }
   };
-
-  const AddAnotherRow = (e) => {
-    e.preventDefault();
+  const updatePlayerCommonData = ()=>{
+    const tempArray = []
+    for (const player of playersArray){
+      let tempObj = {email:company.email, institute:company.name, contactNumber:company.contactNumber,  ... player}
+      tempArray.push(tempObj)
+    }
+    return tempArray
+  }
+  const changePaymentMethod = (value) => {
+    setCompany((prevValue) => {
+      return { ...prevValue, paymentMethod: value };
+    });
+    console.log("isBankTransfer: ", value == "On-Site");
+    value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+  };
+  const AddAnotherRow = () => {
     setCount(count + 1);
     setPlayersArray((prevValue) => {
       return [...playersArray, { name: "", id: "", photo: "" }];
@@ -114,12 +148,40 @@ const CompanyRegistration = () => {
     //TODO: add player array
     e.preventDefault();
     console.log("Form submitted", company);
+    console.log("players for submitted",playersArray);
     const form = e.currentTarget;
+    const isPlayerArrayValid = isValidPlayerArray(playersArray)
     //form validation
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || !isPlayerArrayValid) {
       e.stopPropagation();
+      !isPlayerArrayValid && message.error("Please fill players' details correctly !")
     }
     setValidated(true);
+    console.log('bolean',company.paymentMethod== "On-site")
+    if ((Object.values(company).includes('') && company.paymentMethod == "On-site" && company.paymentSlip == "") || !Object.values(company).includes("")) {
+      console.log("Here")
+      const players = updatePlayerCommonData()
+      console.log(players)
+      Axios.post(
+        "http://localhost:3001/company/add",
+        { companyDetails:company, players:players},
+        {
+          headers: {},
+        }
+      )
+        .then((res) => {
+          console.log(res.data);
+          message.success(res.data.message);
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2000);
+        })
+        .catch((error) => {
+          console.log("Error: ", error);
+          message.error(error.response.data.message);
+        });
+      setIsSubmitting(false);
+    }
   }
 
   // guide for tournament details
@@ -259,51 +321,41 @@ const CompanyRegistration = () => {
                   </div>
                 </div>
 
-                <div className="row mb-2">
-                  <MDBCol>
-                    <MDBInput
-                      wrapperClass="mb-2"
-                      label="Payment Method"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
-                      labelClass="text-white"
-                      name="payment_method"
-                      type="text"
-                      value={company.payment_method}
-                      onChange={handleChange}
-                      required
-                      contrast
-                      className="bg-primary bg-opacity-25"
-                    />
-                  </MDBCol>
-                  {isBankTransfer && (
-                    <MDBCol className="" lg="6" md="6" sm="12">
-                      <MDBInput
-                        wrapperClass="mb-2"
-                        label="Payment Slip"
-                        labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                        style={{
-                          fontFamily: "Hind",
-                          fontSize: "18px",
-                          padding: "15px",
-                          minHeight: "40px",
-                        }}
-                        labelClass="text-white"
-                        name="payment_slip"
-                        type="text"
-                        value={company.payment_slip}
-                        onChange={handleChange}
-                        contrast
-                        className="bg-primary bg-opacity-25"
-                      />
-                    </MDBCol>
-                  )}
-                </div>
+            <div className="row mb-4 mt-2">
+              <MDBCol className="mb-1">
+                <Dropdown
+                  options={paymentOptions}
+                  handleClick={(option) => {
+                    setPayment(option);
+                    changePaymentMethod(option);
+                  }}
+                  value={payment}
+                  lable={"Payment"}
+                />
+              </MDBCol>
+              {isBankTransfer && (
+                <MDBCol className="mb-1" lg="6" md="6" sm="12">
+                  <MDBInput
+                    wrapperClass="mb-4"
+                    label="Payment Slip"
+                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                    style={{
+                      fontFamily: "Hind",
+                      fontSize: "18px",
+                      padding: "15px",
+                      minHeight: "40px",
+                    }}
+                    labelClass="text-white"
+                    name="paymentSlip"
+                    type="text"
+                    value={company.paymentSlip}
+                    onChange={handleChange}
+                    contrast
+                    className="bg-primary bg-opacity-25"
+                  />
+                </MDBCol>
+              )}
+            </div>
 
                 <button className={`${Styles["btn"]}`} type="submit">
                   Register
