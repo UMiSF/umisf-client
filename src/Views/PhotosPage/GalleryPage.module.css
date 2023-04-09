@@ -1,5 +1,5 @@
 .cover-img {
-  height: 48vw;
+  height: 70vh;
   background-color: black;
   background-image: url("../../assests/images/photos_page.webp");
   background-repeat: no-repeat;
@@ -15,7 +15,6 @@
 }
 
 .typing-demo {
-  width: 12ch;
   animation: typing 2s steps(40), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;

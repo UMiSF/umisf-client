@@ -13,7 +13,7 @@
 }
 
 .title p{
-  font-size: 16px;
+  font-size: 1vw;
   padding: 0 7vw;
   font-family: "Hind";
   font-weight: lighter;
@@ -36,6 +36,10 @@
     -moz-column-count: 2;
     column-count: 2;
   }
+
+  .title p{
+    font-size: 2vw;
+  }
 }
 
 @media (max-width: 480px) {
@@ -49,5 +53,9 @@
   }
   .title h1 {
     font-size: 9vw;
+  }
+
+  .title p{
+    font-size: 3vw;
   }
 }
