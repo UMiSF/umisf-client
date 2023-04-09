@@ -1,0 +1,17 @@
+.sponsers {
+  /* background: url("../../../assests/images/sponser-back.jpg"); */
+  background-size: cover;
+  text-align: center;
+  padding: 2vw;
+}
+
+.sponsers p{
+    font-family: "Hind";
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.sponser {
+  margin: 5vw 3vw;
+  padding: 3vw 0;
+}

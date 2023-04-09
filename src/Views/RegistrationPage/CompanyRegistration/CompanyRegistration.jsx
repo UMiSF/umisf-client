@@ -7,7 +7,7 @@ import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
 import plus from "../../../assests/images/plus.png";
 import Styles from "./CompanyRegistration.module.css";
-import NotAvailablePage from "../../../common/notAvailablePage/NotAvailablePage";
+import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 
 const CompanyRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
@@ -161,7 +161,7 @@ const CompanyRegistration = () => {
       <HeaderPage />
       {isRegistrationsOpen ? (
         <>
-          <div className={`${Styles["title"]}`}>Event Registration - Company</div>
+          <div className={`${Styles["title"]}`}>Event Registration - Corporate</div>
           <div className={`${Styles["info-container"]}`}>
             <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
             <div className={`${Styles["info"]}`}>
@@ -188,7 +188,7 @@ const CompanyRegistration = () => {
                   <MDBCol className="" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-2"
-                      label="Company"
+                      label="Corporate"
                       labelClass="text-white"
                       labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
                       style={{
@@ -337,7 +337,7 @@ const CompanyRegistration = () => {
           </div>
         </>
       ) : (
-        <NotAvailablePage />
+        <RegistrationsNotOpen/>
       )}
     </div>
   );

@@ -52,9 +52,24 @@
 
 .why-desc {
   padding: 0 11vw;
+  text-align: center;
+}
+
+.why-desc p{
   font-family: "Hind", sans-serif;
   font-size: 15px;
-  text-align: center;
+}
+
+.why-list{
+  text-align:left ;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.why-list p{
+  font-weight: bold;
+  line-height: 13px;
 }
 
 .why-view-more{

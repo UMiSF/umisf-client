@@ -12,7 +12,7 @@ import Axios from "axios";
 import { CheckCircleTwoTone, ExclamationCircleTwoTone } from "@ant-design/icons";
 import { Modal, message, Select } from "antd";
 import Dropdown from "../../../common/Dropdown/Dropdown";
-import NotAvailablePage from "../../../common/notAvailablePage/NotAvailablePage";
+import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 
 const RegisterAll = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
@@ -910,7 +910,7 @@ const RegisterAll = () => {
           </div>
         </>
       ) : (
-        <NotAvailablePage />
+        <RegistrationsNotOpen/>
       )}
     </div>
   );

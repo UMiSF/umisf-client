@@ -9,10 +9,12 @@ import ImageUploader from "../Common/imageUploader/ImageUploader";
 import Axios from "axios";
 import { message } from "antd";
 import Dropdown from "../../../common/Dropdown/Dropdown";
-import NotAvailablePage from "../../../common/notAvailablePage/NotAvailablePage";
+import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 
 const PlayerRegistration = () => {
+
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
+
   const [validated, setValidated] = useState(false); //form validation
   const [player, setPlayer] = useState({
     firstName: "",
@@ -353,7 +355,7 @@ const PlayerRegistration = () => {
           )}
         </>
       ) : (
-        <NotAvailablePage />
+        <RegistrationsNotOpen />
       )}
     </div>
   );

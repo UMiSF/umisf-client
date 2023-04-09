@@ -103,7 +103,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <a href="/register/company" className={`${styles["drop-down-item"]}`}>
-                    Company
+                    Corporate
                   </a>
                 </MenuItem>
               </Menu>
@@ -173,7 +173,7 @@ const HeaderPage = () => {
               </li>
               <li>
                 <a class="dropdown-item" href="/register/company">
-                  Company
+                  Corporate
                 </a>
               </li>
             </ul>

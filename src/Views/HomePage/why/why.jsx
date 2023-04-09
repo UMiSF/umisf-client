@@ -8,16 +8,26 @@ const Why = () => {
         ABOUT <p style={{ display: "inline-block", color: "#0984E3" }}>UMiSF</p>
       </div>
       <div className={`${styles["why-desc"]}`}>
-        UMiSF is the annual badminton tournament organized by the badminton team
-        of the University of Moratuwa, in collaboration with the university's
-        division of Physical Education. We warmly welcome badminton enthusiasts
-        from across the island to come together in a spirit of friendly
-        competition and sportsmanship, to showcase their skills, with the
-        intention of facilitating connections among individuals who share a
-        passion for badminton.
+        <p>
+          UMiSF is the annual badminton tournament organized by the badminton team of the University
+          of Moratuwa, in collaboration with the Physical Education division of the university .It
+          is conducted under 4 main categories;
+        </p>
+        <div className={`${styles["why-list"]}`}>
+          <p>1. All Island age group badminton championship</p>
+          <p>2. University badminton championship</p>
+          <p>3. University staff badminton championship</p>
+          <p>4. Corporate badminton championship</p>
+        </div>
+
+        <p>
+          We warmly welcome badminton enthusiasts from across the island to come together in a
+          spirit of friendly competition and sportsmanship, to showcase their skills, with the
+          intention of facilitating connections among individuals who share a passion for badminton.
+        </p>
       </div>
       <div className={`${styles["why-view-more"]}`}>
-        <a href="/about" type="button" target='_blank'>
+        <a href="/about" type="button">
           Read More
         </a>
       </div>

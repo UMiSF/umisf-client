@@ -73,16 +73,16 @@ function ContactUs() {
     {
       name:'Bhagya Ranasinghe',
       tag:'Captain',
-      phone:'0764197875',
-      email: "",
+      phone:'+94 77 365 2932',
+      email: "ranasinghebhagya28@gmail.com",
       facebook:"https://www.facebook.com/bhagya.ranasinghe.522",
-      linkedin:"",
+      linkedin:"http://www.linkedin.com/in/bhagya-ranasinghe-",
       image:'captain-male.jpg'
     },
     {
       name:'Ruchira Wijayasena',
       tag:'Vice Captain',
-      phone:'0764197875',
+      phone:'+94 71 342 2941',
       email: "",
       facebook:"",
       linkedin:"",
@@ -95,7 +95,7 @@ function ContactUs() {
     {
       name:'Nethmi Jayakody',
       tag:'Captain',
-      phone:'0705246536',
+      phone:'+94 70 524 6536',
       email: "nethmik99@gmail.com",
       facebook:"https://web.facebook.com/nethmi.jayakody.52",
       linkedin:"https://www.linkedin.com/in/nethmi-jayakody/",
@@ -104,10 +104,10 @@ function ContactUs() {
     {
       name:'Pamodya Kodithuwakku',
       tag:'Vice Captain',
-      phone:'0764197875',
-      email: "",
-      facebook:"",
-      linkedin:"",
+      phone:'+94 71 276 3221',
+      email: "pamodyakodi@gmail.com",
+      facebook:"#",
+      linkedin:"#",
       image:'viceCaptain-female.jpeg'
     },
     

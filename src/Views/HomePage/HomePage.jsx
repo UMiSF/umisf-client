@@ -7,11 +7,15 @@ import Tshirt from "./Tshirt/tshirt";
 import Why from "./why/why";
 import Gallery from "./Gallery/gallery";
 import Flyer from "./Flyer/flyer";
+import Sponsers from "./Sponsers/Sponsers";
 
 const HomePage = () => {
-  const [isCounterStarted, setIsCounterStarted] = useState(false)
-  const [starttingDate, setStartingDate] = useState("2023-05-21");
-  const [venue, setVenue] = useState(["University gymnasium","S. Thomas' College, Mount Lavinia"]);
+  const [starttingDate, setStartingDate] = useState("2023-05-21T08:00:00.000");
+  const [finishingDate, setFinishingDate] = useState("2023-05-28T00:00:00.000");
+
+  const [showContent, setShowContent] = useState(false)
+
+  const [venue, setVenue] = useState(["University gymnasium", "S. Thomas' College, Mount Lavinia"]);
   const [registrationsDeadlines, setRegistrationsDealines] = useState(["2023-04-13", "2023-04-30"]);
   const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
 
@@ -30,22 +34,31 @@ const HomePage = () => {
   const [tShirtFront, setTShirtFront] = useState("tshirt-front.png");
   const [tShirtBack, setTShirtBack] = useState("tshirt-back.png");
 
+  const [sponsers, setSponsers] = useState(["derana.jpeg", "dialog.png", "e-house.jpeg", "maliban.jpeg"])
+
   useEffect((()=>{
-    let currentDate = new Date().toJSON().slice(0, 10);
-    if (starttingDate.startsWith(currentDate.slice(0,9)) && parseInt(starttingDate.slice(8,10)) - currentDate.slice(8,10) == 1){
-      setIsCounterStarted(true)
+    let currentDate = new Date()
+    if (currentDate < new Date(finishingDate)){
+      setShowContent(true)
     }
+
   }),[])
 
   return (
     <div>
       <Header />
-      {isCounterStarted && <CountDownTimer />}
-      <Flyer starttingDate={starttingDate.split("-")} venue={venue} registrationsDeadlines={registrationsDeadlines}/>
+      {/* {isCounterStarted && <CountDownTimer remainingTime={remainingTime} />} */}
+      {showContent && <CountDownTimer startingDate={starttingDate} />}
+      {showContent &&<Flyer
+        starttingDate={starttingDate.slice(0, 10).split("-")}
+        venue={venue}
+        registrationsDeadlines={registrationsDeadlines}
+      />}
       <Why />
-      <MeetTeam teamPhoto={teamPhoto}/>
-      <Gallery gallery={gallery}/>
-      <Tshirt tShirtFront={tShirtFront} tShirtBack={tShirtBack}/>
+      <MeetTeam teamPhoto={teamPhoto} />
+      <Gallery gallery={gallery} />
+      {showContent &&<Tshirt tShirtFront={tShirtFront} tShirtBack={tShirtBack} />}
+      {showContent &&<Sponsers sponsers={sponsers}/>}
       <Footer />
     </div>
   );
