@@ -50,7 +50,7 @@
 }
 
 .info-logo {
-  height: 14px;
+  height: 1vw;
   margin-top: 0.05%;
 }
 
@@ -148,6 +148,10 @@
 
   .info {
     font-size: 1.2vw;
+  }
+
+  .info-logo{
+    height: 1.2vw;
   }
 
   .btn {

@@ -126,7 +126,8 @@ const CompanyRegistration = () => {
     console.log("isBankTransfer: ", value == "On-Site");
     value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
   };
-  const AddAnotherRow = () => {
+  const AddAnotherRow = (e) => {
+    e.preventDefault();
     setCount(count + 1);
     setPlayersArray((prevValue) => {
       return [...playersArray, { name: "", id: "", photo: "" }];
