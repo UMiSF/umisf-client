@@ -2,8 +2,12 @@ import React from "react";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminPlayersPage.module.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Modal } from "react-bootstrap";
+import { Select, Space, Button, message, Row, Col } from "antd";
+import { setEngine } from "crypto";
+import { Axios } from "axios";
+
 const AdminPlayersPage = () => {
   const [playerCatogory, setplayerCatogory] = useState({
     "under-19-men": [
@@ -20,7 +24,7 @@ const AdminPlayersPage = () => {
       "player-1",
     ],
     "under-19-women": [
-      "player-1",
+      "playerMMMMMMMMMMM-1",
       "player-1",
       "player-1",
       "player-1",
@@ -37,10 +41,10 @@ const AdminPlayersPage = () => {
   const [showPlayersModal, setShowPlayersModal] = useState(false);
   const [folderToBeDeleted, setFolderToBeDeleted] = useState("");
   const handleDelete = (index, key) => {
-    setplayerCatogory(prevState => {
+    setplayerCatogory((prevState) => {
       const newPlayers = [...prevState[key]];
       newPlayers.splice(index, 1);
-      return {...prevState, [key]: newPlayers};
+      return { ...prevState, [key]: newPlayers };
     });
   };
   const handleShow = (index, key) => {
@@ -55,8 +59,70 @@ const AdminPlayersPage = () => {
   };
   const handleClose = (e) => {
     e.preventDefault();
-   
   };
+  // new adding page
+  const [filter, setFilter] = useState({
+    matchType: "",
+    ageGroup: "",
+    institute: "",
+    gender: "",
+  });
+  const matchTypes = ["Single", "Double", "University", "Company"];
+  const ageGroups = [
+    "All",
+    "Under 9",
+    "Under 11",
+    "Under 13",
+    "Under 15",
+    "Under 17",
+    "Under 19",
+    "Open",
+    "A Division",
+    "B Division",
+  ];
+  const gender = ["All", "Female", "Male"];
+  // should get from data base
+  const [institute,setInstitute] = ['ananda','nalanda','vishaka','st josephs'];
+  const handleMatchType = (value) => {
+    setFilter((prev) => {
+      return { ...prev, matchType: value };
+    });
+  };
+
+  const handleAgeGroup = (value) => {
+    setFilter((prev) => {
+      return { ...prev, ageGroup: value };
+    });
+  };
+  const handleGender = (value) => {
+    setFilter((prev) => {
+      return { ...prev, gender: value };
+    });
+  };
+  const handleInstitute = (value) => {
+    setFilter((prev) => {
+      return { ...prev, institute: value };
+    });
+  };
+
+  useEffect(() => {
+    
+
+    Axios.get(
+      process.env.REACT_APP_API_URL + "/admin/getInstitute",
+      {
+        headers: {},
+      }
+    ).then((res)=>{
+      console.log(res)
+      setInstitute(res.data.data)
+    })
+    .catch ((error) =>{
+      console.log("Error loading users", error);
+      message.error(error.response.data.message);
+    })
+
+  }, []);
   return (
     <div className={`${styles["players-full-container"]}`}>
       <ProfileHeader user_type={"admin"} />
@@ -86,7 +152,12 @@ const AdminPlayersPage = () => {
                     className={`${styles["player-btn"]}`}
                     onClick={() => handleShowPlayers(index, key)}
                   >
-                    <a href={`players/${player}`} className={`${styles["player-name"]}`}>{player}</a>
+                    <a
+                      href={`players/${player}`}
+                      className={`${styles["player-name"]}`}
+                    >
+                      {player}
+                    </a>
                   </button>
                   <button
                     className={`${styles["player-btn"]}`}
@@ -104,13 +175,59 @@ const AdminPlayersPage = () => {
         ))}
       </div>
 
-
-
-     
+      <div className={`${styles["tool-bar"]}`}>
+        <h1>HEHE</h1>
+        <Space wrap>
+          <Select
+            placeholder="Age Group"
+            style={{
+              width: 200,
+            }}
+            onChange={handleAgeGroup}
+            options={ageGroups.map((age) => ({
+              label: age,
+              value: age,
+            }))}
+          />
+          <Select
+            style={{
+              width: 200,
+              fontSize: 100,
+            }}
+            onChange={handleMatchType}
+            options={matchTypes.map((match) => ({
+              label: match,
+              value: match,
+            }))}
+            placeholder="Match Type"
+          />
+          <Select
+            style={{
+              width: 200,
+              fontSize: 100,
+            }}
+            onChange={handleInstitute}
+            // options={institute.map((institute) => ({
+            //   label: institute,
+            //   value: institute,
+            // }))}
+            placeholder="Institute"
+          />
+          <Select
+            style={{
+              width: 200,
+              fontSize: 100,
+            }}
+            onChange={handleGender}
+            options={gender.map((gender) => ({
+              label: gender,
+              value: gender,
+            }))}
+            placeholder="Match Type"
+          />
+        </Space>
+      </div>
     </div>
-
-
-
   );
 };
 export default AdminPlayersPage;
