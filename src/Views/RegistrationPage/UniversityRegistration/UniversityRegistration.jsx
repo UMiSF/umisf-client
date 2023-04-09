@@ -215,16 +215,6 @@ const UniversityRegistration = () => {
     }
   }
 
-  // guide for tournament details
-  const ref = useRef(null);
-  const [open, setOpen] = useState(true);
-  const steps = [
-    {
-      title: "Tournament Details and Registration Guidlines",
-      description: "Please refer the details and guidlines before the registration process.",
-      target: () => ref.current,
-    },
-  ];
 
   return (
     <div className={`${Styles["body"]}`}>
@@ -232,17 +222,6 @@ const UniversityRegistration = () => {
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - University</div>
-          <div className={`${Styles["info-container"]}`}>
-            <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
-            <div className={`${Styles["info"]}`}>
-              Please find the{" "}
-              <Space>
-                <button ref={ref}>Tournament Details and Registration Guidlines</button>
-              </Space>{" "}
-              here.
-              <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
-            </div>
-          </div>
           <div className={`${Styles["register-form"]}`}>
             {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
             <MDBContainer className="">
@@ -253,17 +232,12 @@ const UniversityRegistration = () => {
                 className={`${Styles["register-form-content"]}`}
               >
                 <div className="row mb-4">
-                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="University"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
+                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="name"
                       type="text"
@@ -271,10 +245,9 @@ const UniversityRegistration = () => {
                       onChange={handleChange}
                       required
                       contrast
-                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
-                  <MDBCol className="" lg="6" md="12" sm="12">
+                  <MDBCol className="" lg="6" md="6" sm="12">
                     <Dropdown
                       options={genderOptions}
                       handleClick={(option) => {
@@ -287,17 +260,12 @@ const UniversityRegistration = () => {
                   </MDBCol>
                 </div>
                 <div className="row mb-2">
-                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Email"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
+                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="email"
                       type="email"
@@ -305,20 +273,14 @@ const UniversityRegistration = () => {
                       onChange={handleChange}
                       required
                       contrast
-                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
-                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Contact Number"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
+                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="contactNumber"
                       type="text"
@@ -326,12 +288,11 @@ const UniversityRegistration = () => {
                       onChange={handleChange}
                       required
                       contrast
-                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
                 </div>
                 <div className="mb-2">
-                  <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
+                  <div style={{ fontWeight: "bold", fontFamily: "Hind"}}>
                     Team
                   </div>
                   {playersArray?.map((player, index) => {
@@ -368,20 +329,14 @@ const UniversityRegistration = () => {
                       <MDBInput
                         wrapperClass="mb-4"
                         label="Payment Slip"
-                        labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                        style={{
-                          fontFamily: "Hind",
-                          fontSize: "18px",
-                          padding: "15px",
-                          minHeight: "40px",
-                        }}
+                        labelStyle={{ color: "white", fontFamily: "Hind"}}
+                        className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                         labelClass="text-white"
                         name="paymentSlip"
                         type="text"
                         value={university.paymentSlip}
                         onChange={handleChange}
                         contrast
-                        className="bg-primary bg-opacity-25"
                       />
                     </MDBCol>
                   )}

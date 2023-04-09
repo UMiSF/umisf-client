@@ -550,16 +550,7 @@ const RegisterAll = () => {
     }
   };
 
-  // guide for tournament details
-  const ref = useRef(null);
-  const [open, setOpen] = useState(true);
-  const steps = [
-    {
-      title: "Tournament Details and Registration Guidlines",
-      description: "Please refer the details and guidlines before the registration process.",
-      target: () => ref.current,
-    },
-  ];
+ 
 
   return (
     <div className={`${Styles["body"]}`}>
@@ -572,12 +563,7 @@ const RegisterAll = () => {
             <div className={`${Styles["info"]}`}>
               Please note that first you have to register as a player through player registration
               portal before applying for single/double events. The Player ID given upon successful
-              registration should be used as Player ID here .Please find the{" "}
-              <Space>
-                <button ref={ref}>Tournament Details and Registration Guidlines</button>
-              </Space>{" "}
-              here.
-              <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
+              registration should be used as Player ID here .
             </div>
           </div>
           <div className={`${Styles["register-form"]}`}>
@@ -629,13 +615,8 @@ const RegisterAll = () => {
                       <MDBInput
                         wrapperClass="mb-1"
                         label="Player ID"
-                        labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                        style={{
-                          fontFamily: "Hind",
-                          fontSize: "18px",
-                          padding: "15px",
-                          minHeight: "40px",
-                        }}
+                        labelStyle={{ color: "white", fontFamily: "Hind"}}
+                        className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                         labelClass="text-white"
                         name="player"
                         type="text"
@@ -643,7 +624,6 @@ const RegisterAll = () => {
                         onChange={changePlayer}
                         required
                         contrast
-                        className="bg-primary bg-opacity-25"
                       />
                     </MDBCol>
                     <MDBCol className="mb-1" lg="6" md="12" sm="12">
@@ -670,7 +650,7 @@ const RegisterAll = () => {
                     </MDBCol>
                   </div>
                   <div className="mb-2">
-                    <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
+                    <div style={{ fontWeight: "bold", fontFamily: "Hind"}}>
                       {" "}
                       Singles : Past Performance
                     </div>
@@ -701,13 +681,8 @@ const RegisterAll = () => {
                         <MDBInput
                           wrapperClass="mb-1"
                           label="Player ID"
-                          labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                          style={{
-                            fontFamily: "Hind",
-                            fontSize: "18px",
-                            padding: "15px",
-                            minHeight: "40px",
-                          }}
+                          labelStyle={{ color: "white", fontFamily: "Hind"}}
+                          className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="player"
                           type="text"
@@ -716,7 +691,6 @@ const RegisterAll = () => {
                           required
                           contrast
                           display="none"
-                          className="bg-primary bg-opacity-25"
                         />{" "}
                       </MDBCol>
                     )}
@@ -725,13 +699,8 @@ const RegisterAll = () => {
                       <MDBInput
                         wrapperClass="mb-1"
                         label="Partner ID"
-                        labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                        style={{
-                          fontFamily: "Hind",
-                          fontSize: "18px",
-                          padding: "15px",
-                          minHeight: "40px",
-                        }}
+                        labelStyle={{ color: "white", fontFamily: "Hind"}}
+                        className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                         labelClass="text-white"
                         name="d-partner"
                         type="text"
@@ -744,32 +713,12 @@ const RegisterAll = () => {
                         }}
                         required
                         contrast
-                        className="bg-primary bg-opacity-25"
                       />
                     </MDBCol>
                   </div>
                   <div className="row mb-2">
                     {!isPlayingSingle && (
                       <MDBCol className="mb-1" lg="12" md="12" sm="12">
-                        {/* <MDBInput
-                      wrapperClass="mb-1"
-                      label="Age Group"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
-                      labelClass="text-white"
-                      name="ageGroup"
-                      type="text"
-                      value={double.ageGroup}
-                      onChange={changeAgeGroup}
-                      required
-                      contrast
-                      className="bg-primary bg-opacity-25"
-                    /> */}
                         <Dropdown
                           options={ageOptions}
                           handleClick={(option) => {
@@ -784,7 +733,7 @@ const RegisterAll = () => {
                   </div>
 
                   <div className="mb-2">
-                    <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
+                    <div style={{ fontWeight: "bold", fontFamily: "Hind"}}>
                       {" "}
                       Doubles : Past Performance
                     </div>
@@ -879,13 +828,8 @@ const RegisterAll = () => {
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Payment Slip"
-                          labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                          style={{
-                            fontFamily: "Hind",
-                            fontSize: "18px",
-                            padding: "15px",
-                            minHeight: "40px",
-                          }}
+                          labelStyle={{ color: "white", fontFamily: "Hind"}}
+                          className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="paymentSlip"
                           type="text"

@@ -1,8 +1,7 @@
 .body {
   background: #040924;
   width: 100%;
-  min-height: 110vh;
-  box-sizing: border-box;
+  height: 115vh;
   font-family: "Hind", sans-serif;
   overflow: auto;
 }
@@ -10,9 +9,9 @@
 .title {
   color: #185de1;
   font-family: "Hind", sans-serif;
-  font-size: 60px;
+  font-size: 4vw;
   text-align: center;
-  padding-top: 100px;
+  padding-top: 5vw;
 }
 
 .info-container {
@@ -27,7 +26,7 @@
   padding: 3px;
 }
 .info {
-  font-size: 15px;
+  font-size: 1vw;
   font-family: "Hind", sans-serif;
 }
 
@@ -35,13 +34,13 @@
   border: none;
   background: transparent;
   color: white;
-  font-size: 15px;
+  font-size: 1vw;
   font-family: "Hind", sans-serif;
 }
 
 .info-logo {
-  height: 15px;
-  margin-top: 0.3%;
+  height: 1vw;
+  margin-top: 0.1%;
 }
 
 .register-form {
@@ -86,7 +85,7 @@
   font-family: "Hind", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 1vw;
   line-height: 30px;
   display: flex;
   align-items: center;
@@ -116,7 +115,7 @@
   font-family: "Hind", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 1vw;
   line-height: 25px;
   display: flex;
   align-items: center;
@@ -164,7 +163,7 @@
 
 .inputs {
   font-family: "Hind";
-  font-size: 15px;
+  font-size: 1vw;
   padding: 5px;
   min-height: 60px;
 }
@@ -175,91 +174,14 @@
   justify-content: space-between;
 }
 
-@media (max-width: 2175px) {
-  .picker-bg {
-    right: 1.9vw;
-  }
-}
-@media (max-width: 1980px) {
-  .picker-bg {
-    right: 1.95vw;
-  }
-}
-@media (max-width: 1825px) {
-  .picker-bg {
-    right: 2vw;
-  }
-}
 
-@media (max-width: 1735px) {
-  .picker-bg {
-    right: 2.1vw;
-  }
-}
-
-@media (max-width: 1500px) {
-  .picker-bg {
-    right: 2.25vw;
-  }
-}
-
-@media (max-width: 992px) {
-  .body {
-    height: 140vh;
-  }
-
-  .title {
-    font-size: 50px;
-  }
-
-  .info,
-  .info button {
-    font-size: 15px;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .input-row {
-    flex-direction: column;
-  }
-}
-
-@media screen and (max-width: 370px) {
-  .body {
-    height: 150vh;
-  }
-}
-
-@media screen and (max-height: 815px) {
-  .body {
-    height: 160vh;
-  }
-}
-
-@media screen and (max-height: 740px) {
-  .body {
-    height: 180vh;
-  }
-}
-
-@media screen and (max-height: 670px) {
-  .body {
-    height: 190vh;
-  }
-}
-
-@media screen and (max-height: 570px) {
-  .body {
-    height: 240vh;
-  }
-}
 .btn {
   margin-right: 7px;
   float: right;
   width: 200px;
   height: 50px;
   font-family: "Hind";
-  font-size: 20px;
+  font-size: 1.5vw;
   border-radius: 7px;
   background: transparent;
   color: white;
@@ -276,9 +198,9 @@
 
 .mdbinput {
   font-family: "Hind";
-  font-size: 15px;
-  padding: 15px;
-  height: 3.5vw;
+  font-size: 1vw;
+  padding: 1vw;
+  min-height: 3vw;
 }
 
 input:-webkit-autofill,
@@ -292,4 +214,76 @@ input:-webkit-autofill:active {
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: invert(0.8);
+}
+
+@media (max-width: 920px) {
+  .body {
+    height: 125vh;
+  }
+  .title {
+    font-size: 5vw;
+  }
+
+  .info {
+    font-size: 1.2vw;
+  }
+
+  .btn {
+    font-size: 2vw;
+  }
+}
+
+@media (max-width: 720px) {
+  .body {
+    height: 130vh;
+  }
+  .title {
+    font-size: 6vw;
+  }
+
+  .info {
+    font-size: 1.5vw;
+  }
+
+  .btn {
+    font-size: 2vw;
+    width: 150px;
+  }
+
+  .info-logo {
+    height: 1.5vw;
+  }
+}
+
+@media (max-width: 620px) {
+  .title {
+    font-size: 7vw;
+  }
+
+  .info {
+    font-size: 2vw;
+  }
+
+  .btn {
+    font-size: 3vw;
+    width: 150px;
+  }
+  .info-logo {
+    height: 2vw;
+  }
+}
+
+@media (max-width: 520px) {
+  .btn {
+    width: 100px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 420px) {
+  
+}
+
+@media (max-width: 320px) {
+  
 }

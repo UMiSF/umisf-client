@@ -12,20 +12,14 @@ const TableRow = (props) => {
             wrapperClass="mb-2"
             labelClass="text-white"
             name={"name-" + props.index}
-            labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-            style={{
-              fontFamily: "Hind",
-              fontSize: "18px",
-              padding: "15px",
-              minHeight: "40px",
-            }}
+            labelStyle={{ color: "white", fontFamily: "Hind"}}
+            className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
             type="text"
             value={props.player.name}
             onChange={(e) => {
               props.handleChange(e);
             }}
             contrast
-            className="bg-primary bg-opacity-25"
             required
             label="Full Name"
           />
@@ -34,13 +28,8 @@ const TableRow = (props) => {
           <MDBInput
             wrapperClass="mb-2"
             labelClass="text-white"
-            labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-            style={{
-              fontFamily: "Hind",
-              fontSize: "18px",
-              padding: "15px",
-              minHeight: "40px",
-            }}
+            labelStyle={{ color: "white", fontFamily: "Hind"}}
+            className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
             name={"id-" + props.index}
             type="text"
             value={props.player.id}
@@ -48,7 +37,6 @@ const TableRow = (props) => {
               props.handleChange(e);
             }}
             contrast
-            className="bg-primary bg-opacity-25"
             label="ID"
             required
           />
@@ -57,13 +45,8 @@ const TableRow = (props) => {
           <MDBInput
             wrapperClass="mb-2"
             labelClass="text-white"
-            labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-            style={{
-              fontFamily: "Hind",
-              fontSize: "18px",
-              padding: "15px",
-              minHeight: "40px",
-            }}
+            labelStyle={{ color: "white", fontFamily: "Hind"}}
+            className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
             name={"photo-" + props.index}
             type="text"
             value={props.player.photo}
@@ -71,7 +54,6 @@ const TableRow = (props) => {
               props.handleChange(e);
             }}
             contrast
-            className="bg-primary bg-opacity-25"
             required
             label="Profile image"
           />

@@ -23,15 +23,9 @@ const TableRow = (props) => {
               props.handleChange(e.target.value, e.target.name);
             }}
             contrast
-            className="bg-primary bg-opacity-25"
             label="Tournament"
-            labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-            style={{
-              fontFamily: "Hind",
-              fontSize: "18px",
-              padding: "15px",
-              minHeight: "40px",
-            }}
+            labelStyle={{ color: "white", fontFamily: "Hind"}}
+            className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
           />
         </MDBCol>
         <MDBCol className="" lg="4" md="12" sm="12">
