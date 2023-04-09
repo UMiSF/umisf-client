@@ -32,30 +32,33 @@ const CompanyRegistration = () => {
   const inputStyle = {
     border: "0",
   };
+  const [fileList,setFileList] = useState([[],[],[]]);
+  const [imageList, setImageList] = useState([null,null,null]);
+  const [fileNameList, setFileNameList] = useState([null,null,null]);
 
   const handleChange = (e) => {
     console.log("Past performance array: ", playersArray);
     const name = e.target.name;
     const value = e.target.value;
-    if (name == "company") {
+    if (name === "company") {
       setCompany((prevValue) => {
         return { ...prevValue, company: value };
       });
-    } else if (name == "email") {
+    } else if (name === "email") {
       setCompany((prevValue) => {
         return { ...prevValue, email: value };
       });
-    } else if (name == "contact_number") {
+    } else if (name === "contact_number") {
       setCompany((prevValue) => {
         return { ...prevValue, contact_number: value };
       });
-    } else if (name == "payment_method") {
+    } else if (name === "payment_method") {
       setCompany((prevValue) => {
         return { ...prevValue, payment_method: value };
       });
-      console.log("isBankTransfer: ", value == "On-Site");
-      value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
-    } else if (name == "payment_slip") {
+      console.log("isBankTransfer: ", value === "On-Site");
+      value === "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+    } else if (name === "payment_slip") {
       setCompany((prevValue) => {
         return { ...prevValue, payment_slip: value };
       });
@@ -86,6 +89,9 @@ const CompanyRegistration = () => {
             photo: value,
           };
           break;
+        default:
+          console.log(field);
+          break;
       }
       setPlayersArray(newArray);
     }
@@ -97,7 +103,17 @@ const CompanyRegistration = () => {
     setPlayersArray((prevValue) => {
       return [...playersArray, { name: "", id: "", photo: "" }];
     });
-    count == 7 && setExceeded(true);
+    setFileList((prevValue) => {
+      return [...fileList, []];
+    });
+    setImageList((prevValue) => {
+      return [...imageList, null];
+    });
+
+    setFileNameList((prevValue) => {
+      return [...fileNameList, null];
+    });
+    count === 7 && setExceeded(true);
   };
 
   const RemoveanotherRow = (e) => {
@@ -106,6 +122,14 @@ const CompanyRegistration = () => {
     if (playersArray.length > 3) {
       const tmpArray = playersArray.slice(0, playersArray.length - 1);
       setPlayersArray(tmpArray);
+      const tmpfileList = fileList.slice(0, fileList.length - 1);
+      setFileList(tmpfileList);
+
+      const tmpimageList = imageList.slice(0, imageList.length - 1);
+      setImageList(tmpimageList);
+
+      const tmpfileNameList = fileNameList.slice(0, fileNameList.length - 1);
+      setFileNameList(tmpfileNameList);
       count < 9 && exceeded && setExceeded(false);
     }
   };
@@ -243,7 +267,7 @@ const CompanyRegistration = () => {
                     </div>
                   </div>
                   {playersArray?.map((player, index) => {
-                    return <TableRow player={player} index={index} handleChange={handleChange} />;
+                    return <TableRow player={player} index={index} handleChange={handleChange} setFileList={setFileList} setImageList={setImageList} fileList={fileList} imageList={imageList} fileNameList={fileNameList} setFileNameList={setFileNameList}/>;
                   })}
                   <div className={`${Styles["plus-minus"]}`}>
                     <button
@@ -251,10 +275,10 @@ const CompanyRegistration = () => {
                       className={`${Styles["plus-btn"]}`}
                       onClick={AddAnotherRow}
                     >
-                      <img src={require(`../../../assests/images/plus-row.png`)} />
+                      <img src={require(`../../../assests/images/plus-row.png`)} alt={''}/>
                     </button>
                     <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
-                      <img src={require(`../../../assests/images/minus-row.png`)} />
+                      <img src={require(`../../../assests/images/minus-row.png`)} alt={''}/>
                     </button>
                   </div>
                 </div>

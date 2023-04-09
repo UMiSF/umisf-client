@@ -26,11 +26,13 @@ const PlayerRegistration = () => {
     performanceThreshold: 100,
   });
   const [fileList, setFileList] = useState([]);
+  const [image,setImage] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
   const [playerID, setPlayerID] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const genderOptions = ["Male", "Female"];
   const [gender, setGender] = useState("");
+  const [imageName,setImageName] = useState();
 
   useEffect(() => {
     if (isSubmitting) {
@@ -42,31 +44,31 @@ const PlayerRegistration = () => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    if (name == "firstName") {
+    if (name === "firstName") {
       setPlayer((prevValue) => {
         return { ...prevValue, firstName: value };
       });
-    } else if (name == "lastName") {
+    } else if (name === "lastName") {
       setPlayer((prevValue) => {
         return { ...prevValue, lastName: value };
       });
-    } else if (name == "institute") {
+    } else if (name === "institute") {
       setPlayer((prevValue) => {
         return { ...prevValue, institute: value };
       });
-    } else if (name == "contactNumber") {
+    } else if (name === "contactNumber") {
       setPlayer((prevValue) => {
         return { ...prevValue, contactNumber: value };
       });
-    } else if (name == "dob") {
+    } else if (name === "dob") {
       setPlayer((prevValue) => {
         return { ...prevValue, dob: value };
       });
-    } else if (name == "email") {
+    } else if (name === "email") {
       setPlayer((prevValue) => {
         return { ...prevValue, email: value };
       });
-    } else if (name == "photo") {
+    } else if (name === "photo") {
       setPlayer((prevValue) => {
         return { ...prevValue, photo: value };
       });
@@ -78,7 +80,8 @@ const PlayerRegistration = () => {
       return { ...prevValue, gender: value };
     });
   };
-  function handleSubmit(e) {
+
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log("Form submitted: ", player);
 
@@ -94,6 +97,7 @@ const PlayerRegistration = () => {
       const formData = new FormData();
 
       //append data to formData
+      console.log('player',player);
 
       formData.append("playerData", [player]);
 
@@ -104,11 +108,21 @@ const PlayerRegistration = () => {
           headers: {},
         }
       )
-        .then((res) => {
+        .then(async (res) => {
           console.log(res.data);
           message.success(res.data.message);
-          console.log("Here");
           setPlayerID(res.data.data[0]["_id"]);
+
+          
+          if(image !== null){
+            const imageForm = {image: image,  playerId: res.data.data[0]["_id"], imageName: imageName};
+            await Axios.post(process.env.REACT_APP_API_URL + "/image/add",
+            imageForm,
+            {
+              headers: {},
+            })
+          }
+          
           setIsChecked(true);
         })
         .catch((error) => {
@@ -169,7 +183,7 @@ const PlayerRegistration = () => {
                         md="12"
                         sm="12"
                       >
-                        <ImageUploader fileList={fileList} setFileList={setFileList} />
+                        <ImageUploader setImage={setImage} fileList={fileList} setFileList={setFileList} setImageName={setImageName} />
                       </MDBCol>
                       <MDBCol className="" lg="6" md="12" sm="12">
                         <Dropdown

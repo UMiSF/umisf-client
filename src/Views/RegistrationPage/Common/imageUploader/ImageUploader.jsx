@@ -15,12 +15,24 @@ const getSrcFromFile = (file) => {
 };
 
 export default function ImageUploader(props){
-  const {fileList, setFileList} = props;
+  const {fileList, setFileList, setImage, setImageName, index} = props;
+
+  async function setFileToBase(file){
+    setImageName(file.name);
+		const reader = new FileReader();
+		await reader.readAsDataURL(file);
+		reader.onloadend = () => (setImage(reader.result));
+	}
 
   const onChange = ({ fileList: newFileList }) => {
-    console.log(fileList[0]);
     setFileList(newFileList);
   };
+
+  const beforeUpload = async (file) => {
+
+    setFileToBase(file);
+    return false;
+  }
 
   const onPreview = async (file) => {
     const src = file.url || (await getSrcFromFile(file));
@@ -40,17 +52,19 @@ export default function ImageUploader(props){
         <Grid item width='100px' >
             <ImgCrop grid rotate>
                 <Upload
-                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                    // action={`${process.env.REACT_APP_API_URL}/image/add`}
                     listType="picture-card"
                     fileList={fileList}
                     onChange={onChange}
+                    beforeUpload={beforeUpload}
                     onPreview={onPreview}
                 >
-                    {fileList.length < 1 ? (<img
-                            src={uploader}
-                            alt="upload-image"
-                            className={`${Styles["uploader"]}`}
-                            />):(null) }
+                    {fileList.length  < 1 ? 
+                      (<img
+                          src={uploader}
+                          alt="upload-image"
+                          className={`${Styles["uploader"]}`}/>)
+                      :(null) }
                 </Upload>
             </ImgCrop>
         </Grid>
