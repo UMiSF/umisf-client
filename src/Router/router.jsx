@@ -53,6 +53,7 @@ import AdminCompanyAddNewPlayerPage from "../Views/AdminCompanyAddNewPlayerPage/
 import AdminPlayerViewPage from "../Views/AdminPlayersViewPage/AdminPlayersViewPage";
 import AdminPlayersPage from "../Views/AdminPlayersPage/AdminPlayersPage";
 import AdminPlayersAddPage from "../Views/AdminPlayersAddPage/AdminPlayersAddPage";
+import AdminPlayerEditPage from "../Views/AdminPlayerEditPage/AdminPlayerEditPage";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -107,6 +108,7 @@ export default function AppRouter() {
                 <Route path="draws" element={<AdminDrawPage/>}/>
                 <Route path="players" element={<AdminPlayersPage/>}/>
                 <Route path="players/:name" element={<AdminPlayerViewPage/>}/> 
+                <Route path="players/edit/:name" element={<AdminPlayerEditPage/>}/> 
                 <Route
                   path="players/add-new-player"
                   element={<AdminPlayersAddPage/>}

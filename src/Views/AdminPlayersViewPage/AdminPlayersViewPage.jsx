@@ -1,162 +1,162 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
-import styles from "./adminPlayersViewPage.module.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { Button } from "react-bootstrap";
-import InputGroup from "react-bootstrap/InputGroup";
-import { Modal } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
-const AdminPlayersViewPage = () => {
-  let { name } = useParams();
-  const [detailsOfplayer, setDetailsOfPlayer] = useState({
-    firstName: "harshani bandara",
-    lastName: "Bandara",
-    DOB: "2000/01/10",
-    UID: "19088H",
-    pastPerformance: ["ffff", "fffffffffffff", "ffffffffff"],
-    performaceThreshold: "performance threshould",
-    gender: "female",
-    singelRegistered: "yes",
-    doubleRegistered: "yes",
-    contactNumber: "0773605046",
-    email: "harrshani@gmail.com",
-    postalAddress: "ma, udugoda",
-    
-  });
+import React, { useState, useEffect } from 'react';
+import { Modal } from 'react-bootstrap';
+import ProfileHeader from '../ProfileHeader/ProfileHeader';
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
+import styles from './adminPlayersViewPage.module.css';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
+import Axios from 'axios';
+import { message } from 'antd';
+import defualtUser from '../../assests/images/default-user.png';
+
+
+const  AdminPlayersViewPage = () => {
+  let location = useLocation();
+  const navigate = useNavigate();
+  const { playerDetails } = location.state;
 
   const [show, setShow] = useState(false);
-  const [editingKey, setEditingKey] = useState(null);
-  const [newValue, setNewValue] = useState("");
-  const showEditModal = (key, value) => {
-    console.log(key, value, "testing");
-  };
-  const handleEdit = (key, value) => {
-    console.log("handle edit", key, value);
-    setEditingKey(key);
-    setNewValue(detailsOfplayer[key]);
-    setShow(true);
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  useEffect(() => {
+    if (isSubmitting) {
+      // show loading message
+      message.loading('Submitting form...');
+    }
+  }, [isSubmitting]);
+
+
+
   const handleClose = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     setShow(false);
   };
-  const handleShow = (key) => {
+  const handleShow = () => {
     setShow(true);
   };
-  const handleSubmit = (e) => {
+
+  const deletePlayer = async (e) => {
     e.preventDefault();
-    setDetailsOfPlayer({
-      ...detailsOfplayer,
-      [editingKey]: newValue,
-    });
-    handleClose();
+    console.log(playerDetails._id)
+    setShow(false);
+    setIsSubmitting(true);
+    try {
+      const result = await Axios.delete(process.env.REACT_APP_API_URL + '/player/removeByField/Id/' + playerDetails._id, {
+        headers: {},
+      });
+      setIsSubmitting(false);
+      console.log(result);
+      message.success('Deleted successfully !! ');
+      navigate('/admin/players');
+    } catch (error) {
+      console.log(error);
+      message.error(error.response.data.message);
+    }
   };
+
   return (
-    <div className={`${styles["player-view-container"]}`}>
-      <ProfileHeader user_type={"admin"} />
+    <div className={`${styles['account-container']}`}>
+      <ProfileHeader user_type={'admin'} />
       <AdminNavbar page="players" />
-      <div className={`${styles["main-title"]}`}>
-        <a href="/players/{name}">Player</a>
-        <img
-          src={require("../../assests/images/forward_arrow.png")}
-          alt=""
-        />{" "}
-        {name}
-      </div>
 
-      <div className={`${styles["players-details-container"]}`}>
-        <div className={`${styles["photo-container"]}`}>
-          <img
-            src={require("../../assests/images/captain-female.jpg")}
-            alt=""
-          />
+      <div className={`${styles['main-title']}`}>
+        <a href="/admin/players">Players</a>
+        <img src={require('../../assests/images/forward_arrow.png')} alt="" /> {playerDetails.name}
+      </div>
+      <div className={`${styles['tool-bar']}`}>
+        <Link to={'../players/edit/' + playerDetails.firstName+playerDetails.lastName} state={{ playerDetails: playerDetails }}>
+          <img src={require('../../assests/images/edit.png')} alt="" /> Edit Account
+        </Link>
+
+        <button onClick={handleShow}>
+          <img src={require('../../assests/images/delete.png')} alt="" /> Delete Account
+        </button>
+      </div>
+      <div className={`${styles['profile-container']}`}>
+        <img src={defualtUser} alt="" srcSet="" />
+        <div className={`${styles['profile-type']}`}></div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>First name</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.firstName}</div>
         </div>
-        {Object.entries(detailsOfplayer).map(([key, value]) => (
-          <div className={`${styles["details-row"]}`}>
-            <Row>
-              <Col>{key}</Col>
-              <Col>{value}</Col>
-              <Col>
-                <Button
-                  onClick={() => handleEdit(key, value)}
-                  style={{
-                    fontFamily: "Hind",
-                    fontSize: "18px",
-                    background: "#1edfe9f",
-                    color: "white",
-                    alignSelf: "left",
-                    marginLeft: "0",
-                  }}
-                >
-                  Edit
-                </Button>
-              </Col>
-            </Row>
-          </div>
-        ))}
-      </div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Last name</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.lastName}</div>
+        </div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Email</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.email}</div>
+        </div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Gender</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.gender}</div>
+        </div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Birthday</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.dob}</div>
+        </div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Institue</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.institute}</div>
+        </div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Past single performance</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.pastPerformanceSingle.map(obj => obj.description).join(',')}</div>
+        </div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Past double performance</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.pastPerformanceDouble.map(obj => obj.description).join(',')}</div>
+        </div>
+        <hr />
 
-      {/* modal for edit details */}
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Performance threshould</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.performanceThreshold}</div>
+        </div>
+        <hr />
+        <div className={`${styles['profile-field-container']}`}>
+          <div className={`${styles['profile-field-name']}`}>Contact Number</div>
+          <div className={`${styles['profile-field-value']}`}>{playerDetails.contactNumber}</div>
+        </div>
+        <hr />
+      </div>
+      {/* modal for deleting */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header style={{ backgroundColor: "#f5f6fa" }}>
-          <Modal.Title style={{ fontFamily: "Hind", fontSize: "18px" }}>
-            Edit {editingKey}
-          </Modal.Title>
+        <Modal.Header style={{ backgroundColor: '#f5f6fa' }}>
+          <Modal.Title style={{ fontFamily: 'Hind', fontSize: '18px' }}>Delete User Account</Modal.Title>
         </Modal.Header>
-        <form style={{ backgroundColor: "#f5f6fa" }}>
+        <form style={{ backgroundColor: '#f5f6fa' }}>
           <Modal.Body>
             <div className="row">
-              <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon3" value={newValue}>
-                  {editingKey}
-                </InputGroup.Text>
-                <Form.Control
-                  value={newValue}
-                  aria-label="Default"
-                  onChange={(e) => setNewValue(e.target.value)}
-                />
-              </InputGroup>
+              <div className="col-11">
+                <h5 style={{ fontFamily: 'Hind', fontSize: '18px' }}>Are you sure you want to delete this user account? </h5>
+              </div>
             </div>
           </Modal.Body>
 
           <Modal.Footer>
-            <button
-              onClick={handleClose}
-              className="btn btn-secondary"
-              style={{ fontFamily: "Hind", fontSize: "18px" }}
-            >
+            <button onClick={handleClose} className="btn btn-secondary" style={{ fontFamily: 'Hind', fontSize: '18px' }}>
               Close
             </button>
-            <button
-              type="submit"
-              className="btn btn-light"
-              onClick={handleSubmit}
-              style={{
-                fontFamily: "Hind",
-                fontSize: "18px",
-                background: "red",
-                color: "white",
-              }}
-            >
-              Edit
+            <button type="submit" className="btn btn-light" onClick={deletePlayer} style={{ fontFamily: 'Hind', fontSize: '18px', background: 'red', color: 'white' }}>
+              Delete
             </button>
           </Modal.Footer>
         </form>
       </Modal>
-
-
-
-
-
-
-      {/* admin player modal with payements page  with filters*/}
-
-      
     </div>
   );
 };
 
-export default AdminPlayersViewPage;
+export default  AdminPlayersViewPage;
+
+
+
