@@ -12,6 +12,7 @@ import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 import Dropdown from "../../../common/Dropdown/Dropdown";
 
 import { message } from "antd";
+import ImageUploader from "../Common/imageUploader/ImageUploader";
 const CompanyRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
   const [validated, setValidated] = useState(false); //form validation
@@ -47,6 +48,12 @@ const CompanyRegistration = () => {
   const [imageList, setImageList] = useState([null,null,null]);
   const [fileNameList, setFileNameList] = useState([null,null,null]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [,setSlipImage] = useState(null);
+  const [slipFile,setSlipFile] = useState([]);
+  const [,setSlipName] = useState(null);
+
+
+
   const isPlayerArrayValid = isValidPlayerArray(playersArray);
   const paymentOptions = ["On-site", "Bank Transfer"];
   const [payment, setPayment] = useState("");
@@ -362,24 +369,7 @@ const CompanyRegistration = () => {
               </MDBCol>
               {isBankTransfer && (
                 <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                  <MDBInput
-                    wrapperClass="mb-4"
-                    label="Payment Slip"
-                    labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                    style={{
-                      fontFamily: "Hind",
-                      fontSize: "18px",
-                      padding: "15px",
-                      minHeight: "40px",
-                    }}
-                    labelClass="text-white"
-                    name="paymentSlip"
-                    type="text"
-                    value={company.paymentSlip}
-                    onChange={handleChange}
-                    contrast
-                    className="bg-primary bg-opacity-25"
-                  />
+                  <ImageUploader setImage={setSlipImage} fileList={slipFile} setFileList={setSlipFile} setImageName={setSlipName} />
                 </MDBCol>
               )}
             </div>
