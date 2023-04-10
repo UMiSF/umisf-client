@@ -29,6 +29,7 @@ const PlayerRegistration = () => {
     email: "",
     photo: "samplePhoto.jpeg",
     performanceThreshold: 100,
+    year:"2023"
   });
   const [fileList, setFileList] = useState([]);
   const [isChecked, setIsChecked] = useState(false);

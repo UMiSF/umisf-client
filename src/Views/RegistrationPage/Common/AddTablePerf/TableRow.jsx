@@ -24,7 +24,7 @@ const TableRow = (props) => {
             }}
             contrast
             label="Tournament"
-            labelStyle={{ color: "white", fontFamily: "Hind"}}
+            labelStyle={{ color: "white", fontFamily: "Hind" }}
             className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
           />
         </MDBCol>

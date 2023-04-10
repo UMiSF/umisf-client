@@ -23,6 +23,7 @@ const RegisterAll = () => {
     pastPerformance: [],
     paymentMethod: "",
     paymentSlip: "",
+    year:"2023"
   });
 
   const [double, setDouble] = useState({
@@ -32,6 +33,7 @@ const RegisterAll = () => {
     pastPerformance: [],
     paymentMethod: "",
     paymentSlip: "",
+    year:"2023"
   });
   const items = [
     {

@@ -21,7 +21,8 @@ const CompanyRegistration = () => {
     contactNumber: "",
     paymentMethod: "",
     paymentSlip: "",
-    matchType:"Men",
+    matchType:"A Division",
+    year:"2023"
   });
   const isValidPlayerArray = (players) => {
     if (players.length < 5) {
@@ -34,9 +35,9 @@ const CompanyRegistration = () => {
   };
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
-    { firstName: "", lastName: "", photo: "" },
-    { firstName: "", lastName: "", photo: "" },
-    { firstName: "", lastName: "", photo: "" },
+    { firstName: "", lastName: "", gender: "", photo: "" },
+    { firstName: "", lastName: "", gender: "", photo: "" },
+    { firstName: "", lastName: "", gender: "", photo: "" },
   ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
@@ -79,37 +80,57 @@ const CompanyRegistration = () => {
       setCompany((prevValue) => {
         return { ...prevValue, paymentSlip: value };
       });
-    } else if (name.includes("name") || name.includes("id") || name.includes("photo")) {
-      const field = name.split("-")[0];
-      const position = parseInt(name.split("-")[1]);
-      console.log("Table Values: ", field, position, value);
-      const newArray = [...playersArray];
-      console.log('name',name);
-      switch (field) {
-        case "name":
-          newArray[position] = {
-            firstName: value.split(' ')[0],
-            lastName: value.split(' ')[1],
-            photo: newArray[position].photo,
-          };
-          break;
-        case "id":
-          newArray[position] = {
-            firstName: newArray[position].firstName,
-            lastName:newArray[position].lastName,
-            photo: newArray[position].photo,
-          };
-          break;
-        case "photo":
-          newArray[position] = {
-            firstName: newArray[position].firstName,
-            lastName: newArray[position].lastName,
-            photo: value,
-          };
-          break;
-      }
-      setPlayersArray(newArray);
     }
+  };
+
+  const changePlayerArray = (option, id) => {
+    const name = id;
+    const value = option;
+    const field = name.split("-")[0];
+    const position = parseInt(name.split("-")[1]);
+    const newArray = [...playersArray];
+
+    switch (field) {
+      case "name":
+        //incase of one part of the name
+        const fullName = value.trim().split(" ")
+        fullName.length == 1 && fullName.push(fullName[0])
+        const length = fullName.length
+       
+
+        newArray[position] = {
+          firstName: length == 2 ? fullName[0]: fullName.slice(0,length - 1).join(" "),
+          lastName: fullName[length - 1],
+          gender: newArray[position].gender,
+          photo: newArray[position].photo
+        };
+        break;
+      case "id":
+        newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          gender: newArray[position].gender,
+          photo: newArray[position].photo
+        };
+        break;
+        case "gender":
+          newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          gender: value,
+          photo: newArray[position].photo
+          };
+          break;
+      case "photo":
+        newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          gender: newArray[position].gender,
+          photo: value
+        };
+        break;
+    }
+    setPlayersArray(newArray);
   };
 
   const updatePlayerCommonData = ()=>{
@@ -131,7 +152,7 @@ const CompanyRegistration = () => {
     e.preventDefault();
     setCount(count + 1);
     setPlayersArray((prevValue) => {
-      return [...playersArray, { name: "", id: "", photo: "" }];
+      return [...playersArray, { name: "", id: "", gender:"", photo: "" }];
     });
     count == 7 && setExceeded(true);
   };
@@ -274,7 +295,7 @@ const CompanyRegistration = () => {
                     </div>
                   </div>
                   {playersArray?.map((player, index) => {
-                    return <TableRow player={player} index={index} handleChange={handleChange} />;
+                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={true}/>;
                   })}
                   <div className={`${Styles["plus-minus"]}`}>
                     <button

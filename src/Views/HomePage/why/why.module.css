@@ -53,10 +53,10 @@
 .why-desc {
   padding: 0 11vw;
   text-align: center;
-  
 }
 
-.why-desc p {
+.why-desc p,
+.why-desc b {
   font-family: "Hind", sans-serif;
   font-size: 1vw;
 }
@@ -100,15 +100,17 @@
     font-size: 1.4vw;
     line-height: 1.4vw;
   }
-  .why-desc p {
+  .why-desc p,
+  .why-desc b {
     font-size: 1.4vw;
   }
 
-  .why-title, .why-title p{
+  .why-title,
+  .why-title p {
     font-size: 4vw;
   }
 
-  .why-view-more a{
+  .why-view-more a {
     font-size: 1.4vw;
   }
 }
@@ -135,15 +137,17 @@
     font-size: 2vw;
     line-height: 2vw;
   }
-  .why-desc p {
+  .why-desc p,
+  .why-desc b {
     font-size: 2vw;
   }
 
-  .why-title, .why-title p{
+  .why-title,
+  .why-title p {
     font-size: 5vw;
   }
 
-  .why-view-more a{
+  .why-view-more a {
     font-size: 2vw;
   }
 }
@@ -153,15 +157,17 @@
     font-size: 3vw;
     line-height: 3vw;
   }
-  .why-desc p {
+  .why-desc p,
+  .why-desc b {
     font-size: 3vw;
   }
 
-  .why-title, .why-title p{
+  .why-title,
+  .why-title p {
     font-size: 6vw;
   }
 
-  .why-view-more a{
+  .why-view-more a {
     font-size: 3vw;
   }
 }

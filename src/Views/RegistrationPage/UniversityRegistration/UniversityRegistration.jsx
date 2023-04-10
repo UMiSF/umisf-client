@@ -22,6 +22,7 @@ const UniversityRegistration = () => {
     contactNumber: "",
     paymentMethod: "",
     paymentSlip: "",
+    year: "2023",
   });
 
   const [isBankTransfer, setIsBankTransfer] = useState(false);
@@ -71,36 +72,45 @@ const UniversityRegistration = () => {
       setUniversity((prevValue) => {
         return { ...prevValue, paymentSlip: value };
       });
-    } else if (name.includes("name") || name.includes("id") || name.includes("photo")) {
-      const field = name.split("-")[0];
-      const position = parseInt(name.split("-")[1]);
-      console.log("Table Values: ", field, position, value);
-      const newArray = [...playersArray];
-      switch (field) {
-        case "name":
-          newArray[position] = {
-            firstName: value,
-            lastName: newArray[position].lastName,
-            photo: newArray[position].photo,
-          };
-          break;
-        case "id":
-          newArray[position] = {
-            firstName: newArray[position].firstName,
-            lastName: value,
-            photo: newArray[position].photo,
-          };
-          break;
-        case "photo":
-          newArray[position] = {
-            firstName: newArray[position].firstName,
-            lastName: newArray[position].lastName,
-            photo: value,
-          };
-          break;
-      }
-      setPlayersArray(newArray);
     }
+  };
+
+  const changePlayerArray = (option, id) => {
+    const name = id;
+    const value = option;
+    const field = name.split("-")[0];
+    const position = parseInt(name.split("-")[1]);
+    const newArray = [...playersArray];
+
+    switch (field) {
+      case "name":
+        //incase of one part of the name
+        const fullName = value.trim().split(" ")
+        fullName.length == 1 && fullName.push(fullName[0])
+        const length = fullName.length
+
+        newArray[position] = {
+          firstName: length == 2 ? fullName[0]: fullName.slice(0,length - 1).join(" "),
+          lastName: fullName[length - 1],
+          photo: newArray[position].photo
+        };
+        break;
+      case "id":
+        newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          photo: newArray[position].photo
+        };
+        break;
+      case "photo":
+        newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          photo: value
+        };
+        break;
+    }
+    setPlayersArray(newArray);
   };
 
   const changeGender = (value) => {
@@ -215,15 +225,16 @@ const UniversityRegistration = () => {
     }
   }
 
-
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - University</div>
-          <div className={`${Styles["tournament-guidlines"]}`}><a href="#">
-          Tournament and Registration guildlines</a><img src={require("../../../assests/images/tap.gif")} /></div>
+          <div className={`${Styles["tournament-guidlines"]}`}>
+            <a href="#">Tournament and Registration guildlines</a>
+            <img src={require("../../../assests/images/tap.gif")} />
+          </div>
           <div className={`${Styles["register-form"]}`}>
             {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
             <MDBContainer className="">
@@ -238,7 +249,7 @@ const UniversityRegistration = () => {
                     <MDBInput
                       wrapperClass="mb-1"
                       label="University"
-                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      labelStyle={{ color: "white", fontFamily: "Hind" }}
                       className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="name"
@@ -266,7 +277,7 @@ const UniversityRegistration = () => {
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Email"
-                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      labelStyle={{ color: "white", fontFamily: "Hind" }}
                       className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="email"
@@ -281,7 +292,7 @@ const UniversityRegistration = () => {
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Contact Number"
-                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      labelStyle={{ color: "white", fontFamily: "Hind" }}
                       className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="contactNumber"
@@ -294,11 +305,9 @@ const UniversityRegistration = () => {
                   </MDBCol>
                 </div>
                 <div className="mb-2">
-                  <div style={{ fontWeight: "bold", fontFamily: "Hind"}}>
-                    Team
-                  </div>
+                  <div style={{ fontWeight: "bold", fontFamily: "Hind" }}>Team</div>
                   {playersArray?.map((player, index) => {
-                    return <TableRow player={player} index={index} handleChange={handleChange} />;
+                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={false}/>;
                   })}
                   <div className={`${Styles["plus-minus"]}`}>
                     <button
@@ -331,7 +340,7 @@ const UniversityRegistration = () => {
                       <MDBInput
                         wrapperClass="mb-4"
                         label="Payment Slip"
-                        labelStyle={{ color: "white", fontFamily: "Hind"}}
+                        labelStyle={{ color: "white", fontFamily: "Hind" }}
                         className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                         labelClass="text-white"
                         name="paymentSlip"
@@ -352,7 +361,7 @@ const UniversityRegistration = () => {
           </div>
         </>
       ) : (
-        <RegistrationsNotOpen/>
+        <RegistrationsNotOpen />
       )}
     </div>
   );
