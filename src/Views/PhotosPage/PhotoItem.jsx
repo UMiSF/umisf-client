@@ -3,10 +3,10 @@ import Styles from "./PhotoItem.module.css";
 import { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import DownloadIcon from '@mui/icons-material/Download';
+import { saveAs } from 'file-saver'
 
 const PhotoItem = (props) => {
   const [modal, setModal] = useState(false);
-  const [tempImgSrc, setTempImgSrc] = useState("");
 
   function getImage(image) {
     // setTempImgSrc('./Images/TempImg/' + image);
@@ -14,8 +14,10 @@ const PhotoItem = (props) => {
     
   }
 
-  function download(){
-    console.log('downloading');
+  function download(url,id){
+   
+      saveAs(url, "umisf-img"+id + ".jpg");
+
   }
 
   return (
@@ -26,16 +28,16 @@ const PhotoItem = (props) => {
             `${Styles["modal-open"]} ${Styles["modal"]}` 
           }
         >
-          <img src={require("./Images/TempImg/" + props.image)} alt="" />
+          <img src={props.image} alt="" />
           <CloseIcon onClick={()=>{setModal(false)}}  className={Styles['close']}/>
-          <DownloadIcon className={Styles['download']} onClick={download}/>
+          <DownloadIcon className={Styles['download']} onClick={()=>download(props.image,props.id)}/>
         </div>
       )}
 
       <div className={`${Styles["pics"]}`}>
-      <DownloadIcon className={Styles['download-pic']} onClick={download}/>
+      <DownloadIcon className={Styles['download-pic']} onClick={()=>download(props.image,props.id)}/>
         <img
-          src={require("./Images/TempImg/" + props.image)}
+          src={props.image}
           alt={props.image}
           style={{ width: "100%" }}
           onClick={() => {
