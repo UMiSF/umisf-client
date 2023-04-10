@@ -75,66 +75,7 @@
 .input-text {
   font-family: "Hind", sans-serif;
 }
-.conquest {
-  position: absolute;
-  width: 86%;
-  height: 100%;
-  left: 7%;
-  top: 0px;
 
-  font-family: "Hind", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1vw;
-  line-height: 30px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.1em;
-  padding: 15px;
-
-  color: #ffffff;
-}
-.conquest-button {
-  position: absolute;
-  width: 78%;
-  height: 15%;
-  left: 11%;
-  top: 78%;
-
-  background: #185de1;
-  border-radius: 10px;
-}
-.success-msg {
-  position: absolute;
-  width: 100%;
-  height: 80%;
-  left: 0%;
-  bottom: 20%;
-
-  font-family: "Hind", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 1vw;
-  line-height: 25px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.1em;
-  padding: 20px;
-  color: white;
-}
-
-.success-msg-box {
-  position: absolute;
-  height: 35%;
-  width: 24%;
-  top: 35%;
-  left: 38%;
-
-  background: rgba(20, 53, 139, 0.5);
-  border-radius: 10px;
-}
 .user-id {
   position: absolute;
   width: 124px;
@@ -172,6 +113,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.tournament-guidlines{
+  text-align: right;
+  width: 87%;
+  height: fit-content;
+  margin-left: 7vw;
+  margin-bottom: 1vw;
+  color: white;
+}
+
+.tournament-guidlines a{
+  font-size: 1vw;
+  text-decoration: none;
+  color: white;
+  font-family: "Hind";
+  font-weight: "bold";
+}
+
+.tournament-guidlines a:hover{
+  color: rgb(227, 67, 67);
+}
+
+.tournament-guidlines img{
+  width: 1.7vw;
 }
 
 
@@ -216,6 +181,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0.8);
 }
 
+@media (max-width: 1037px) {
+  .tournament-guidlines a{
+    font-size: 1.2vw;
+  }
+}
+
 @media (max-width: 920px) {
   .body {
     height: 125vh;
@@ -230,6 +201,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   .btn {
     font-size: 2vw;
+  }
+
+  .tournament-guidlines a{
+    font-size: 1.2vw;
   }
 }
 
@@ -253,6 +228,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .info-logo {
     height: 1.5vw;
   }
+  .tournament-guidlines a{
+    font-size: 1.5vw;
+  }
+
+  .tournament-guidlines img{
+    width: 2.2vw;
+  }
 }
 
 @media (max-width: 620px) {
@@ -271,6 +253,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .info-logo {
     height: 2vw;
   }
+
+  .tournament-guidlines a{
+    font-size: 1.7vw;
+  }
+  .tournament-guidlines img{
+    width: 2.4vw;
+  }
 }
 
 @media (max-width: 520px) {
@@ -278,12 +267,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100px;
     height: 40px;
   }
+
+  .tournament-guidlines a{
+    font-size: 2vw;
+  }
+  .tournament-guidlines img{
+    width: 2.5vw;
+  }
 }
 
 @media (max-width: 420px) {
-  
-}
-
-@media (max-width: 320px) {
-  
+  .tournament-guidlines a{
+    font-size: 2.5vw;
+  }
+  .tournament-guidlines img{
+    width: 3.5vw;
+  }
 }

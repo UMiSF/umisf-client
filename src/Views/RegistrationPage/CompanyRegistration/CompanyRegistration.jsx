@@ -111,6 +111,7 @@ const CompanyRegistration = () => {
       setPlayersArray(newArray);
     }
   };
+
   const updatePlayerCommonData = ()=>{
     const tempArray = []
     for (const player of playersArray){
@@ -191,6 +192,8 @@ const CompanyRegistration = () => {
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - Corporate</div>
+          <div className={`${Styles["tournament-guidlines"]}`}><a href="#">
+          Tournament and Registration guildlines</a><img src={require("../../../assests/images/tap.gif")} /></div>
           <div className={`${Styles["info-container"]}`}>
             <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
             <div className={`${Styles["info"]}`}>
@@ -211,13 +214,13 @@ const CompanyRegistration = () => {
                   <MDBCol className="" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-2"
-                      label="Corporate"
+                      label="Corporate name"
                       labelClass="text-white"
                       labelStyle={{ color: "white", fontFamily: "Hind"}}
                       className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
-                      name="company"
+                      name="name"
                       type="text"
-                      value={company.company}
+                      value={company.name}
                       onChange={handleChange}
                       required
                       contrast
@@ -230,9 +233,9 @@ const CompanyRegistration = () => {
                       labelStyle={{ color: "white", fontFamily: "Hind"}}
                       className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
-                      name="contact_number"
+                      name="contactNumber"
                       type="text"
-                      value={company.contact_number}
+                      value={company.contactNumber}
                       onChange={handleChange}
                       required
                       contrast

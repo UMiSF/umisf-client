@@ -131,6 +131,36 @@
   width: 20px;
 }
 
+.tournament-guidlines{
+  text-align: right;
+  width: 87%;
+  height: fit-content;
+  margin-left: 7vw;
+  margin-bottom: 1vw;
+  color: white;
+}
+
+.tournament-guidlines a{
+  font-size: 1vw;
+  text-decoration: none;
+  color: white;
+  font-family: "Hind";
+  font-weight: "bold";
+}
+
+.tournament-guidlines a:hover{
+  color: rgb(227, 67, 67);
+}
+
+.tournament-guidlines img{
+  width: 1.7vw;
+}
+@media (max-width: 1037px) {
+  .tournament-guidlines a{
+    font-size: 1.2vw;
+  }
+}
+
 @media (max-width: 920px) {
   .body {
     height: 125vh;
@@ -145,6 +175,10 @@
 
   .btn {
     font-size: 2vw;
+  }
+
+  .tournament-guidlines a{
+    font-size: 1.2vw;
   }
 }
 
@@ -168,6 +202,14 @@
   .info-logo {
     height: 1.5vw;
   }
+
+  .tournament-guidlines a{
+    font-size: 1.5vw;
+  }
+
+  .tournament-guidlines img{
+    width: 2.2vw;
+  }
 }
 
 @media (max-width: 620px) {
@@ -186,11 +228,34 @@
   .info-logo {
     height: 2vw;
   }
+
+  .tournament-guidlines a{
+    font-size: 1.7vw;
+  }
+  .tournament-guidlines img{
+    width: 2.4vw;
+  }
 }
 
 @media (max-width: 520px) {
   .btn {
     width: 100px;
     height: 40px;
+  }
+
+  .tournament-guidlines a{
+    font-size: 2vw;
+  }
+  .tournament-guidlines img{
+    width: 2.5vw;
+  }
+}
+
+@media (max-width: 420px) {
+  .tournament-guidlines a{
+    font-size: 2.5vw;
+  }
+  .tournament-guidlines img{
+    width: 3.5vw;
   }
 }

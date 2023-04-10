@@ -1,19 +1,21 @@
-import React, { useState, useEffect,useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
-import {  Button,  Space, notification } from "antd";
-import {RadiusBottomrightOutlined} from '@ant-design/icons';
+import { Button, Space, notification } from "antd";
+import { RadiusBottomrightOutlined } from "@ant-design/icons";
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import Axios from "axios";
 import { message } from "antd";
 import Dropdown from "../../../common/Dropdown/Dropdown";
+import SuccessMessage from "../Common/SuccessMessage/SuccessMessage";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
+import { useNavigate } from "react-router-dom";
 
 const PlayerRegistration = () => {
-
+  const navigate = useNavigate()
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
 
   const [validated, setValidated] = useState(false); //form validation
@@ -36,7 +38,7 @@ const PlayerRegistration = () => {
   const [gender, setGender] = useState("");
 
   useEffect(() => {
-    openNotification('topRight')
+    // openNotification('topRight')
     if (isSubmitting) {
       // show loading message
       message.loading("Submitting form...");
@@ -113,7 +115,7 @@ const PlayerRegistration = () => {
           message.success(res.data.message);
           console.log("Here");
           setPlayerID(res.data.data[0]["_id"]);
-          setIsChecked(true);
+          navigate('/register/player/'+res.data.data[0]["_id"])
         })
         .catch((error) => {
           console.log("Error: ", error);
@@ -123,35 +125,24 @@ const PlayerRegistration = () => {
     }
   }
 
-  const Context = React.createContext({
-    name: 'Default',
-  });
-
-  const [api, contextHolder] = notification.useNotification();
-  const openNotification = (placement) => {
-    api.info({
-      message: `Tournament Details and Registrations Guidlines`,
-      description: <Context.Consumer>{({ name }) => {<a>dcdscdfc</a>}}</Context.Consumer>,
-      placement,
-    });
-  };
-
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
-      {contextHolder}
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Player Registration</div>
-          {!isChecked && (
+
             <>
+              <div className={`${Styles["tournament-guidlines"]}`}>
+                <a href="#">Tournament and Registration guildlines</a>
+                <img src={require("../../../assests/images/tap.gif")} />
+              </div>
               <div className={`${Styles["info-container"]}`}>
                 <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
                 <div className={`${Styles["info"]}`}>
                   Please note that first you have to register as a player through this portal before
                   applying for single/double events. The Player ID given upon successful
                   registration should be used for all the future events including upcoming years.
-                  
                 </div>
               </div>
               <div className={`${Styles["register-form"]}`}>
@@ -189,7 +180,7 @@ const PlayerRegistration = () => {
                         <MDBInput
                           wrapperClass="mb-4"
                           label="First Name"
-                          labelStyle={{ color: "white", fontFamily: "Hind"}}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
                           name="firstName"
                           type="text"
                           className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
@@ -203,7 +194,7 @@ const PlayerRegistration = () => {
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Institute"
-                          labelStyle={{ color: "white", fontFamily: "Hind"}}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
                           className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="institute"
@@ -220,7 +211,7 @@ const PlayerRegistration = () => {
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Last Name"
-                          labelStyle={{ color: "white", fontFamily: "Hind"}}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
                           className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="lastName"
@@ -235,7 +226,7 @@ const PlayerRegistration = () => {
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Contact Number"
-                          labelStyle={{ color: "white", fontFamily: "Hind"}}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
                           className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="contactNumber"
@@ -252,7 +243,7 @@ const PlayerRegistration = () => {
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Date of Birth"
-                          labelStyle={{ color: "white", fontFamily: "Hind"}}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
                           className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="dob"
@@ -268,7 +259,7 @@ const PlayerRegistration = () => {
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Email"
-                          labelStyle={{ color: "white", fontFamily: "Hind"}}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
                           className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="email"
@@ -287,21 +278,6 @@ const PlayerRegistration = () => {
                 </MDBContainer>
               </div>
             </>
-          )}
-          {isChecked && (
-            <div className={`${Styles["success-msg-box"]}`}>
-              {/* <img src={trophy} className={`${Styles[""]}`}/> */}
-              <div className={`${Styles["success-msg"]}`}>
-                Thank you for registering with us ! Your player ID {playerID} will be used for
-                registering for the future events including next years.
-                <div className={`${Styles["image-trophy"]}`}></div>
-              </div>
-
-              <MDBBtn className={`${Styles["conquest-button"]}`} type="submit">
-                <div className={`${Styles["conquest"]}`}>Enter the conquest</div>
-              </MDBBtn>
-            </div>
-          )}
         </>
       ) : (
         <RegistrationsNotOpen />

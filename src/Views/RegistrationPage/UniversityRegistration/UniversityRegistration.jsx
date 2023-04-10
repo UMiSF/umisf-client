@@ -222,6 +222,8 @@ const UniversityRegistration = () => {
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - University</div>
+          <div className={`${Styles["tournament-guidlines"]}`}><a href="#">
+          Tournament and Registration guildlines</a><img src={require("../../../assests/images/tap.gif")} /></div>
           <div className={`${Styles["register-form"]}`}>
             {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
             <MDBContainer className="">

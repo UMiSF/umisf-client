@@ -10,20 +10,13 @@ const Why = () => {
       <div className={`${styles["why-desc"]}`}>
         <p>
           UMiSF is the annual badminton tournament organized by the badminton team of the University
-          of Moratuwa, in collaboration with the Physical Education division of the university .It
-          is conducted under 4 main categories;
-        </p>
-        <div className={`${styles["why-list"]}`}>
-          <p>1. All Island age group badminton championship</p>
-          <p>2. University badminton championship</p>
-          <p>3. University staff badminton championship</p>
-          <p>4. Corporate badminton championship</p>
-        </div>
-
-        <p>
+          of Moratuwa, in collaboration with the Physical Education Division of the university. It
+          is conducted under 4 main categories; <p style={{fontSize:"18px", fontWeight:"bold", display:"inline"}}>All island age group badminton championship</p>, University badminton championship
+          , University staff badminton championship and Corporate badminton championship.
           We warmly welcome badminton enthusiasts from across the island to come together in a
           spirit of friendly competition and sportsmanship, to showcase their skills, with the
           intention of facilitating connections among individuals who share a passion for badminton.
+
         </p>
       </div>
       <div className={`${styles["why-view-more"]}`}>

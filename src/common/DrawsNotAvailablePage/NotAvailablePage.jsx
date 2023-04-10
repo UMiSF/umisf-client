@@ -7,7 +7,7 @@ const NotAvailablePage = (props) => {
       <div className={`${styles["sad-face"]}`}>{":("}</div>
 
       <div className={`${styles["content"]}`}>
-        <h1>NOT AVAILABLE</h1>
+        <h1>THE DATA IS NOT AVAILABLE FOR NOW</h1>
         <p> You will be able to view draws <b style={{fontFamily:"Hind", fontSize:"15px", color:"red"}}>{props.publishedDate}</b> onwards.</p>
         <a href="/" className={`${styles["home-button"]}`}>
           {" "}

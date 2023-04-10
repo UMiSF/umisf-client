@@ -40,7 +40,7 @@ function Footer() {
           <p>
             UMiSF is the annual badminton tournament organized
             by the badminton team of the University of Moratuwa,
-             in collaboration with the university's division of Physical Education. 
+             in collaboration with the university's Division of Physical Education. 
           </p>
           <div className={`${styles["footer-icons"]}`}>
             <a href="https://twitter.com/MoratuwaUni" target='_blank'>

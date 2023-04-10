@@ -53,7 +53,7 @@ function DevelopersPage() {
     },
     {
       name: "Yasira Punsith",
-      working_place: "CSE undergraduate@ UOM",
+      working_place: "CSE Undergraduate@ UOM",
       image: "yasira.jpg",
       position: "Frontend Developer",
       linkedin: "https://www.linkedin.com/in/yasira-punsith-839121266/",
@@ -62,7 +62,7 @@ function DevelopersPage() {
     },
     {
       name: "Sahani Dissanayake",
-      working_place: "Business Science undergraduate@ UOM",
+      working_place: "Business Science Undergraduate@ UOM",
       image: "sahani.jpeg",
       position: "Content Writer",
       linkedin: "",

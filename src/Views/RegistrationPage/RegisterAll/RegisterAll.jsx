@@ -558,6 +558,8 @@ const RegisterAll = () => {
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration</div>
+          <div className={`${Styles["tournament-guidlines"]}`}><a href="#">
+          Tournament and Registration guildlines</a><img src={require("../../../assests/images/tap.gif")} /></div>
           <div className={`${Styles["info-container"]}`}>
             <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
             <div className={`${Styles["info"]}`}>
