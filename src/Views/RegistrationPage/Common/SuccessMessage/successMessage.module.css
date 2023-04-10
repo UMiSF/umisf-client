@@ -12,16 +12,16 @@
   background-size: cover;
   background-position: top;
   font-family: "Hind";
-  width: 30%;
+  width: 30vw;
   margin-left: auto;
-  padding: 4% 2%;
-  padding-bottom: 2%;
+  padding: 3vw 2vw;
   margin-right: auto;
-  margin-top: 15%;
   background-color: #2237476c;
-  font-size: 65%;
+  font-size: 1vw;
   font-weight: bold;
   color: rgb(255, 251, 251);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .success-msg:before {
@@ -42,7 +42,7 @@
 .success-msg button {
   border: none;
   background: #0984e3;
-  padding: 2%;
+  padding: 0.3vw;
   display: block;
   text-align: center;
   margin-left: auto;
@@ -53,8 +53,8 @@
 .copy-text-container {
   border: 1px solid rgb(170, 166, 166);
   background-color: rgba(0, 0, 0, 0.268);
-  margin: 20% 0;
-  margin-bottom: 10%;
+  margin: 5vw 0;
+  margin-bottom: 3vw;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -62,9 +62,9 @@
 
 .copy-text {
   flex-basis: 90%;
-  font-size: 80%;
+  font-size: 1vw;
   font-family: "Hind";
-  padding: 3% 3%;
+  padding: 1vw;
   position: relative;
   
 }
@@ -72,7 +72,7 @@
 .copy-button {
   flex-basis: 10%;
   border-left: 1px solid rgb(170, 166, 166);
-  padding: 2% 3%;
+  padding: 0.5vw;
   position: relative;
 }
 
@@ -84,4 +84,44 @@
 
 .conquest-button{
   position: relative;
+}
+
+@media (max-width:720px){
+  .success-msg {
+    width: 50vw;
+    font-size: 2vw;
+  }
+
+  .copy-text {
+    font-size: 2vw;
+  }
+
+  .copy-button i{
+    font-size: 2vw;
+    padding: 0.8vw;
+  }
+
+  .conquest-button{
+    padding: 3vw;
+  }
+}
+
+@media (max-width:420px){
+  .success-msg {
+    font-size: 3vw;
+    padding: 5vw;
+  }
+
+  .copy-text {
+    font-size: 2vw;
+  }
+
+  .copy-button i{
+    font-size: 3vw;
+    padding: 0.8vw;
+  }
+
+  .conquest-button{
+    padding: 3vw;
+  }
 }
