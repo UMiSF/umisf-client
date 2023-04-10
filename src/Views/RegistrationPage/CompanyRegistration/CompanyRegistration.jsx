@@ -48,7 +48,7 @@ const CompanyRegistration = () => {
   const [imageList, setImageList] = useState([null,null,null]);
   const [fileNameList, setFileNameList] = useState([null,null,null]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [,setSlipImage] = useState(null);
+  const [slipImage,setSlipImage] = useState(null);
   const [slipFile,setSlipFile] = useState([]);
   const [,setSlipName] = useState(null);
 
@@ -192,7 +192,7 @@ const CompanyRegistration = () => {
     }
     setValidated(true);
     console.log('bolean',company.paymentMethod=== "On-site")
-    if ((Object.values(company).includes('') && company.paymentMethod === "On-site" && company.paymentSlip === "") || !Object.values(company).includes("")) {
+    if (Object.values(company).includes('') && company.paymentMethod === "On-site" && slipImage === null || !Object.values(company).includes("")) {
       console.log("Here")
       const players = updatePlayerCommonData()
       console.log(players)

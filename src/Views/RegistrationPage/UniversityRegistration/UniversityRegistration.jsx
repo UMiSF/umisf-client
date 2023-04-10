@@ -11,6 +11,7 @@ import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 import Dropdown from "../../../common/Dropdown/Dropdown";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import { message } from "antd";
+import ImageUploader from "../Common/imageUploader/ImageUploader";
 
 const UniversityRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
@@ -40,6 +41,10 @@ const UniversityRegistration = () => {
   const [fileList,setFileList] = useState([[],[],[]]);
   const [imageList, setImageList] = useState([null,null,null]);
   const [fileNameList, setFileNameList] = useState([null,null,null]);
+
+  const [,setSlipImage] = useState(null);
+  const [slipFile,setSlipFile] = useState([]);
+  const [,setSlipName] = useState(null);
 
   useEffect(() => {
     if (isSubmitting) {
@@ -119,8 +124,8 @@ const UniversityRegistration = () => {
     setUniversity((prevValue) => {
       return { ...prevValue, paymentMethod: value };
     });
-    console.log("isBankTransfer: ", value == "On-Site");
-    value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+    console.log("isBankTransfer: ", value === "On-Site");
+    value === "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
   };
 
   const updatePlayerCommonData = () => {
@@ -389,24 +394,7 @@ const UniversityRegistration = () => {
                   </MDBCol>
                   {isBankTransfer && (
                     <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                      <MDBInput
-                        wrapperClass="mb-4"
-                        label="Payment Slip"
-                        labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                        style={{
-                          fontFamily: "Hind",
-                          fontSize: "18px",
-                          padding: "15px",
-                          minHeight: "40px",
-                        }}
-                        labelClass="text-white"
-                        name="paymentSlip"
-                        type="text"
-                        value={university.paymentSlip}
-                        onChange={handleChange}
-                        contrast
-                        className="bg-primary bg-opacity-25"
-                      />
+                      <ImageUploader setImage={setSlipImage} fileList={slipFile} setFileList={setSlipFile} setImageName={setSlipName} />
                     </MDBCol>
                   )}
                 </div>
