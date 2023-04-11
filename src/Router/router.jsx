@@ -42,7 +42,7 @@ import AdminEditTournamentPage from "../Views/AdminEditTournamentPage/AdminEditT
 import AdminPaymentsPage from "../Views/AdminPaymentsPage/AdminPaymentsPage";
 import AdminPaymentEditPage from "../Views/AdminPaymentEditPage/AdminPaymentEditPage";
 import AdminPaymentCreatePage from "../Views/AdminPaymentCreatePage/AdminPaymentCreatePage";
-import AdminUniversitiesPage from "../Views/AdminUniversitiesPage/AdminUniversitiesPage";
+import AdminUniversityPage from '../Views/AdminUniversityPage/AdminUniversityPage'
 import AdminUniversitiesViewYearPage from "../Views/AdminUniversitiesViewYearPage.jsx/AdminUniversitiesViewyearPage";
 import AdminUniversityRegisterPage from "../Views/AdminUniversityRegisterPage/AdminUniversityRegisterPage";
 import AdminUniversityAddNewPlayerPage from "../Views/AdminUniversityAddNewPlayerPage/AdminUniversityAddNewPlayerPage";
@@ -148,14 +148,13 @@ export default function AppRouter() {
                 <Route path="payments" element={<AdminPaymentsPage />} />
                 <Route path="payments/edit-payment" element={<AdminPaymentEditPage />} />
                 <Route path="payments/add-new-payment" element={<AdminPaymentCreatePage />} />
-
                 <Route
                   path="universities"
-                  element={<AdminUniversitiesPage />}
+                  element={<AdminUniversitiesViewYearPage />}
                 />
                 <Route
-                  path="universities/year/:year"
-                  element={<AdminUniversitiesViewYearPage />}
+                  path="universities/:year/:university"
+                  element={<AdminUniversityPage/>}
                 />
                 <Route
                   path="universities/:year/register"
@@ -165,9 +164,8 @@ export default function AppRouter() {
                   path="universities/:year/:university/register-player"
                   element={<AdminUniversityAddNewPlayerPage />}
                 />
-                <Route path="companies" element={<AdminCompaniesPage />} />
                 <Route
-                  path="companies/year/:year"
+                  path="companies"
                   element={<AdminCompaniesViewYearPage />}
                 />
                 <Route

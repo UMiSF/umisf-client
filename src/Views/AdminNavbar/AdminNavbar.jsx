@@ -17,12 +17,6 @@ const ProfileNavbar = (props) => {
       link: "",
     },
     {
-      title: "Feedbacks",
-      image: "feedbacks.png",
-      id: "feedbacks",
-      link: "feedbacks",
-    },
-    {
       title: "Yearly Configurations",
       image: "yearly_configurations.png",
       id: "yearly_configurations",

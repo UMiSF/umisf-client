@@ -1,13 +1,11 @@
 import React, { Component, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminCompaniesViewYearPage.module.css";
 
 const AdminCompaniesViewYearPage = () => {
-  let { year } = useParams();
-
+  let year = 2023
   const [companies, setCompanies] = useState([
     {
       name: "H2O.ai",
@@ -77,17 +75,8 @@ const AdminCompaniesViewYearPage = () => {
       <AdminNavbar page="companies" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/companies">Companies</a>
-        <img
-          src={require("../../assests/images/forward_arrow.png")}
-          alt=""
-        />{" "}
-        {year}
       </div>
       <div className={`${styles["tool-bar"]}`}>
-        <a href={"/admin/companies/" + year + "/register"}>
-          <img src={require("../../assests/images/edit.png")} alt="" /> Register
-        </a>
-
         <button onClick={handleShow}>
           <img src={require("../../assests/images/delete.png")} alt="" />{" "}
           Unregister

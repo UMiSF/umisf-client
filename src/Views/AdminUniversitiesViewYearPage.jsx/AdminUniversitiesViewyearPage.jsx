@@ -1,12 +1,11 @@
 import React, { Component, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import ProfileHeader from '../ProfileHeader/ProfileHeader'
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminUniversitiesViewYearPage.module.css";
 
 const AdminUniversitiesViewYearPage = () => {
-  let { year } = useParams();
+  let year = 2023;
 
   const [universities, setUniversities] = useState([
     {
@@ -27,18 +26,15 @@ const AdminUniversitiesViewYearPage = () => {
     },
   ]);
 
-  const [universityToBeUnregistered, setUniversityToBeUnregistered] =
-    useState([]);
+  const [universityToBeUnregistered, setUniversityToBeUnregistered] = useState([]);
 
   const loadPlayers = (university) => {
     if (document.querySelector("#" + university).style.display === "none") {
       document.querySelector("#" + university).style.display = "block";
-      document.querySelector("#arrow" + university).style.transform =
-        "rotate(90deg)";
+      document.querySelector("#arrow" + university).style.transform = "rotate(90deg)";
     } else {
       document.querySelector("#" + university).style.display = "none";
-      document.querySelector("#arrow" + university).style.transform =
-        "rotate(-360deg)";
+      document.querySelector("#arrow" + university).style.transform = "rotate(-360deg)";
     }
   };
 
@@ -54,16 +50,14 @@ const AdminUniversitiesViewYearPage = () => {
 
   const unregisterUniversity = (e) => {
     e.preventDefault();
-    console.log(universityToBeUnregistered)
+    console.log(universityToBeUnregistered);
     setShow(false);
   };
 
   useEffect(() => {
     universities.map(
       (university) =>
-        (document.querySelector(
-          "#" + university.name.split(" ").join("")
-        ).style.display = "none")
+        (document.querySelector("#" + university.name.split(" ").join("")).style.display = "none")
     );
   }, []);
 
@@ -73,20 +67,11 @@ const AdminUniversitiesViewYearPage = () => {
       <AdminNavbar page="universities" />
       <div className={`${styles["main-title"]}`}>
         <a href="/admin/universities">Universities</a>
-        <img
-          src={require("../../assests/images/forward_arrow.png")}
-          alt=""
-        />{" "}
-        {year}
+        <img src={require("../../assests/images/forward_arrow.png")} alt="" />
       </div>
       <div className={`${styles["tool-bar"]}`}>
-        <a href={"/admin/universities/"+year+"/register"}>
-          <img src={require("../../assests/images/edit.png")} alt="" /> Register
-        </a>
-
         <button onClick={handleShow}>
-          <img src={require("../../assests/images/delete.png")} alt="" />{" "}
-          Unregister
+          <img src={require("../../assests/images/delete.png")} alt="" /> Unregister
         </button>
       </div>
 
@@ -116,9 +101,11 @@ const AdminUniversitiesViewYearPage = () => {
               className={`${styles["users-name-container"]}`}
             >
               <div className={`${styles["add-players"]}`}>
+                <a href={`/admin/universities/${year}/${university.name}`}>
+                  <img src={require("../../assests/images/edit.png")} alt="" /> View University Registration Details
+                </a>
                 <a href={`/admin/universities/${year}/${university.name}/register-player`}>
-                  <img src={require("../../assests/images/edit.png")} alt="" />{" "}
-                  Add new player
+                  <img src={require("../../assests/images/edit.png")} alt="" /> Add new player
                 </a>
               </div>
               {university.players.map((player, index) => (
@@ -127,10 +114,7 @@ const AdminUniversitiesViewYearPage = () => {
                   className={`${styles["users-name"]}`}
                 >
                   {player}
-                  <img
-                    src={require("../../assests/images/double_arrows.png")}
-                    alt=""
-                  />
+                  <img src={require("../../assests/images/double_arrows.png")} alt="" />
                 </a>
               ))}
             </div>
@@ -155,9 +139,7 @@ const AdminUniversitiesViewYearPage = () => {
                 <select
                   style={{ fontFamily: "Hind", fontSize: "18px" }}
                   className="form-select form-select-sm"
-                  onChange={(e) =>
-                    setUniversityToBeUnregistered(e.target.value)
-                  }
+                  onChange={(e) => setUniversityToBeUnregistered(e.target.value)}
                 >
                   {universities.map((university) => (
                     <option

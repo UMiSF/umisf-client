@@ -47,7 +47,7 @@ const AdminMessagesPage = () => {
   return (
     <div className={`${styles['tournament-container']}`}>
       <ProfileHeader user_type={'admin'} />
-      <AdminNavbar page="payments" />
+      <AdminNavbar page="messages" />
 
       <div className={`${styles['main-title']}`}>
         <a href="/admin/messages">Messages</a>
