@@ -11,19 +11,13 @@ import defualtUser from '../../assests/images/default-user.png';
 
 
 const AdminUniversityPage = () => {
-  let {year, university} = useParams()
+  let location = useLocation();
+  const {university} = location.state
   const [show, setShow] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [universityDetails, setUniversityDetails] = useState({
-    name: "UOM",
-    matchType: "Male",
-    paymentMethod: "Bank Transfer",
-    paymentConfirmed: "-1",
-    paymentSlip: "slip.pdf",
-    paymentApprover: "Poorna Cooray",
-    contactNumber: "0762343434",
-    email: "prnsd@gmail.com"
+    university
   })
 
   const handleClose = (e) => {
@@ -46,7 +40,7 @@ const AdminUniversityPage = () => {
 
       <div className={`${styles['main-title']}`}>
         <a href="/admin/universities">University</a>
-        <img src={require('../../assests/images/forward_arrow.png')} alt="" /> {university}
+        <img src={require('../../assests/images/forward_arrow.png')} alt="" /> {university.name}
       </div>
       <div className={`${styles['tool-bar']}`}>
 
@@ -59,47 +53,47 @@ const AdminUniversityPage = () => {
         <hr />
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Name</div>
-          <div className={`${styles['profile-field-value']}`}>{universityDetails.name}</div>
+          <div className={`${styles['profile-field-value']}`}>{university.name}</div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Match Type</div>
-          <div className={`${styles['profile-field-value']}`}>{universityDetails.matchType}</div>
+          <div className={`${styles['profile-field-value']}`}>{university.matchType}</div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payement method</div>
-          <div className={`${styles['profile-field-value']}`}>{universityDetails.paymentMethod}</div>
+          <div className={`${styles['profile-field-value']}`}>{university.paymentMethod}</div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payement confirmed</div>
-          <div className={`${styles['profile-field-value']}`}>{universityDetails.paymentConfirmed}</div>
+          <div className={`${styles['profile-field-value']}`}>{university.paymentConfirmed}</div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payement slip</div>
-          <div className={`${styles['profile-field-value']}`}><a href={`../../assests/documents/payments/${universityDetails.paymentSlip}`} download>{universityDetails.paymentSlip}</a></div>
+          <div className={`${styles['profile-field-value']}`}><a href={`../../assests/documents/payments/${university.paymentSlip}`} download>{university.paymentSlip}</a></div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payment Approver</div>
-          <div className={`${styles['profile-field-value']}`}>{universityDetails.paymentApprover}</div>
+          <div className={`${styles['profile-field-value']}`}>{university.paymentApprover}</div>
         </div>
         <hr />
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Contact Number</div>
-          <div className={`${styles['profile-field-value']}`}>{universityDetails.contactNumber}</div>
+          <div className={`${styles['profile-field-value']}`}>{university.contactNumber}</div>
         </div>
         <hr />
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Email</div>
-          <div className={`${styles['profile-field-value']}`}>{universityDetails.email}</div>
+          <div className={`${styles['profile-field-value']}`}>{university.email}</div>
         </div>
         <hr />
       </div>
