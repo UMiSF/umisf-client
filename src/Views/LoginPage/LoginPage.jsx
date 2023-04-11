@@ -50,20 +50,16 @@ const LoginPage = (props) => {
 
           switch (role) {
             case "admin":
-              navigate("/admin");
-              window.location.reload(true);
+              window.location.href = "/admin";
               break;
             case "organizer":
-              navigate("/organizer");
-              window.location.reload(true);
+              window.location.href = "/organizer";
               break;
             case "tableOrganizer":
-              navigate("/table");
-              window.location.reload(true);
+              window.location.href = "/table";
               break;
             case "umpire":
-              navigate("/umpire");
-              window.location.reload(true);
+              window.location.href = "/umpire";
               break;
             default:
               break;
