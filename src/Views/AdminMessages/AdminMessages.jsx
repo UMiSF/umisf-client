@@ -12,36 +12,41 @@ const AdminMessagesPage = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+
+    Axios.get(
+      process.env.REACT_APP_API_URL + "/feedbacks/getAllNotViewed",
+      {
+        headers: {},
+      }
+    ).then((res)=>{
+      setMessages(res.data.data)
+    })
+    .catch ((error) =>{
+      message.error(error.response.data.message);
+    })
     
   });
 
- 
-
-  const handleApprove = async (index) => {
-    // let data = filteredDetails[index];
-    // console.log('Approved', data._id);
-    // try {
-    //   const result = await Axios.put(
-    //     process.env.REACT_APP_API_URL + `/${filter.matchType.toLowerCase()}/update`,
-    //     {
-    //       field: '_id',
-    //       value: data._id,
-    //       data: { paymentConfirmed: 1, paymentApprover: user },
-    //     },
-    //     {
-    //       headers: {},
-    //     }
-    //   );
-    //   if (result?.data?.data) {
-    //     console.log('Updated Result', result?.data?.data);
-    //     rearrangeFilteredDetails(1, index, data);
-    //   } else {
-    //     console.log('Empty');
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   message.error(error.response?.data?.message);
-    // }
+  const handleApprove = async (id) => {
+    console.log("approved")
+    try {
+      const result = await Axios.put(
+        process.env.REACT_APP_API_URL + `/feedbacks/update`,
+        {
+          field: '_id',
+          value: id,
+          data: { hasViewed: true},
+        },
+        {
+          headers: {},
+        }
+      );
+      if (!result?.data?.data) {
+        console.log('Empty');
+      }
+    } catch (error) {
+      message.error(error.response?.data?.message);
+    }
   };
 
   return (
@@ -52,7 +57,6 @@ const AdminMessagesPage = () => {
       <div className={`${styles['main-title']}`}>
         <a href="/admin/messages">Messages</a>
       </div>
-      <div className={`${styles['tool-bar']}`}></div>
 
       <div className={`${styles['folder-container']}`}>
         {messages?.length === 0 ? (
@@ -66,7 +70,7 @@ const AdminMessagesPage = () => {
               <div className={`${styles['table-header']}`}>Name</div>
               <div className={`${styles['table-header']}`}>Email</div>
               <div className={`${styles['table-header']}`}>Date</div>
-              <div className={`${styles['table-header']}`}>Feedback</div>
+              <div className={`${styles['table-header']}`} style={{ width: 'fit-content', minWidth:"30%" }}>Feedback</div>
               <div className={`${styles['table-header']}`} style={{ width: '3%' }}>
                 {}
               </div>
@@ -75,15 +79,18 @@ const AdminMessagesPage = () => {
               {messages?.map((message, index) => (
                 <div className={`${styles['table-body']}`}>
                   <div className={`${styles['table-row']}`} style={{ width: '14%' }}>
+                    {message._id}
+                  </div>
+                  <div className={`${styles['table-row']}`}>
                     {message.firstName + " " + message.lastName}
                   </div>
                   <div className={`${styles['table-row']}`}>{message.email}</div>
-                  <div className={`${styles['table-row']}`}>{message.date}</div>
-                  <div className={`${styles['table-row']}`}>{message.message}</div>
+                  <div className={`${styles['table-row']}`}>{message.sentDate}</div>
+                  <div className={`${styles['table-row']}`} style={{ width: 'fit-content', minWidth:"30%" }}>{message.message}</div>
                   <div className={`${styles['table-header']}`} style={{ width: '3%' }}>
                     <Row gutter={36}>
                       <Col span={1}>
-                        <CheckCircleTwoTone twoToneColor="#52c41a" className={`${styles['action']}`} onClick={(e) => handleApprove(index)} name={index} />
+                        <CheckCircleTwoTone twoToneColor="#52c41a" className={`${styles['action']}`} onClick={(e) => handleApprove(message._id)} name={index} />
                       </Col>
                     </Row>
                   </div>

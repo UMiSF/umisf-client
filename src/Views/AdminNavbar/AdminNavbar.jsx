@@ -43,7 +43,7 @@ const ProfileNavbar = (props) => {
     {
       title: "Messages",
       image: "msg.png",
-      id: "msg",
+      id: "messages",
       link: "messages",
     }
   ];
