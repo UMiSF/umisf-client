@@ -24,48 +24,55 @@ const LoginPage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    if (!form.checkValidity()) {
+    if (Object.values(loginCredentials).includes("")) {
+      e.stopPropagation();
+      message.error("Please fill all the fields.!");
+    } else if (!form.checkValidity()) {
       e.stopPropagation();
       message.error("Email or Password is invalid!");
     }
     setValidated(true);
     let role = roles[roleOptions.indexOf(loginCredentials.role)];
-
-    Axios.post(
-      "http://localhost:3001/user/login",
-      { email: loginCredentials.email, password: loginCredentials.password, role: role },
-      {
-        headers: {},
-      }
-    )
-      .then((res) => {
-        message.success(res.data.message);
-        let user = res.data?.data;
-
-        localStorage.setItem("user", user);
-        localStorage.setItem("role", role);
-
-        switch (role) {
-          case "admin":
-            navigate("/admin");
-            window.location.reload(true);
-            break;
-          case "organizer":
-            window.location.href = "/organizer";
-            break;
-          case "tableOrganizer":
-            window.location.href = "/table";
-            break;
-          case "umpire":
-            window.location.href = "/umpire";
-            break;
-          default:
-            break;
+    if (form.checkValidity() && !Object.values(loginCredentials).includes("")) {
+      Axios.post(
+        "http://localhost:3001/user/login",
+        { email: loginCredentials.email, password: loginCredentials.password, role: role },
+        {
+          headers: {},
         }
-      })
-      .catch((error) => {
-        message.error(error.response.data.message);
-      });
+      )
+        .then((res) => {
+          message.success(res.data.message);
+          let user = res.data?.data;
+
+          localStorage.setItem("user", user);
+          localStorage.setItem("role", role);
+
+          switch (role) {
+            case "admin":
+              navigate("/admin");
+              window.location.reload(true);
+              break;
+            case "organizer":
+              navigate("/organizer");
+              window.location.reload(true);
+              break;
+            case "tableOrganizer":
+              navigate("/table");
+              window.location.reload(true);
+              break;
+            case "umpire":
+              navigate("/umpire");
+              window.location.reload(true);
+              break;
+            default:
+              break;
+          }
+        })
+        .catch((error) => {
+          message.error(error.response.data.message);
+        });
+    }
   };
 
   return (
@@ -122,7 +129,7 @@ const LoginPage = (props) => {
                   setLoginCredentials({ ...loginCredentials, role: option });
                 }}
                 value={loginCredentials.role}
-                lable={"Roles"}
+                lable={"the role"}
               />
             </MDBCol>
           </div>
