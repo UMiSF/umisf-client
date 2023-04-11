@@ -2,6 +2,10 @@ import React from "react";
 import styles from "./profileHeader.module.css";
 
 const ProfileHeader = (props) => {
+  const logout = ()=>{
+    localStorage.clear()
+    window.location.href = "/";
+  }
   return (
     <div>
       <div className={`${styles["header-container"]}`}>
@@ -27,7 +31,7 @@ const ProfileHeader = (props) => {
             </button>
             <div className={`${styles["header-drop-down-content"]}`}>
               <a href="#">Settings</a>
-              <a href="#">Log out</a>
+              <button onClick={logout}>Log out</button>
             </div>
           </div>
         </div>
