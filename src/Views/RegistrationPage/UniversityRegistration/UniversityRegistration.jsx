@@ -386,7 +386,7 @@ const UniversityRegistration = () => {
                   </MDBCol>
                   {isBankTransfer && (
                     <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                      <ImageUploader setImage={setSlipImage} fileList={slipFile} setFileList={setSlipFile} setImageName={setSlipName} />
+                      <ImageUploader isfile={true} setImage={setSlipImage} fileList={slipFile} setFileList={setSlipFile} setImageName={setSlipName} />
                     </MDBCol>
                   )}
                 </div>

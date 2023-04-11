@@ -204,7 +204,7 @@ const CompanyRegistration = () => {
   async function handleSubmit(e) {
     //TODO: add player array
     e.preventDefault();
-    setIsLoading(true);
+    
     console.log("Form submitted", company);
     console.log("players for submitted",playersArray);
     const form = e.currentTarget;
@@ -219,6 +219,7 @@ const CompanyRegistration = () => {
     if (Object.values(company).includes('') && company.paymentMethod === "On-site" && slipImage === null || !Object.values(company).includes("")) {
       console.log("Here")
       const players = updatePlayerCommonData()
+      setIsLoading(true);
       console.log(players)
       Axios.post(
         "http://localhost:3001/company/add",
@@ -377,7 +378,7 @@ const CompanyRegistration = () => {
               </MDBCol>
               {isBankTransfer && (
                 <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                  <ImageUploader setImage={setSlipImage} fileList={slipFile} setFileList={setSlipFile} setImageName={setSlipName} />
+                  <ImageUploader isfile={true} setImage={setSlipImage} fileList={slipFile} setFileList={setSlipFile} setImageName={setSlipName} />
                 </MDBCol>
               )}
             </div>
