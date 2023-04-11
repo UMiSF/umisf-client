@@ -24,7 +24,7 @@ const AdminPlayersPage = () => {
     ageGroup: '',
     gender: '',
   });
-  const matchTypes = ['Single', 'Double'];
+  const matchTypes = ['None','Single', 'Double'];
   const matchTypesForEmail = ['None', 'Single', 'Double'];
   const ageGroups = ['All', 'Under 9', 'Under 11', 'Under 13', 'Under 15', 'Under 17', 'Under 19', 'University', 'Company'];
   const gender = ['All', 'Girls', 'Boys', 'Men', 'Women'];
@@ -106,7 +106,7 @@ const AdminPlayersPage = () => {
       console.log('playerfilter', playerFilter);
       try {
         const result = await Axios.get(
-          process.env.REACT_APP_API_URL + `/${filter.matchType.toLowerCase()}/getFilteredData`,
+          process.env.REACT_APP_API_URL + `/${filter.matchType == 'None' ? 'player' : filter.matchType.toLowerCase()}/getFilteredData`,
 
           { params: playerFilter },
           {
@@ -375,9 +375,9 @@ const AdminPlayersPage = () => {
                 {/* {value.map((player, index) => ( */}
                 <div className={`${styles['player-each']}`}>
                   <button className={`${styles['player-btn']}`}>
-                    <Link to={value.player.firstName + '+' + value.player.lastName} className={`${styles['player-name']}`} state={{ playerDetails: value.player }} key={key}>
+                    <Link to={ filter.matchType == 'None'? value.firstName + '+' + value.lastName : value.player?.firstName + '+' + value.player?.lastName} className={`${styles['player-name']}`} state={{ playerDetails: filter.matchType == 'None' ? value:value.player }} key={key}>
                       {key + 1 + ') '}
-                      {value.player.firstName + ' ' + value.player.lastName} {value.player.email} {value.player.institute} {value.paymentMethod}
+                      {filter.matchType == 'None' ? `${value.firstName}  ${value.lastName} ${value.email} ${value.institute} ` : value.player?.firstName + ' ' + value.player?.lastName} {value.player?.email} {value.player?.institute} {value.paymentMethod}
                     </Link>
                   </button>
                 </div>
