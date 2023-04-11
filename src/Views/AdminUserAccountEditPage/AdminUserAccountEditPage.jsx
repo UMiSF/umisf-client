@@ -1,34 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Modal } from "react-bootstrap";
-import { Form, Input } from "reactstrap";
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import AdminNavbar from '../AdminNavbar/AdminNavbar'
-import styles from "./adminUserAccountEditPage.module.css";
+import React, { useState, useEffect } from 'react';
+import { Modal } from 'react-bootstrap';
+import { Form, Input } from 'reactstrap';
+import ProfileHeader from '../ProfileHeader/ProfileHeader';
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
+import styles from './adminUserAccountEditPage.module.css';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
+import Axios from 'axios';
+import { message } from 'antd';
+import defualtUser from '../../assests/images/default-user.png';
 
 const AdminUserAccountEditPage = () => {
-  let { user } = useParams();
+  let location = useLocation();
+  const navigate = useNavigate();
 
-  const [userDetails, setUserdetails] = useState({
-    name: "Poorna Cooray",
-    email: "poorna.cooray@h2o.ai",
-    password: "poorna",
-    role: "Admin,Umpire",
-    contactNumber: "0764197848",
-  });
+  const [userDetails, setUserDetails] = useState(location.state.userDetails);
 
-  const [passwords, setPasswords] = useState({
-    oldPassword: "",
-    newPassword: "",
-    confirmedNewPassword: "",
-  });
-
-  const userRoles = ["Admin", "Umpire", "Table Organizer", "Organizer"];
-  const [selectedUserRoles, setSelectedUserRoles] = useState([]);
+  const email = location.state.userDetails.email;
+  const userRoles = ['admin', 'umpire', 'tableOrganizer', 'organizer'];
 
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 
   const [show, setShow] = useState(false);
+
+  const [validated, setValidated] = useState(false); //form validation
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      // show loading message
+      message.loading('Submitting form...');
+    }
+  }, [isSubmitting]);
 
   const handleClose = (e) => {
     e.preventDefault();
@@ -38,102 +40,147 @@ const AdminUserAccountEditPage = () => {
     setShow(true);
   };
 
-  const deleteUser = (e) => {
+  const deleteUser = async (e) => {
     e.preventDefault();
     setShow(false);
+    //setIsSubmitting(true);
+    try {
+      const result = await Axios.delete(process.env.REACT_APP_API_URL + '/user/removeByField/email/' + userDetails.email, {
+        headers: {},
+      });
+      //setIsSubmitting(false)
+      console.log(result);
+
+      message.success('Deleted successfully !! ');
+
+      navigate('/admin/user-accounts');
+    } catch (error) {
+      console.log(error);
+      message.error(error.response.data.message);
+    }
   };
 
-  const editUser = (e) => {
+  const editUser = async (e) => {
     e.preventDefault();
-    console.log(userDetails);
+    console.log('Form submitted', userDetails);
+    const form = e.currentTarget;
+    //form validation
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+    setValidated(true);
+    if (!Object.values(userDetails).includes('')) {
+      try {
+        const result = await Axios.put(
+          process.env.REACT_APP_API_URL + '/user/update',
+          {
+            field: 'email',
+            value: email,
+            data: { name: userDetails.name, email: userDetails.email, role: userDetails.role, contactNumber: userDetails.contactNumber },
+          },
+          {
+            headers: {},
+          }
+        );
+        setIsSubmitting(false);
+        console.log(result);
+        message.success('User updated successfully !! ');
+        setUserDetails(result.data.data);
+        navigate('/admin/user-accounts/' + userDetails.email, { state: { userDetails: userDetails } });
+      } catch (error) {
+        console.log(error);
+        message.error(error.response.data.message);
+      }
+    }
   };
 
   const selectRole = (e, userRole) => {
     e.preventDefault();
-    if (selectedUserRoles.includes(userRole)) {
-      setSelectedUserRoles(
-        selectedUserRoles.filter((role) => {
-          return role != userRole;
-        })
-      );
+    if (userDetails.role.includes(userRole)) {
+      setUserDetails((prevValue) => {
+        return {
+          ...prevValue,
+          role: userDetails.role.filter((role) => {
+            return role != userRole;
+          }),
+        };
+      });
     } else {
-      setSelectedUserRoles(selectedUserRoles.concat([userRole]));
+      setUserDetails((prevValue) => {
+        return {
+          ...prevValue,
+          role: [...userDetails.role, userRole],
+        };
+      });
     }
   };
 
-  useEffect(() => {
-    setSelectedUserRoles(userDetails.role.split(","));
-  }, []);
-
   return (
-    <div className={`${styles["account-container"]}`}>
-      <ProfileHeader user_type={"admin"} />
+    <div className={`${styles['account-container']}`}>
+      <ProfileHeader user_type={'admin'} />
       <AdminNavbar page="user_accounts" />
 
-      <div className={`${styles["main-title"]}`}>
+      <div className={`${styles['main-title']}`}>
         <a href="/admin/user-accounts">User Accounts</a>
-        <img src={require("../../assests/images/forward_arrow.png")} alt="" />{" "}
-        <a href={"/admin/user-accounts/" + user} style={{ fontSize: "18px" }}>
+        <img src={require('../../assests/images/forward_arrow.png')} alt="" />{' '}
+        <Link to={'/admin/user-accounts/' + userDetails.email} style={{ fontSize: '18px' }} state={{ userDetails: userDetails }}>
           {userDetails.name}
-        </a>
+        </Link>
       </div>
-      <div className={`${styles["tool-bar"]}`}>
+      <div className={`${styles['tool-bar']}`}>
         <button onClick={handleShow}>
-          <img src={require("../../assests/images/delete.png")} alt="" /> Delete Account
+          <img src={require('../../assests/images/delete.png')} alt="" /> Delete Account
         </button>
       </div>
-      <div className={`${styles["profile-container"]}`}>
-        <img src={require("../../assests/images/user.jpeg")} alt="" srcSet="" />
-        <div className={`${styles["profile-type"]}`}></div>
+      <div className={`${styles['profile-container']}`}>
+        <img src={defualtUser} alt="" srcSet="" />
+        <div className={`${styles['profile-type']}`}></div>
         <hr />
-        <Form onSubmit={editUser}>
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>Name</div>
-            <div className={`${styles["profile-field-value"]}`}>
+        <Form onSubmit={editUser} noValidate validated={validated}>
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>Name</div>
+            <div className={`${styles['profile-field-value']}`}>
               <input
                 type="text"
-                className={`${styles["form-input"]}`}
+                className={`${styles['form-input']}`}
                 value={userDetails.name}
                 placeholder="Enter your name.."
-                onChange={(e) => setUserdetails({ ...userDetails, name: e.target.value })}
+                onChange={(e) => setUserDetails({ ...userDetails, name: e.target.value })}
+                required
               />
             </div>
           </div>
           <hr />
 
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>Email</div>
-            <div className={`${styles["profile-field-value"]}`}>
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>Email</div>
+            <div className={`${styles['profile-field-value']}`}>
               <input
                 type="email"
-                className={`${styles["form-input"]}`}
+                className={`${styles['form-input']}`}
                 value={userDetails.email}
                 placeholder="Enter your email.."
-                onChange={(e) => setUserdetails({ ...userDetails, email: e.target.value })}
+                onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })}
+                required
               />
             </div>
           </div>
           <hr />
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>User Roles</div>
-            <div className={`${styles["profile-field-value"]}`}>
-              <div
-                className={`${styles["multiple-dropdown"]}`}
-                onClick={(e) => setIsDropdownExpanded(!isDropdownExpanded)}
-              >
-                {selectedUserRoles.length === 0
-                  ? "Select the user roles.."
-                  : selectedUserRoles.join(",")}
-                <img src={require("../../assests/images/down_arrow.png")} alt="" />
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>User Roles</div>
+            <div className={`${styles['profile-field-value']}`}>
+              <div className={`${styles['multiple-dropdown']}`} onClick={(e) => setIsDropdownExpanded(!isDropdownExpanded)}>
+                {userDetails.role.length === 0 ? 'Select the user roles..' : userDetails.role.join(',')}
+                <img src={require('../../assests/images/down_arrow.png')} alt="" />
               </div>
 
               {isDropdownExpanded && (
-                <div className={`${styles["drop-down-items"]}`}>
+                <div className={`${styles['drop-down-items']}`}>
                   {userRoles.map((role, index) => (
                     <div
-                      className={`${styles["drop-down-item"]}`}
+                      className={`${styles['drop-down-item']}`}
                       style={{
-                        background: selectedUserRoles.includes(role) ? "#ececf2" : "transparent",
+                        background: userDetails.role.includes(role) ? '#ececf2' : 'transparent',
                       }}
                       key={index}
                       onClick={(e) => selectRole(e, role)}
@@ -147,75 +194,41 @@ const AdminUserAccountEditPage = () => {
           </div>
           <hr />
 
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>Password</div>
-            <div className={`${styles["profile-field-value"]}`}>
-              Enter your old password:
-              <input
-                type="password"
-                className={`${styles["form-input"]}`}
-                style={{ marginBottom: "10px" }}
-                value={passwords.oldPassword}
-                onChange={(e) => setPasswords({ ...passwords, oldPassword: e.target.value })}
-              />
-              Enter your new password:
-              <input
-                type="password"
-                style={{ marginBottom: "10px" }}
-                className={`${styles["form-input"]}`}
-                value={passwords.newPassword}
-                onChange={(e) => setPasswords({ ...passwords, newPassword: e.target.value })}
-              />
-              Confirm your new password:
-              <input
-                type="password"
-                className={`${styles["form-input"]}`}
-                value={passwords.confirmedNewPassword}
-                onChange={(e) => setPasswords({ ...passwords, confirmedNewPassword: e.target.value })}
-              />
-            </div>
-          </div>
-          <hr />
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>Contact Number</div>
-            <div className={`${styles["profile-field-value"]}`}>
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>Contact Number</div>
+            <div className={`${styles['profile-field-value']}`}>
               <input
                 type="text"
-                className={`${styles["form-input"]}`}
+                className={`${styles['form-input']}`}
                 value={userDetails.contactNumber}
                 placeholder="Enter your contact number.."
-                onChange={(e) => setUserdetails({ ...userDetails, contactNumber: e.target.value })}
+                onChange={(e) => setUserDetails({ ...userDetails, contactNumber: e.target.value })}
+                required
               />
             </div>
           </div>
           <hr />
-          <button className={`${styles["form-submit-button"]}`}>Update</button>
+          <button className={`${styles['form-submit-button']}`} type="submit">
+            Update
+          </button>
         </Form>
       </div>
       {/* modal for adding img */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header style={{ backgroundColor: "#f5f6fa" }}>
-          <Modal.Title style={{ fontFamily: "Hind", fontSize: "18px" }}>
-            Delete User Account
-          </Modal.Title>
+        <Modal.Header style={{ backgroundColor: '#f5f6fa' }}>
+          <Modal.Title style={{ fontFamily: 'Hind', fontSize: '18px' }}>Delete User Account</Modal.Title>
         </Modal.Header>
-        <form style={{ backgroundColor: "#f5f6fa" }}>
+        <form style={{ backgroundColor: '#f5f6fa' }}>
           <Modal.Body>
             <div className="row">
               <div className="col-11">
-                <h5 style={{ fontFamily: "Hind", fontSize: "18px" }}>
-                  Are you sure you want to delete this user account?{" "}
-                </h5>
+                <h5 style={{ fontFamily: 'Hind', fontSize: '18px' }}>Are you sure you want to delete this user account? </h5>
               </div>
             </div>
           </Modal.Body>
 
           <Modal.Footer>
-            <button
-              onClick={handleClose}
-              className="btn btn-secondary"
-              style={{ fontFamily: "Hind", fontSize: "18px" }}
-            >
+            <button onClick={handleClose} className="btn btn-secondary" style={{ fontFamily: 'Hind', fontSize: '18px' }}>
               Close
             </button>
             <button
@@ -223,10 +236,10 @@ const AdminUserAccountEditPage = () => {
               className="btn btn-light"
               onClick={deleteUser}
               style={{
-                fontFamily: "Hind",
-                fontSize: "18px",
-                background: "red",
-                color: "white",
+                fontFamily: 'Hind',
+                fontSize: '18px',
+                background: 'red',
+                color: 'white',
               }}
             >
               Delete

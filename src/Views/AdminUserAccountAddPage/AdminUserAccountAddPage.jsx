@@ -1,116 +1,150 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Form, Input } from "reactstrap";
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import AdminNavbar from '../AdminNavbar/AdminNavbar'
-import styles from "./adminUserAccountAddPage.module.css";
-import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploader";
-
+import React, { useState, useEffect } from 'react';
+import { Form, Input } from 'reactstrap';
+import ProfileHeader from '../ProfileHeader/ProfileHeader';
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
+import styles from './adminUserAccountAddPage.module.css';
+import ImageUploader from '../RegistrationPage/Common/imageUploader/ImageUploader';
+import Axios from 'axios';
+import { message } from 'antd';
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import defualtUser from '../../assests/images/default-user.png'
 const AdminUserAccountAddPage = () => {
-  let { user } = useParams();
-
-  const [userDetails, setUserdetails] = useState({
-    name: "",
-    email: "",
-    password: "",
-    role: "",
-    contactNumber: "",
+  const [userDetails, setUserDetails] = useState({
+    name: '',
+    email: '',
+    password: 'UMiSF@1999-08-11',
+    role: [],
+    contactNumber: '',
   });
 
-  const [passwords, setPasswords] = useState({
-    oldPassword: "",
-    newPassword: "",
-    confirmedNewPassword: "",
-  });
-
-  const userRoles = ["Admin", "Umpire", "Table Organizer", "Organizer"];
+  const userRoles = ['admin', 'umpire', 'tableOrganizer', 'organizer'];
   const [selectedUserRoles, setSelectedUserRoles] = useState([]);
 
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 
   const [profileImage, setProfileImage] = useState([]);
 
-  const addUser = (e) => {
+  const [validated, setValidated] = useState(false); //form validation
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [passwordVisible, setPasswordVisible] = useState(true);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      // show loading message
+      message.loading('Submitting form...');
+    }
+  }, [isSubmitting]);
+
+  const addUser = async (e) => {
     e.preventDefault();
     console.log(userDetails);
+    const form = e.currentTarget;
+    //form validation
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+    setValidated(true);
+    setIsSubmitting(true);
+    try {
+      const result = await Axios.post(
+        process.env.REACT_APP_API_URL + '/user/add',
+        { userData: [userDetails] },
+        {
+          headers: {},
+        }
+      );
+      setIsSubmitting(false);
+      console.log(result);
+      message.success('User added successfully !! ');
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+      message.error(error.response.data.message);
+    }
   };
 
   const selectRole = (e, userRole) => {
     e.preventDefault();
-    if (selectedUserRoles.includes(userRole)) {
-      setSelectedUserRoles(
-        selectedUserRoles.filter((role) => {
-          return role != userRole;
-        })
-      );
+    if (userDetails.role.includes(userRole)) {
+      setUserDetails((prevValue) => {
+        return {
+          ...prevValue,
+          role: userDetails.role.filter((role) => {
+            return role != userRole;
+          }),
+        };
+      });
     } else {
-      setSelectedUserRoles(selectedUserRoles.concat([userRole]));
+      setUserDetails((prevValue) => {
+        return {
+          ...prevValue,
+          role: [...userDetails.role, userRole],
+        };
+      });
     }
   };
 
   return (
-    <div className={`${styles["account-container"]}`}>
-      <ProfileHeader user_type={"admin"} />
+    <div className={`${styles['account-container']}`}>
+      <ProfileHeader user_type={'admin'} />
       <AdminNavbar page="user_accounts" />
 
-      <div className={`${styles["main-title"]}`}>
+      <div className={`${styles['main-title']}`}>
         <a href="/admin/user-accounts">User Accounts</a>
       </div>
-      <div className={`${styles["tool-bar"]}`}>Add new user account</div>
-      <div className={`${styles["profile-container"]}`}>
-        <Form onSubmit={addUser}>
-          <div className={`${styles["profile-image"]}`}>
-            {" "}
-            <ImageUploader fileList={profileImage} setFileList={setProfileImage} />
+      <div className={`${styles['tool-bar']}`}>Add new user account</div>
+      <div className={`${styles['profile-container']}`}>
+        <Form onSubmit={addUser} noValidate validated={validated}>
+          <div className={`${styles['profile-image']}`}>
+            {' '}
+            <img src={defualtUser} alt='default user'/>
           </div>
           <hr />
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>Name</div>
-            <div className={`${styles["profile-field-value"]}`}>
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>Name</div>
+            <div className={`${styles['profile-field-value']}`}>
               <input
                 type="text"
-                className={`${styles["form-input"]}`}
+                className={`${styles['form-input']}`}
                 value={userDetails.name}
-                placeholder="Enter your name.."
-                onChange={(e) => setUserdetails({ ...userDetails, name: e.target.value })}
+                placeholder="Enter the  username.."
+                onChange={(e) => setUserDetails({ ...userDetails, name: e.target.value })}
               />
             </div>
           </div>
           <hr />
 
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>Email</div>
-            <div className={`${styles["profile-field-value"]}`}>
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>Email</div>
+            <div className={`${styles['profile-field-value']}`}>
               <input
                 type="email"
-                className={`${styles["form-input"]}`}
+                className={`${styles['form-input']}`}
                 value={userDetails.email}
-                placeholder="Enter your email.."
-                onChange={(e) => setUserdetails({ ...userDetails, email: e.target.value })}
+                placeholder="Enter the email.."
+                onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })}
               />
             </div>
           </div>
           <hr />
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>User Roles</div>
-            <div className={`${styles["profile-field-value"]}`}>
-              <div
-                className={`${styles["multiple-dropdown"]}`}
-                onClick={(e) => setIsDropdownExpanded(!isDropdownExpanded)}
-              >
-                {selectedUserRoles.length === 0
-                  ? "Select the user roles.."
-                  : selectedUserRoles.join(",")}
-                <img src={require("../../assests/images/down_arrow.png")} alt="" />
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>User Roles</div>
+            <div className={`${styles['profile-field-value']}`}>
+              <div className={`${styles['multiple-dropdown']}`} onClick={(e) => setIsDropdownExpanded(!isDropdownExpanded)}>
+                {userDetails.role.length === 0 ? 'Select the user roles..' : userDetails.role.join(',')}
+                <img src={require('../../assests/images/down_arrow.png')} alt="" />
               </div>
 
               {isDropdownExpanded && (
-                <div className={`${styles["drop-down-items"]}`}>
+                <div className={`${styles['drop-down-items']}`}>
                   {userRoles.map((role, index) => (
                     <div
-                      className={`${styles["drop-down-item"]}`}
+                      className={`${styles['drop-down-item']}`}
                       style={{
-                        background: selectedUserRoles.includes(role) ? "#ececf2" : "transparent",
+                        background: userDetails.role.includes(role) ? '#ececf2' : 'transparent',
                       }}
                       key={index}
                       onClick={(e) => selectRole(e, role)}
@@ -124,51 +158,31 @@ const AdminUserAccountAddPage = () => {
           </div>
           <hr />
 
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>Password</div>
-            <div className={`${styles["profile-field-value"]}`}>
-              Enter your old password:
-              <input
-                type="password"
-                className={`${styles["form-input"]}`}
-                style={{ marginBottom: "10px" }}
-                value={passwords.oldPassword}
-                onChange={(e) => setPasswords({ ...passwords, oldPassword: e.target.value })}
-              />
-              Enter your new password:
-              <input
-                type="password"
-                style={{ marginBottom: "10px" }}
-                className={`${styles["form-input"]}`}
-                value={passwords.newPassword}
-                onChange={(e) => setPasswords({ ...passwords, newPassword: e.target.value })}
-              />
-              Confirm your new password:
-              <input
-                type="password"
-                className={`${styles["form-input"]}`}
-                value={passwords.confirmedNewPassword}
-                onChange={(e) =>
-                  setPasswords({ ...passwords, confirmedNewPassword: e.target.value })
-                }
-              />
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>Password</div>
+            <div className={`${styles['profile-field-value']}`}>
+              default password:
+              <input type="password" style={{ marginBottom: '10px' }} className={`${styles['form-input']}`} value={userDetails.password} disabled  hidden={!passwordVisible}/>
+              <input type="text" style={{ marginBottom: '10px' }} className={`${styles['form-input']}`} value={userDetails.password} disabled hidden={passwordVisible} />
+              <EyeOutlined className={`${styles['pwd-visible']}`} hidden={!passwordVisible} onClick={()=>setPasswordVisible(false)}/>
+              <EyeInvisibleOutlined className={`${styles['pwd-visible']}`} hidden={passwordVisible} onClick={()=>setPasswordVisible(true)}/>
             </div>
           </div>
           <hr />
-          <div className={`${styles["profile-field-container"]}`}>
-            <div className={`${styles["profile-field-name"]}`}>Contact Number</div>
-            <div className={`${styles["profile-field-value"]}`}>
+          <div className={`${styles['profile-field-container']}`}>
+            <div className={`${styles['profile-field-name']}`}>Contact Number</div>
+            <div className={`${styles['profile-field-value']}`}>
               <input
                 type="text"
-                className={`${styles["form-input"]}`}
+                className={`${styles['form-input']}`}
                 value={userDetails.contactNumber}
-                placeholder="Enter your contact number.."
-                onChange={(e) => setUserdetails({ ...userDetails, contactNumber: e.target.value })}
+                placeholder="Enter the user contact number.."
+                onChange={(e) => setUserDetails({ ...userDetails, contactNumber: e.target.value })}
               />
             </div>
           </div>
           <hr />
-          <button className={`${styles["form-submit-button"]}`}>Add User</button>
+          <button className={`${styles['form-submit-button']}`}>Add User</button>
         </Form>
       </div>
     </div>

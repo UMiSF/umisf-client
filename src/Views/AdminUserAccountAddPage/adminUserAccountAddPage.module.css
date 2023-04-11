@@ -155,3 +155,7 @@
     display: block;
   }
 }
+
+.pwd-visible:hover{
+  cursor: pointer;
+}
