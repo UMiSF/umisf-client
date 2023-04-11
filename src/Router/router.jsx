@@ -56,6 +56,7 @@ import AdminPlayersAddPage from "../Views/AdminPlayersAddPage/AdminPlayersAddPag
 import AdminPlayerEditPage from "../Views/AdminPlayerEditPage/AdminPlayerEditPage";
 import AdminMessagesPage from "../Views/AdminMessages/AdminMessages";
 import AdminUniversityPlayerView from "../Views/AdminUniversityViewPlayer/AdminUniversityViewPlayer";
+import AdminCompanyPlayerView from "../Views/AdminCompanyViewPlayer/AdminCompanyViewPlayer";
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -173,8 +174,12 @@ export default function AppRouter() {
                   element={<AdminCompaniesViewYearPage />}
                 />
                 <Route
-                  path="universities/:year/:company"
+                  path="companies/:year/:company"
                   element={<AdminCompanyPage/>}
+                />
+                                               <Route
+                  path="companies/player/:playerId"
+                  element={<AdminCompanyPlayerView/>}
                 />
                 <Route
                   path="companies/:year/register"

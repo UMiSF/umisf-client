@@ -1,40 +1,25 @@
-import React, { Component, useState, useEffect } from "react";
-import { Modal } from "react-bootstrap";
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
-import styles from "./adminCompaniesViewYearPage.module.css";
-
+import React, { Component, useState, useEffect } from 'react';
+import { Modal } from 'react-bootstrap';
+import ProfileHeader from '../ProfileHeader/ProfileHeader';
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
+import styles from './adminCompaniesViewYearPage.module.css';
+import Axios from 'axios';
+import { message } from 'antd';
+import { Link } from 'react-router-dom';
 const AdminCompaniesViewYearPage = () => {
   let year = 2023;
-  const [companies, setCompanies] = useState([
-    {
-      name: "H2O.ai",
-      players: ["Poorna Cooray", "Poorna Cooray"],
-    },
-    {
-      name: "WealthOS",
-      players: ["Poorna Cooray", "Poorna Cooray"],
-    },
-    {
-      name: "Insighture",
-      players: ["Poorna Cooray", "Poorna Cooray"],
-    },
-    {
-      name: "WSO2",
-      players: ["Poorna Cooray", "Poorna Cooray"],
-    },
-  ]);
+  const [companies, setCompanies] = useState([]);
 
   const [companyToBeUnregistered, setCompanyToBeUnregistered] = useState([]);
 
   const loadPlayers = (company) => {
-    company = company.includes(".") ? company.split(".").join("") : company.split(" ").join("");
-    if (document.querySelector("#" + company).style.display === "none") {
-      document.querySelector("#" + company).style.display = "block";
-      document.querySelector("#arrow" + company).style.transform = "rotate(90deg)";
+    company = company.includes('.') ? company.split('.').join('') : company.split(' ').join('');
+    if (document.querySelector('#' + company).style.display === 'none') {
+      document.querySelector('#' + company).style.display = 'block';
+      document.querySelector('#arrow' + company).style.transform = 'rotate(90deg)';
     } else {
-      document.querySelector("#" + company).style.display = "none";
-      document.querySelector("#arrow" + company).style.transform = "rotate(-360deg)";
+      document.querySelector('#' + company).style.display = 'none';
+      document.querySelector('#arrow' + company).style.transform = 'rotate(-360deg)';
     }
   };
 
@@ -56,77 +41,61 @@ const AdminCompaniesViewYearPage = () => {
 
   useEffect(() => {
     companies.map(
-      (company) =>
-        (document.querySelector(
-          company.name.includes(".")
-            ? "#" + company.name.split(".").join("")
-            : "#" + company.name.split(" ").join("")
-        ).style.display = "none")
+      (company) => (document.querySelector(company.name.includes('.') ? '#' + company.name.split('.').join('') : '#' + company.name.split(' ').join('')).style.display = 'none')
     );
+    Axios.get(process.env.REACT_APP_API_URL + '/company/getAll', {
+      headers: {},
+    })
+      .then((res) => {
+        console.log(res);
+        setCompanies(res.data.data);
+      })
+      .catch((error) => {
+        console.log('Error loading users', error);
+        message.error(error.response.data.message);
+      });
   }, []);
 
   return (
-    <div className={`${styles["gallery-container"]}`}>
-      <ProfileHeader user_type={"admin"} />
+    <div className={`${styles['gallery-container']}`}>
+      <ProfileHeader user_type={'admin'} />
       <AdminNavbar page="companies" />
-      <div className={`${styles["main-title"]}`}>
+      <div className={`${styles['main-title']}`}>
         <a href="/admin/companies">Companies</a>
       </div>
-      <div className={`${styles["tool-bar"]}`}>
+      {/* <div className={`${styles['tool-bar']}`}>
         <button onClick={handleShow}>
-          <img src={require("../../assests/images/delete.png")} alt="" /> Unregister
+          <img src={require('../../assests/images/delete.png')} alt="" /> Unregister
         </button>
-      </div>
+      </div> */}
 
-      <div className={`${styles["users-container"]}`}>
+      <div className={`${styles['users-container']}`}>
         {companies.map((company, index) => (
-          <div className={`${styles["user"]}`}>
-            <button
-              className={`${styles["user-type-container"]}`}
-              onClick={() => loadPlayers(company.name)}
-            >
+          <div className={`${styles['user']}`}>
+            <button className={`${styles['user-type-container']}`} onClick={() => loadPlayers(company.name)}>
               <img
-                src={require("../../assests/images/forward_arrow.png")}
+                src={require('../../assests/images/forward_arrow.png')}
                 alt=""
-                style={{ width: "15px" }}
-                className={`${styles["user-type-arrow"]}`}
-                id={
-                  company.name.includes(".")
-                    ? "arrow" + company.name.split(".").join("")
-                    : "arrow" + company.name.split(" ").join("")
-                }
+                style={{ width: '15px' }}
+                className={`${styles['user-type-arrow']}`}
+                id={company.name.includes('.') ? 'arrow' + company.name.split('.').join('') : 'arrow' + company.name.split(' ').join('')}
               />
-              <img
-                src={require("../../assests/images/players.png")}
-                alt=""
-                className={`${styles["user-type-img"]}`}
-              />
-              {company.name}
+              <img src={require('../../assests/images/players.png')} alt="" className={`${styles['user-type-img']}`} />
+              {company.name + ' - ' + company.matchType}
             </button>
-            <div
-              id={
-                company.name.includes(".")
-                  ? company.name.split(".").join("")
-                  : company.name.split(" ").join("")
-              }
-              className={`${styles["users-name-container"]}`}
-            >
-              <div className={`${styles["add-players"]}`}>
-                <a href={`/admin/universities/${year}/${company.name}`}>
-                  <img src={require("../../assests/images/edit.png")} alt="" /> View Company
-                  Registration Details
-                </a>
+            <div id={company.name.includes('.') ? company.name.split('.').join('') : company.name.split(' ').join('')} className={`${styles['users-name-container']}`}>
+              <div className={`${styles['add-players']}`}>
+                <Link to={`/admin/companies/${year}/${company.name}`} state={{ company: company }}>
+                  <img src={require('../../assests/images/edit.png')} alt="" /> View Company Registration Details
+                </Link>
                 <a href={`/admin/companies/${year}/${company.name}/register-player`}>
-                  <img src={require("../../assests/images/edit.png")} alt="" /> Add new player
+                  <img src={require('../../assests/images/edit.png')} alt="" /> Add new player
                 </a>
               </div>
               {company.players.map((player, index) => (
-                <a
-                  href={`/admin/players/${player}`}
-                  className={`${styles["users-name"]}`}
-                >
+                <a href={`/admin/companies/player/${player}`} className={`${styles['users-name']}`}>
                   {player}
-                  <img src={require("../../assests/images/double_arrows.png")} alt="" />
+                  <img src={require('../../assests/images/double_arrows.png')} alt="" />
                 </a>
               ))}
             </div>
@@ -136,25 +105,17 @@ const AdminCompaniesViewYearPage = () => {
 
       {/* modal for deleting */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header style={{ backgroundColor: "#f5f6fa" }}>
-          <Modal.Title style={{ fontFamily: "Hind", fontSize: "18px" }}>
-            Unregister a Company
-          </Modal.Title>
+        <Modal.Header style={{ backgroundColor: '#f5f6fa' }}>
+          <Modal.Title style={{ fontFamily: 'Hind', fontSize: '18px' }}>Unregister a Company</Modal.Title>
         </Modal.Header>
-        <form style={{ backgroundColor: "#f5f6fa" }}>
+        <form style={{ backgroundColor: '#f5f6fa' }}>
           <Modal.Body>
             <div className="row">
               <div className="col-11">
-                <h5 style={{ fontFamily: "Hind", fontSize: "18px" }}>
-                  Select the company that you want to unregister.
-                </h5>
-                <select
-                  style={{ fontFamily: "Hind", fontSize: "18px" }}
-                  className="form-select form-select-sm"
-                  onChange={(e) => setCompanyToBeUnregistered(e.target.value)}
-                >
+                <h5 style={{ fontFamily: 'Hind', fontSize: '18px' }}>Select the company that you want to unregister.</h5>
+                <select style={{ fontFamily: 'Hind', fontSize: '18px' }} className="form-select form-select-sm" onChange={(e) => setCompanyToBeUnregistered(e.target.value)}>
                   {companies.map((company) => (
-                    <option style={{ fontFamily: "Hind", fontSize: "18px" }} value={company.name}>
+                    <option style={{ fontFamily: 'Hind', fontSize: '18px' }} value={company.name}>
                       {company.name}
                     </option>
                   ))}
@@ -164,11 +125,7 @@ const AdminCompaniesViewYearPage = () => {
           </Modal.Body>
 
           <Modal.Footer>
-            <button
-              onClick={handleClose}
-              className="btn btn-secondary"
-              style={{ fontFamily: "Hind", fontSize: "18px" }}
-            >
+            <button onClick={handleClose} className="btn btn-secondary" style={{ fontFamily: 'Hind', fontSize: '18px' }}>
               Close
             </button>
             <button
@@ -176,10 +133,10 @@ const AdminCompaniesViewYearPage = () => {
               className="btn btn-light"
               onClick={unregisterCompany}
               style={{
-                fontFamily: "Hind",
-                fontSize: "18px",
-                background: "red",
-                color: "white",
+                fontFamily: 'Hind',
+                fontSize: '18px',
+                background: 'red',
+                color: 'white',
               }}
             >
               Unregister
