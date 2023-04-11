@@ -11,21 +11,11 @@ import defualtUser from '../../assests/images/default-user.png';
 
 
 const AdminCompanyPage = () => {
-  let {year, company} = useParams()
+  let location = useLocation();
+  const {company} = location.state
   const [show, setShow] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const [companyDetails, setCompanyDetails] = useState({
-    name: "UOM",
-    matchType: "A Division",
-    paymentMethod: "Bank Transfer",
-    paymentConfirmed: "-1",
-    paymentSlip: "slip.pdf",
-    paymentApprover: "Poorna Cooray",
-    contactNumber: "0762343434",
-    email: "prnsd@gmail.com"
-  })
-
+console.log("COM", company)
   const handleClose = (e) => {
     e.preventDefault();
     setShow(false);
@@ -46,60 +36,60 @@ const AdminCompanyPage = () => {
 
       <div className={`${styles['main-title']}`}>
         <a href="/admin/companies">Companies</a>
-        <img src={require('../../assests/images/forward_arrow.png')} alt="" /> {company}
+        <img src={require('../../assests/images/forward_arrow.png')} alt="" /> {company.name}
       </div>
-      <div className={`${styles['tool-bar']}`}>
+      {/* <div className={`${styles['tool-bar']}`}>
 
         <button onClick={handleShow}>
           <img src={require('../../assests/images/delete.png')} alt="" /> Delete Company
         </button>
-      </div>
+      </div> */}
       <div className={`${styles['profile-container']}`}>
         <div className={`${styles['profile-type']}`}></div>
         <hr />
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Name</div>
-          <div className={`${styles['profile-field-value']}`}>{companyDetails.name}</div>
+          <div className={`${styles['profile-field-value']}`}>{company.name}</div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Match Type</div>
-          <div className={`${styles['profile-field-value']}`}>{companyDetails.matchType}</div>
+          <div className={`${styles['profile-field-value']}`}>{company.matchType}</div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payement method</div>
-          <div className={`${styles['profile-field-value']}`}>{companyDetails.paymentMethod}</div>
+          <div className={`${styles['profile-field-value']}`}>{company.paymentMethod}</div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payement confirmed</div>
-          <div className={`${styles['profile-field-value']}`}>{companyDetails.paymentConfirmed}</div>
+          <div className={`${styles['profile-field-value']}`}>{company.paymentConfirmed}</div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payement slip</div>
-          <div className={`${styles['profile-field-value']}`}><a href={`../../assests/documents/payments/${companyDetails.paymentSlip}`} download>{companyDetails.paymentSlip}</a></div>
+          <div className={`${styles['profile-field-value']}`}><a href={`../../assests/documents/payments/${company.paymentSlip}`} download>{company.paymentSlip}</a></div>
         </div>
         <hr />
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payment Approver</div>
-          <div className={`${styles['profile-field-value']}`}>{companyDetails.paymentApprover}</div>
+          <div className={`${styles['profile-field-value']}`}>{company.paymentApprover}</div>
         </div>
         <hr />
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Contact Number</div>
-          <div className={`${styles['profile-field-value']}`}>{companyDetails.contactNumber}</div>
+          <div className={`${styles['profile-field-value']}`}>{company.contactNumber}</div>
         </div>
         <hr />
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Email</div>
-          <div className={`${styles['profile-field-value']}`}>{companyDetails.email}</div>
+          <div className={`${styles['profile-field-value']}`}>{company.email}</div>
         </div>
         <hr />
       </div>
