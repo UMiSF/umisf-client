@@ -1,14 +1,12 @@
-import React, { useRef, useState,useEffect } from "react";
+import React, {  useState,useEffect } from "react";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
-import { Button, Divider, Space, Tour } from "antd";
-import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
+import { MDBContainer, MDBInput,  MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
 import Styles from "./CompanyRegistration.module.css";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import Axios from "axios";
-import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 import Dropdown from "../../../common/Dropdown/Dropdown";
 
 import { message } from "antd";
@@ -22,7 +20,8 @@ const CompanyRegistration = () => {
     contactNumber: "",
     paymentMethod: "",
     paymentSlip: "",
-    matchType:"Men",
+    matchType:"A Division",
+    year:"2023"
   });
   const isValidPlayerArray = (players) => {
     if (players.length < 5) {
@@ -35,9 +34,9 @@ const CompanyRegistration = () => {
   };
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
-    { firstName: "", lastName: "", photo: "" },
-    { firstName: "", lastName: "", photo: "" },
-    { firstName: "", lastName: "", photo: "" },
+    { firstName: "", lastName: "", gender: "", photo: "" },
+    { firstName: "", lastName: "", gender: "", photo: "" },
+    { firstName: "", lastName: "", gender: "", photo: "" },
   ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
@@ -92,41 +91,59 @@ const CompanyRegistration = () => {
       setCompany((prevValue) => {
         return { ...prevValue, paymentSlip: value };
       });
-    } else if (name.includes("name") || name.includes("id") || name.includes("photo")) {
-      const field = name.split("-")[0];
-      const position = parseInt(name.split("-")[1]);
-      console.log("Table Values: ", field, position, value);
-      const newArray = [...playersArray];
-      console.log('name',name);
-      switch (field) {
-        case "name":
-          newArray[position] = {
-            firstName: value.split(' ')[0],
-            lastName: value.split(' ')[1],
-            photo: newArray[position].photo,
-          };
-          break;
-        case "id":
-          newArray[position] = {
-            firstName: newArray[position].firstName,
-            lastName:newArray[position].lastName,
-            photo: newArray[position].photo,
-          };
-          break;
-        case "photo":
-          newArray[position] = {
-            firstName: newArray[position].firstName,
-            lastName: newArray[position].lastName,
-            photo: value,
-          };
-          break;
-        default:
-          console.log(field);
-          break;
-      }
-      setPlayersArray(newArray);
     }
   };
+
+  const changePlayerArray = (option, id) => {
+    const name = id;
+    const value = option;
+    const field = name.split("-")[0];
+    const position = parseInt(name.split("-")[1]);
+    const newArray = [...playersArray];
+
+    switch (field) {
+      case "name":
+        //incase of one part of the name
+        const fullName = value.trim().split(" ")
+        fullName.length == 1 && fullName.push(fullName[0])
+        const length = fullName.length
+       
+
+        newArray[position] = {
+          firstName: length == 2 ? fullName[0]: fullName.slice(0,length - 1).join(" "),
+          lastName: fullName[length - 1],
+          gender: newArray[position].gender,
+          photo: newArray[position].photo
+        };
+        break;
+      case "id":
+        newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          gender: newArray[position].gender,
+          photo: newArray[position].photo
+        };
+        break;
+        case "gender":
+          newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          gender: value,
+          photo: newArray[position].photo
+          };
+          break;
+      case "photo":
+        newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          gender: newArray[position].gender,
+          photo: value
+        };
+        break;
+    }
+    setPlayersArray(newArray);
+  };
+
   const updatePlayerCommonData = ()=>{
     const tempArray = []
     for (const player of playersArray){
@@ -142,10 +159,11 @@ const CompanyRegistration = () => {
     console.log("isBankTransfer: ", value === "On-Site");
     value === "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
   };
-  const AddAnotherRow = () => {
+  const AddAnotherRow = (e) => {
+    e.preventDefault();
     setCount(count + 1);
     setPlayersArray((prevValue) => {
-      return [...playersArray, { name: "", id: "", photo: "" }];
+      return [...playersArray, { name: "", id: "", gender:"", photo: "" }];
     });
     setFileList((prevValue) => {
       return [...fileList, []];
@@ -218,33 +236,19 @@ const CompanyRegistration = () => {
     }
   }
 
-  // guide for tournament details
-  const ref = useRef(null);
-  const [open, setOpen] = useState(true);
-  const steps = [
-    {
-      title: "Tournament Details and Registration Guidlines",
-      description: "Please refer the details and guidlines before the registration process.",
-      target: () => ref.current,
-    },
-  ];
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - Corporate</div>
+          <div className={`${Styles["tournament-guidlines"]}`}><a href="#">
+          Tournament and Registration guildlines</a><img src={require("../../../assests/images/tap.gif")} /></div>
           <div className={`${Styles["info-container"]}`}>
             <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
             <div className={`${Styles["info"]}`}>
               Please note that we only allow companies which have been invited for the event this
-              year . Your invitations have already been sent to the relevant email addresses .Please
-              find the{" "}
-              <Space>
-                <button ref={ref}>Tournament Details and Registration Guidlines</button>
-              </Space>{" "}
-              here.
-              <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
+              year . Your invitations have already been sent to the relevant email addresses
             </div>
           </div>
           <div className={`${Styles["register-form"]}`}>
@@ -260,44 +264,31 @@ const CompanyRegistration = () => {
                   <MDBCol className="" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-2"
-                      label="Corporate"
+                      label="Corporate name"
                       labelClass="text-white"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
-                      name="company"
+                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
+                      name="name"
                       type="text"
-                      value={company.company}
+                      value={company.name}
                       onChange={handleChange}
                       required
                       contrast
-                      className={`bg-primary bg-opacity-25`}
                     />
                   </MDBCol>
                   <MDBCol className="" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-2"
                       label="Contact Number"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
-                      v
+                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
-                      name="contact_number"
+                      name="contactNumber"
                       type="text"
-                      value={company.contact_number}
+                      value={company.contactNumber}
                       onChange={handleChange}
                       required
                       contrast
-                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
                 </div>
@@ -306,13 +297,8 @@ const CompanyRegistration = () => {
                     <MDBInput
                       wrapperClass="mb-2"
                       label="Email"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
+                      labelStyle={{ color: "white", fontFamily: "Hind"}}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="email"
                       type="email"
@@ -320,7 +306,6 @@ const CompanyRegistration = () => {
                       onChange={handleChange}
                       required
                       contrast
-                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
                   <MDBCol className="" lg="6" md="6" sm="12">
@@ -334,12 +319,12 @@ const CompanyRegistration = () => {
                 </div>
                 <div className="mb-2">
                   <div className="mb-2">
-                    <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
+                    <div style={{ fontWeight: "bold", fontFamily: "Hind"}}>
                       Team
                     </div>
                   </div>
                   {playersArray?.map((player, index) => {
-                    return <TableRow player={player} index={index} handleChange={handleChange} setFileList={setFileList} setImageList={setImageList} fileList={fileList} imageList={imageList} fileNameList={fileNameList} setFileNameList={setFileNameList}/>;
+                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={true}setFileList={setFileList} setImageList={setImageList} fileList={fileList} imageList={imageList} fileNameList={fileNameList} setFileNameList={setFileNameList}/>;
                   })}
                   <div className={`${Styles["plus-minus"]}`}>
                     <button

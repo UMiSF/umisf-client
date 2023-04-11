@@ -23,6 +23,7 @@ const UniversityRegistration = () => {
     contactNumber: "",
     paymentMethod: "",
     paymentSlip: "",
+    year: "2023",
   });
 
   const [isBankTransfer, setIsBankTransfer] = useState(false);
@@ -79,39 +80,45 @@ const UniversityRegistration = () => {
       setUniversity((prevValue) => {
         return { ...prevValue, paymentSlip: value };
       });
-    } else if (name.includes("name") || name.includes("id") || name.includes("photo")) {
-      const field = name.split("-")[0];
-      const position = parseInt(name.split("-")[1]);
-      console.log("Table Values: ", field, position, value);
-      const newArray = [...playersArray];
-      switch (field) {
-        case "name":
-          newArray[position] = {
-            firstName: value,
-            lastName: newArray[position].lastName,
-            photo: newArray[position].photo,
-          };
-          break;
-        case "id":
-          newArray[position] = {
-            firstName: newArray[position].firstName,
-            lastName: value,
-            photo: newArray[position].photo,
-          };
-          break;
-        case "photo":
-          newArray[position] = {
-            firstName: newArray[position].firstName,
-            lastName: newArray[position].lastName,
-            photo: value,
-          };
-          break;
-        default:
-          console.log(field);
-          break;
-      }
-      setPlayersArray(newArray);
     }
+  };
+
+  const changePlayerArray = (option, id) => {
+    const name = id;
+    const value = option;
+    const field = name.split("-")[0];
+    const position = parseInt(name.split("-")[1]);
+    const newArray = [...playersArray];
+
+    switch (field) {
+      case "name":
+        //incase of one part of the name
+        const fullName = value.trim().split(" ")
+        fullName.length == 1 && fullName.push(fullName[0])
+        const length = fullName.length
+
+        newArray[position] = {
+          firstName: length == 2 ? fullName[0]: fullName.slice(0,length - 1).join(" "),
+          lastName: fullName[length - 1],
+          photo: newArray[position].photo
+        };
+        break;
+      case "id":
+        newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          photo: newArray[position].photo
+        };
+        break;
+      case "photo":
+        newArray[position] = {
+          firstName: newArray[position].firstName,
+          lastName: newArray[position].lastName,
+          photo: value
+        };
+        break;
+    }
+    setPlayersArray(newArray);
   };
 
   const changeGender = (value) => {
@@ -253,33 +260,15 @@ const UniversityRegistration = () => {
     }
   }
 
-  // guide for tournament details
-  const ref = useRef(null);
-  const [open, setOpen] = useState(true);
-  const steps = [
-    {
-      title: "Tournament Details and Registration Guidlines",
-      description: "Please refer the details and guidlines before the registration process.",
-      target: () => ref.current,
-    },
-  ];
-
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - University</div>
-          <div className={`${Styles["info-container"]}`}>
-            <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
-            <div className={`${Styles["info"]}`}>
-              Please find the{" "}
-              <Space>
-                <button ref={ref}>Tournament Details and Registration Guidlines</button>
-              </Space>{" "}
-              here.
-              <Tour placement="right" open={open} onClose={() => setOpen(false)} steps={steps} />
-            </div>
+          <div className={`${Styles["tournament-guidlines"]}`}>
+            <a href="#">Tournament and Registration guildlines</a>
+            <img src={require("../../../assests/images/tap.gif")} />
           </div>
           <div className={`${Styles["register-form"]}`}>
             {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
@@ -291,17 +280,12 @@ const UniversityRegistration = () => {
                 className={`${Styles["register-form-content"]}`}
               >
                 <div className="row mb-4">
-                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="University"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
+                      labelStyle={{ color: "white", fontFamily: "Hind" }}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="name"
                       type="text"
@@ -309,10 +293,9 @@ const UniversityRegistration = () => {
                       onChange={handleChange}
                       required
                       contrast
-                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
-                  <MDBCol className="" lg="6" md="12" sm="12">
+                  <MDBCol className="" lg="6" md="6" sm="12">
                     <Dropdown
                       options={genderOptions}
                       handleClick={(option) => {
@@ -325,17 +308,12 @@ const UniversityRegistration = () => {
                   </MDBCol>
                 </div>
                 <div className="row mb-2">
-                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Email"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
+                      labelStyle={{ color: "white", fontFamily: "Hind" }}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="email"
                       type="email"
@@ -343,20 +321,14 @@ const UniversityRegistration = () => {
                       onChange={handleChange}
                       required
                       contrast
-                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
-                  <MDBCol className="mb-1" lg="6" md="12" sm="12">
+                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
                     <MDBInput
                       wrapperClass="mb-1"
                       label="Contact Number"
-                      labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                      style={{
-                        fontFamily: "Hind",
-                        fontSize: "18px",
-                        padding: "15px",
-                        minHeight: "40px",
-                      }}
+                      labelStyle={{ color: "white", fontFamily: "Hind" }}
+                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                       labelClass="text-white"
                       name="contactNumber"
                       type="text"
@@ -364,16 +336,13 @@ const UniversityRegistration = () => {
                       onChange={handleChange}
                       required
                       contrast
-                      className="bg-primary bg-opacity-25"
                     />
                   </MDBCol>
                 </div>
                 <div className="mb-2">
-                  <div style={{ fontWeight: "bold", fontFamily: "Hind", fontSize: "25px" }}>
-                    Team
-                  </div>
+                  <div style={{ fontWeight: "bold", fontFamily: "Hind" }}>Team</div>
                   {playersArray?.map((player, index) => {
-                    return <TableRow player={player} index={index} handleChange={handleChange} setFileList={setFileList} setImageList={setImageList} fileList={fileList} imageList={imageList} fileNameList={fileNameList} setFileNameList={setFileNameList} />;
+                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={false} setFileList={setFileList} setImageList={setImageList} fileList={fileList} imageList={imageList} fileNameList={fileNameList} setFileNameList={setFileNameList}/>;
                   })}
                   <div className={`${Styles["plus-minus"]}`}>
                     <button
@@ -416,7 +385,7 @@ const UniversityRegistration = () => {
           </div>
         </>
       ) : (
-        <RegistrationsNotOpen/>
+        <RegistrationsNotOpen />
       )}
     </div>
   );

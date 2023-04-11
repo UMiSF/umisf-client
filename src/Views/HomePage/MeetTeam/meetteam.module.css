@@ -11,57 +11,26 @@
   padding: 5vw;
   padding-bottom: 0;
   font-family: 'Hind', sans-serif;
-  font-size: 5vw;
+  font-size: 4vw;
   color: white;
 }
 
 .team-title p{
   font-family: 'Hind', sans-serif;
-  font-size: 5vw;
+  font-size: 4vw;
 }
 
 .team-description {
   padding: 5vw;
   padding-top: 0;
   font-family: 'Hind', sans-serif;
-  font-size: 16px;
+  font-size: 1vw;
   color: white;
 }
 
 .team-photo img{
-  height: 500px;
+  height: 28vw;
   width: fit-content;
-}
-@media screen and (max-width: 1190px) {
-  .team-description {
-    padding: 4vw;
-    padding-top: 0;
-  }
-
-  .team-title {
-    padding: 4vw;
-    padding-bottom: 0;
-  }
-
-  .team-photo img{
-    height: 400px;
-  }
-}
-
-@media screen and (max-width: 1190px) {
-  .team-description {
-    padding: 3vw;
-    padding-top: 0;
-  }
-
-  .team-title {
-    padding: 3vw;
-    padding-bottom: 0;
-  }
-
-  .team-photo img{
-    height: 340px;
-  }
 }
 
 @media screen and (max-width: 920px) {
@@ -78,5 +47,35 @@
 
   .team {
     background-color: rgba(48, 73, 105, 0.5);
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .team-description {
+    font-size: 1.6vw;
+  }
+
+  .team-title, .team-title p{
+    font-size: 5vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .team-description {
+    font-size: 2vw;
+  }
+
+  .team-title, .team-title p{
+    font-size: 6vw;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .team-description {
+    font-size: 2.5vw;
+  }
+
+  .team-title, .team-title p{
+    font-size: 8vw;
   }
 }

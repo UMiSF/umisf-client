@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background: #1B1919;
+  background: #1b1919;
   color: white;
   padding: 0.5vw 1vw;
   width: 100%;
@@ -26,14 +26,14 @@
 .quick-tabs a {
   text-decoration: none;
   font-family: "Hind", sans-serif;
-  font-size: 15px;
+  font-size: 1vw;
   color: white;
 }
 
 .copyright {
   font-family: "Hind";
   padding-top: 2vw;
-  font-size: 15px;
+  font-size: 1vw;
 }
 
 .center-row {
@@ -44,21 +44,26 @@
 }
 
 .center-row i {
-  font-size: 18px;
+  font-size: 1vw;
+  font-family: "Hind";
   background: #0984e3;
   border-radius: 50%;
   padding: 0.8vw;
 }
 
 .center-row p {
-  font-size: 15px;
+  font-size: 1vw;
   padding-top: 1.1vw;
   padding-left: 2.3vw;
+  font-family: "Hind";
+  font-weight: lighter;
   transition: ease-in-out 0.5s;
 }
 
 .center-row a {
-  font-size: 15px;
+  font-size: 1vw;
+  font-family: "Hind";
+  font-weight: lighter;
 }
 
 .center-row p:hover {
@@ -74,19 +79,19 @@
 .footer-right h6 {
   color: white;
   font-family: "Hind";
-  font-size: 18px;
+  font-size: 1vw;
   font-weight: bold;
 }
 
 .footer-right p {
   font-family: "Hind";
-  font-size: 15px;
+  font-size: 1vw;
   width: 100%;
   text-align: justify;
 }
 
 .footer-icons i {
-  font-size: 18px;
+  font-size: 1vw;
   background: #0984e3;
   border-radius: 50%;
   padding: 1.5vh;
@@ -94,43 +99,77 @@
   margin-right: 2.5vh;
 }
 
-.bottom-row{
+.bottom-row {
   padding: 10px;
-  font-size: 15px;
+  font-size: 1vw;
   text-align: center;
   color: white;
-  background-color: #2D2A2A;
+  background-color: #2d2a2a;
 }
 
 @media screen and (max-width: 900px) {
   .quick-tabs a {
-    font-size: 13px;
+    font-size: 1.3vw;
   }
-  
+
   .center-row p {
-    font-size: 13px;
+    font-size: 1.3vw;
   }
 
   .center-row a {
-    font-size: 13px;
+    font-size: 1.3vw;
   }
 
   .footer-right h6 {
-    font-size: 16px;
+    font-size: 1.4vw;
   }
 
   .footer-right p {
-    font-size: 13px;
+    font-size: 1.3vw;
   }
 
   .footer-icons i {
-    font-size: 13px;
+    font-size: 1.5vw;
+  }
+
+  .center-row i {
+    font-size: 1.5vw;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .quick-tabs a {
+    font-size: 1.5vw;
+  }
+
+  .center-row p {
+    font-size: 1.5vw;
+  }
+
+  .center-row a {
+    font-size: 1.5vw;
+  }
+
+  .footer-right h6 {
+    font-size: 1.5vw;
+  }
+
+  .footer-right p {
+    font-size: 1.5vw;
+  }
+
+  .footer-icons i {
+    font-size: 2vw;
+  }
+
+  .center-row i {
+    font-size: 2vw;
   }
 }
 
 @media screen and (max-width: 550px) {
   .quick-tabs a {
-    font-size: 13px;
+    font-size: 2vw;
   }
 
   .footer-container {
@@ -138,14 +177,57 @@
     flex-direction: column;
   }
 
-  .footer-left,
-  .footer-middle,
-  .footer-right {
-    padding: 6 vh;
+  .center-row p {
+    font-size: 2vw;
+  }
+
+  .center-row a {
+    font-size: 2vw;
+  }
+
+  .footer-right h6 {
+    font-size: 2vw;
+  }
+
+  .footer-right p {
+    font-size: 2vw;
+  }
+
+  .footer-icons i {
+    font-size: 2.5vw;
+  }
+
+  .center-row i {
+    font-size: 2.5vw;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .quick-tabs a {
+    font-size: 2.5vw;
   }
 
   .center-row p {
-    padding-top: 2.6vh;
-    padding-left: 4vw;
+    font-size: 2.5vw;
+  }
+
+  .center-row a {
+    font-size: 2.5vw;
+  }
+
+  .footer-right h6 {
+    font-size: 2.5vw;
+  }
+
+  .footer-right p {
+    font-size: 2.5vw;
+  }
+
+  .footer-icons i {
+    font-size: 3vw;
+  }
+
+  .center-row i {
+    font-size: 3vw;
   }
 }

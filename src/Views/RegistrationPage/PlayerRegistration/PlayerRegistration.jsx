@@ -1,18 +1,21 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
-import { Button, Divider, Space, Tour } from "antd";
+import { Button, Space, notification } from "antd";
+import { RadiusBottomrightOutlined } from "@ant-design/icons";
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import Axios from "axios";
 import { message } from "antd";
 import Dropdown from "../../../common/Dropdown/Dropdown";
+import SuccessMessage from "../Common/SuccessMessage/SuccessMessage";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
+import { useNavigate } from "react-router-dom";
 
 const PlayerRegistration = () => {
-
+  const navigate = useNavigate()
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
 
   const [validated, setValidated] = useState(false); //form validation
@@ -26,6 +29,7 @@ const PlayerRegistration = () => {
     email: "",
     photo: "samplePhoto.jpeg",
     performanceThreshold: 100,
+    year:"2023"
   });
   const [fileList, setFileList] = useState([]);
   const [image,setImage] = useState(null);
@@ -37,6 +41,7 @@ const PlayerRegistration = () => {
   const [imageName,setImageName] = useState();
 
   useEffect(() => {
+    // openNotification('topRight')
     if (isSubmitting) {
       // show loading message
       message.loading("Submitting form...");
@@ -126,6 +131,7 @@ const PlayerRegistration = () => {
           }
           
           setIsChecked(true);
+          navigate('/register/player/'+res.data.data[0]["_id"])
         })
         .catch((error) => {
           console.log("Error: ", error);
@@ -134,16 +140,6 @@ const PlayerRegistration = () => {
       setIsSubmitting(false);
     }
   }
-  // guide for tournament details
-  const ref = useRef(null);
-  const [open, setOpen] = useState(true);
-  const steps = [
-    {
-      title: "Tournament Details and Registration Guidlines",
-      description: "Please refer the details and guidlines before the registration process.",
-      target: () => ref.current,
-    },
-  ];
 
   return (
     <div className={`${Styles["body"]}`}>
@@ -151,22 +147,18 @@ const PlayerRegistration = () => {
       {isRegistrationsOpen ? (
         <>
           <div className={`${Styles["title"]}`}>Player Registration</div>
-          {!isChecked && (
+
             <>
+              <div className={`${Styles["tournament-guidlines"]}`}>
+                <a href="#">Tournament and Registration guildlines</a>
+                <img src={require("../../../assests/images/tap.gif")} />
+              </div>
               <div className={`${Styles["info-container"]}`}>
                 <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
                 <div className={`${Styles["info"]}`}>
                   Please note that first you have to register as a player through this portal before
                   applying for single/double events. The Player ID given upon successful
                   registration should be used for all the future events including upcoming years.
-                  Please find the{" "}
-                  <button ref={ref}>Tournament Details and Registration Guidlines</button> here.
-                  <Tour
-                    placement="right"
-                    open={open}
-                    onClose={() => setOpen(false)}
-                    steps={steps}
-                  />
                 </div>
               </div>
               <div className={`${Styles["register-form"]}`}>
@@ -178,7 +170,7 @@ const PlayerRegistration = () => {
                     onSubmit={handleSubmit}
                     className={`${Styles["register-form-content"]}`}
                   >
-                    <div className="row mb-4">
+                    <div className="row mb-2">
                       <MDBCol
                         className="align-items-center justify-content-center"
                         lg="6"
@@ -187,7 +179,7 @@ const PlayerRegistration = () => {
                       >
                         <ImageUploader setImage={setImage} fileList={fileList} setFileList={setFileList} setImageName={setImageName} />
                       </MDBCol>
-                      <MDBCol className="" lg="6" md="12" sm="12">
+                      <MDBCol className="" lg="6" md="6" sm="12">
                         <Dropdown
                           options={genderOptions}
                           handleClick={(option) => {
@@ -199,38 +191,27 @@ const PlayerRegistration = () => {
                         />
                       </MDBCol>
                     </div>
-                    <div className="row mb-4">
-                      <MDBCol className="" lg="6" md="12" sm="12">
+                    <div className="row mb-2">
+                      <MDBCol className="" lg="6" md="6" sm="12">
                         <MDBInput
                           wrapperClass="mb-4"
                           label="First Name"
-                          labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
                           name="firstName"
                           type="text"
-                          style={{
-                            fontFamily: "Hind",
-                            fontSize: "18px",
-                            padding: "15px",
-                            minHeight: "40px",
-                          }}
+                          className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           value={player.firstName}
                           onChange={handleChange}
                           required
                           contrast
-                          className="bg-primary bg-opacity-25"
                         />
                       </MDBCol>
-                      <MDBCol className="" lg="6" md="12" sm="12">
+                      <MDBCol className="" lg="6" md="6" sm="12">
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Institute"
-                          labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                          style={{
-                            fontFamily: "Hind",
-                            fontSize: "18px",
-                            padding: "15px",
-                            minHeight: "40px",
-                          }}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
+                          className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="institute"
                           type="text"
@@ -238,22 +219,16 @@ const PlayerRegistration = () => {
                           onChange={handleChange}
                           required
                           contrast
-                          className="bg-primary bg-opacity-25"
                         />
                       </MDBCol>
                     </div>
-                    <div className="row mb-4">
-                      <MDBCol className="" lg="6" md="12" sm="12">
+                    <div className="row mb-2">
+                      <MDBCol className="" lg="6" md="6" sm="12">
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Last Name"
-                          labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                          style={{
-                            fontFamily: "Hind",
-                            fontSize: "18px",
-                            padding: "15px",
-                            minHeight: "40px",
-                          }}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
+                          className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="lastName"
                           type="text"
@@ -261,20 +236,14 @@ const PlayerRegistration = () => {
                           onChange={handleChange}
                           required
                           contrast
-                          className="bg-primary bg-opacity-25"
                         />
                       </MDBCol>
-                      <MDBCol className="" lg="6" md="12" sm="12">
+                      <MDBCol className="" lg="6" md="6" sm="12">
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Contact Number"
-                          labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                          style={{
-                            fontFamily: "Hind",
-                            fontSize: "18px",
-                            padding: "15px",
-                            minHeight: "40px",
-                          }}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
+                          className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="contactNumber"
                           type="text"
@@ -282,22 +251,16 @@ const PlayerRegistration = () => {
                           onChange={handleChange}
                           required
                           contrast
-                          className="bg-primary bg-opacity-25"
                         />
                       </MDBCol>
                     </div>
                     <div className="row mb-4">
-                      <MDBCol className="" lg="6" md="12" sm="12">
+                      <MDBCol className="" lg="6" md="6" sm="12">
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Date of Birth"
-                          labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                          style={{
-                            fontFamily: "Hind",
-                            fontSize: "18px",
-                            padding: "15px",
-                            minHeight: "40px",
-                          }}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
+                          className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="dob"
                           type="date"
@@ -305,21 +268,15 @@ const PlayerRegistration = () => {
                           onChange={handleChange}
                           required
                           contrast
-                          className="bg-primary bg-opacity-25"
                         ></MDBInput>
                       </MDBCol>
 
-                      <MDBCol className="" lg="6" md="12" sm="12">
+                      <MDBCol className="" lg="6" md="6" sm="12">
                         <MDBInput
                           wrapperClass="mb-4"
                           label="Email"
-                          labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-                          style={{
-                            fontFamily: "Hind",
-                            fontSize: "18px",
-                            padding: "15px",
-                            minHeight: "40px",
-                          }}
+                          labelStyle={{ color: "white", fontFamily: "Hind" }}
+                          className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
                           labelClass="text-white"
                           name="email"
                           type="email"
@@ -327,7 +284,6 @@ const PlayerRegistration = () => {
                           onChange={handleChange}
                           required
                           contrast
-                          className="bg-primary bg-opacity-25"
                         />
                       </MDBCol>
                     </div>
@@ -338,21 +294,6 @@ const PlayerRegistration = () => {
                 </MDBContainer>
               </div>
             </>
-          )}
-          {isChecked && (
-            <div className={`${Styles["success-msg-box"]}`}>
-              {/* <img src={trophy} className={`${Styles[""]}`}/> */}
-              <div className={`${Styles["success-msg"]}`}>
-                Thank you for registering with us ! Your player ID {playerID} will be used for
-                registering for the future events including next years.
-                <div className={`${Styles["image-trophy"]}`}></div>
-              </div>
-
-              <MDBBtn className={`${Styles["conquest-button"]}`} type="submit">
-                <div className={`${Styles["conquest"]}`}>Enter the conquest</div>
-              </MDBBtn>
-            </div>
-          )}
         </>
       ) : (
         <RegistrationsNotOpen />

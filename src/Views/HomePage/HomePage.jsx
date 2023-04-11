@@ -15,7 +15,7 @@ const HomePage = () => {
 
   const [showContent, setShowContent] = useState(false)
 
-  const [venue, setVenue] = useState(["University gymnasium", "S. Thomas' College, Mount Lavinia"]);
+  const [venue, setVenue] = useState(["University gymnasium", "St. Thomas' College, Mount Lavinia"]);
   const [registrationsDeadlines, setRegistrationsDealines] = useState(["2023-04-13", "2023-04-30"]);
   const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
 
@@ -54,11 +54,11 @@ const HomePage = () => {
         venue={venue}
         registrationsDeadlines={registrationsDeadlines}
       />}
+      {showContent &&<Sponsers sponsers={sponsers}/>}
       <Why />
       <MeetTeam teamPhoto={teamPhoto} />
       <Gallery gallery={gallery} />
       {showContent &&<Tshirt tShirtFront={tShirtFront} tShirtBack={tShirtBack} />}
-      {showContent &&<Sponsers sponsers={sponsers}/>}
       <Footer />
     </div>
   );

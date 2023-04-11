@@ -15,20 +15,20 @@
 .UMiSF-container {
   width: 100%;
   position: absolute;
-  top: 55%;
+  top: 65%;
   padding-left: 6%;
 }
 
 .UMiSF-container h1 {
   color: #0984e3;
-  font-size: 85px;
+  font-size: 5vw;
   margin-bottom: 2vh;
   font-weight: bold;
   font-family: "Montserrat";
 }
 
 .UMiSF-container p {
-  font-size: 15px;
+  font-size: 1vw;
   text-align: left;
   font-family: "Hind", sans-serif;
   margin-left: 10px;

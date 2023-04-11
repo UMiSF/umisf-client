@@ -8,7 +8,7 @@
 
 .tshirt-front,
 .tshirt-back {
-  margin: 2vw;
+  /* margin: 2vw; */
 
 }
 
@@ -42,7 +42,7 @@
   color: white;
   background-color: #0984E3;
   padding: 8px 20px;
-  font-size: 20px;
+  font-size: 1vw;
   font-family: "Hind";
 }
 
@@ -51,15 +51,22 @@
   text-decoration: none;
 }
 
+@media screen and (max-width: 720px) {
+  .order-now{
+    font-size: 1.5vw;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .tshirt-container {
     display: block;
-    padding-left: 23%;
     margin: 0vh;
   }
-  .tshirt-back,
-  .tshirt-front {
-    padding-left: 7vw;
+
+  .tshirt-back,.tshirt-front{
+    display: flex;
+    justify-content: center;
+
   }
 
   .tshirt-back img,
@@ -71,18 +78,13 @@
   .tshirt-title span {
     font-size: 9vw;
   }
+
+  .order-now{
+    font-size: 1.7vw;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  .tshirt-container {
-    display: block;
-    padding-left: 20%;
-    margin: 0vh;
-  }
-  .tshirt-back,
-  .tshirt-front {
-    padding-left: 3vw;
-  }
 
   .tshirt-back img,
   .tshirt-front img {
@@ -93,14 +95,13 @@
   .tshirt-title span {
     font-size: 10vw;
   }
+
+  .order-now{
+    font-size: 2vw;
+  }
 }
 
 @media screen and (max-width: 350px) {
-  .tshirt-container {
-    display: block;
-    padding-left: 17%;
-    margin: 0vh;
-  }
 
   .tshirt-back img,
   .tshirt-front img {
@@ -110,5 +111,9 @@
 
   .tshirt-title span {
     font-size: 11vw;
+  }
+
+  .order-now{
+    font-size: 2.5vw;
   }
 }

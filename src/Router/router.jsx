@@ -10,6 +10,7 @@ import ContactUsPage from "../Views/ContactUsPage/ContactUs";
 import CompanyRegistration from "../Views/RegistrationPage/CompanyRegistration/CompanyRegistration";
 import UniversityRegistration from "../Views/RegistrationPage/UniversityRegistration/UniversityRegistration";
 import PlayerRegistration from "../Views/RegistrationPage/PlayerRegistration/PlayerRegistration";
+import SuccessMessage from "../Views/RegistrationPage/Common/SuccessMessage/SuccessMessage";
 import DrawsPage from "../Views/DrawsPage/DrawsPage";
 import MatchSchedulePage from "../Views/MatchSchedulePage/MatchSchedulePage";
 import MatchResultsPage from "../Views/MatchResultsPage/MatchResultsPage";
@@ -39,6 +40,7 @@ export default function AppRouter() {
           <Route path="contact-us" element={<ContactUsPage />} />
           <Route path="register">
             <Route path="player" element={<PlayerRegistration />} />
+            <Route path="player/:id" element={<SuccessMessage />} />
             <Route path="single-double" element={<RegisterAll/>} />
             {/* <Route path="single" element={<SingleRegistration />} />
             <Route path="double" element={<DoubleRegistration />} /> */}

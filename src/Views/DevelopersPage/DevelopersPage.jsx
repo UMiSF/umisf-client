@@ -53,7 +53,7 @@ function DevelopersPage() {
     },
     {
       name: "Yasira Punsith",
-      working_place: "CSE undergraduate@ UOM",
+      working_place: "CSE Undergraduate@ UOM",
       image: "yasira.jpg",
       position: "Frontend Developer",
       linkedin: "https://www.linkedin.com/in/yasira-punsith-839121266/",
@@ -62,7 +62,7 @@ function DevelopersPage() {
     },
     {
       name: "Sahani Dissanayake",
-      working_place: "Business Science undergraduate@ UOM",
+      working_place: "Business Science Undergraduate@ UOM",
       image: "sahani.jpeg",
       position: "Content Writer",
       linkedin: "",
@@ -105,16 +105,14 @@ function DevelopersPage() {
                 <a href={`${developer.linkedin}`} target="_blank">
                   <img
                     src={require(`../../assests/images/linkedin.png`)}
-                    style={{ width: "35px" }}
                   />
                 </a>
-                <a href={`https://github.com/${developer.github}`} target="_blank">
-                  <img src={require(`../../assests/images/github.png`)} style={{ width: "45px" }} />
+                <a className={`${styles["github"]}`} href={`https://github.com/${developer.github}`} target="_blank">
+                  <img src={require(`../../assests/images/github.png`)} />
                 </a>
                 <a href={`${developer.facebook}`} target="_blank">
                   <img
                     src={require(`../../assests/images/facebook.png`)}
-                    style={{ width: "35px" }}
                   />
                 </a>
               </div>

@@ -23,7 +23,7 @@ const AboutPage = () => {
           all island age group event and will be held for the 14th time in 2023,
           bigger than ever!!
         </p>
-        <div class={`${styles["row"]}`}>
+        <div class={`${styles["history-row"]}`}>
           <div class={`${styles["objectives-col"]}`}>
             <h3>VISION</h3>
             <p>
@@ -59,7 +59,6 @@ const AboutPage = () => {
           <p
             style={{
               display: "inline-block",
-              fontSize: "60px",
               color: "#0984E3",
               fontFamily: "Hind",
             }}
@@ -78,11 +77,7 @@ const AboutPage = () => {
               alt=""
             ></img>
             <h3>2017</h3>
-            <p>
-              Lorem ipsum is placeholder text commonly used in the graphic,
-              print, and publishing industries for previewing layouts and visual
-              mockups. LOREM IPSUM GENERATOR
-            </p>
+            
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -91,11 +86,7 @@ const AboutPage = () => {
               alt=""
             ></img>
             <h3>2018</h3>
-            <p>
-              Lorem ipsum is placeholder text commonly used in the graphic,
-              print, and publishing industries for previewing layouts and visual
-              mockups. LOREM IPSUM GENERATOR
-            </p>
+            
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -104,11 +95,7 @@ const AboutPage = () => {
               alt=""
             ></img>
             <h3>2019</h3>
-            <p>
-              Lorem ipsum is placeholder text commonly used in the graphic,
-              print, and publishing industries for previewing layouts and visual
-              mockups. LOREM IPSUM GENERATOR
-            </p>
+            
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -117,25 +104,21 @@ const AboutPage = () => {
               alt=""
             ></img>
             <h3>2020</h3>
-            <p>
-              Lorem ipsum is placeholder text commonly used in the graphic,
-              print, and publishing industries for previewing layouts and visual
-              mockups. LOREM IPSUM GENERATOR
-            </p>
+            
           </div>
         </div>
       </section>
       <section className={`${styles["testimonials"]}`}>
-        <h1>Masseges From The Organizing Committee</h1>
+        <h1>Messages From The Organizing Committee</h1>
         <p>
           Badminton has always been a popular sport among the undergraduate
-          community of our university. Since the inauguration of annual
-          tournament by Mora in 2007, we have expanded our horizons. It is
+          community of our university. Since the inauguration of this annual
+          tournament in 2007, we have expanded our horizons. It was
           indeed a success for us to reach the 1000 plus mark in the number of
-          participants. UMiSF is a stage to show out the potential of
-          youngsters, university students and university staff members. I wish
-          the participants the best of luck for the tournament and hope you will
-          enjoy the talents unfolding in front of you in this tournament.
+          participants. UMiSF is a platform to show out the potential of
+          youngsters, university students, university staff members, as well as corporates. We wish
+          the participants the best of luck for the tournament and hope everyone will
+          enjoy this tournament.
         </p>
         <div className={`${styles["row"]}`}>
           <div className={`${styles["testimanial-col"]}`}>

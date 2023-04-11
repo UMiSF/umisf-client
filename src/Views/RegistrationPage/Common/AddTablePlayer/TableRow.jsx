@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Styles from "./TableRow.module.css";
 import { MDBCol, MDBInput } from "mdb-react-ui-kit";
+import Dropdown from "../../../../common/Dropdown/Dropdown";
 import ImageUploader from "../imageUploader/ImageUploader";
 
 const TableRow = (props) => {
   // console.log('Props of table row: ',props)
   const {index,setFileList,setImageList,fileList,imageList,fileNameList,setFileNameList} = props;
+  const genderOptions = ["Male", "Female"];
+  const [gender, setGender] = useState("");
+
+  const columnSize = props.genderNeeded ? 3 : 4
 
   function handleSetFileList(newFile){
     const newFileList = fileList.map((file,i) => {
@@ -43,74 +48,56 @@ const TableRow = (props) => {
   return (
     <div>
       <div className="row">
-        <MDBCol className="" lg="4" md="12" sm="12">
+        <MDBCol className="" lg={columnSize} md="12" sm="12">
           <MDBInput
             wrapperClass="mb-2"
             labelClass="text-white"
             name={"name-" + props.index}
-            labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-            style={{
-              fontFamily: "Hind",
-              fontSize: "18px",
-              padding: "15px",
-              minHeight: "40px",
-            }}
+            labelStyle={{ color: "white", fontFamily: "Hind" }}
+            className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
             type="text"
             value={props.player.name}
             onChange={(e) => {
-              props.handleChange(e);
+              props.handleChange(e.target.value, e.target.name);
             }}
             contrast
-            className="bg-primary bg-opacity-25"
             required
             label="Full Name"
           />
         </MDBCol>
-        <MDBCol className="" lg="4" md="12" sm="12">
+        <MDBCol className="" lg={columnSize} md="12" sm="12">
           <MDBInput
             wrapperClass="mb-2"
             labelClass="text-white"
-            labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-            style={{
-              fontFamily: "Hind",
-              fontSize: "18px",
-              padding: "15px",
-              minHeight: "40px",
-            }}
+            labelStyle={{ color: "white", fontFamily: "Hind" }}
+            className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
             name={"id-" + props.index}
             type="text"
             value={props.player.id}
             onChange={(e) => {
-              props.handleChange(e);
+              props.handleChange(e.target.value, e.target.name);
             }}
             contrast
-            className="bg-primary bg-opacity-25"
             label="ID"
             required
           />
         </MDBCol>
-        <MDBCol className="" lg="4" md="12" sm="12">
-          {/* <MDBInput
-            wrapperClass="mb-2"
-            labelClass="text-white"
-            labelStyle={{ color: "white", fontFamily: "Hind", fontSize: "23px" }}
-            style={{
-              fontFamily: "Hind",
-              fontSize: "18px",
-              padding: "15px",
-              minHeight: "40px",
-            }}
-            name={"photo-" + props.index}
-            type="text"
-            value={props.player.photo}
-            onChange={(e) => {
-              props.handleChange(e);
-            }}
-            contrast
-            className="bg-primary bg-opacity-25"
-            required
-            label="Profile image"
-          /> */}
+        {props.genderNeeded && (
+          <MDBCol className="" lg={columnSize} md="12" sm="12">
+            <Dropdown
+              options={genderOptions}
+              handleClick={(option, id) => {
+                setGender(option);
+                props.handleChange(option, id);
+              }}
+              value={gender}
+              name={"gender-" + props.index}
+              lable={"Gender"}
+            />
+          </MDBCol>
+        )}
+
+        <MDBCol className="" lg={columnSize} md="12" sm="12">
           <ImageUploader setImage={handleSetImageList} fileName={fileNameList[index]} fileList={fileList[index]} setFileList={handleSetFileList} setImageName={handleSetFileNameList} index={index} />
         </MDBCol>
       </div>

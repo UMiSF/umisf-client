@@ -1,19 +1,36 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import "./countdowntimer.css";
 
 const CountDownTimer = (props) => {
-  const [startigTimeDifference, setStartingTimeDifference] = useState({})
+  const [startigTimeDifference, setStartingTimeDifference] = useState({});
+
+  const getDaysInAMonth = (year, month) => {
+    return new Date(year, month, 0).getDate();
+  };
+
+  const calculateDays = (startingDate, endingDate) => {
+    let numberOfDays =
+      endingDate.getDate() +
+      getDaysInAMonth(startingDate.getFullYear(), startingDate.getMonth()) -
+      startingDate.getDate();
+
+    for (let i = startingDate.getMonth() + 1; i < endingDate.getMonth(); i++) {
+      numberOfDays += getDaysInAMonth(startingDate.getFullYear(), i)
+    }
+
+    return numberOfDays
+  };
 
   const calculateTimeDiffrence = (currentDate, startingDate) => {
     let timeDifference = {
-      days:"",
+      days: "",
       hours: "",
       mins: "",
       seconds: "",
     };
 
-    timeDifference.days = startingDate.getDate() - currentDate.getDate()
+    timeDifference.days = calculateDays(currentDate, startingDate) - 1;
     timeDifference.seconds = 60 - currentDate.getSeconds();
     timeDifference.mins = 59 - currentDate.getMinutes();
 
@@ -26,13 +43,13 @@ const CountDownTimer = (props) => {
     return timeDifference;
   };
 
-  const toSeconds = (time)=> {
-    return time.hours * 3600 + time.mins * 60 + time.seconds
-  }
+  const toSeconds = (time) => {
+    return time.hours * 3600 + time.mins * 60 + time.seconds;
+  };
 
   useEffect(() => {
-    const countToDate = new Date(props.startingDate)
-    setStartingTimeDifference(calculateTimeDiffrence(new Date(), countToDate))
+    const countToDate = new Date(props.startingDate);
+    setStartingTimeDifference(calculateTimeDiffrence(new Date(), countToDate));
     let previousTimeBetweenDates;
 
     function flipAllCards(time, remainingDates) {
@@ -45,15 +62,9 @@ const CountDownTimer = (props) => {
 
       flip(document.querySelector("[data-hours-tens]"), Math.floor(hours / 10));
       flip(document.querySelector("[data-hours-ones]"), hours % 10);
-      flip(
-        document.querySelector("[data-minutes-tens]"),
-        Math.floor(minutes / 10)
-      );
+      flip(document.querySelector("[data-minutes-tens]"), Math.floor(minutes / 10));
       flip(document.querySelector("[data-minutes-ones]"), minutes % 10);
-      flip(
-        document.querySelector("[data-seconds-tens]"),
-        Math.floor(seconds / 10)
-      );
+      flip(document.querySelector("[data-seconds-tens]"), Math.floor(seconds / 10));
       flip(document.querySelector("[data-seconds-ones]"), seconds % 10);
     }
 
@@ -88,7 +99,7 @@ const CountDownTimer = (props) => {
 
     setInterval(() => {
       const currentDate = new Date();
-      const remainingTime = calculateTimeDiffrence(currentDate, countToDate)
+      const remainingTime = calculateTimeDiffrence(currentDate, countToDate);
       const timeBetweenDates = toSeconds(remainingTime);
       flipAllCards(timeBetweenDates, remainingTime.days);
 
@@ -102,7 +113,7 @@ const CountDownTimer = (props) => {
       </div>
 
       <div class="container">
-      <div class="container-segment">
+        <div class="container-segment">
           <div class="segment-title">Days</div>
           <div class="segment">
             <div class="flip-card" data-dates-tens>
