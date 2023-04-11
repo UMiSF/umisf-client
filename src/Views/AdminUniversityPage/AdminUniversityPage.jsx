@@ -83,7 +83,7 @@ const AdminUniversityPage = () => {
 
         <div className={`${styles['profile-field-container']}`}>
           <div className={`${styles['profile-field-name']}`}>Payement slip</div>
-          <div className={`${styles['profile-field-value']}`}>{universityDetails.paymentSlip}</div>
+          <div className={`${styles['profile-field-value']}`}><a href={`../../assests/documents/payments/${universityDetails.paymentSlip}`} download>{universityDetails.paymentSlip}</a></div>
         </div>
         <hr />
 
