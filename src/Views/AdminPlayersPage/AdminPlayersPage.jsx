@@ -3,9 +3,7 @@ import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from './adminPlayersPage.module.css';
 import { useState, useEffect } from 'react';
-import { Select, Space, Button, message, Row, Col } from 'antd';
-import { CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
-import { setEngine } from 'crypto';
+import { Select, Space, Button, message} from 'antd';
 import Axios, * as others from 'axios';
 import { Link } from 'react-router-dom';
 import { Form, Modal, Spinner } from 'react-bootstrap';
@@ -31,6 +29,7 @@ const AdminPlayersPage = () => {
   const ageGroups = ['All', 'Under 9', 'Under 11', 'Under 13', 'Under 15', 'Under 17', 'Under 19', 'University', 'Company'];
   const gender = ['All', 'Girls', 'Boys', 'Men', 'Women'];
   const year = new Date().getFullYear();
+  const [deleteId, setDeleteId] = useState('')
 
   const [showSingle, setShowSingle] = useState(false); //maodal show
   const handleCloseSingle = () => setShowSingle(false); //handle modal close
@@ -56,6 +55,10 @@ const AdminPlayersPage = () => {
   const [showDouble, setShowDouble] = useState(false); //maodal show
   const handleCloseDouble = () => setShowDouble(false); //handle modal close
   const handleShowDouble = () => setShowDouble(true); //handle modal show
+
+  const [show, setShow] = useState(false); //maodal show
+  const handleClose = () => setShow(false); //handle modal close
+  const handleShow = () => setShow(true); //handle modal show
   // should get from data base
   // const [institute,setInstitute] = ['ananda','nalanda','vishaka','st josephs'];
   const handleMatchType = (value) => {
@@ -255,6 +258,25 @@ const AdminPlayersPage = () => {
     }
   };
 
+  const deleteEvent = async(e)=>{
+    e.preventDefault();
+    try{
+      const result = await Axios.delete(process.env.REACT_APP_API_URL + `/${matchTypeForEmail == 'None' ? 'player': matchTypeForEmail.toLowerCase()}/removeByField/Id/` + deleteId , {
+        headers: {},
+      });
+      //setIsSubmitting(false)
+      console.log(result);
+
+    //  message.success('Deleted successfully !! ');
+
+    //  window.location.reload(false)
+    }catch (error){
+      handleClose()
+      console.log(error);
+      message.error(error.response?.data?.message); 
+    }
+  }
+
   return (
     <div className={`${styles['players-full-container']}`}>
       <ProfileHeader user_type={'admin'} />
@@ -262,11 +284,11 @@ const AdminPlayersPage = () => {
       <div className={`${styles['main-title']}`}>
         <a href="/admin/players">Players</a>
       </div>
-      <div className={`${styles['tool-bar']}`}>
+      {/* <div className={`${styles['tool-bar']}`}>
         <a href="/admin/players/add-new-player">
           <img src={require('../../assests/images/add.png')} alt="" /> Add Account
         </a>
-      </div>
+      </div> */}
 
       <div className={`${styles['tool-bar']}`}>
         <h5>Search players</h5>
@@ -384,6 +406,10 @@ const AdminPlayersPage = () => {
                   <Button onClick={() => editDouble(value)} hidden={matchTypeForEmail == 'Double' ? false : true}>
                     {' '}
                     Edit Double
+                  </Button>
+                  <Button onClick={()=>{handleShow(); setDeleteId(value._id)}} >
+                    {' '}
+                    Delete
                   </Button>
                 </div>
                 {/* ))} */}
@@ -660,6 +686,25 @@ const AdminPlayersPage = () => {
             </button>
             <button type="submit" className="btn btn-dark">
               Apply
+            </button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+
+      <Modal show={show} onHide={handleClose} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title> Delete Confirmation </Modal.Title>{' '}
+        </Modal.Header>
+        <Form onSubmit={deleteEvent}>
+          <Modal.Body>
+            Are you sure you want to delete this record ?
+          </Modal.Body>
+          <Modal.Footer>
+            <button type="button" onClick={handleClose} className="btn btn-dark">
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-dark">
+              Confirm
             </button>
           </Modal.Footer>
         </Form>
