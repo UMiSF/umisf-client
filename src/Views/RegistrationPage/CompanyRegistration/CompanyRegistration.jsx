@@ -11,6 +11,7 @@ import Dropdown from "../../../common/Dropdown/Dropdown";
 
 import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
+import { CircularProgress, Grid, Typography } from "@mui/material";
 const CompanyRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
   const [validated, setValidated] = useState(false); //form validation
@@ -19,7 +20,7 @@ const CompanyRegistration = () => {
     email: "",
     contactNumber: "",
     paymentMethod: "",
-    paymentSlip: "",
+    paymentSlip: "photo",
     matchType:"A Division",
     year:"2023"
   });
@@ -34,9 +35,9 @@ const CompanyRegistration = () => {
   };
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
-    { firstName: "", lastName: "", gender: "", photo: "" },
-    { firstName: "", lastName: "", gender: "", photo: "" },
-    { firstName: "", lastName: "", gender: "", photo: "" },
+    { firstName: "", lastName: "", gender: "", photo: "photp" },
+    { firstName: "", lastName: "", gender: "", photo: "photp" },
+    { firstName: "", lastName: "", gender: "", photo: "photp" },
   ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
@@ -50,6 +51,7 @@ const CompanyRegistration = () => {
   const [slipImage,setSlipImage] = useState(null);
   const [slipFile,setSlipFile] = useState([]);
   const [,setSlipName] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
 
 
@@ -105,7 +107,7 @@ const CompanyRegistration = () => {
       case "name":
         //incase of one part of the name
         const fullName = value.trim().split(" ")
-        fullName.length == 1 && fullName.push(fullName[0])
+        fullName.length === 1 && fullName.push(fullName[0])
         const length = fullName.length
        
 
@@ -140,6 +142,9 @@ const CompanyRegistration = () => {
           photo: value
         };
         break;
+      default:
+        console.log(field);
+        break;
     }
     setPlayersArray(newArray);
   };
@@ -163,7 +168,7 @@ const CompanyRegistration = () => {
     e.preventDefault();
     setCount(count + 1);
     setPlayersArray((prevValue) => {
-      return [...playersArray, { name: "", id: "", gender:"", photo: "" }];
+      return [...playersArray, { name: "", id: "", gender:"", photo: "photo" }];
     });
     setFileList((prevValue) => {
       return [...fileList, []];
@@ -196,9 +201,10 @@ const CompanyRegistration = () => {
     }
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     //TODO: add player array
     e.preventDefault();
+    setIsLoading(true);
     console.log("Form submitted", company);
     console.log("players for submitted",playersArray);
     const form = e.currentTarget;
@@ -221,9 +227,26 @@ const CompanyRegistration = () => {
           headers: {},
         }
       )
-        .then((res) => {
+        .then(async (res) => {
           console.log(res.data);
           message.success(res.data.message);
+
+          const imageForm = {
+            companyId: res.data.data._id,
+            slip: slipImage,
+            playerIds: res.data.data.players,
+            images: imageList
+          }
+
+          await Axios.post(process.env.REACT_APP_API_URL + "/image/addMultiple",
+            imageForm,
+            {
+              headers: {},
+            })
+
+
+          setIsLoading(false);
+
           setTimeout(() => {
             window.location.reload(true);
           }, 2000);
@@ -239,7 +262,7 @@ const CompanyRegistration = () => {
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
-      {isRegistrationsOpen ? (
+      {isRegistrationsOpen && !isLoading ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - Corporate</div>
           <div className={`${Styles["tournament-guidlines"]}`}><a href="#">
@@ -366,7 +389,14 @@ const CompanyRegistration = () => {
             </MDBContainer>
           </div>
         </>
-      ) : (
+      ) :
+      isRegistrationsOpen && isLoading ?
+      (
+        <Grid container item xs={12} height='100vh' display='flex' justifyContent='center' alignItems='center'>
+          <CircularProgress size={100}/>
+        </Grid>
+        
+      ): (
         <RegistrationsNotOpen/>
       )}
     </div>

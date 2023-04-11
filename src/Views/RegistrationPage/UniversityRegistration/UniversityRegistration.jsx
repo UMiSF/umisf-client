@@ -12,6 +12,7 @@ import Dropdown from "../../../common/Dropdown/Dropdown";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
+import { CircularProgress, Grid } from "@mui/material";
 
 const UniversityRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
@@ -46,6 +47,7 @@ const UniversityRegistration = () => {
   const [slipImage,setSlipImage] = useState(null);
   const [slipFile,setSlipFile] = useState([]);
   const [,setSlipName] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (isSubmitting) {
@@ -117,6 +119,8 @@ const UniversityRegistration = () => {
           photo: value
         };
         break;
+      default:
+        console.log(field);
     }
     setPlayersArray(newArray);
   };
@@ -210,6 +214,7 @@ const UniversityRegistration = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
     console.log("Form submitted", university);
     const form = e.currentTarget;
     const isPlayerArrayValid = isValidPlayerArray(playersArray);
@@ -239,15 +244,24 @@ const UniversityRegistration = () => {
       )
         .then(async (res) => {
           console.log(res.data);
-          const playerIds = [{}]  // todo: after fixing errors in add method
-          const companyId = '' // todo: after fixing errors in add method
-          const imageForm = {images: imageList,  playerIds: playerIds,slip: slipImage, companyId: companyId};
-          await Axios.post(process.env.REACT_APP_API_URL + "/image/addMultiple",
-          imageForm,
-          {
-            headers: {},
-          })
           message.success(res.data.message);
+
+          const imageForm = {
+            companyId: res.data.data._id,
+            slip: slipImage,
+            playerIds: res.data.data.players,
+            images: imageList
+          }
+
+          await Axios.post(process.env.REACT_APP_API_URL + "/image/addMultiple",
+            imageForm,
+            {
+              headers: {},
+            })
+
+
+          setIsLoading(false);
+
           setTimeout(() => {
             window.location.reload(true);
           }, 2000);
@@ -384,7 +398,14 @@ const UniversityRegistration = () => {
             </MDBContainer>
           </div>
         </>
-      ) : (
+      ) :
+      isRegistrationsOpen && isLoading ?
+      (
+        <Grid container item xs={12} height='100vh' display='flex' justifyContent='center' alignItems='center'>
+          <CircularProgress size={100}/>
+        </Grid>
+        
+      ): (
         <RegistrationsNotOpen />
       )}
     </div>
