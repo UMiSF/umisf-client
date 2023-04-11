@@ -27,9 +27,10 @@ import FinishedMatchCard from "../Views/MatchResultsPage/FinishedMatchCard";
 import PhotosPage from "../Views/PhotosPage/PhotosPage";
 import RegisterAll from "../Views/RegistrationPage/RegisterAll/RegisterAll";
 import DevelopersPage from "../Views/DevelopersPage/DevelopersPage";
+import LoginPage from "../Views/LoginPage/LoginPage";
 
 export default function AppRouter() {
-  let type = 1; //todo: this should change according to the user
+  let type = localStorage.getItem('role'); //todo: this should change according to the user
 
   return (
     <BrowserRouter>
@@ -60,6 +61,7 @@ export default function AppRouter() {
           <Route path="photos" element={<GalleryPage />} />
           <Route path="photos/:title" element={<PhotosPage />} />
           <Route path="developers" element={<DevelopersPage />} />
+          <Route path="login" element={<LoginPage />} />
           <Route path="*" element={<NotFound />} />
 
           {/*type1: admin  admin/page_name*/}
@@ -69,7 +71,7 @@ export default function AppRouter() {
           {/*type5: player           /page_name*/}
           {/*todo: conditions should change*/}
 
-          {type === 1 ? (
+          {type === 'admin' ? (
             <Route>
               <Route exact path="admin" element={<HeaderPage type={1} />}>
                 <Route path="" element={<AdminHomePage />} />
@@ -77,7 +79,7 @@ export default function AppRouter() {
               </Route>
               <Route path="*" element={<Unauth />} />
             </Route>
-          ) : type === 2 ? (
+          ) : type === 'organizer' ? (
             <Route>
               <Route exact path="organizer" element={<HeaderPage type={2} />}>
                 <Route path="" element={<OrganizerHomePage />} />
@@ -85,7 +87,7 @@ export default function AppRouter() {
               </Route>
               <Route path="*" element={<Unauth />} />
             </Route>
-          ) : type === 3 ? (
+          ) : type === 'tableOrganizer' ? (
             <Route>
               <Route exact path="table" element={<HeaderPage type={3} />}>
                 <Route path="" element={<TableHomePage />} />
@@ -93,7 +95,7 @@ export default function AppRouter() {
               </Route>
               <Route path="*" element={<Unauth />} />
             </Route>
-          ) : type === 4 ? (
+          ) : type === 'umpire' ? (
             <Route>
               <Route exact path="umpire" element={<HeaderPage type={4} />}>
                 <Route path="" element={<UmpireHomePage />} />

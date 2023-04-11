@@ -21,9 +21,10 @@ const CompanyRegistration = () => {
     contactNumber: "",
     paymentMethod: "",
     paymentSlip: "",
-    matchType:"A Division",
+    matchType:"",
     year:"2023"
   });
+  const divisionOptions = ["A Division", "B Division"];
   const isValidPlayerArray = (players) => {
     if (players.length < 5) {
       return false;
@@ -280,12 +281,14 @@ const CompanyRegistration = () => {
                     />
                   </MDBCol>
                   <MDBCol className="" lg="6" md="6" sm="12">
-                    <div className={`${Styles["info-container-form"]}`}>
-                      <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
-                      <div className={`${Styles["info"]}`}>
-                        Please provide the email to which we have sent the invitation
-                      </div>
-                    </div>
+                  <Dropdown
+                      options={divisionOptions}
+                      handleClick={(option) => {
+                        setCompany({...company, matchType: option});
+                      }}
+                      value={company.matchType}
+                      lable={"Division"}
+                    />
                   </MDBCol>
                 </div>
                 <div className="mb-2">
