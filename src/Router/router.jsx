@@ -46,7 +46,7 @@ import AdminUniversityPage from '../Views/AdminUniversityPage/AdminUniversityPag
 import AdminUniversitiesViewYearPage from "../Views/AdminUniversitiesViewYearPage.jsx/AdminUniversitiesViewyearPage";
 import AdminUniversityRegisterPage from "../Views/AdminUniversityRegisterPage/AdminUniversityRegisterPage";
 import AdminUniversityAddNewPlayerPage from "../Views/AdminUniversityAddNewPlayerPage/AdminUniversityAddNewPlayerPage";
-import AdminCompaniesPage from "../Views/AdminCompaniesPage/AdminCompaniesPage";
+import AdminCompanyPage from "../Views/AdminCompanyPage/AdminCompanyPage";
 import AdminCompaniesViewYearPage from "../Views/AdminCompaniesViewYearPage/AdminCompaniesViewyearPage";
 import AdminCompanyRegisterPage from "../Views/AdminCompanyRegisterPage/AdminCompanyRegisterPage";
 import AdminCompanyAddNewPlayerPage from "../Views/AdminCompanyAddNewPlayerPage/AdminCompanyAddNewPlayerPage";
@@ -167,6 +167,10 @@ export default function AppRouter() {
                 <Route
                   path="companies"
                   element={<AdminCompaniesViewYearPage />}
+                />
+                <Route
+                  path="universities/:year/:company"
+                  element={<AdminCompanyPage/>}
                 />
                 <Route
                   path="companies/:year/register"

@@ -5,7 +5,7 @@ import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminCompaniesViewYearPage.module.css";
 
 const AdminCompaniesViewYearPage = () => {
-  let year = 2023
+  let year = 2023;
   const [companies, setCompanies] = useState([
     {
       name: "H2O.ai",
@@ -28,17 +28,13 @@ const AdminCompaniesViewYearPage = () => {
   const [companyToBeUnregistered, setCompanyToBeUnregistered] = useState([]);
 
   const loadPlayers = (company) => {
-    company = company.includes(".")
-      ? company.split(".").join("")
-      : company.split(" ").join("");
+    company = company.includes(".") ? company.split(".").join("") : company.split(" ").join("");
     if (document.querySelector("#" + company).style.display === "none") {
       document.querySelector("#" + company).style.display = "block";
-      document.querySelector("#arrow" + company).style.transform =
-        "rotate(90deg)";
+      document.querySelector("#arrow" + company).style.transform = "rotate(90deg)";
     } else {
       document.querySelector("#" + company).style.display = "none";
-      document.querySelector("#arrow" + company).style.transform =
-        "rotate(-360deg)";
+      document.querySelector("#arrow" + company).style.transform = "rotate(-360deg)";
     }
   };
 
@@ -63,8 +59,8 @@ const AdminCompaniesViewYearPage = () => {
       (company) =>
         (document.querySelector(
           company.name.includes(".")
-          ? "#" +  company.name.split(".").join("")
-          : "#" +  company.name.split(" ").join("")
+            ? "#" + company.name.split(".").join("")
+            : "#" + company.name.split(" ").join("")
         ).style.display = "none")
     );
   }, []);
@@ -78,8 +74,7 @@ const AdminCompaniesViewYearPage = () => {
       </div>
       <div className={`${styles["tool-bar"]}`}>
         <button onClick={handleShow}>
-          <img src={require("../../assests/images/delete.png")} alt="" />{" "}
-          Unregister
+          <img src={require("../../assests/images/delete.png")} alt="" /> Unregister
         </button>
       </div>
 
@@ -96,7 +91,7 @@ const AdminCompaniesViewYearPage = () => {
                 style={{ width: "15px" }}
                 className={`${styles["user-type-arrow"]}`}
                 id={
-                   company.name.includes(".")
+                  company.name.includes(".")
                     ? "arrow" + company.name.split(".").join("")
                     : "arrow" + company.name.split(" ").join("")
                 }
@@ -117,23 +112,21 @@ const AdminCompaniesViewYearPage = () => {
               className={`${styles["users-name-container"]}`}
             >
               <div className={`${styles["add-players"]}`}>
-                <a
-                  href={`/admin/companies/${year}/${company.name}/register-player`}
-                >
-                  <img src={require("../../assests/images/edit.png")} alt="" />{" "}
-                  Add new player
+                <a href={`/admin/universities/${year}/${company.name}`}>
+                  <img src={require("../../assests/images/edit.png")} alt="" /> View Company
+                  Registration Details
+                </a>
+                <a href={`/admin/companies/${year}/${company.name}/register-player`}>
+                  <img src={require("../../assests/images/edit.png")} alt="" /> Add new player
                 </a>
               </div>
               {company.players.map((player, index) => (
                 <a
-                  href={`/admin/companies/${year}/${company.name}/view-player/${index}`}
+                  href={`/admin/players/${player}`}
                   className={`${styles["users-name"]}`}
                 >
                   {player}
-                  <img
-                    src={require("../../assests/images/double_arrows.png")}
-                    alt=""
-                  />
+                  <img src={require("../../assests/images/double_arrows.png")} alt="" />
                 </a>
               ))}
             </div>
@@ -161,10 +154,7 @@ const AdminCompaniesViewYearPage = () => {
                   onChange={(e) => setCompanyToBeUnregistered(e.target.value)}
                 >
                   {companies.map((company) => (
-                    <option
-                      style={{ fontFamily: "Hind", fontSize: "18px" }}
-                      value={company.name}
-                    >
+                    <option style={{ fontFamily: "Hind", fontSize: "18px" }} value={company.name}>
                       {company.name}
                     </option>
                   ))}

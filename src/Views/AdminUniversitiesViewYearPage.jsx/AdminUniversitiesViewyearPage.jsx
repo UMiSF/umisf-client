@@ -110,7 +110,7 @@ const AdminUniversitiesViewYearPage = () => {
               </div>
               {university.players.map((player, index) => (
                 <a
-                  href={`/admin/universities/${year}/${university.name}/view-player/${index}`}
+                  href={`/admin/players/${player}`}
                   className={`${styles["users-name"]}`}
                 >
                   {player}
