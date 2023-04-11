@@ -115,9 +115,9 @@ const AdminPlayerEditPage = () => {
       <AdminNavbar page="user_accounts" />
 
       <div className={`${styles['main-title']}`}>
-        <a href="/admin/user-accounts">Player Accounts</a>
+        <a href="/admin/players">Player Accounts</a>
         <img src={require('../../assests/images/forward_arrow.png')} alt="" />{' '}
-        <Link to={'/admin/user-accounts/' + playerDetails.email} style={{ fontSize: '18px' }} state={{ playerDetails: playerDetails}}>
+        <Link to={'/admin/players/' + playerDetails.firstName + '+' + playerDetails.lastName} style={{ fontSize: '18px' }} state={{ playerDetails: playerDetails}}>
           {playerDetails.firstName+" "+playerDetails.lastName}
         </Link>
       </div>

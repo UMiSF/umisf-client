@@ -105,24 +105,31 @@ const AdminPaymentsPage = () => {
     let data = filteredDetails[index];
     const id = data._id;
     console.log('Rejected', id);
-    const result = await Axios.put(
-      process.env.REACT_APP_API_URL + `/${filter.matchType.toLowerCase()}/update`,
-      {
-        field: '_id',
-        value: data._id,
-        data: { paymentConfirmed: -1, paymentApprover: user },
-      },
-      {
-        headers: {},
+    try{
+      const result = await Axios.put(
+        process.env.REACT_APP_API_URL + `/${filter.matchType.toLowerCase()}/update`,
+        {
+          field: '_id',
+          value: data._id,
+          data: { paymentConfirmed: -1, paymentApprover: user },
+        },
+        {
+          headers: {},
+        }
+      );
+      if (result?.data?.data) {
+        console.log("Updated Result",result?.data?.data)
+        rearrangeFilteredDetails(-1, index,data)
+      } else {
+        console.log('Empty');
       }
-    );
-    if (result?.data?.data) {
-      console.log("Updated Result",result?.data?.data)
-      rearrangeFilteredDetails(-1, index,data)
-    } else {
-      console.log('Empty');
     }
+
+  catch (error) {
+    console.log(error);
+    message.error(error.response?.data?.message);
   };
+}
 
   const handleApprove = async (index) => {
     let data = filteredDetails[index];
@@ -180,7 +187,7 @@ const AdminPaymentsPage = () => {
               label: match,
               value: match,
             }))}
-            placeholder="Match Type"
+            placeholder="Event"
           />
           <Select
             placeholder="Age Group"

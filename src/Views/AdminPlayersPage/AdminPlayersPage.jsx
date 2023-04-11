@@ -1,48 +1,61 @@
-import React from "react";
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
-import styles from "./adminPlayersPage.module.css";
-import { useState, useEffect } from "react";
-import { Modal } from "react-bootstrap";
-import { Select, Space, Button, message, Row, Col } from "antd";
-import { CheckCircleTwoTone, CloseCircleTwoTone } from "@ant-design/icons";
-import { setEngine } from "crypto";
-import Axios, * as others from "axios";
-import { Link } from "react-router-dom";
+import React from 'react';
+import ProfileHeader from '../ProfileHeader/ProfileHeader';
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
+import styles from './adminPlayersPage.module.css';
+import { useState, useEffect } from 'react';
+import { Select, Space, Button, message, Row, Col } from 'antd';
+import { CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
+import { setEngine } from 'crypto';
+import Axios, * as others from 'axios';
+import { Link } from 'react-router-dom';
+import { Form, Modal, Spinner } from 'react-bootstrap';
 
 const AdminPlayersPage = () => {
   // new adding page
 
-  const [playerDetails, setPlayerDetails] = useState([]);
-
-  const [filteredDetails, setFilteredDetails] = useState(playerDetails);
+  const [filteredDetails, setFilteredDetails] = useState([]);
   const [email, setEmail] = useState();
+  const [matchTypeForEmail, setMatchTypeForEmail] = useState('');
   const handleEmailInput = (event) => {
-    console.log("email", event.target.value);
+    console.log('email', event.target.value);
     setEmail(event.target.value);
   };
-  const [filteredDetailsByEmail, setFilteredDetailsByEmail] =
-    useState(playerDetails);
+  const [filteredDetailsByEmail, setFilteredDetailsByEmail] = useState([]);
   const [filter, setFilter] = useState({
-    matchType: "",
-    ageGroup: "",
-
-    gender: "",
+    matchType: '',
+    ageGroup: '',
+    gender: '',
   });
-  const matchTypes = ["Single", "Double", "University", "Company"];
-  const ageGroups = [
-    "All",
-    "Under 9",
-    "Under 11",
-    "Under 13",
-    "Under 15",
-    "Under 17",
-    "Under 19",
-    "Open",
-    "A Division",
-    "B Division",
-  ];
-  const gender = ["All", "Female", "Male"];
+  const matchTypes = ['Single', 'Double'];
+  const matchTypesForEmail = ['None', 'Single', 'Double'];
+  const ageGroups = ['All', 'Under 9', 'Under 11', 'Under 13', 'Under 15', 'Under 17', 'Under 19', 'University', 'Company'];
+  const gender = ['All', 'Girls', 'Boys', 'Men', 'Women'];
+  const year = new Date().getFullYear();
+
+  const [showSingle, setShowSingle] = useState(false); //maodal show
+  const handleCloseSingle = () => setShowSingle(false); //handle modal close
+  const handleShowSingle = () => setShowSingle(true); //handle modal show
+  const [single, setSingle] = useState({
+    _id: '',
+    fullName: '',
+    matchType: '',
+    ageGroup: '',
+    paymentMethod: '',
+    paymentConfirmed: '',
+  });
+  const [double, setDouble] = useState({
+    _id: '',
+    fullName: '',
+    playerPartner: '',
+    matchType: '',
+    ageGroup: '',
+    paymentMethod: '',
+    paymentConfirmed: '',
+  });
+
+  const [showDouble, setShowDouble] = useState(false); //maodal show
+  const handleCloseDouble = () => setShowDouble(false); //handle modal close
+  const handleShowDouble = () => setShowDouble(true); //handle modal show
   // should get from data base
   // const [institute,setInstitute] = ['ananda','nalanda','vishaka','st josephs'];
   const handleMatchType = (value) => {
@@ -62,53 +75,48 @@ const AdminPlayersPage = () => {
     });
   };
 
+  const handleMatchTypeForEmail = (value) => {
+    setMatchTypeForEmail(value);
+  };
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   useEffect(() => {
     if (isSubmitting) {
       // show loading message
-      message.loading("Loading data...");
+      message.loading('Loading data...');
     }
   }, [isSubmitting]);
 
   const searchPlayers = async (e) => {
     e.preventDefault();
-    console.log("Filter: ", filter);
-    if (Object.values(filter).includes("")) {
-      message.error("Not all the filters are set !!");
+    console.log('Filter: ', filter);
+    if (Object.values(filter).includes('')) {
+      message.error('Not all the filters are set !!');
     } else {
       setIsSubmitting(true);
-      console.log("Valid filter");
-      let playerFilter = {
-        gender: filter.gender,
-        ageGroup: filter.ageGroup,
-        matchType: filter.matchType,
-      };
+      console.log('Valid filter');
+      let playerFilter = { year: year };
 
-      //  if (filter.matchType === 'Single' || filter.matchType === 'Double') {
-      //     filter.ageGroup !== 'All' && (playerFilter = { ...playerFilter, ageGroup: filter.ageGroup,gender:filter.gender });
-      //   }
-      //   if (filter.matchType === 'Company') {
-      //     filter.ageGroup !== 'All' && (playerFilter = { ...playerFilter, matchType: filter.ageGroup });
-      //   }
-      console.log("playerfilter", playerFilter);
+      filter.ageGroup !== 'All' && (playerFilter = { ...playerFilter, ageGroup: filter.ageGroup });
+      filter.gender !== 'All' && (playerFilter = { ...playerFilter, matchType: filter.gender });
+
+      console.log('playerfilter', playerFilter);
       try {
-        console.log("in try block");
         const result = await Axios.get(
-          process.env.REACT_APP_API_URL +
-            "/player/getFilteredDataByGenderMatchTypeAge",
+          process.env.REACT_APP_API_URL + `/${filter.matchType.toLowerCase()}/getFilteredData`,
 
           { params: playerFilter },
           {
             headers: {},
           }
         );
-        console.log("Result", result);
+        console.log('Result', result);
         setIsSubmitting(false);
         if (result?.data?.data?.length !== 0) {
-          setFilteredDetails(result?.data?.players);
-          console.log("filter details", filteredDetails);
+          setFilteredDetails(result?.data?.data);
+          console.log('filter details', filteredDetails);
         } else {
-          console.log("Empty");
+          console.log('Empty');
           setFilteredDetails([]);
         }
       } catch (error) {
@@ -117,36 +125,36 @@ const AdminPlayersPage = () => {
       }
     }
   };
+
   const searchPlayersByEmail = async (e) => {
     e.preventDefault();
-    console.log("email: ", email);
-    if (email == "") {
-      message.error("Email not given");
+    console.log('email: ', email, matchTypeForEmail);
+    if (email == '' || matchTypeForEmail == '') {
+      message.error('Email/Match Type not given');
     } else {
       setIsSubmitting(true);
-      console.log("Valid filter");
-      let playerFilter = {
-        email: email,
-      };
+      console.log('Valid filter');
+      let playerFilter = email.includes('@') ? { email: email, year: year } : { _id: email, year: year };
 
-      console.log("playerfilter", playerFilter);
+      console.log('playerfilter', playerFilter);
       try {
-        console.log("in try block");
+        console.log('in try block');
         const result = await Axios.get(
-          process.env.REACT_APP_API_URL + "/player/getPlayerByEmail",
+          process.env.REACT_APP_API_URL + `/${matchTypeForEmail == 'None' ? 'player' : matchTypeForEmail.toLowerCase()}/getFilteredData`,
 
           { params: playerFilter },
           {
             headers: {},
           }
         );
-        console.log("Result", result);
+        console.log('Result', result);
         setIsSubmitting(false);
         if (result?.data?.data?.length !== 0) {
-          setFilteredDetailsByEmail(result?.data?.players);
-          console.log("filter details", filteredDetailsByEmail);
+          console.log('data: ', result?.data?.data);
+          setFilteredDetailsByEmail(result?.data?.data);
+          console.log('filter details', filteredDetailsByEmail);
         } else {
-          console.log("Empty");
+          console.log('Empty');
           setFilteredDetailsByEmail([]);
         }
       } catch (error) {
@@ -155,21 +163,112 @@ const AdminPlayersPage = () => {
       }
     }
   };
+
+  const editSingle = (value) => {
+    setSingle({
+      _id: value._id,
+      fullName: value.player.firstName + ' ' + value.player.lastName,
+      matchType: value.matchType,
+      ageGroup: value.ageGroup,
+      paymentMethod: value.paymentMethod,
+      paymentConfirmed: value.paymentConfirmed,
+    });
+    handleShowSingle();
+  };
+
+  const editDouble = (value) => {
+    setDouble({
+      _id: value._id,
+      fullName: value.player.firstName + ' ' + value.player.lastName,
+      playerPartner: value.playerPartner,
+      matchType: value.matchType,
+      ageGroup: value.ageGroup,
+      paymentMethod: value.paymentMethod,
+      paymentConfirmed: value.paymentConfirmed,
+    });
+    handleShowDouble();
+  };
+
+  const submitEditSingle = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (Object.values(single).includes('')) {
+      e.stopPropagation();
+    } else {
+      try {
+        console.log(matchTypeForEmail, 'Email');
+        const result = await Axios.put(
+          process.env.REACT_APP_API_URL + `/${matchTypeForEmail.toLowerCase()}/update`,
+          {
+            field: '_id',
+            value: single._id,
+            data: { matchType: single.matchType, ageGroup: single.ageGroup, paymentMethod: single.paymentMethod, paymentConfirmed: single.paymentConfirmed },
+          },
+          {
+            headers: {},
+          }
+        );
+        if (result?.data?.data) {
+          console.log('Updated Result', result?.data?.data);
+          window.location.reload(false);
+        } else {
+          console.log('Empty');
+        }
+      } catch (error) {
+        handleCloseSingle()
+        console.log(error);
+        message.error(error.response?.data?.message);
+      }
+    }
+  };
+
+  const submitEditDouble = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (Object.values(double).includes('')) {
+      e.stopPropagation();
+    } else {
+      try {
+        console.log(matchTypeForEmail, 'Email');
+        const result = await Axios.put(
+          process.env.REACT_APP_API_URL + `/${matchTypeForEmail.toLowerCase()}/update`,
+          {
+            field: '_id',
+            value: double._id,
+            data: { matchType: double.matchType, ageGroup: double.ageGroup, paymentMethod: double.paymentMethod, paymentConfirmed: double.paymentConfirmed, playerPartner:double.playerPartner },
+          },
+          {
+            headers: {},
+          }
+        );
+        if (result?.data?.data) {
+          console.log('Updated Result', result?.data?.data);
+         // window.location.reload(false);
+        } else {
+          console.log('Empty');
+        }
+      } catch (error) {
+        handleCloseDouble()
+        console.log(error);
+        message.error(error.response?.data?.message);
+      }
+    }
+  };
+
   return (
-    <div className={`${styles["players-full-container"]}`}>
-      <ProfileHeader user_type={"admin"} />
+    <div className={`${styles['players-full-container']}`}>
+      <ProfileHeader user_type={'admin'} />
       <AdminNavbar page="players" />
-      <div className={`${styles["main-title"]}`}>
+      <div className={`${styles['main-title']}`}>
         <a href="/admin/players">Players</a>
       </div>
-      <div className={`${styles["tool-bar"]}`}>
+      <div className={`${styles['tool-bar']}`}>
         <a href="/admin/players/add-new-player">
-          <img src={require("../../assests/images/add.png")} alt="" /> Add
-          Account
+          <img src={require('../../assests/images/add.png')} alt="" /> Add Account
         </a>
       </div>
 
-      <div className={`${styles["tool-bar"]}`}>
+      <div className={`${styles['tool-bar']}`}>
         <h5>Search players</h5>
         <Space wrap>
           <Select
@@ -193,7 +292,7 @@ const AdminPlayersPage = () => {
               label: match,
               value: match,
             }))}
-            placeholder="Match Type"
+            placeholder="Event"
           />
           <Select
             style={{
@@ -205,7 +304,7 @@ const AdminPlayersPage = () => {
               label: gender,
               value: gender,
             }))}
-            placeholder="Gender"
+            placeholder="Match Type"
           />
           <Button onClick={searchPlayers}> Search</Button>
         </Space>
@@ -214,79 +313,357 @@ const AdminPlayersPage = () => {
         <hr />
 
         <Space wrap>
-          <input
-            type="text"
-            className={`${styles["form-input"]}`}
-            value={email}
-            placeholder="Enter email.."
-            onChange={handleEmailInput}
-            required
+          <input type="text" className={`${styles['form-input']}`} value={email} placeholder="Enter email/ID" onChange={handleEmailInput} required />
+          <Select
+            style={{
+              width: 200,
+              fontSize: 100,
+            }}
+            onChange={handleMatchTypeForEmail}
+            options={matchTypesForEmail.map((match) => ({
+              label: match,
+              value: match,
+            }))}
+            placeholder="Event"
           />
-
-          <Button onClick={searchPlayersByEmail}>
-            {" "}
-            Search Players By Email
-          </Button>
+          <Button onClick={searchPlayersByEmail}> Search Player</Button>
+          <div>
+            {'Number of players : '}
+            {filter.matchType !== '' ? filteredDetails.length : matchTypeForEmail !== '' ? filteredDetailsByEmail.length : ''}
+          </div>
         </Space>
       </div>
 
-      <div className={`${styles["player-container"]}`}>
-        {(filteredDetails?.length === 0) &
-        (filteredDetailsByEmail?.length === 0) ? (
+      <div className={`${styles['player-container']}`}>
+        {(filteredDetails?.length === 0) & (filteredDetailsByEmail?.length === 0) ? (
           <div
             style={{
-              fontFamily: "Hind",
-              fontSize: "18px",
-              textAlign: "center",
+              fontFamily: 'Hind',
+              fontSize: '18px',
+              textAlign: 'center',
             }}
           >
-            {" "}
+            {' '}
             No players have been loaded.
           </div>
         ) : (
-          <div className={`${styles["players-grid-container"]}`}>
-            {filteredDetails?.length !== 0 &&
-              Object.entries(filteredDetails).map(([key, value]) => (
-                <div>
-                  {/* {value.map((player, index) => ( */}
-                  <div className={`${styles["player-each"]}`}>
-                    <button className={`${styles["player-btn"]}`}>
-                      <Link
-                        to={value.firstName + " " + value.lastName}
-                        className={`${styles["player-name"]}`}
-                        state={{ playerDetails: value }}
-                        key={key}
-                      >
-                        {value.firstName + " " + value.lastName}
-                      </Link>
-                    </button>
-                  </div>
-                  {/* ))} */}
+          <div className={`${styles['players-grid-container']}`}>
+            {filteredDetails?.map((value, key) => (
+              <div>
+                {/* {value.map((player, index) => ( */}
+                <div className={`${styles['player-each']}`}>
+                  <button className={`${styles['player-btn']}`}>
+                    <Link to={value.player.firstName + '+' + value.player.lastName} className={`${styles['player-name']}`} state={{ playerDetails: value.player }} key={key}>
+                      {key + 1 + ') '}
+                      {value.player.firstName + ' ' + value.player.lastName} {value.player.email} {value.player.institute} {value.paymentMethod}
+                    </Link>
+                  </button>
                 </div>
-              ))}
+                {/* ))} */}
+              </div>
+            ))}
 
-            {filteredDetailsByEmail?.length !== 0 &&
-              Object.entries(filteredDetailsByEmail).map(([key, value]) => (
-                <div>
-                  {/* {value.map((player, index) => ( */}
-                  <div className={`${styles["player-each"]}`}>
-                    <button className={`${styles["player-btn"]}`}>
-                      <Link
-                        to={value.firstName + " " + value.lastName}
-                        className={`${styles["player-name"]}`}
-                        state={{ playerDetails: value }}
-                        key={key}
-                      >
-                        {value.firstName + " " + value.lastName}
-                      </Link>
-                    </button>
-                  </div>
-                  {/* ))} */}
+            {filteredDetailsByEmail?.map((value, key) => (
+              <div>
+                {/* {value.map((player, index) => ( */}
+                <div className={`${styles['player-each']}`}>
+                  <button className={`${styles['player-btn']}`}>
+                    <Link
+                      to={matchTypeForEmail == 'None' ? value?.firstName + '+' + value?.lastName : value?.player?.firstName + '+' + value?.player?.lastName}
+                      className={`${styles['player-name']}`}
+                      state={{ playerDetails: matchTypeForEmail == 'None' ? value : value?.player }}
+                      key={key}
+                    >
+                      {matchTypeForEmail == 'None' ? value?.firstName + ' ' + value?.lastName : value?.player?.firstName + ' ' + value?.player?.lastName}
+                    </Link>
+                  </button>
+                  <Button onClick={() => editSingle(value)} hidden={matchTypeForEmail == 'Single' ? false : true}>
+                    {' '}
+                    Edit Single
+                  </Button>
+                  <Button onClick={() => editDouble(value)} hidden={matchTypeForEmail == 'Double' ? false : true}>
+                    {' '}
+                    Edit Double
+                  </Button>
                 </div>
-              ))}
+                {/* ))} */}
+              </div>
+            ))}
           </div>
         )}
       </div>
+      {/* TODO: when changing filter after already selected, changing from single to double, error */}
+      <Modal show={showSingle} onHide={handleCloseSingle} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title> Edit Single </Modal.Title>{' '}
+        </Modal.Header>
+        <Form onSubmit={submitEditSingle}>
+          <Modal.Body>
+            <div className="form-group row">
+              <label for="emp-id" className="col-sm-3 col-form-label m-t-5">
+                Full Name
+              </label>
+              <div className="col-sm-8">
+                <Form.Control type="text" className={`${styles['mb-1']} form-control`} name="emp-id" required value={single.fullName} readOnly />
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="r-type" className="col-sm-3 col-form-label">
+                Age Group
+              </label>
+              <div className="col-sm-8">
+                <Form.Select
+                  onChange={(e) => {
+                    setSingle((prev) => {
+                      return { ...prev, ageGroup: e.target.value };
+                    });
+                  }}
+                  value={single.ageGroup}
+                  className={`${styles['mb-1']} form-select`}
+                  required
+                >
+                  <option selected disabled hidden value={single.ageGroup}>
+                    {single.ageGroup}
+                  </option>
+                  {['Under 9', 'Under 11', 'Under 13', 'Under 15', 'Under 17', 'Under 19', 'University', 'Company'].map((cur) => {
+                    return <option> {cur} </option>;
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="reason" className="col-sm-3 col-form-label">
+                Match Type
+              </label>
+              <div className="col-sm-8">
+                <Form.Select
+                  onChange={(e) => {
+                    setSingle((prev) => {
+                      return { ...prev, matchType: e.target.value };
+                    });
+                  }}
+                  value={single.matchType}
+                  className={`${styles['mb-1']} form-select`}
+                  required
+                >
+                  <option selected disabled hidden value={single.matchType}>
+                    {single.matchType}
+                  </option>
+                  {['Girls', 'Boys', 'Men', 'Women'].map((cur) => {
+                    return <option> {cur} </option>;
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="reason" className="col-sm-3 col-form-label">
+                Payment Method
+              </label>
+              <div className="col-sm-8">
+                <Form.Select
+                  onChange={(e) => {
+                    setSingle((prev) => {
+                      return { ...prev, paymentMethod: e.target.value };
+                    });
+                  }}
+                  value={single.paymentMethod}
+                  className={`${styles['mb-1']} form-select`}
+                  required
+                >
+                  <option selected disabled hidden value={single.paymentMethod}>
+                    {single.paymentMethod}
+                  </option>
+                  {['On-site', 'Bank Transfer'].map((cur) => {
+                    return <option> {cur} </option>;
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="reason" className="col-sm-3 col-form-label">
+                Payment Confirmed
+              </label>
+              <div className="col-sm-8">
+                <Form.Select
+                  onChange={(e) => {
+                    setSingle((prev) => {
+                      return { ...prev, paymentConfirmed: parseInt(e.target.value) };
+                    });
+                  }}
+                  value={single.paymentConfirmed}
+                  className={`${styles['mb-1']} form-select`}
+                  required
+                >
+                  <option selected disabled hidden value="">
+                    {single.paymentConfirmed}
+                  </option>
+                  {[0, 1, -1].map((cur) => {
+                    return cur.type !== 'All' && <option> {cur} </option>;
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <button type="button" onClick={handleCloseSingle} className="btn btn-dark">
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-dark">
+              Apply
+            </button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+
+      <Modal show={showDouble} onHide={handleCloseDouble} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title> Edit Double </Modal.Title>{' '}
+        </Modal.Header>
+        <Form onSubmit={submitEditDouble}>
+          <Modal.Body>
+            <div className="form-group row">
+              <label for="emp-id" className="col-sm-3 col-form-label m-t-5">
+                Full Name
+              </label>
+              <div className="col-sm-8">
+                <Form.Control type="text" className={`${styles['mb-1']} form-control`} name="emp-id" required value={double.fullName} readOnly />
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="emp-id" className="col-sm-3 col-form-label m-t-5">
+                Partner ID
+              </label>
+              <div className="col-sm-8">
+                <Form.Control
+                  type="text"
+                  className={`${styles['mb-1']} form-control`}
+                  name="emp-id"
+                  required
+                  onChange={(e) => {
+                    setDouble((prev) => {
+                      return { ...prev, playerPartner: e.target.value };
+                    });
+                  }}
+                  value={double.playerPartner}
+                />
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="r-type" className="col-sm-3 col-form-label">
+                Age Group
+              </label>
+              <div className="col-sm-8">
+                <Form.Select
+                  onChange={(e) => {
+                    setDouble((prev) => {
+                      return { ...prev, ageGroup: e.target.value };
+                    });
+                  }}
+                  value={double.ageGroup}
+                  className={`${styles['mb-1']} form-select`}
+                  required
+                >
+                  <option selected disabled hidden value={double.ageGroup}>
+                    {double.ageGroup}
+                  </option>
+                  {['Under 9', 'Under 11', 'Under 13', 'Under 15', 'Under 17', 'Under 19', 'University', 'Company'].map((cur) => {
+                    return <option> {cur} </option>;
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="reason" className="col-sm-3 col-form-label">
+                Match Type
+              </label>
+              <div className="col-sm-8">
+                <Form.Select
+                  onChange={(e) => {
+                    setDouble((prev) => {
+                      return { ...prev, matchType: e.target.value };
+                    });
+                  }}
+                  value={double.matchType}
+                  className={`${styles['mb-1']} form-select`}
+                  required
+                >
+                  <option selected disabled hidden value={double.matchType}>
+                    {double.matchType}
+                  </option>
+                  {['Girls', 'Boys', 'Men', 'Women', 'Mix'].map((cur) => {
+                    return <option> {cur} </option>;
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="reason" className="col-sm-3 col-form-label">
+                Payment Method
+              </label>
+              <div className="col-sm-8">
+                <Form.Select
+                  onChange={(e) => {
+                    setDouble((prev) => {
+                      return { ...prev, paymentMethod: e.target.value };
+                    });
+                  }}
+                  value={double.paymentMethod}
+                  className={`${styles['mb-1']} form-select`}
+                  required
+                >
+                  <option selected disabled hidden value={double.paymentMethod}>
+                    {double.paymentMethod}
+                  </option>
+                  {['On-site', 'Bank Transfer'].map((cur) => {
+                    return <option> {cur} </option>;
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+
+            <div className="form-group row">
+              <label for="reason" className="col-sm-3 col-form-label">
+                Payment Confirmed
+              </label>
+              <div className="col-sm-8">
+                <Form.Select
+                  onChange={(e) => {
+                    setDouble((prev) => {
+                      return { ...prev, paymentConfirmed: parseInt(e.target.value) };
+                    });
+                  }}
+                  value={double.paymentConfirmed}
+                  className={`${styles['mb-1']} form-select`}
+                  required
+                >
+                  <option selected disabled hidden value="">
+                    {double.paymentConfirmed}
+                  </option>
+                  {[0, 1, -1].map((cur) => {
+                    return cur.type !== 'All' && <option> {cur} </option>;
+                  })}
+                </Form.Select>
+              </div>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <button type="button" onClick={handleCloseDouble} className="btn btn-dark">
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-dark">
+              Apply
+            </button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
     </div>
   );
 };
