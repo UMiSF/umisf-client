@@ -54,6 +54,8 @@ import AdminPlayerViewPage from "../Views/AdminPlayersViewPage/AdminPlayersViewP
 import AdminPlayersPage from "../Views/AdminPlayersPage/AdminPlayersPage";
 import AdminPlayersAddPage from "../Views/AdminPlayersAddPage/AdminPlayersAddPage";
 import AdminPlayerEditPage from "../Views/AdminPlayerEditPage/AdminPlayerEditPage";
+import AdminMessagesPage from "../Views/AdminMessages/AdminMessages";
+
 
 export default function AppRouter() {
   let type = 1; //todo: this should change according to the user
@@ -117,6 +119,10 @@ export default function AppRouter() {
                   path="user-accounts"
                   element={<AdminUserAccountsPage />}
                 />
+                                <Route
+                  path="messages"
+                  element={<AdminMessagesPage />}
+                />
                 <Route
                   path="user-accounts/:user"
                   element={<AdminUserAccountViewPage />}
@@ -129,6 +135,7 @@ export default function AppRouter() {
                   path="user-accounts/add-new-user"
                   element={<AdminUserAccountAddPage />}
                 />
+                
                 <Route path="tournament" element={<AdminTournamentPage />} />
                 <Route
                   path="tournament/create-tournament"

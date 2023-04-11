@@ -40,6 +40,12 @@ const ProfileNavbar = (props) => {
       id: "tournament",
       link: "tournament",
     },
+    {
+      title: "Messages",
+      image: "msg.png",
+      id: "msg",
+      link: "messages",
+    }
   ];
 
   const navLinksSectionTwo = [
