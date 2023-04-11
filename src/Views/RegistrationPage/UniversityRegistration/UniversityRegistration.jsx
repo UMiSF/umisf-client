@@ -42,7 +42,7 @@ const UniversityRegistration = () => {
   const [imageList, setImageList] = useState([null,null,null]);
   const [fileNameList, setFileNameList] = useState([null,null,null]);
 
-  const [,setSlipImage] = useState(null);
+  const [slipImage,setSlipImage] = useState(null);
   const [slipFile,setSlipFile] = useState([]);
   const [,setSlipName] = useState(null);
 
@@ -201,7 +201,7 @@ const UniversityRegistration = () => {
     return true;
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log("Form submitted", university);
     const form = e.currentTarget;
@@ -228,9 +228,18 @@ const UniversityRegistration = () => {
         {
           headers: {},
         }
+
       )
-        .then((res) => {
+        .then(async (res) => {
           console.log(res.data);
+          const playerIds = [{}]  // todo: after fixing errors in add method
+          const companyId = '' // todo: after fixing errors in add method
+          const imageForm = {images: imageList,  playerIds: playerIds,slip: slipImage, companyId: companyId};
+          await Axios.post(process.env.REACT_APP_API_URL + "/image/addMultiple",
+          imageForm,
+          {
+            headers: {},
+          })
           message.success(res.data.message);
           setTimeout(() => {
             window.location.reload(true);
