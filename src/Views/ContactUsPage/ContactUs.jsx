@@ -54,16 +54,9 @@ function ContactUs() {
           }
         );
 
-        setTimeout(() => {
-          setIsSubmitting(false);
-        }, 1000);
-        setTimeout(() => {
-          message.success(res.data.message);
-        }, 2000);
-        //console.log(res.data);
-        setTimeout(() => {
+   
           window.location.reload(true);
-        }, 2500);
+     
       } catch (error) {
         console.log("Error: ", error);
         message.error(error.response.data.message);
