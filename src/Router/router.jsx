@@ -62,7 +62,6 @@ import AdminCompanyPlayerView from "../Views/AdminCompanyViewPlayer/AdminCompany
 
 export default function AppRouter() {
   let type = localStorage.getItem('role'); //todo: this should change according to the user
-
   return (
     <BrowserRouter>
       <>
