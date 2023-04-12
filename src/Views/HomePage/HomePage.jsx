@@ -1,11 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import Header from "./Header/Header";
+import CountDownTimer from "./CountDown/CountDownTimer";
+import MeetTeam from "./MeetTeam/MeetTeam";
+import Footer from "./Footer/footer";
+import Tshirt from "./Tshirt/tshirt";
+import Why from "./why/why";
+import Gallery from "./Gallery/gallery";
+import Flyer from "./Flyer/flyer";
+import Sponsers from "./Sponsers/Sponsers";
 
 const HomePage = () => {
-    return (
-        <div>
-            <h1>Home Page</h1>
-        </div>
-    );
+  const [starttingDate, setStartingDate] = useState("2023-05-21T08:00:00.000");
+  const [finishingDate, setFinishingDate] = useState("2023-05-28T00:00:00.000");
+
+  const [showContent, setShowContent] = useState(false)
+
+  const [venue, setVenue] = useState(["University gymnasium", "St. Thomas' College, Mount Lavinia"]);
+  const [registrationsDeadlines, setRegistrationsDealines] = useState(["2023-04-13", "2023-04-30"]);
+  const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
+
+  const [gallery, setGallery] = useState([
+    "2017.jpeg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg",
+    "6.jpg",
+    "7.jpg",
+    "8.jpg",
+    "9.jpg",
+    "10.jpg",
+  ]);
+
+  const [tShirtFront, setTShirtFront] = useState("tshirt-front.png");
+  const [tShirtBack, setTShirtBack] = useState("tshirt-back.png");
+
+  const [sponsers, setSponsers] = useState(["derana.jpeg", "dialog.png", "e-house.jpeg", "maliban.jpeg"])
+
+  useEffect((()=>{
+    let currentDate = new Date()
+    if (currentDate < new Date(finishingDate)){
+      setShowContent(true)
+    }
+
+  }),[])
+
+  return (
+    <div>
+      <Header />
+      {/* {isCounterStarted && <CountDownTimer remainingTime={remainingTime} />} */}
+      {showContent && <CountDownTimer startingDate={starttingDate} />}
+      {showContent &&<Flyer
+        starttingDate={starttingDate.slice(0, 10).split("-")}
+        venue={venue}
+        registrationsDeadlines={registrationsDeadlines}
+      />}
+      {showContent &&<Sponsers sponsers={sponsers}/>}
+      <Why />
+      <MeetTeam teamPhoto={teamPhoto} />
+      <Gallery gallery={gallery} />
+      {showContent &&<Tshirt tShirtFront={tShirtFront} tShirtBack={tShirtBack} />}
+      <Footer />
+    </div>
+  );
 };
 
 export default HomePage;
