@@ -1,17 +1,17 @@
-import React, { useRef, useState,useEffect } from "react";
+import React, {  useState,useEffect } from "react";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
-import { Button, Divider, Space, Tour } from "antd";
-import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
+import { MDBContainer, MDBInput,  MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePlayer/TableRow";
 import Styles from "./CompanyRegistration.module.css";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import Axios from "axios";
-import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 import Dropdown from "../../../common/Dropdown/Dropdown";
 
 import { message } from "antd";
+import ImageUploader from "../Common/imageUploader/ImageUploader";
+import { CircularProgress, Grid, Typography } from "@mui/material";
 const CompanyRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
   const [validated, setValidated] = useState(false); //form validation
@@ -36,13 +36,26 @@ const CompanyRegistration = () => {
   };
   const [isBankTransfer, setIsBankTransfer] = useState(false);
   const [playersArray, setPlayersArray] = useState([
-    { firstName: "", lastName: "", gender: "", photo: "" },
-    { firstName: "", lastName: "", gender: "", photo: "" },
-    { firstName: "", lastName: "", gender: "", photo: "" },
+    { firstName: "", lastName: "", gender: "", photo: "photp" },
+    { firstName: "", lastName: "", gender: "", photo: "photp" },
+    { firstName: "", lastName: "", gender: "", photo: "photp" },
   ]);
   const [count, setCount] = useState(3);
   const [exceeded, setExceeded] = useState(false);
+  const inputStyle = {
+    border: "0",
+  };
+  const [fileList,setFileList] = useState([[],[],[]]);
+  const [imageList, setImageList] = useState([null,null,null]);
+  const [fileNameList, setFileNameList] = useState([null,null,null]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [slipImage,setSlipImage] = useState(null);
+  const [slipFile,setSlipFile] = useState([]);
+  const [,setSlipName] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+
+
   const isPlayerArrayValid = isValidPlayerArray(playersArray);
   const paymentOptions = ["On-site", "Bank Transfer"];
   const [payment, setPayment] = useState("");
@@ -57,27 +70,27 @@ const CompanyRegistration = () => {
     console.log("Past performance array: ", playersArray);
     const name = e.target.name;
     const value = e.target.value;
-    if (name == "name") {
+    if (name === "name") {
       setCompany((prevValue) => {
         return { ...prevValue, name: value };
       });
-    } else if (name == "email") {
+    } else if (name === "email") {
       setCompany((prevValue) => {
         return { ...prevValue, email: value };
       });
-    } else if (name == "contactNumber") {
+    } else if (name === "contactNumber") {
       setCompany((prevValue) => {
         return { ...prevValue, contactNumber: value };
       });
-    } else if (name == "paymentMethod") {
+    } else if (name === "paymentMethod") {
       setCompany((prevValue) => {
         return { ...prevValue, paymentMethod: value };
       });
-      console.log("isBankTransfer: ", value == "On-Site");
-      value == "Bank Transfer"
+      console.log("isBankTransfer: ", value === "On-Site");
+      value === "Bank Transfer"
         ? setIsBankTransfer(true)
         : setIsBankTransfer(false);
-    } else if (name == "paymentSlip") {
+    } else if (name === "paymentSlip") {
       setCompany((prevValue) => {
         return { ...prevValue, paymentSlip: value };
       });
@@ -95,7 +108,7 @@ const CompanyRegistration = () => {
       case "name":
         //incase of one part of the name
         const fullName = value.trim().split(" ")
-        fullName.length == 1 && fullName.push(fullName[0])
+        fullName.length === 1 && fullName.push(fullName[0])
         const length = fullName.length
        
 
@@ -130,6 +143,9 @@ const CompanyRegistration = () => {
           photo: value
         };
         break;
+      default:
+        console.log(field);
+        break;
     }
     setPlayersArray(newArray);
   };
@@ -137,7 +153,7 @@ const CompanyRegistration = () => {
   const updatePlayerCommonData = ()=>{
     const tempArray = []
     for (const player of playersArray){
-      let tempObj = {email:company.email, institute:company.name, contactNumber:company.contactNumber,  ... player}
+      let tempObj = {email:company.email, institute:company.name, contactNumber:company.contactNumber,  ...player}
       tempArray.push(tempObj)
     }
     return tempArray
@@ -146,16 +162,26 @@ const CompanyRegistration = () => {
     setCompany((prevValue) => {
       return { ...prevValue, paymentMethod: value };
     });
-    console.log("isBankTransfer: ", value == "On-Site");
-    value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+    console.log("isBankTransfer: ", value === "On-Site");
+    value === "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
   };
   const AddAnotherRow = (e) => {
     e.preventDefault();
     setCount(count + 1);
     setPlayersArray((prevValue) => {
-      return [...playersArray, { name: "", id: "", gender:"", photo: "" }];
+      return [...playersArray, { name: "", id: "", gender:"", photo: "photo" }];
     });
-    count == 7 && setExceeded(true);
+    setFileList((prevValue) => {
+      return [...fileList, []];
+    });
+    setImageList((prevValue) => {
+      return [...imageList, null];
+    });
+
+    setFileNameList((prevValue) => {
+      return [...fileNameList, null];
+    });
+    count === 7 && setExceeded(true);
   };
 
   const RemoveanotherRow = (e) => {
@@ -164,13 +190,22 @@ const CompanyRegistration = () => {
     if (playersArray.length > 3) {
       const tmpArray = playersArray.slice(0, playersArray.length - 1);
       setPlayersArray(tmpArray);
+      const tmpfileList = fileList.slice(0, fileList.length - 1);
+      setFileList(tmpfileList);
+
+      const tmpimageList = imageList.slice(0, imageList.length - 1);
+      setImageList(tmpimageList);
+
+      const tmpfileNameList = fileNameList.slice(0, fileNameList.length - 1);
+      setFileNameList(tmpfileNameList);
       count < 9 && exceeded && setExceeded(false);
     }
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     //TODO: add player array
     e.preventDefault();
+    
     console.log("Form submitted", company);
     console.log("players for submitted",playersArray);
     const form = e.currentTarget;
@@ -181,10 +216,11 @@ const CompanyRegistration = () => {
       !isPlayerArrayValid && message.error("Please fill players' details correctly !")
     }
     setValidated(true);
-    console.log('bolean',company.paymentMethod== "On-site")
-    if ((Object.values(company).includes('') && company.paymentMethod == "On-site" && company.paymentSlip == "") || !Object.values(company).includes("")) {
+    console.log('bolean',company.paymentMethod=== "On-site")
+    if (Object.values(company).includes('') && company.paymentMethod === "On-site" && slipImage === null || !Object.values(company).includes("")) {
       console.log("Here")
       const players = updatePlayerCommonData()
+      setIsLoading(true);
       console.log(players)
       Axios.post(
         "http://localhost:3001/company/add",
@@ -193,9 +229,26 @@ const CompanyRegistration = () => {
           headers: {},
         }
       )
-        .then((res) => {
+        .then(async (res) => {
           console.log(res.data);
           message.success(res.data.message);
+
+          const imageForm = {
+            companyId: res.data.data._id,
+            slip: slipImage,
+            playerIds: res.data.data.players,
+            images: imageList
+          }
+
+          await Axios.post(process.env.REACT_APP_API_URL + "/image/addMultiple",
+            imageForm,
+            {
+              headers: {},
+            })
+
+
+          setIsLoading(false);
+
           setTimeout(() => {
             window.location.reload(true);
           }, 2000);
@@ -211,7 +264,7 @@ const CompanyRegistration = () => {
   return (
     <div className={`${Styles["body"]}`}>
       <HeaderPage />
-      {isRegistrationsOpen ? (
+      {isRegistrationsOpen && !isLoading ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - Corporate</div>
           <div className={`${Styles["tournament-guidlines"]}`}><a href="#">
@@ -298,7 +351,7 @@ const CompanyRegistration = () => {
                     </div>
                   </div>
                   {playersArray?.map((player, index) => {
-                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={true}/>;
+                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={true}setFileList={setFileList} setImageList={setImageList} fileList={fileList} imageList={imageList} fileNameList={fileNameList} setFileNameList={setFileNameList}/>;
                   })}
                   <div className={`${Styles["plus-minus"]}`}>
                     <button
@@ -306,10 +359,10 @@ const CompanyRegistration = () => {
                       className={`${Styles["plus-btn"]}`}
                       onClick={AddAnotherRow}
                     >
-                      <img src={require(`../../../assests/images/plus-row.png`)} />
+                      <img src={require(`../../../assests/images/plus-row.png`)} alt={''}/>
                     </button>
                     <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
-                      <img src={require(`../../../assests/images/minus-row.png`)} />
+                      <img src={require(`../../../assests/images/minus-row.png`)} alt={''}/>
                     </button>
                   </div>
                 </div>
@@ -328,18 +381,7 @@ const CompanyRegistration = () => {
               </MDBCol>
               {isBankTransfer && (
                 <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                  <MDBInput
-                    wrapperClass="mb-4"
-                    label="Payment Slip"
-                    labelStyle={{ color: "white", fontFamily: "Hind"}}
-                    className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
-                    labelClass="text-white"
-                    name="paymentSlip"
-                    type="text"
-                    value={company.paymentSlip}
-                    onChange={handleChange}
-                    contrast
-                  />
+                  <ImageUploader isfile={true} setImage={setSlipImage} fileList={slipFile} setFileList={setSlipFile} setImageName={setSlipName} />
                 </MDBCol>
               )}
             </div>
@@ -351,7 +393,14 @@ const CompanyRegistration = () => {
             </MDBContainer>
           </div>
         </>
-      ) : (
+      ) :
+      isRegistrationsOpen && isLoading ?
+      (
+        <Grid container item xs={12} height='100vh' display='flex' justifyContent='center' alignItems='center'>
+          <CircularProgress size={100}/>
+        </Grid>
+        
+      ): (
         <RegistrationsNotOpen/>
       )}
     </div>

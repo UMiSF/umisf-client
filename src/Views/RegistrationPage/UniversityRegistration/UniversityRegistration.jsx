@@ -11,6 +11,8 @@ import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 import Dropdown from "../../../common/Dropdown/Dropdown";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import { message } from "antd";
+import ImageUploader from "../Common/imageUploader/ImageUploader";
+import { CircularProgress, Grid } from "@mui/material";
 
 const UniversityRegistration = () => {
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
@@ -38,6 +40,14 @@ const UniversityRegistration = () => {
   const [gender, setGender] = useState("");
   const paymentOptions = ["On-site", "Bank Transfer"];
   const [payment, setPayment] = useState("");
+  const [fileList,setFileList] = useState([[],[],[]]);
+  const [imageList, setImageList] = useState([null,null,null]);
+  const [fileNameList, setFileNameList] = useState([null,null,null]);
+
+  const [slipImage,setSlipImage] = useState(null);
+  const [slipFile,setSlipFile] = useState([]);
+  const [,setSlipName] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (isSubmitting) {
@@ -50,25 +60,25 @@ const UniversityRegistration = () => {
     console.log("Past performance array: ", playersArray);
     const name = e.target.name;
     const value = e.target.value;
-    if (name == "name") {
+    if (name === "name") {
       setUniversity((prevValue) => {
         return { ...prevValue, name: value };
       });
-    } else if (name == "email") {
+    } else if (name === "email") {
       setUniversity((prevValue) => {
         return { ...prevValue, email: value };
       });
-    } else if (name == "contactNumber") {
+    } else if (name === "contactNumber") {
       setUniversity((prevValue) => {
         return { ...prevValue, contactNumber: value };
       });
-    } else if (name == "paymentMethod") {
+    } else if (name === "paymentMethod") {
       setUniversity((prevValue) => {
         return { ...prevValue, paymentMethod: value };
       });
-      console.log("isBankTransfer: ", value == "On-Site");
-      value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
-    } else if (name == "paymentSlip") {
+      console.log("isBankTransfer: ", value === "On-Site");
+      value === "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+    } else if (name === "paymentSlip") {
       setUniversity((prevValue) => {
         return { ...prevValue, paymentSlip: value };
       });
@@ -109,6 +119,8 @@ const UniversityRegistration = () => {
           photo: value
         };
         break;
+      default:
+        console.log(field);
     }
     setPlayersArray(newArray);
   };
@@ -123,8 +135,8 @@ const UniversityRegistration = () => {
     setUniversity((prevValue) => {
       return { ...prevValue, paymentMethod: value };
     });
-    console.log("isBankTransfer: ", value == "On-Site");
-    value == "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
+    console.log("isBankTransfer: ", value === "On-Site");
+    value === "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
   };
 
   const updatePlayerCommonData = () => {
@@ -159,7 +171,17 @@ const UniversityRegistration = () => {
         },
       ];
     });
-    count == 7 && setExceeded(true);
+    setFileList((prevValue) => {
+      return [...fileList, []];
+    });
+    setImageList((prevValue) => {
+      return [...imageList, null];
+    });
+
+    setFileNameList((prevValue) => {
+      return [...fileNameList, null];
+    });
+    count === 7 && setExceeded(true);
   };
 
   const RemoveanotherRow = (e) => {
@@ -168,6 +190,14 @@ const UniversityRegistration = () => {
     if (playersArray.length > 3) {
       const tmpArray = playersArray.slice(0, playersArray.length - 1);
       setPlayersArray(tmpArray);
+      const tmpfileList = fileList.slice(0, fileList.length - 1);
+      setFileList(tmpfileList);
+
+      const tmpimageList = imageList.slice(0, imageList.length - 1);
+      setImageList(tmpimageList);
+
+      const tmpfileNameList = fileNameList.slice(0, fileNameList.length - 1);
+      setFileNameList(tmpfileNameList);
       count < 8 && exceeded && setExceeded(false);
     }
   };
@@ -182,8 +212,9 @@ const UniversityRegistration = () => {
     return true;
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
     console.log("Form submitted", university);
     const form = e.currentTarget;
     const isPlayerArrayValid = isValidPlayerArray(playersArray);
@@ -195,8 +226,8 @@ const UniversityRegistration = () => {
     setValidated(true);
     if (
       ((Object.values(university).includes("") &&
-        university.paymentMethod == "On-site" &&
-        university.paymentSlip == "") ||
+        university.paymentMethod === "On-site" &&
+        university.paymentSlip === "") ||
         !Object.values(university).includes("")) &&
       isPlayerArrayValid
     ) {
@@ -209,10 +240,28 @@ const UniversityRegistration = () => {
         {
           headers: {},
         }
+
       )
-        .then((res) => {
+        .then(async (res) => {
           console.log(res.data);
           message.success(res.data.message);
+
+          const imageForm = {
+            companyId: res.data.data._id,
+            slip: slipImage,
+            playerIds: res.data.data.players,
+            images: imageList
+          }
+
+          await Axios.post(process.env.REACT_APP_API_URL + "/image/addMultiple",
+            imageForm,
+            {
+              headers: {},
+            })
+
+
+          setIsLoading(false);
+
           setTimeout(() => {
             window.location.reload(true);
           }, 2000);
@@ -307,7 +356,7 @@ const UniversityRegistration = () => {
                 <div className="mb-2">
                   <div style={{ fontWeight: "bold", fontFamily: "Hind" }}>Team</div>
                   {playersArray?.map((player, index) => {
-                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={false}/>;
+                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={false} setFileList={setFileList} setImageList={setImageList} fileList={fileList} imageList={imageList} fileNameList={fileNameList} setFileNameList={setFileNameList}/>;
                   })}
                   <div className={`${Styles["plus-minus"]}`}>
                     <button
@@ -315,10 +364,10 @@ const UniversityRegistration = () => {
                       className={`${Styles["plus-btn"]}`}
                       onClick={AddAnotherRow}
                     >
-                      <img src={require(`../../../assests/images/plus-row.png`)} />
+                      <img src={require(`../../../assests/images/plus-row.png`)} alt=''/>
                     </button>
                     <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
-                      <img src={require(`../../../assests/images/minus-row.png`)} />
+                      <img src={require(`../../../assests/images/minus-row.png`)} alt=''/>
                     </button>
                   </div>
                 </div>
@@ -337,18 +386,7 @@ const UniversityRegistration = () => {
                   </MDBCol>
                   {isBankTransfer && (
                     <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                      <MDBInput
-                        wrapperClass="mb-4"
-                        label="Payment Slip"
-                        labelStyle={{ color: "white", fontFamily: "Hind" }}
-                        className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
-                        labelClass="text-white"
-                        name="paymentSlip"
-                        type="text"
-                        value={university.paymentSlip}
-                        onChange={handleChange}
-                        contrast
-                      />
+                      <ImageUploader isfile={true} setImage={setSlipImage} fileList={slipFile} setFileList={setSlipFile} setImageName={setSlipName} />
                     </MDBCol>
                   )}
                 </div>
@@ -360,7 +398,14 @@ const UniversityRegistration = () => {
             </MDBContainer>
           </div>
         </>
-      ) : (
+      ) :
+      isRegistrationsOpen && isLoading ?
+      (
+        <Grid container item xs={12} height='100vh' display='flex' justifyContent='center' alignItems='center'>
+          <CircularProgress size={100}/>
+        </Grid>
+        
+      ): (
         <RegistrationsNotOpen />
       )}
     </div>
