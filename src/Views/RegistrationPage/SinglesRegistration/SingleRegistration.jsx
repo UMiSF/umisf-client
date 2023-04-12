@@ -5,7 +5,6 @@ import info from "../../../assests/images/info.gif";
 import { Form } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import TableRow from "../Common/AddTablePerf/TableRow";
-import plus from "../../../assests/images/plus.png";
 import Axios from "axios";
 import { CheckCircleTwoTone, ExclamationCircleTwoTone, PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
 import { Modal } from "antd";
