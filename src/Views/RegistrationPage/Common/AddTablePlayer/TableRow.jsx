@@ -48,7 +48,7 @@ const TableRow = (props) => {
   return (
     <div>
       <div className="row">
-        <MDBCol className="" lg={columnSize} md="12" sm="12">
+        <MDBCol  lg={columnSize} md="12" sm="12" className="d-flex align-items-center">
           <MDBInput
             wrapperClass="mb-2"
             labelClass="text-white"
@@ -63,9 +63,10 @@ const TableRow = (props) => {
             contrast
             required
             label="Full Name"
+           
           />
         </MDBCol>
-        <MDBCol className="" lg={columnSize} md="12" sm="12">
+        <MDBCol className="d-flex align-items-center" lg={columnSize} md="12" sm="12">
           <MDBInput
             wrapperClass="mb-2"
             labelClass="text-white"
