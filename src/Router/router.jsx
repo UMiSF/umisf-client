@@ -70,15 +70,13 @@ export default function AppRouter() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact-us" element={<ContactUsPage />} />
-          <Route path="register">
+          {/* <Route path="register">
             <Route path="player" element={<PlayerRegistration />} />
             <Route path="player/:id" element={<SuccessMessage />} />
             <Route path="single-double" element={<RegisterAll/>} />
-            {/* <Route path="single" element={<SingleRegistration />} />
-            <Route path="double" element={<DoubleRegistration />} /> */}
             <Route path="university" element={<UniversityRegistration />} />
             <Route path="company" element={<CompanyRegistration />} />
-          </Route>
+          </Route> */}
           <Route path="draws" element={<DrawsPage />} />
 
           <Route path="draws-edit" element={<DrawEditPage />} />
@@ -91,7 +89,7 @@ export default function AppRouter() {
           <Route path="scheduled-matches" element={<MatchSchedulePage />} />
           <Route path="photos" element={<GalleryPage />} />
           <Route path="photos/:title" element={<PhotosPage />} />
-          <Route path="developers" element={<DevelopersPage />} />
+          {/* <Route path="developers" element={<DevelopersPage />} /> */}
           <Route path="login" element={<LoginPage />} />
           <Route path="*" element={<NotFound />} />
 

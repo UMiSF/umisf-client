@@ -103,10 +103,6 @@
   transform: scale(1.01);
 }
 
-.user-type-container:hover .user-type-arrow {
-  transform: rotate(90deg);
-}
-
 .user-type-arrow {
   transition: ease-in-out 0.7;
 }

@@ -4,7 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { indigo } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
-import { Button, Dropdown, message, Space } from "antd";
+import { Button, Dropdown } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
 const HeaderPage = () => {
@@ -23,6 +23,49 @@ const HeaderPage = () => {
       ? (document.querySelector("#navSideBar").style.display = "none")
       : (document.querySelector("#navSideBar").style.display = "block");
   };
+
+  const items = [
+    {
+      key: "1",
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="#">
+          Single & Double
+        </a>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="#">
+          University
+        </a>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="#">
+          Corporate
+        </a>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="#">
+          Open
+        </a>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="#">
+          Staff
+        </a>
+      ),
+    },
+  ];
 
   return (
     <div className={`${styles["nav-container"]}`}>
@@ -85,25 +128,35 @@ const HeaderPage = () => {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                <MenuItem onClick={handleClose}>
-                  <a href="/register/player" className={`${styles["drop-down-item"]}`}>
+                {/* <MenuItem onClick={handleClose}>
+                  <a href="#" className={`${styles["drop-down-item"]}`}>
                     Player
                   </a>
-                </MenuItem>
+                </MenuItem> */}
 
                 <MenuItem onClick={handleClose}>
-                  <a href="/register/single-double" className={`${styles["drop-down-item"]}`}>
+                  <a href="#" target="_blank" className={`${styles["drop-down-item"]}`}>
                     Single & Double
                   </a>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <a href="/register/university" className={`${styles["drop-down-item"]}`}>
+                <MenuItem target="_blank" onClick={handleClose}>
+                  <a href="#" className={`${styles["drop-down-item"]}`}>
                     University
                   </a>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <a href="/register/company" className={`${styles["drop-down-item"]}`}>
+                <MenuItem target="_blank" onClick={handleClose}>
+                  <a href="#" className={`${styles["drop-down-item"]}`}>
                     Corporate
+                  </a>
+                </MenuItem>
+                <MenuItem target="_blank" onClick={handleClose}>
+                  <a href="#" className={`${styles["drop-down-item"]}`}>
+                    Open
+                  </a>
+                </MenuItem>
+                <MenuItem target="_blank" onClick={handleClose}>
+                  <a href="#" className={`${styles["drop-down-item"]}`}>
+                    Staff
                   </a>
                 </MenuItem>
               </Menu>
@@ -114,27 +167,27 @@ const HeaderPage = () => {
             <a href="/photos" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>Gallery</li>
             </a>
-            <a href="/developers" className={`${styles["navBarItemLink"]}`}>
+            {/* <a href="/developers" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>Developers</li>
-            </a>
+            </a> */}
             <a href="/contact-us" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>Contact Us</li>
             </a>
-            <a href="/login" className={`${styles["navBarItemLink"]}`}>
+            {/* <a href="/login" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>Login</li>
-            </a>
+            </a> */}
           </ul>
         </div>
       </div>
 
       {/* minimized side nav bar */}
       <div className={`${styles["mini-nav"]}`}>
-      <i
-        id="toggle-btn"
-        className={`${styles["toggle-button"]} bx bx-menu`}
-        onClick={loadSideBar}
-      ></i>
-      {/* <img
+        <i
+          id="toggle-btn"
+          className={`${styles["toggle-button"]} bx bx-menu`}
+          onClick={loadSideBar}
+        ></i>
+        {/* <img
         id="side-img"
         className={`${styles["side-img"]}`}
         src={require("../../assests/images/umisf_logo.png")}
@@ -149,7 +202,17 @@ const HeaderPage = () => {
           <a href="/about" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>About</li>
           </a>
-          <div class="dropdown">
+          <Dropdown
+          className={`${styles["register-dropdown"]}`}
+            menu={{
+              items,
+            }}
+            placement="bottom"
+            arrow
+          >
+            <Button>Register</Button>
+          </Dropdown>
+          {/* <div class="dropdown">
             <button
             className={`${styles["register-dropdown"]}`}
               type="button"
@@ -165,37 +228,47 @@ const HeaderPage = () => {
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="/register/single-double">
+                <a class="dropdown-item" href="#">
                   Single & Double
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="/register/university">
+                <a class="dropdown-item" href="#">
                   University
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="/register/company">
+                <a class="dropdown-item" href="#">
                   Corporate
                 </a>
               </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  Open
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  Staff
+                </a>
+              </li>
             </ul>
-          </div>
+          </div> */}
           <a href="/draws" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Draws</li>
           </a>
           <a href="/photos" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Gallery</li>
           </a>
-          <a href="/developers" className={`${styles["minNavLink"]}`}>
+          {/* <a href="/developers" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Developers</li>
-          </a>
+          </a> */}
           <a href="/contact-us" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Contact Us</li>
           </a>
-          <a href="/login" className={`${styles["minNavLink"]}`}>
+          {/* <a href="/login" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Login</li>
-          </a>
+          </a> */}
         </ul>
       </div>
     </div>

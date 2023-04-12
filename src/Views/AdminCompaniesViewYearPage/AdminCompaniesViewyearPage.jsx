@@ -12,8 +12,8 @@ const AdminCompaniesViewYearPage = () => {
 
   const [companyToBeUnregistered, setCompanyToBeUnregistered] = useState([]);
 
-  const loadPlayers = (company) => {
-    company = company.includes('.') ? company.split('.').join('') : company.split(' ').join('');
+  const loadPlayers = (company,index) => {
+    company = company.includes('.') ? company.split('.').join('') : company.split(' ').join('') + index;
     if (document.querySelector('#' + company).style.display === 'none') {
       document.querySelector('#' + company).style.display = 'block';
       document.querySelector('#arrow' + company).style.transform = 'rotate(90deg)';
@@ -41,7 +41,7 @@ const AdminCompaniesViewYearPage = () => {
 
   useEffect(() => {
     companies.map(
-      (company) => (document.querySelector(company.name.includes('.') ? '#' + company.name.split('.').join('') : '#' + company.name.split(' ').join('')).style.display = 'none')
+      (company,index) => (document.querySelector(company.name.includes('.') ? '#' + company.name.split('.').join('') + index : '#' + company.name.split(' ').join('') + index).style.display = 'none')
     );
     Axios.get(process.env.REACT_APP_API_URL + '/company/getAll', {
       headers: {},
@@ -72,18 +72,18 @@ const AdminCompaniesViewYearPage = () => {
       <div className={`${styles['users-container']}`}>
         {companies.map((company, index) => (
           <div className={`${styles['user']}`}>
-            <button className={`${styles['user-type-container']}`} onClick={() => loadPlayers(company.name)}>
+            <button className={`${styles['user-type-container']}`} onClick={() => loadPlayers(company.name, index)}>
               <img
                 src={require('../../assests/images/forward_arrow.png')}
                 alt=""
                 style={{ width: '15px' }}
                 className={`${styles['user-type-arrow']}`}
-                id={company.name.includes('.') ? 'arrow' + company.name.split('.').join('') : 'arrow' + company.name.split(' ').join('')}
+                id={company.name.includes('.') ? 'arrow' + company.name.split('.').join('')+index : 'arrow' + company.name.split(' ').join('')+index}
               />
               <img src={require('../../assests/images/players.png')} alt="" className={`${styles['user-type-img']}`} />
               {company.name + ' - ' + company.matchType}
             </button>
-            <div id={company.name.includes('.') ? company.name.split('.').join('') : company.name.split(' ').join('')} className={`${styles['users-name-container']}`}>
+            <div id={company.name.includes('.') ? company.name.split('.').join('')+index : company.name.split(' ').join('')+index} className={`${styles['users-name-container']}`}>
               <div className={`${styles['add-players']}`}>
                 <Link to={`/admin/companies/${year}/${company.name}`} state={{ company: company }}>
                   <img src={require('../../assests/images/edit.png')} alt="" /> View Company Registration Details

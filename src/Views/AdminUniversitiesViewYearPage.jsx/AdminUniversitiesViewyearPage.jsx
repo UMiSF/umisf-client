@@ -15,6 +15,7 @@ const AdminUniversitiesViewYearPage = () => {
   const [universityToBeUnregistered, setUniversityToBeUnregistered] = useState([]);
 
   const loadPlayers = (university) => {
+    console.log(document.querySelector('#' + university).style.display)
     if (document.querySelector('#' + university).style.display === 'none') {
       document.querySelector('#' + university).style.display = 'block';
       document.querySelector('#arrow' + university).style.transform = 'rotate(90deg)';
@@ -41,7 +42,7 @@ const AdminUniversitiesViewYearPage = () => {
   };
 
   useEffect(() => {
-    universities.map((university) => (document.querySelector('#' + university.name.split(' ').join('')).style.display = 'none'));
+    universities.map((university,index) => (document.querySelector('#' + university.name.split(' ').join('')+index).style.display = 'none'));
 
     Axios.get(process.env.REACT_APP_API_URL + '/university/getAll', {
       headers: {},
@@ -73,18 +74,18 @@ const AdminUniversitiesViewYearPage = () => {
       <div className={`${styles['users-container']}`}>
         {universities?.map((university, index) => (
           <div className={`${styles['user']}`}>
-            <button className={`${styles['user-type-container']}`} onClick={() => loadPlayers(university.name.split(' ').join(''))}>
+            <button className={`${styles['user-type-container']}`} onClick={() => loadPlayers(university.name.split(' ').join('')+index)}>
               <img
                 src={require('../../assests/images/forward_arrow.png')}
                 alt=""
                 style={{ width: '15px' }}
                 className={`${styles['user-type-arrow']}`}
-                id={'arrow' + university.name.split(' ').join('')}
+                id={'arrow' + university.name.split(' ').join('') + index}
               />
               <img src={require('../../assests/images/players.png')} alt="" className={`${styles['user-type-img']}`} />
               {university.name + ' - ' + university.matchType}
             </button>
-            <div id={university.name.split(' ').join('')} className={`${styles['users-name-container']}`}>
+            <div id={university.name.split(' ').join('')+ index} className={`${styles['users-name-container']}`}>
               <div className={`${styles['add-players']}`}>
                 <Link to={`/admin/universities/${year}/${university.name}`} state={{ university: university }}>
                   <img src={require('../../assests/images/edit.png')} alt="" /> View University Registration Details

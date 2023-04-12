@@ -6,49 +6,50 @@ import ImageUploader from "../imageUploader/ImageUploader";
 
 const TableRow = (props) => {
   // console.log('Props of table row: ',props)
-  const {index,setFileList,setImageList,fileList,imageList,fileNameList,setFileNameList} = props;
+  const { index, setFileList, setImageList, fileList, imageList, fileNameList, setFileNameList } =
+    props;
   const genderOptions = ["Male", "Female"];
   const [gender, setGender] = useState("");
 
-  const columnSize = props.genderNeeded ? 3 : 4
+  const columnSize = props.genderNeeded ? 3 : 4;
 
-  function handleSetFileList(newFile){
-    const newFileList = fileList.map((file,i) => {
-      if(i === index){
+  function handleSetFileList(newFile) {
+    const newFileList = fileList.map((file, i) => {
+      if (i === index) {
         return newFile;
-      }else{
+      } else {
         return file;
       }
     });
     setFileList(newFileList);
-  };
+  }
 
-  function handleSetFileNameList(newName){
-    const newFileNameList = fileNameList.map((name,i) => {
-      if(i === index){
+  function handleSetFileNameList(newName) {
+    const newFileNameList = fileNameList.map((name, i) => {
+      if (i === index) {
         return newName;
-      }else{
+      } else {
         return name;
       }
     });
     setFileNameList(newFileNameList);
-  };
+  }
 
-  function handleSetImageList(newImage){
-    const newFileNameList = imageList.map((image,i) => {
-      if(i === index){
+  function handleSetImageList(newImage) {
+    const newFileNameList = imageList.map((image, i) => {
+      if (i === index) {
         return newImage;
-      }else{
+      } else {
         return image;
       }
     });
     setImageList(newFileNameList);
-  };
+  }
 
   return (
     <div>
       <div className="row">
-        <MDBCol  lg={columnSize} md="12" sm="12" className="d-flex align-items-center">
+        <MDBCol lg={columnSize + 1} md="12" sm="12">
           <MDBInput
             wrapperClass="mb-2"
             labelClass="text-white"
@@ -63,10 +64,9 @@ const TableRow = (props) => {
             contrast
             required
             label="Full Name"
-           
           />
         </MDBCol>
-        <MDBCol className="d-flex align-items-center" lg={columnSize} md="12" sm="12">
+        <MDBCol lg={columnSize} md="12" sm="12">
           <MDBInput
             wrapperClass="mb-2"
             labelClass="text-white"
@@ -98,8 +98,15 @@ const TableRow = (props) => {
           </MDBCol>
         )}
 
-        <MDBCol className="" lg={columnSize} md="12" sm="12">
-          <ImageUploader setImage={handleSetImageList} fileName={fileNameList[index]} fileList={fileList[index]} setFileList={handleSetFileList} setImageName={handleSetFileNameList} index={index} />
+        <MDBCol className="" lg={columnSize - 1} md="12" sm="12">
+          <ImageUploader
+            setImage={handleSetImageList}
+            fileName={fileNameList[index]}
+            fileList={fileList[index]}
+            setFileList={handleSetFileList}
+            setImageName={handleSetFileNameList}
+            index={index}
+          />
         </MDBCol>
       </div>
       <div class="row d-lg-none mt-6 mb-6 d-xl-none"></div>
