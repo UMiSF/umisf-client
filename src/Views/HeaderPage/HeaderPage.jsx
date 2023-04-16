@@ -28,40 +28,40 @@ const HeaderPage = () => {
     {
       key: "1",
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="#">
-          Single & Double
+        <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/U3YDggZFVBuFHhjN7">
+          Age Group
         </a>
       ),
     },
     {
       key: "2",
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="#">
-          University
+        <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/Pjoqm4zkTn27X3BN7">
+          University Team
         </a>
       ),
     },
     {
       key: "3",
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="#">
-          Corporate
+        <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/WFMtDwvWQW8g13Fr7">
+          University Individual
         </a>
       ),
     },
     {
       key: "3",
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="#">
-          Open
+        <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/R9yMSrk6KqGWR4qd7">
+          University Staff
         </a>
       ),
     },
     {
       key: "3",
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="#">
-          Staff
+        <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/cmr8tayiMktd3ybA8">
+          Corporate Team
         </a>
       ),
     },
@@ -135,28 +135,28 @@ const HeaderPage = () => {
                 </MenuItem> */}
 
                 <MenuItem onClick={handleClose}>
-                  <a href="#" target="_blank" className={`${styles["drop-down-item"]}`}>
-                    Single & Double
+                  <a href="https://forms.gle/U3YDggZFVBuFHhjN7" target="_blank" className={`${styles["drop-down-item"]}`}>
+                  Age Group
                   </a>
                 </MenuItem>
-                <MenuItem target="_blank" onClick={handleClose}>
-                  <a href="#" className={`${styles["drop-down-item"]}`}>
-                    University
+                <MenuItem onClick={handleClose}>
+                  <a href="https://forms.gle/Pjoqm4zkTn27X3BN7" target="_blank" className={`${styles["drop-down-item"]}`}>
+                  University Team
                   </a>
                 </MenuItem>
-                <MenuItem target="_blank" onClick={handleClose}>
-                  <a href="#" className={`${styles["drop-down-item"]}`}>
-                    Corporate
+                <MenuItem onClick={handleClose}>
+                  <a href="https://forms.gle/WFMtDwvWQW8g13Fr7" target="_blank" className={`${styles["drop-down-item"]}`}>
+                  University Individual
                   </a>
                 </MenuItem>
-                <MenuItem target="_blank" onClick={handleClose}>
-                  <a href="#" className={`${styles["drop-down-item"]}`}>
-                    Open
+                <MenuItem onClick={handleClose}>
+                  <a href="https://forms.gle/R9yMSrk6KqGWR4qd7" target="_blank" className={`${styles["drop-down-item"]}`}>
+                  University Staff
                   </a>
                 </MenuItem>
-                <MenuItem target="_blank" onClick={handleClose}>
-                  <a href="#" className={`${styles["drop-down-item"]}`}>
-                    Staff
+                <MenuItem onClick={handleClose}>
+                  <a href="https://forms.gle/cmr8tayiMktd3ybA8" target="_blank" className={`${styles["drop-down-item"]}`}>
+                  Corporate Team
                   </a>
                 </MenuItem>
               </Menu>
