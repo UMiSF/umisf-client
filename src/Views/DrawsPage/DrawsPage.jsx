@@ -8,7 +8,7 @@ import NotAvailablePage from "../../common/DrawsNotAvailablePage/NotAvailablePag
 
 const DrawsPage = () => {
 
-  const [publishedDate, setPublishedDate] = useState("2023-05-14")
+  const [publishedDate, setPublishedDate] = useState("16th of May 2023")
   const rounds = [
     {
       title: "Round one",

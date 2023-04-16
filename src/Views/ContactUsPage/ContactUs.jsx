@@ -78,9 +78,9 @@ function ContactUs() {
       name: "Ruchira Wijayasena",
       tag: "Vice Captain",
       phone: "+94 71 342 2941",
-      email: "",
-      facebook: "",
-      linkedin: "",
+      email: "ruchirajayaruwanwijayasena@gmail.com",
+      facebook: "https://www.facebook.com/ruchirajayaruwan.wijayasena?mibextid=LQQJ4d",
+      linkedin: "https://www.linkedin.com/in/ruchira-wijayasena-b76889202",
       image: "viceCaptain-male.jpg",
     },
   ]);
@@ -93,7 +93,7 @@ function ContactUs() {
       email: "nethmik99@gmail.com",
       facebook: "https://web.facebook.com/nethmi.jayakody.52",
       linkedin: "https://www.linkedin.com/in/nethmi-jayakody/",
-      image: "captain-female.jpg",
+      image: "captain-female.jpeg",
     },
     {
       name: "Pamodya Kodithuwakku",
