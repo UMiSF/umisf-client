@@ -16,39 +16,38 @@ const AboutPage = () => {
       {/* mission vission section */}
       <section class={`${styles["objectives"]}`}>
         <p>
-          University of Moratuwa International Shuttlers' Fest (UMiSF) is a
-          badminton tournament organized by the badminton team in collaboration
-          with the Division of Physical Education of University of Moratuwa. The
-          tournament consists of an international inter-university event and an
-          all island age group event and will be held for the 14th time in 2023,
-          bigger than ever!!
+          University of Moratuwa International Shuttlers’ Fest (UMISF) is the annual badminton
+          tournament organized by the badminton team of University of Moratuwa in collaboration with
+          the Division of Physical Education. The tournament will be held for the 14th time in 2023,
+          on a grander scale than ever!
         </p>
         <div class={`${styles["history-row"]}`}>
           <div class={`${styles["objectives-col"]}`}>
             <h3>VISION</h3>
             <p>
-              Our vision is to make the UMISF Badminton Tournament a premier
-              sporting event that celebrates the spirit of competition,
-              excellence, and camaraderie among university and school students.
-              We strive to create an unforgettable experience for all
-              participants and spectators, and inspire the next generation of
-              badminton champions.
+              Our vision is to establish a platform for badminton enthusiasts to exhibit their
+              talents and encourage a healthy sense of competition among players.
             </p>
           </div>
           <div class={`${styles["objectives-col"]}`}>
             <h3>MISSION</h3>
             <p>
-              Our mission is to create a tournament that embodies the highest
-              standards of excellence, fairness, and sportsmanship and inspires
-              players to reach their full potential both on and off the court.
+              To achieve our vision we aspire to organize a well-managed and fair badminton
+              tournament that provides an enjoyable and memorable experience for all participants,
+              while promoting fitness and sportsmanship.
             </p>
           </div>
           <div class={`${styles["objectives-col"]}`}>
             <h3>TARGETS</h3>
             <p>
-              Our target for the UMISF is to attract a diverse group of
-              university and school players who are passionate about badminton
-              and looking to compete at a high level.
+              <ul>
+                <li>To attract a diverse range of skilled badminton players.</li>
+                <li>To increase the popularity and awareness of the sport.</li>
+                <li>To provide a safe and secure environment for players and spectators.</li>
+                <li>Timely scheduling of matches and efficient resource management.</li>
+                <li>To encourage social interaction and networking among participants.</li>
+                <li>To promote fair play with strict adherence to rules and regulations.</li>
+              </ul>
             </p>
           </div>
         </div>
@@ -67,7 +66,10 @@ const AboutPage = () => {
           </p>
         </h1>
         <p>
-        UMISF has been held every year since 2007, providing a platform for badminton players to connect, compete, and hone their skills. After a two-year hiatus due to the pandemic and other unforeseen circumstances, the tournament has finally returned, and we're confident that this year's event will be a huge success too.
+          UMISF has been held every year since 2007, providing a platform for badminton players to
+          connect, compete, and hone their skills. After a two-year hiatus due to the pandemic and
+          other unforeseen circumstances, the tournament has finally returned, and we're confident
+          that this year's event will be a huge success too.
         </p>
         <div className={`${styles["row"]}`}>
           <div className={`${styles["past-section-col"]}`}>
@@ -77,7 +79,6 @@ const AboutPage = () => {
               alt=""
             ></img>
             <h3>2017</h3>
-            
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -86,7 +87,6 @@ const AboutPage = () => {
               alt=""
             ></img>
             <h3>2018</h3>
-            
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -95,7 +95,6 @@ const AboutPage = () => {
               alt=""
             ></img>
             <h3>2019</h3>
-            
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -104,56 +103,41 @@ const AboutPage = () => {
               alt=""
             ></img>
             <h3>2020</h3>
-            
           </div>
         </div>
       </section>
       <section className={`${styles["testimonials"]}`}>
         <h1>Messages From The Organizing Committee</h1>
         <p>
-          Badminton has always been a popular sport among the undergraduate
-          community of our university. Since the inauguration of this annual
-          tournament in 2007, we have expanded our horizons. It was
-          indeed a success for us to reach the 1000 plus mark in the number of
-          participants. UMiSF is a platform to show out the potential of
-          youngsters, university students, university staff members, as well as corporates. We wish
-          the participants the best of luck for the tournament and hope everyone will
-          enjoy this tournament.
+          Badminton has always been a popular sport among the undergraduate community of our
+          university. Since the inauguration of this annual tournament in 2007, we have expanded our
+          horizons. It was indeed a success for us to reach the 1000 plus mark in the number of
+          participants. UMiSF is a great platform to show out the potential of youngsters,
+          university students, university staff members, as well as corporates. We wish the
+          participants the best of luck for the tournament and hope everyone will enjoy it.
         </p>
         <div className={`${styles["row"]}`}>
           <div className={`${styles["testimanial-col"]}`}>
-            <img
-              src={require("../../assests/images/captain-male.jpg")}
-              alt=""
-            ></img>
+            <img src={require("../../assests/images/captain-male.jpg")} alt=""></img>
             <div className={`${styles["testimanial-col-content"]}`}>
               <p>
-                This is a great opportunity for university teams and school
-                players to showcase their skills and compete against each other
-                in a friendly and competitive environment. We are honored to be
-                a part of this event, and we are excited to meet and compete
-                against other talented athletes. We hope that everyone will have
-                a great time, make new friends, and create lasting memories.
-                Good luck to all the teams, and let the games begin!
+                I believe that UMISF is a great opportunity, especially for university as well as
+                school players to flaunt their abilities and engage in a friendly rivalry. It is a
+                prestigious event, and we are thrilled to hold it this year. We are eagerly counting
+                down the days for great tournament filled with lasting experiences.
               </p>
               <h3>Bhagya Ranasinghe</h3>
               <h6>Captain</h6>
             </div>
           </div>
           <div className={`${styles["testimanial-col"]}`}>
-            <img
-              src={require("../../assests/images/captain-female.jpeg")}
-              alt=""
-            ></img>
+            <img src={require("../../assests/images/captain-female.jpeg")} alt=""></img>
             <div className={`${styles["testimanial-col-content"]}`}>
               <p>
-                The UMISF is an incredible opportunity for us to showcase our
-                skills and compete against some of the best players around. As
-                captain of the women's team, I am proud of the hard work that
-                our team has put in, and I know that you are ready to play at
-                your best. I hope that this tournament will be a fun and
-                rewarding experience for all the participants and that we can
-                show what it means to play with passion and determination.
+                UMISF is not just about winning, but also about enjoying the game and having fun.
+                With the intention of creating an atmosphere that fosters healthy competition and
+                mutual respect among all players, we encourage all badminton enthusiasts to
+                participate in this tournament and take advantage of this opportunity.
               </p>
               <h3>Nethmi Jayakody</h3>
               <h6>Captain</h6>
@@ -162,41 +146,26 @@ const AboutPage = () => {
         </div>
         <div className={`${styles["row"]}`}>
           <div className={`${styles["testimanial-col"]}`}>
-            <img
-              src={require("../../assests/images/viceCaptain-male.jpg")}
-              alt=""
-            ></img>
+            <img src={require("../../assests/images/viceCaptain-male.jpg")} alt=""></img>
             <div className={`${styles["testimanial-col-content"]}`}>
               <p>
-                I would want to express our pleasure and enthusiasm for this
-                competition as the vice captain of the men's team. We are
-                honored to be playing against such talented opponents since we
-                are aware that everyone has worked so hard and dedicated
-                themselves to getting to this stage. We anticipate that everyone
-                who takes part in this tournament will have a positive and
-                memorable experience. Let's compete fiercely, fairly, and most
-                importantly, let's enjoy ourselves!
+                This tournament will provide a window for players of all levels to compete against
+                each other and showcase their skills. Whether you're a beginner or an experienced
+                player, there's a place for you in this tournament. Let's come together and make
+                this tournament a memorable one that demonstrates the true spirit of badminton!
               </p>
               <h3>Ruchira Wijayasena</h3>
               <h6>Vice Captain</h6>
             </div>
           </div>
           <div className={`${styles["testimanial-col"]}`}>
-            <img
-              src={require("../../assests/images/viceCaptain-female.jpeg")}
-              alt=""
-            ></img>
+            <img src={require("../../assests/images/viceCaptain-female.jpeg")} alt=""></img>
             <div className={`${styles["testimanial-col-content"]}`}>
               <p>
-                This is a wonderful opportunity for us to come together and
-                showcase our love for this sport. I hope that we can all play
-                our best and I want to remind everyone that badminton is more
-                than just a game - it's a way to connect with others, to
-                challenge ourselves, and to learn valuable life skills like
-                teamwork, dedication, and perseverance. Let's all remember to
-                play with good sportsmanship and respect for each other, and
-                let's make this tournament an experience that we will all
-                remember for years to come.
+                UMISF offers the chance to test yourself against the finest players around. Our team
+                has put in a tremendous effort to ensure that this tournament is well-organized and
+                that every player has an enjoyable experience. So, come prepared to give your best
+                game, meet new people, and have an amazing time!
               </p>
               <h3>Pamodya Kodithuwakku</h3>
               <h6>Vice Captain</h6>
