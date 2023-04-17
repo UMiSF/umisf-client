@@ -82,28 +82,27 @@ const Flyer = (props) => {
         <MDBModalDialog centered>
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBModalTitle> UMiSF - EVENT REGISTRATION </MDBModalTitle>
+              <MDBModalTitle style={{fontFamily:"Hind"}}> UMiSF - EVENT REGISTRATION </MDBModalTitle>
               <MDBBtn className="btn-close" color="none" onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/U3YDggZFVBuFHhjN7" style={{textDe
-            : 'none'}} >
+              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/U3YDggZFVBuFHhjN7" className={`${styles['register-links']}`} >
                 Age Group
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/Pjoqm4zkTn27X3BN7">
+              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/Pjoqm4zkTn27X3BN7" className={`${styles['register-links']}`}>
                 University Team
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/WFMtDwvWQW8g13Fr7">
+              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/WFMtDwvWQW8g13Fr7" className={`${styles['register-links']}`}>
                 University Individual
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/R9yMSrk6KqGWR4qd7">
+              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/R9yMSrk6KqGWR4qd7" className={`${styles['register-links']}`}>
                 University Staff
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/cmr8tayiMktd3ybA8">
+              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/cmr8tayiMktd3ybA8" className={`${styles['register-links']}`}>
                 Corporate Team
               </a>
             </MDBModalBody>

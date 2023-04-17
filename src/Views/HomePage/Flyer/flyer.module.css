@@ -112,6 +112,14 @@
   transition: ease-in-out 1s;
 }
 
+.register-links{
+  font-family: "Hind";
+}
+
+.register-links:hover{
+  text-decoration: none;
+}
+
 .register:hover{
   color: white;
   text-decoration: none;
