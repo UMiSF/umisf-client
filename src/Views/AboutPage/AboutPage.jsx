@@ -66,10 +66,14 @@ const AboutPage = () => {
           </p>
         </h1>
         <p>
-          UMISF has been held every year since 2007, providing a platform for badminton players to
-          connect, compete, and hone their skills. After a two-year hiatus due to the pandemic and
-          other unforeseen circumstances, the tournament has finally returned, and we're confident
-          that this year's event will be a huge success too.
+          UMISF has been a long-standing event, spanning back to its inception in 2007. The
+          tournament is carried out with the primary intention of providing a platform for badminton
+          players to connect, compete, and hone their skills. Teams from India and Malaysia have
+          participated in UMISF in 2011, marking a milestone in the history of university sports.
+          For over a decade we were able to conduct this tournament successfully with the
+          participation of 1000+ players in most of the years. After a two-year hiatus due to the
+          pandemic and other unforeseen circumstances, the tournament has finally returned, and
+          we're confident that this year's event will be a huge success too.
         </p>
         <div className={`${styles["row"]}`}>
           <div className={`${styles["past-section-col"]}`}>
