@@ -7,7 +7,7 @@ const Flyer = (props) => {
     const [date,setDate] = useState(props.starttingDate)
     const [venue,setVenue] = useState(props.venue)
     const [registrationPeriod,setRegistrationPeriod] = useState(props.registrationsDeadlines)
-    const url = "https://drive.google.com/file/d/1ZUw0RSvdjOFE75QfB6EyF56tEY6mxr_5/view?usp=share_link"
+    const url = "https://drive.google.com/file/d/1pHrdAI5MsETBlPjwp2Ixd-kXZuxz7avf/view?usp=sharing"
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
