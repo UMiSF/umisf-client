@@ -9,9 +9,9 @@ function Footer() {
         <div className={`${styles["footer-left"]}`}>
           <img src={require("../../../assests/images/umisf_logo.png")} />
           <div className={`${styles["quick-tabs"]}`}>
-            <a href="/">Home</a>|<a href="/about">About</a>|<a href="/register/player">Register</a>|
-            <a href="/draws">Draws</a>|<br />
-            <a href="/photos">Gallery</a>|<a href="/developers">Developers</a>|
+            <a href="/">Home</a>|<a href="/about">About</a>|
+            <a href="/draws">Draws</a><br />
+            <a href="/photos">Gallery</a>|
             <a href="/contact-us">Contact Us</a>
           </div>
         </div>
