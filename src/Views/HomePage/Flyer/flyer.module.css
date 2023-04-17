@@ -104,12 +104,27 @@
   left: 69vw;
   padding: 6px 25px;
   text-decoration: none;
-  color: #0984e3;
+  color: white;
+  background-color: #0984e3;
+  cursor: pointer;
   font-style: italic;
   font-family: "Hind";
   transition: ease-in-out 1s;
 }
 
+.register-links{
+  font-family: "Hind";
+}
+
+.register-links:hover{
+  text-decoration: none;
+}
+
+.register:hover{
+  color: white;
+  text-decoration: none;
+  transform: scale(1.1);
+}
 
 .before {
   position: absolute;
