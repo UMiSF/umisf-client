@@ -52,7 +52,7 @@
   transition: 0.5s;
   cursor: pointer;
 }
-.objectives-col p {
+.objectives-col p, .objectives-col li {
   color: #2c3237;
   font-size: 0.9vw;
   font-weight: 400;
@@ -200,7 +200,7 @@
     font-size: 1.1vw;
   }
 
-  .objectives-col p {
+  .objectives-col p,.objectives-col li  {
     font-size: 1.1vw;
   }
 
@@ -234,7 +234,7 @@
     font-size: 1.3vw;
   }
 
-  .objectives-col p {
+  .objectives-col p,.objectives-col li  {
     font-size: 1.3vw;
   }
 
@@ -282,7 +282,7 @@
     font-size: 1.5vw;
   }
 
-  .objectives-col p {
+  .objectives-col p,.objectives-col li  {
     font-size: 1.7vw;
   }
 
@@ -326,7 +326,7 @@
     font-size: 1.8vw;
   }
 
-  .objectives-col p {
+  .objectives-col p,.objectives-col li  {
     font-size: 1.8vw;
   }
 
@@ -382,7 +382,7 @@
     font-size: 2vw;
   }
 
-  .objectives-col p {
+  .objectives-col p,.objectives-col li  {
     font-size: 2vw;
   }
 
