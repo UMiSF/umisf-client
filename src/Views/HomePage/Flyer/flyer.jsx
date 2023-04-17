@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./flyer.module.css";
 import { saveAs } from 'file-saver'
-import guide from '../../../assests/documents/guide.pdf'
+import guidlines from '../../../assests/documents/Tournament Guidlines - UMiSF 2023.pdf'
 
 const Flyer = (props) => {
     const [date,setDate] = useState(props.starttingDate)
     const [venue,setVenue] = useState(props.venue)
     const [registrationPeriod,setRegistrationPeriod] = useState(props.registrationsDeadlines)
-    const url = "https://drive.google.com/file/d/1pHrdAI5MsETBlPjwp2Ixd-kXZuxz7avf/view?usp=sharing"
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -69,13 +68,13 @@ const Flyer = (props) => {
           <p> { index == 0 ? 'at '+ place: '& ' + place}</p>
         ))}
       </div>
-      <a className={`${styles["register"]}`} type="button">Register</a>
+      <div className={`${styles["register"]}`}>Register</div>
       <div className={`${styles["before"]}`}>
         {`from ${registrationPeriod[0][2]}`} <sup style={{fontSize:"0.6vw"}}>{`${superscript(registrationPeriod[0][2].charAt(registrationPeriod[0][2].length - 1))}`}</sup> {`${registrationPeriod[0][1]} ${registrationPeriod[0][0]}`}<br/>
         {`to ${registrationPeriod[1][2]}`} <sup style={{fontSize:"0.6vw"}}>{`${superscript(registrationPeriod[1][2].charAt(registrationPeriod[1][2].length - 1))}`}</sup> {`${registrationPeriod[1][1]} ${registrationPeriod[1][0]}`}
       </div>
       <div className={`${styles["more-info"]}`}>
-        {"For more info, refer "}<a onClick={()=>saveAs(guide, "umisf-guidelines" + ".pdf")} href="">Tournament Details Guidlines</a>
+        {"For more info, refer "}<a onClick={()=>saveAs(guidlines, "umisf-guidelines" + ".pdf")} href="">Tournament Details Guidlines</a>
       </div>
       </div>
     </div>
