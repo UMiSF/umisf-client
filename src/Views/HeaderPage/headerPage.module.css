@@ -169,6 +169,19 @@
     font-family: 'Montserrat';
 }
 
+.drop-down-item-mobile{
+    text-decoration: none;
+    list-style: none;
+    display: inline-block;
+    position:relative;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(34, 50, 166);
+
+    font-family: 'Montserrat';
+}
+
 .drop-down-item:hover{
     text-decoration: none;
 }
@@ -186,6 +199,7 @@
     text-decoration: none;
     font-family: 'Montserrat';
     padding-top: 0.25vw;
+    width: 100%;
 }
 
 .register::after{
@@ -217,7 +231,8 @@
     overflow:hidden;
     transition: 0.8s;
     z-index:0;
-    top: 75px;
+    top: 69px;
+    width: 100%;
 }
 
 @media screen and (max-width:980px){
