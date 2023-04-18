@@ -16,17 +16,21 @@
 @-webkit-keyframes mover {
   0% {
     transform: translateX(0);
+    -webkit-transform: translate(0);
   }
   100% {
     transform: translateX(20px);
+    -webkit-transform: translateX(20px)
   }
 }
 @keyframes mover {
   0% {
     transform: translateX(0);
+    -webkit-transform: translateX(0);
   }
   100% {
     transform: translateX(20px);
+    -webkit-transform: translateX(20px)
   }
 }
 .action {
