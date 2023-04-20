@@ -72,7 +72,7 @@ const Flyer = (props) => {
         </div>
         <div className={`${styles['more-info']}`}>
           {'For more info, refer '}
-          <a  target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1pHrdAI5MsETBlPjwp2Ixd-kXZuxz7avf/view?usp=sharing">
+          <a  target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1oHYdgxl3w0N_vAe6ZxuHVbVRBIoe74RT/view?usp=sharing">
             Tournament Details Guidlines
           </a>
         </div>
