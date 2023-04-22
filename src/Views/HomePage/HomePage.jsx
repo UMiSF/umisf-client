@@ -42,12 +42,12 @@ const HomePage = () => {
     <div>
       <Header />
       {/* {isCounterStarted && <CountDownTimer remainingTime={remainingTime} />} */}
-      {showContent && <CountDownTimer startingDate={starttingDate} />}
       {showContent &&<Flyer
         starttingDate={starttingDate.slice(0, 10).split("-")}
         venue={venue}
         registrationsDeadlines={registrationsDeadlines}
       />}
+      {showContent && <CountDownTimer startingDate={starttingDate} />}
       <Why />
       <MeetTeam teamPhoto={teamPhoto} />
       <Gallery gallery={gallery} />
