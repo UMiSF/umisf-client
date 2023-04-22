@@ -47,10 +47,10 @@ const HomePage = () => {
         venue={venue}
         registrationsDeadlines={registrationsDeadlines}
       />}
-      {showContent && <CountDownTimer startingDate={starttingDate} />}
       <Why />
       <MeetTeam teamPhoto={teamPhoto} />
       <Gallery gallery={gallery} />
+      {showContent && <CountDownTimer startingDate={starttingDate} />}
       <Footer />
     </div>
   );
