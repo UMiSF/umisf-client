@@ -34,6 +34,9 @@
   border-radius: 0.1em;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .top,
@@ -72,6 +75,10 @@
   position: absolute;
   width: 100%;
   animation: flip-top 250ms ease-in;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  /* z-index: -10; */
   transform-origin: bottom;
 }
 
@@ -86,6 +93,10 @@
   bottom: 0;
   width: 100%;
   animation: flip-bottom 250ms ease-out 250ms;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  /* z-index: -10; */
   transform-origin: top;
   transform: rotateX(90deg);
 }

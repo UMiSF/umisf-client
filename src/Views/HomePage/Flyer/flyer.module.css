@@ -150,6 +150,7 @@
 .overlay {
   padding: 5px;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(9, 132, 227, 0.2));
+  z-index: -10;
 }
 @media screen and (max-width: 770px) {
   .before {
