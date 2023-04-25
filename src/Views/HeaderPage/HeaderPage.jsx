@@ -8,18 +8,34 @@ import { Button, Dropdown } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
 const HeaderPage = () => {
+  const [anchor, setAnchor] = useState(null);
+  const [anchorMobile, setAnchorMobile] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorElmobile, setAnchorElmobile] = useState(null);
   const open = Boolean(anchorEl);
+  const openRegister = Boolean(anchor);
+  const openRegisterMobile = Boolean(anchorMobile);
   const openmobile = Boolean(anchorElmobile);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+  const handleClickRegister = (event) => {
+    setAnchor(event.currentTarget);
+  };
+  const handleClickRegisterMobile = (event) => {
+    setAnchorMobile(event.currentTarget);
   };
   const handleClickMobile = (event) => {
     setAnchorElmobile(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleCloseRegister = () => {
+    setAnchor(null);
+  };
+  const handleCloseRegisterMobile = () => {
+    setAnchorMobile(null);
   };
   const handleCloseMobile = () => {
     setAnchorElmobile(null);
@@ -48,6 +64,107 @@ const HeaderPage = () => {
             </a>
             <React.Fragment>
               <IconButton
+                onClick={handleClickRegister}
+                size="small"
+                aria-controls={openRegister ? "account-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={openRegister ? "true" : undefined}
+                className={`${styles["navBarItemLink"]}`}
+              >
+                <li className={`${styles["register"]}`}>Register</li>
+              </IconButton>
+
+              <Menu
+                anchorEl={anchor}
+                id="account-menu"
+                open={openRegister}
+                onClose={handleCloseRegister}
+                onClick={handleCloseRegister}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: "visible",
+                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                    mt: 1.5,
+                    "& .MuiAvatar-root": {
+                      width: 32,
+                      height: 32,
+                      ml: -0.5,
+                      mr: 1,
+                    },
+                    "&:before": {
+                      content: '""',
+                      display: "block",
+                      position: "absolute",
+                      top: 0,
+                      right: 14,
+                      width: 10,
+                      height: 10,
+                      bgcolor: "background.paper",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      zIndex: 0,
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              >
+                {/* <MenuItem onClick={handleClose}>
+                  <a href="#" className={`${styles["drop-down-item"]}`}>
+                    Player
+                  </a>
+                </MenuItem> */}
+
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/U3YDggZFVBuFHhjN7"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    Age Group
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/3tjtdsdpSYm7PDBA6"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    University Team
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https:/forms.gle/WFMtDwvWQW8g13Fr7"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    University Individual
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/VXG6pf3wDpAgQ8ev9"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    University Staff
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/cmr8tayiMktd3ybA8"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    Corporate Team
+                  </a>
+                </MenuItem>
+              </Menu>
+            </React.Fragment>
+
+            <React.Fragment>
+              <IconButton
                 onClick={handleClick}
                 size="small"
                 aria-controls={open ? "account-menu" : undefined}
@@ -55,7 +172,7 @@ const HeaderPage = () => {
                 aria-expanded={open ? "true" : undefined}
                 className={`${styles["navBarItemLink"]}`}
               >
-                <li className={`${styles["register"]}`}>Register</li>
+                <li className={`${styles["register"]}`}>Entry Forms</li>
               </IconButton>
 
               <Menu
@@ -166,12 +283,12 @@ const HeaderPage = () => {
       </div>
 
       {/* minimized side nav bar */}
-      <div className={`${styles["mini-nav"]}`}>
+      <div className={`${styles["mini-nav"]}`} onClick={loadSideBar}>
         <i
           id="toggle-btn"
           className={`${styles["toggle-button"]} bx bx-menu`}
-          onClick={loadSideBar}
         ></i>
+        <span className={`${styles["toggle-text"]}`}> Menu</span>
       </div>
       <div id="navSideBar" className={`${styles["navSideBar"]}`}>
         <ul>
@@ -183,14 +300,122 @@ const HeaderPage = () => {
           </a>
           <React.Fragment>
               <IconButton
+                onClick={handleClickRegisterMobile}
+                size="small"
+                aria-controls={openRegisterMobile ? "account-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={openRegisterMobile ? "true" : undefined}
+                className={`${styles["register-dropdown"]}`}
+              >
+                <li className={`${styles["register"]}`}>Register</li>
+              </IconButton>
+
+              <Menu
+                anchorEl={anchorMobile}
+                id="account-menu"
+                open={openRegisterMobile}
+                onClose={handleCloseRegisterMobile}
+                onClick={handleCloseRegisterMobile}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: "visible",
+                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                    mt: 1.5,
+                    "& .MuiAvatar-root": {
+                      width: 32,
+                      height: 32,
+                      ml: -0.5,
+                      mr: 1,
+                    },
+                    "&:before": {
+                      content: '""',
+                      display: "block",
+                      position: "absolute",
+                      top: 0,
+                      right: 14,
+                      width: 10,
+                      height: 10,
+                      bgcolor: "background.paper",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      zIndex: 0,
+                    },
+                  },
+                }}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                {/* <MenuItem onClick={handleClose}>
+                  <a href="#" className={`${styles["drop-down-item"]}`}>
+                    Player
+                  </a>
+                </MenuItem> */}
+
+                <MenuItem onClick={handleCloseRegisterMobile}>
+                  <a
+                    href="https://forms.gle/U3YDggZFVBuFHhjN7"
+                    target="_blank"
+                    className={`${styles["drop-down-item-mobile"]}`}
+                  >
+                    Age Group
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegisterMobile}>
+                  <a
+                    href="https://forms.gle/3tjtdsdpSYm7PDBA6"
+                    target="_blank"
+                    className={`${styles["drop-down-item-mobile"]}`}
+                  >
+                    University Team
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegisterMobile}>
+                  <a
+                    href="https:/forms.gle/WFMtDwvWQW8g13Fr7"
+                    target="_blank"
+                    className={`${styles["drop-down-item-mobile"]}`}
+                  >
+                    University Individual
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegisterMobile}>
+                  <a
+                    href="https://forms.gle/VXG6pf3wDpAgQ8ev9"
+                    target="_blank"
+                    className={`${styles["drop-down-item-mobile"]}`}
+                  >
+                    University Staff
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegisterMobile}>
+                  <a
+                    href="https://forms.gle/cmr8tayiMktd3ybA8"
+                    target="_blank"
+                    className={`${styles["drop-down-item-mobile"]}`}
+                  >
+                    Corporate Team
+                  </a>
+                </MenuItem>
+              </Menu>
+            </React.Fragment>
+
+          <React.Fragment>
+              <IconButton
                 onClick={handleClickMobile}
                 size="small"
                 aria-controls={openmobile ? "account-menu" : undefined}
                 aria-haspopup="true"
                 aria-expanded={openmobile ? "true" : undefined}
                 className={`${styles["register-dropdown"]}`}
+                style={{marginTop:"20px"}}
               >
-                <li className={`${styles["register"]}`}>Register</li>
+                <li className={`${styles["register"]}`}>Entry Forms</li>
               </IconButton>
 
               <Menu
