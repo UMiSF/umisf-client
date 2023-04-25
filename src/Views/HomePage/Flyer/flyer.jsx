@@ -86,23 +86,23 @@ const Flyer = (props) => {
               <MDBBtn className="btn-close" color="none" onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/U3YDggZFVBuFHhjN7" className={`${styles['register-links']}`} >
+              <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1yWmGIIIdsH4youcA55p1TC0g2slLXg82/view?usp=share_link" className={`${styles['register-links']}`} >
                 Age Group
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/Pjoqm4zkTn27X3BN7" className={`${styles['register-links']}`}>
+              <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1dQXyKhEED3OzXbhq3uDkmhzITjdwAPJ1/view?usp=share_link" className={`${styles['register-links']}`}>
                 University Team
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/WFMtDwvWQW8g13Fr7" className={`${styles['register-links']}`}>
+              <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1-xE8PS5dzhggxwio9Svl1JWyJB3FmAvk/view?usp=share_link" className={`${styles['register-links']}`}>
                 University Individual
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/R9yMSrk6KqGWR4qd7" className={`${styles['register-links']}`}>
+              <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1cgcBiWDr9u6SuuOtzb0DslS9UlNb24fb/view?usp=share_link" className={`${styles['register-links']}`}>
                 University Staff
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/cmr8tayiMktd3ybA8" className={`${styles['register-links']}`}>
+              <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1l25KUoUstYLZZ1Kpe6aUN9edPoPaLYh3/view?usp=share_link" className={`${styles['register-links']}`}>
                 Corporate Team
               </a>
             </MDBModalBody>
