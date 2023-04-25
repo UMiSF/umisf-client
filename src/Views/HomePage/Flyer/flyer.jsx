@@ -94,7 +94,7 @@ const Flyer = (props) => {
                 University Team
               </a>
               <br/>
-              <a target="_blank" rel="noopener noreferrer" href="https:/forms.gle/WFMtDwvWQW8g13Fr7" className={`${styles['register-links']}`}>
+              <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/WFMtDwvWQW8g13Fr7" className={`${styles['register-links']}`}>
                 University Individual
               </a>
               <br/>
