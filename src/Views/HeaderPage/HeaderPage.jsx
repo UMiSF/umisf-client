@@ -135,7 +135,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https:/forms.gle/WFMtDwvWQW8g13Fr7"
+                    href="https://forms.gle/WFMtDwvWQW8g13Fr7"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -377,7 +377,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegisterMobile}>
                   <a
-                    href="https:/forms.gle/WFMtDwvWQW8g13Fr7"
+                    href="https://forms.gle/WFMtDwvWQW8g13Fr7"
                     target="_blank"
                     className={`${styles["drop-down-item-mobile"]}`}
                   >
