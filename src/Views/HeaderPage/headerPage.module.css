@@ -39,7 +39,7 @@
 .toggle-text {
   font-size: 5vw;
   position: absolute;
-  left: 8vw;
+  right: 22vw;
   top: 7vw;
   display: none;
   z-index: 20;
@@ -48,7 +48,7 @@
 
 .toggle-text {
   top: 6.5vw;
-  left: 14vw;
+  right: 10vw;
   font-size: 4vw;
   font-family: 'Hind';
 }
