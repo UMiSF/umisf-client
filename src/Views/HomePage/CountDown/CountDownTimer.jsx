@@ -10,16 +10,21 @@ const CountDownTimer = (props) => {
   };
 
   const calculateDays = (startingDate, endingDate) => {
-    let numberOfDays =
-      endingDate.getDate() +
-      getDaysInAMonth(startingDate.getFullYear(), startingDate.getMonth()) -
-      startingDate.getDate();
+    let numberOfDays = 0;
+    if (endingDate.getMonth == startingDate.getMonth) {
+      numberOfDays = endingDate.getDate() - startingDate.getDate();
+    } else {
+      numberOfDays =
+        endingDate.getDate() +
+        getDaysInAMonth(startingDate.getFullYear(), startingDate.getMonth()) -
+        startingDate.getDate();
 
-    for (let i = startingDate.getMonth() + 1; i < endingDate.getMonth(); i++) {
-      numberOfDays += getDaysInAMonth(startingDate.getFullYear(), i)
+      for (let i = startingDate.getMonth() + 1; i < endingDate.getMonth(); i++) {
+        numberOfDays += getDaysInAMonth(startingDate.getFullYear(), i);
+      }
     }
 
-    return numberOfDays
+    return numberOfDays;
   };
 
   const calculateTimeDiffrence = (currentDate, startingDate) => {
