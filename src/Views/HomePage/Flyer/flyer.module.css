@@ -102,7 +102,7 @@
   line-height: 1vw;
 }
 
-.register {
+/* .register {
   position: absolute;
   top: 43vw;
   left: 69vw;
@@ -115,6 +115,44 @@
   font-size: 2vw;
   font-family: "Hind";
   transition: ease-in-out 1s;
+}
+ */
+
+
+.schedule{
+  position: absolute;
+  top: 43vw;
+  left: 62vw;
+  padding: 6px 25px;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-size: 2vw;
+  font-family: "Hind";
+  transition: ease-in-out 1s;
+}
+
+.schedule a{
+  font-family: "Hind";
+  background-color: #0984e3;
+  color: white;
+  padding: 0.5vw;
+  text-decoration: none;
+}
+
+.schedule a:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.download-image{
+  width: 6.5vw;
+  height: 6.5vw;
+  border: 1px solid rgb(59, 130, 220);
+  border-radius: 50%;
+  padding: 1vw;
+  margin-right: 0.5vw;
+  background-color: white;
 }
 
 .register-links{
@@ -197,10 +235,21 @@
     left: 67vw;
   }
 
-  .register {
+  /* .register {
     top: 55vw;
     left: 69vw;
     font-size: 4vw;
+  } */
+
+  .schedule {
+    top: 55vw;
+    left: 60vw;
+    font-size: 3vw;
+  }
+
+  .download-image{
+    width: 6.5vw;
+    height: 6.5vw;
   }
 
   .before {
@@ -212,5 +261,24 @@
   .more-info,
   .more-info a {
     font-size: 1.5vw;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .schedule {
+    top: 60vw;
+    left: 43vw;
+  }
+
+  .download-image{
+    width: 10.5vw;
+    height: 10.5vw;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .schedule {
+    top: 60vw;
+    left: 41vw;
   }
 }
