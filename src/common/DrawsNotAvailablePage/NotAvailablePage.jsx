@@ -8,10 +8,7 @@ const NotAvailablePage = (props) => {
 
       <div className={`${styles["content"]}`}>
         <p> The draws will be available from the <b style={{fontFamily:"Hind", fontSize:"15px", color:"red"}}>{props.publishedDate}</b>. </p>
-        <a href="/" className={`${styles["home-button"]}`}>
-          {" "}
-          Home Page
-        </a>
+        
       </div>
     </div>
   );
