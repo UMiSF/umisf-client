@@ -95,28 +95,28 @@ const DrawsPage = () => {
     {
       name: "Age Group",
       entriess: 400,
-      pdf: "slip.pdf",
+      pdf: "https://docs.google.com/spreadsheets/d/1UTWL3g3RxSwbtb2G0oXpD7NqgvSahaih/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
     },
-    {
-      name: "University Team",
-      entriess: 400,
-      pdf: "slip.pdf",
-    },
-    {
-      name: "University Individual",
-      entriess: 400,
-      pdf: "slip.pdf",
-    },
-    {
+    // {
+    //   name: "University Team",
+    //   entriess: 400,
+    //   pdf: "slip.pdf",
+    // },
+    // {
+    //   name: "University Individual",
+    //   entriess: 400,
+    //   pdf: "slip.pdf",
+    // },
+    ,{
       name: "University Staff",
       entriess: 400,
-      pdf: "slip.pdf",
+      pdf: "https://docs.google.com/spreadsheets/d/1R2Jfc5_PtYDywjYQbZOVheTLa3usRUdD/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
     },
-    {
-      name: "Corporate Team",
-      entriess: 400,
-      pdf: "slip.pdf",
-    },
+    // {
+    //   name: "Corporate Team",
+    //   entriess: 400,
+    //   pdf: "slip.pdf",
+    // },
   ];
 
   const [draws, setDraws] = useState([]);
@@ -149,7 +149,7 @@ const DrawsPage = () => {
         </div>
         <div className={`${styles["draws-container"]}`}>
           <div className={`${styles["title"]}`}>Draws</div>
-          <div className={`${styles["tiles"]}`}></div>
+          <div className={`${styles["tiles"]}`}><NotAvailablePage publishedDate={publishedDate} /></div>
         </div>
       </div>
 

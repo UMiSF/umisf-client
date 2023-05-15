@@ -55,7 +55,7 @@
 
 .tile{
     padding: 1vw;
-    margin: 1vw;
+    margin: 2vw;
     border: 1px solid rgb(156, 153, 153);
 }
 
@@ -66,4 +66,46 @@
 .tile-pdf a{
     font-family: "Hind";
     font-size: 1vw;
+}
+
+@media screen and (max-width: 980px) {
+  .title{
+    font-size: 2.5vw;
+}
+
+.tile-data p{
+    font-size: 1.5vw;
+}
+
+.tile-pdf a{
+    font-size: 1.5vw;
+}
+}
+
+@media screen and (max-width: 766px) {
+  .title{
+    font-size: 3vw;
+}
+
+.tile-data p{
+    font-size: 2vw;
+}
+
+.tile-pdf a{
+    font-size: 2vw;
+}
+}
+
+@media screen and (max-width: 468px) {
+  .title{
+    font-size: 4vw;
+}
+
+.tile-data p{
+    font-size: 3vw;
+}
+
+.tile-pdf a{
+    font-size: 3vw;
+}
 }
