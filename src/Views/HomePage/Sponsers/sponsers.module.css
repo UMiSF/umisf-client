@@ -58,5 +58,6 @@
   }
   .sponsers img {
     height: 5vw;
+    width: fit-content;
   }
 }
