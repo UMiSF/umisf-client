@@ -3,6 +3,7 @@ import Header from "./Header/Header";
 import CountDownTimer from "./CountDown/CountDownTimer";
 import MeetTeam from "./MeetTeam/MeetTeam";
 import Footer from "./Footer/footer";
+import Sponsers  from './Sponsers/Sponsers'
 import Why from "./why/why";
 import Gallery from "./Gallery/gallery";
 import Flyer from "./Flyer/flyer";
@@ -28,6 +29,18 @@ const HomePage = () => {
     "9.jpg",
     "10.jpg",
   ]);
+
+  const [sponsers, setSponsers] = useState([
+    "Eliteshuttler Logo-Black and Red logo in White background (1).png",
+    "Heyleys.png",
+    "KUAS.png",
+    "Lakdhanavi Ltd - Logo.png",
+    "Pagero.png",
+    "SLTMobitel_Logo.svg.png",
+    "Yang Yang Logo.png",
+    "Young Logo.png"
+  ])
+
   const [tShirtBack, setTShirtBack] = useState("tshirt-back.png");
 
   useEffect((()=>{
@@ -47,6 +60,7 @@ const HomePage = () => {
         venue={venue}
         registrationsDeadlines={registrationsDeadlines}
       />}
+      <Sponsers sponsers={sponsers}/>
       <Why />
       <MeetTeam teamPhoto={teamPhoto} />
       <Gallery gallery={gallery} />
