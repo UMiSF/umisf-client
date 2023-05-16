@@ -9,7 +9,7 @@
 
 .sponsers img {
   height: 2.5vw;
-  width: fit-content;
+  width: auto;
 }
 
 .sponsers p {
@@ -33,7 +33,7 @@
 
   .sponsers img {
     height: 3.5vw;
-    width: fit-content;
+    width: auto;
   }
   
   .sponser{
@@ -47,7 +47,7 @@
   }
   .sponsers img {
     height: 4vw;
-    width: fit-content;
+    width: auto;
     
   }
 }
@@ -58,6 +58,6 @@
   }
   .sponsers img {
     height: 5vw;
-    width: fit-content;
+    width: auto;
   }
 }
