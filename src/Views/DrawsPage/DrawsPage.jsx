@@ -102,11 +102,11 @@ const DrawsPage = () => {
     //   entriess: 400,
     //   pdf: "slip.pdf",
     // },
-    // {
-    //   name: "University Individual",
-    //   entriess: 400,
-    //   pdf: "slip.pdf",
-    // },
+    ,{
+      name: "University Individual",
+      entriess: 400,
+      pdf: "https://docs.google.com/spreadsheets/d/1qlMPFut_y85KHblYnHYPBp-f8d-ROgak/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+    },
     ,{
       name: "University Staff",
       entriess: 400,
