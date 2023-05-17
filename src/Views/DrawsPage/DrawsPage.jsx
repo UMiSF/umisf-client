@@ -96,12 +96,12 @@ const DrawsPage = () => {
       name: "Age Group",
       entriess: 32,
       pdf: "https://docs.google.com/spreadsheets/d/1UTWL3g3RxSwbtb2G0oXpD7NqgvSahaih/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
-    },
-    {
-      name: "University Team",
-      entriess: 32,
-      pdf: "https://docs.google.com/spreadsheets/d/1qlMPFut_y85KHblYnHYPBp-f8d-ROgak/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
     }
+    // {
+    //   name: "University Team",
+    //   entriess: 32,
+    //   pdf: "https://docs.google.com/spreadsheets/d/1qlMPFut_y85KHblYnHYPBp-f8d-ROgak/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+    // }
     ,{
       name: "University Individual",
       entriess: 32,
