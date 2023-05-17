@@ -94,22 +94,22 @@ const DrawsPage = () => {
   const entries = [
     {
       name: "Age Group",
-      entriess: 400,
+      entriess: 32,
       pdf: "https://docs.google.com/spreadsheets/d/1UTWL3g3RxSwbtb2G0oXpD7NqgvSahaih/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
     },
-    // {
-    //   name: "University Team",
-    //   entriess: 400,
-    //   pdf: "slip.pdf",
-    // },
+    {
+      name: "University Team",
+      entriess: 32,
+      pdf: "https://docs.google.com/spreadsheets/d/1qlMPFut_y85KHblYnHYPBp-f8d-ROgak/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+    }
     ,{
       name: "University Individual",
-      entriess: 400,
+      entriess: 32,
       pdf: "https://docs.google.com/spreadsheets/d/1qlMPFut_y85KHblYnHYPBp-f8d-ROgak/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
     },
     ,{
       name: "University Staff",
-      entriess: 400,
+      entriess: 11,
       pdf: "https://docs.google.com/spreadsheets/d/1R2Jfc5_PtYDywjYQbZOVheTLa3usRUdD/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
     },
     // {
@@ -119,7 +119,28 @@ const DrawsPage = () => {
     // },
   ];
 
-  const [draws, setDraws] = useState([]);
+  const draws = [
+      {
+        name: "Age Group",
+        pdf: "https://docs.google.com/spreadsheets/d/1UTWL3g3RxSwbtb2G0oXpD7NqgvSahaih/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      },
+      // {
+      //   name: "University Team",
+      //   pdf: "slip.pdf",
+      // },
+      // ,{
+      //   name: "University Individual",
+      //   pdf: "https://docs.google.com/spreadsheets/d/1qlMPFut_y85KHblYnHYPBp-f8d-ROgak/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      // },
+      // ,{
+      //   name: "University Staff",
+      //   pdf: "https://docs.google.com/spreadsheets/d/1R2Jfc5_PtYDywjYQbZOVheTLa3usRUdD/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      // },
+      // {
+      //   name: "Corporate Team",
+      //   pdf: "slip.pdf",
+      // },
+  ]
 
   return (
     <>
@@ -149,7 +170,18 @@ const DrawsPage = () => {
         </div>
         <div className={`${styles["draws-container"]}`}>
           <div className={`${styles["title"]}`}>Draws</div>
-          <div className={`${styles["tiles"]}`}><NotAvailablePage publishedDate={publishedDate} /></div>
+          <div className={`${styles["tiles"]} row`}>
+          {draws.map((entry, index) => (
+              <div className={`${styles["tile"]} col-lg-3 col-md-4 col-sm-12`}>
+                <div className={`${styles["tile-data"]}`}>
+                  <p>{`Group name: ${entry.name}`}</p>
+                </div>
+                <div className={`${styles["tile-pdf"]}`}>
+                  <a href={entry.pdf} target="_blank">{`${entry.name} draws`}</a>
+                </div>
+              </div>
+            ))} 
+          </div>
         </div>
       </div>
 
