@@ -122,7 +122,7 @@ const DrawsPage = () => {
   const draws = [
       {
         name: "Age Group",
-        pdf: "https://docs.google.com/spreadsheets/d/1UTWL3g3RxSwbtb2G0oXpD7NqgvSahaih/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+        pdf: "https://docs.google.com/spreadsheets/d/1kMGP0M6APsgaQL9fDAJZD3bXM5yf1yu6/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
       },
       // {
       //   name: "University Team",
@@ -171,13 +171,13 @@ const DrawsPage = () => {
         <div className={`${styles["draws-container"]}`}>
           <div className={`${styles["title"]}`}>Draws</div>
           <div className={`${styles["tiles"]} row`}>
-          {draws.map((entry, index) => (
+          {draws.map((draw, index) => (
               <div className={`${styles["tile"]} col-lg-3 col-md-4 col-sm-12`}>
                 <div className={`${styles["tile-data"]}`}>
-                  <p>{`Group name: ${entry.name}`}</p>
+                  <p>{`Group name: ${draw.name}`}</p>
                 </div>
                 <div className={`${styles["tile-pdf"]}`}>
-                  <a href={entry.pdf} target="_blank">{`${entry.name} draws`}</a>
+                  <a href={draw.pdf} target="_blank">{`${draw.name} draws`}</a>
                 </div>
               </div>
             ))} 
