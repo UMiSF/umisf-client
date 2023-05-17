@@ -7,7 +7,7 @@ import styles from "./drawsPage.module.css";
 import NotAvailablePage from "../../common/DrawsNotAvailablePage/NotAvailablePage";
 
 const DrawsPage = () => {
-  const [publishedDate, setPublishedDate] = useState("16th of May 2023");
+  const [publishedDate, setPublishedDate] = useState("17th of May 2023");
   const rounds = [
     {
       title: "Round one",
