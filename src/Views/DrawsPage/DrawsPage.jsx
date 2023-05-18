@@ -159,7 +159,6 @@ const DrawsPage = () => {
               <div className={`${styles["tile"]} col-lg-3 col-md-4 col-sm-12`}>
                 <div className={`${styles["tile-data"]}`}>
                   <p>{`Group name: ${entry.name}`}</p>
-                  <p>{`No of entries: ${entry.entriess}`}</p>
                 </div>
                 <div className={`${styles["tile-pdf"]}`}>
                   <a href={entry.pdf} target="_blank">{`${entry.name} entries`}</a>
