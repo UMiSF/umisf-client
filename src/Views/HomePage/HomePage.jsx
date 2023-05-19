@@ -14,7 +14,7 @@ const HomePage = () => {
 
   const [showContent, setShowContent] = useState(false)
 
-  const [venue, setVenue] = useState(["University gymnasium", "St. Thomas' College, Mount Lavinia"]);
+  const [venue, setVenue] = useState(["University gymnasium"]);
   const [registrationsDeadlines, setRegistrationsDealines] = useState(["2023-04-17", "2023-04-30"]);
   const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
 
