@@ -147,6 +147,10 @@ const DrawsPage = () => {
         </div>
       </div>
       <div className={`${styles["draws-entries--container"]}`}>
+        <div className={`${styles["tournament-schedule"]}`}>
+        <img src={require("../../assests/images/point.png")} />
+        {"Kindly refer to the enclosed "}<a href="https://drive.google.com/file/d/1KAJVzGwLo3WCgJFzUp1IRs37BMBKiXfR/view?usp=drivesdk" target="_blank">Tournament Schedule</a>{" for your perusal."}
+        </div>
         <div className={`${styles["entries-container"]}`}>
           <div className={`${styles["title"]}`}>Entries</div>
           <div className={`${styles["tiles"]} row`}>
