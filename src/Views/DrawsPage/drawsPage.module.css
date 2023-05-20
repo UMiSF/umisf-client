@@ -84,6 +84,11 @@
     margin-bottom: 0.2vw;
 }
 
+.tournament-schedule p{
+  font-family: "Hind";
+  padding-left: 3vw;
+}
+
 @media screen and (max-width: 980px) {
   .title {
     font-size: 2.5vw;
