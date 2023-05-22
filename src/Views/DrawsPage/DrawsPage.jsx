@@ -127,10 +127,10 @@ const DrawsPage = () => {
         name: "University Individual",
         pdf: "https://docs.google.com/spreadsheets/d/1ooSVK_41DxuWHSq5RYBN4GF1RkoAqs11/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
       },
-      // ,{
-      //   name: "University Staff",
-      //   pdf: "https://docs.google.com/spreadsheets/d/1R2Jfc5_PtYDywjYQbZOVheTLa3usRUdD/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
-      // },
+      {
+        name: "University Staff",
+        pdf: "https://docs.google.com/file/d/1usuxclj4XEE3Yhvk1gIcrWUrFUW-uDJO/edit?usp=docslist_api&filetype=msexcel",
+      },
       {
         name: "Corporate Team",
         pdf: "https://docs.google.com/spreadsheets/d/185_62v3xlY1ZxefKdSkbJHkMsLZIKD5N/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
