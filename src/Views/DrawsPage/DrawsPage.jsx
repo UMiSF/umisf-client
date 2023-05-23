@@ -149,7 +149,7 @@ const DrawsPage = () => {
       <div className={`${styles["draws-entries--container"]}`}>
         <div className={`${styles["tournament-schedule"]}`}>
         <img src={require("../../assests/images/point.png")} />
-        {"Kindly refer to the enclosed "}<a href="https://drive.google.com/file/d/1KAJVzGwLo3WCgJFzUp1IRs37BMBKiXfR/view?usp=drivesdk" target="_blank">Tournament Schedule</a>{" for your perusal."}
+        {"Kindly refer to the enclosed "}<a href="https://docs.google.com/document/d/11vPpB7E51RCKBoEbHDGFydU6os1HeChAtb7QmAMPHIE/edit?usp=sharing" target="_blank">Tournament Schedule</a>{" for your perusal."}
         <p>Location : ONLY at University Gymnasium</p>
         </div>
         <div className={`${styles["entries-container"]}`}>

@@ -86,7 +86,7 @@ const Flyer = (props) => {
         </div>
 
         <div className={`${styles['schedule']}`}>
-        <a href="https://drive.google.com/file/d/1KAJVzGwLo3WCgJFzUp1IRs37BMBKiXfR/view?usp=drivesdk" target='_blank'>
+        <a href="https://docs.google.com/document/d/11vPpB7E51RCKBoEbHDGFydU6os1HeChAtb7QmAMPHIE/edit?usp=sharing" target='_blank'>
         <img className={`${styles['download-image']}`} src={require('../../../assests/images/schedule.png')} />
         Tournament Schedule</a>
         </div>
