@@ -64,7 +64,7 @@ const HomePage = () => {
       <Why />
       <MeetTeam teamPhoto={teamPhoto} />
       <Gallery gallery={gallery} />
-      {showContent && <CountDownTimer startingDate={starttingDate} />}
+      {/* {showContent && <CountDownTimer startingDate={starttingDate} />} */}
       <Footer />
     </div>
   );
