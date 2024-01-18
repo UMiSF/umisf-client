@@ -273,6 +273,15 @@ const HeaderPage = () => {
                     Corporate Team
                   </a>
                 </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/cmr8tayiMktd3ybA8"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    Novices
+                  </a>
+                </MenuItem>
               </Menu>
             </React.Fragment>
             <a href="/draws" className={`${styles["navBarItemLink"]}`}>

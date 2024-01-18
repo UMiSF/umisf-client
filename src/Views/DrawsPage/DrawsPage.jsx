@@ -96,8 +96,8 @@ const DrawsPage = () => {
       name: "Age Group",
       entriess: 32,
       pdf: "https://docs.google.com/spreadsheets/d/1UTWL3g3RxSwbtb2G0oXpD7NqgvSahaih/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
-    }
-    ,{
+    },
+    {
       name: "University Individual",
       entriess: 32,
       pdf: "https://docs.google.com/spreadsheets/d/1qlMPFut_y85KHblYnHYPBp-f8d-ROgak/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
@@ -112,30 +112,39 @@ const DrawsPage = () => {
       entriess: 400,
       pdf: "https://docs.google.com/spreadsheets/d/1Y0jMQMskWvom3T7NCUKeNiJV2w7gto5k/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
     },
+    {
+      name: "Novices",
+      entriess: 64,
+      pdf: "https://docs.google.com/spreadsheets/d/185_62v3xlY1ZxefKdSkbJHkMsLZIKD5N/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+    },
   ];
 
   const draws = [
-      {
-        name: "Age Group",
-        pdf: "https://docs.google.com/spreadsheets/d/1kMGP0M6APsgaQL9fDAJZD3bXM5yf1yu6/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
-      },
-      // {
-      //   name: "University Team",
-      //   pdf: "slip.pdf",
-      // },
-      {
-        name: "University Individual",
-        pdf: "https://docs.google.com/spreadsheets/d/1ooSVK_41DxuWHSq5RYBN4GF1RkoAqs11/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
-      },
-      {
-        name: "University Staff",
-        pdf: "https://docs.google.com/file/d/1usuxclj4XEE3Yhvk1gIcrWUrFUW-uDJO/edit?usp=docslist_api&filetype=msexcel",
-      },
-      {
-        name: "Corporate Team",
-        pdf: "https://docs.google.com/spreadsheets/d/185_62v3xlY1ZxefKdSkbJHkMsLZIKD5N/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
-      },
-  ]
+    {
+      name: "Age Group",
+      pdf: "https://docs.google.com/spreadsheets/d/1kMGP0M6APsgaQL9fDAJZD3bXM5yf1yu6/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+    },
+    // {
+    //   name: "University Team",
+    //   pdf: "slip.pdf",
+    // },
+    {
+      name: "University Individual",
+      pdf: "https://docs.google.com/spreadsheets/d/1ooSVK_41DxuWHSq5RYBN4GF1RkoAqs11/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+    },
+    {
+      name: "University Staff",
+      pdf: "https://docs.google.com/file/d/1usuxclj4XEE3Yhvk1gIcrWUrFUW-uDJO/edit?usp=docslist_api&filetype=msexcel",
+    },
+    {
+      name: "Corporate Team",
+      pdf: "https://docs.google.com/spreadsheets/d/185_62v3xlY1ZxefKdSkbJHkMsLZIKD5N/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+    },
+    {
+      name: "Novices",
+      pdf: "https://docs.google.com/spreadsheets/d/185_62v3xlY1ZxefKdSkbJHkMsLZIKD5N/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+    },
+  ];
 
   return (
     <>
@@ -148,9 +157,16 @@ const DrawsPage = () => {
       </div>
       <div className={`${styles["draws-entries--container"]}`}>
         <div className={`${styles["tournament-schedule"]}`}>
-        <img src={require("../../assests/images/point.png")} />
-        {"Kindly refer to the enclosed "}<a href="https://docs.google.com/document/d/11vPpB7E51RCKBoEbHDGFydU6os1HeChAtb7QmAMPHIE/edit?usp=sharing" target="_blank">Tournament Schedule</a>{" for your perusal."}
-        <p>Location : ONLY at University Gymnasium</p>
+          <img src={require("../../assests/images/point.png")} />
+          {"Kindly refer to the enclosed "}
+          <a
+            href="https://docs.google.com/document/d/11vPpB7E51RCKBoEbHDGFydU6os1HeChAtb7QmAMPHIE/edit?usp=sharing"
+            target="_blank"
+          >
+            Tournament Schedule
+          </a>
+          {" for your perusal."}
+          <p>Location : ONLY at University Gymnasium</p>
         </div>
         <div className={`${styles["entries-container"]}`}>
           <div className={`${styles["title"]}`}>Entries</div>
@@ -158,10 +174,14 @@ const DrawsPage = () => {
             {entries.map((entry, index) => (
               <div className={`${styles["tile"]} col-lg-3 col-md-4 col-sm-12`}>
                 <div className={`${styles["tile-data"]}`}>
-                  <p>{`Group name: ${entry.name}`}</p>
+                  {/* <p>{`Group name: ${entry.name}`}</p> */}
+                  <p>{`${entry.name}`}</p>
                 </div>
                 <div className={`${styles["tile-pdf"]}`}>
-                  <a href={entry.pdf} target="_blank">{`${entry.name} entries`}</a>
+                  <a
+                    href={entry.pdf}
+                    target="_blank"
+                  >{`${entry.name} entries`}</a>
                 </div>
               </div>
             ))}
@@ -170,16 +190,17 @@ const DrawsPage = () => {
         <div className={`${styles["draws-container"]}`}>
           <div className={`${styles["title"]}`}>Draws</div>
           <div className={`${styles["tiles"]} row`}>
-          {draws.map((draw, index) => (
+            {draws.map((draw, index) => (
               <div className={`${styles["tile"]} col-lg-3 col-md-4 col-sm-12`}>
                 <div className={`${styles["tile-data"]}`}>
-                  <p>{`Group name: ${draw.name}`}</p>
+                  {/* <p>{`Group name: ${draw.name}`}</p> */}
+                  <p>{`${draw.name}`}</p>
                 </div>
                 <div className={`${styles["tile-pdf"]}`}>
                   <a href={draw.pdf} target="_blank">{`${draw.name} draws`}</a>
                 </div>
               </div>
-            ))} 
+            ))}
           </div>
         </div>
       </div>
