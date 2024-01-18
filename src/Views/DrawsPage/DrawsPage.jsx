@@ -174,8 +174,8 @@ const DrawsPage = () => {
             {entries.map((entry, index) => (
               <div className={`${styles["tile"]} col-lg-3 col-md-4 col-sm-12`}>
                 <div className={`${styles["tile-data"]}`}>
-                  {/* <p>{`Group name: ${entry.name}`}</p> */}
-                  <p>{`${entry.name}`}</p>
+                  <p>{`Group name: ${entry.name}`}</p>
+                  {/* <p>{`${entry.name}`}</p> */}
                 </div>
                 <div className={`${styles["tile-pdf"]}`}>
                   <a
@@ -193,8 +193,8 @@ const DrawsPage = () => {
             {draws.map((draw, index) => (
               <div className={`${styles["tile"]} col-lg-3 col-md-4 col-sm-12`}>
                 <div className={`${styles["tile-data"]}`}>
-                  {/* <p>{`Group name: ${draw.name}`}</p> */}
-                  <p>{`${draw.name}`}</p>
+                  <p>{`Group name: ${draw.name}`}</p>
+                  {/* <p>{`${draw.name}`}</p> */}
                 </div>
                 <div className={`${styles["tile-pdf"]}`}>
                   <a href={draw.pdf} target="_blank">{`${draw.name} draws`}</a>
