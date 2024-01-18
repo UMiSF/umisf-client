@@ -53,7 +53,10 @@ const HeaderPage = () => {
       <div className={`${styles["nav-bars"]}`}>
         <div className={`${styles["navBarList"]}`}>
           <a href="/">
-            <img src={require("../../assests/images/umisf_logo.png")} alt={"logo"}></img>
+            <img
+              src={require("../../assests/images/umisf_logo.png")}
+              alt={"logo"}
+            ></img>
           </a>
           <ul>
             <a href="/" className={`${styles["navBarItemLink"]}`}>
@@ -158,6 +161,15 @@ const HeaderPage = () => {
                     className={`${styles["drop-down-item"]}`}
                   >
                     Corporate Team
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/cmr8tayiMktd3ybA8"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    Novices
                   </a>
                 </MenuItem>
               </Menu>
@@ -299,219 +311,219 @@ const HeaderPage = () => {
             <li className={`${styles["navBarItem"]}`}>About</li>
           </a>
           <React.Fragment>
-              <IconButton
-                onClick={handleClickRegisterMobile}
-                size="small"
-                aria-controls={openRegisterMobile ? "account-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={openRegisterMobile ? "true" : undefined}
-                className={`${styles["register-dropdown"]}`}
-              >
-                <li className={`${styles["register"]}`}>Register</li>
-              </IconButton>
+            <IconButton
+              onClick={handleClickRegisterMobile}
+              size="small"
+              aria-controls={openRegisterMobile ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={openRegisterMobile ? "true" : undefined}
+              className={`${styles["register-dropdown"]}`}
+            >
+              <li className={`${styles["register"]}`}>Register</li>
+            </IconButton>
 
-              <Menu
-                anchorEl={anchorMobile}
-                id="account-menu"
-                open={openRegisterMobile}
-                onClose={handleCloseRegisterMobile}
-                onClick={handleCloseRegisterMobile}
-                PaperProps={{
-                  elevation: 0,
-                  sx: {
-                    overflow: "visible",
-                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                    mt: 1.5,
-                    "& .MuiAvatar-root": {
-                      width: 32,
-                      height: 32,
-                      ml: -0.5,
-                      mr: 1,
-                    },
-                    "&:before": {
-                      content: '""',
-                      display: "block",
-                      position: "absolute",
-                      top: 0,
-                      right: 14,
-                      width: 10,
-                      height: 10,
-                      bgcolor: "background.paper",
-                      transform: "translateY(-50%) rotate(45deg)",
-                      zIndex: 0,
-                    },
+            <Menu
+              anchorEl={anchorMobile}
+              id="account-menu"
+              open={openRegisterMobile}
+              onClose={handleCloseRegisterMobile}
+              onClick={handleCloseRegisterMobile}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "& .MuiAvatar-root": {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
                   },
-                }}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                {/* <MenuItem onClick={handleClose}>
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+            >
+              {/* <MenuItem onClick={handleClose}>
                   <a href="#" className={`${styles["drop-down-item"]}`}>
                     Player
                   </a>
                 </MenuItem> */}
 
-                <MenuItem onClick={handleCloseRegisterMobile}>
-                  <a
-                    href="https://forms.gle/U3YDggZFVBuFHhjN7"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    Age Group
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseRegisterMobile}>
-                  <a
-                    href="https://forms.gle/3tjtdsdpSYm7PDBA6"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    University Team
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseRegisterMobile}>
-                  <a
-                    href="https://forms.gle/WFMtDwvWQW8g13Fr7"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    University Individual
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseRegisterMobile}>
-                  <a
-                    href="https://forms.gle/VXG6pf3wDpAgQ8ev9"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    University Staff
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseRegisterMobile}>
-                  <a
-                    href="https://forms.gle/cmr8tayiMktd3ybA8"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    Corporate Team
-                  </a>
-                </MenuItem>
-              </Menu>
-            </React.Fragment>
+              <MenuItem onClick={handleCloseRegisterMobile}>
+                <a
+                  href="https://forms.gle/U3YDggZFVBuFHhjN7"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  Age Group
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegisterMobile}>
+                <a
+                  href="https://forms.gle/3tjtdsdpSYm7PDBA6"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Team
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegisterMobile}>
+                <a
+                  href="https://forms.gle/WFMtDwvWQW8g13Fr7"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Individual
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegisterMobile}>
+                <a
+                  href="https://forms.gle/VXG6pf3wDpAgQ8ev9"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Staff
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegisterMobile}>
+                <a
+                  href="https://forms.gle/cmr8tayiMktd3ybA8"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  Corporate Team
+                </a>
+              </MenuItem>
+            </Menu>
+          </React.Fragment>
 
           <React.Fragment>
-              <IconButton
-                onClick={handleClickMobile}
-                size="small"
-                aria-controls={openmobile ? "account-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={openmobile ? "true" : undefined}
-                className={`${styles["register-dropdown"]}`}
-                style={{marginTop:"20px"}}
-              >
-                <li className={`${styles["register"]}`}>Entry Forms</li>
-              </IconButton>
+            <IconButton
+              onClick={handleClickMobile}
+              size="small"
+              aria-controls={openmobile ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={openmobile ? "true" : undefined}
+              className={`${styles["register-dropdown"]}`}
+              style={{ marginTop: "20px" }}
+            >
+              <li className={`${styles["register"]}`}>Entry Forms</li>
+            </IconButton>
 
-              <Menu
-                anchorEl={anchorElmobile}
-                id="account-menu"
-                open={openmobile}
-                onClose={handleCloseMobile}
-                onClick={handleCloseMobile}
-                PaperProps={{
-                  elevation: 0,
-                  sx: {
-                    overflow: "visible",
-                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                    mt: 1.5,
-                    "& .MuiAvatar-root": {
-                      width: 32,
-                      height: 32,
-                      ml: -0.5,
-                      mr: 1,
-                    },
-                    "&:before": {
-                      content: '""',
-                      display: "block",
-                      position: "absolute",
-                      top: 0,
-                      right: 14,
-                      width: 10,
-                      height: 10,
-                      bgcolor: "background.paper",
-                      transform: "translateY(-50%) rotate(45deg)",
-                      zIndex: 0,
-                    },
+            <Menu
+              anchorEl={anchorElmobile}
+              id="account-menu"
+              open={openmobile}
+              onClose={handleCloseMobile}
+              onClick={handleCloseMobile}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "& .MuiAvatar-root": {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
                   },
-                }}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                {/* <MenuItem onClick={handleClose}>
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+            >
+              {/* <MenuItem onClick={handleClose}>
                   <a href="#" className={`${styles["drop-down-item"]}`}>
                     Player
                   </a>
                 </MenuItem> */}
 
-                <MenuItem onClick={handleCloseMobile}>
-                  <a
-                    href="https://drive.google.com/file/d/1yWmGIIIdsH4youcA55p1TC0g2slLXg82/view?usp=share_link"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    Age Group
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseMobile}>
-                  <a
-                    href="https://drive.google.com/file/d/1dQXyKhEED3OzXbhq3uDkmhzITjdwAPJ1/view?usp=share_link"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    University Team
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseMobile}>
-                  <a
-                    href="https://drive.google.com/file/d/1-xE8PS5dzhggxwio9Svl1JWyJB3FmAvk/view?usp=share_link"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    University Individual
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseMobile}>
-                  <a
-                    href="https://drive.google.com/file/d/1cgcBiWDr9u6SuuOtzb0DslS9UlNb24fb/view?usp=share_link"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    University Staff
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseMobile}>
-                  <a
-                    href="https://drive.google.com/file/d/1l25KUoUstYLZZ1Kpe6aUN9edPoPaLYh3/view?usp=share_link"
-                    target="_blank"
-                    className={`${styles["drop-down-item-mobile"]}`}
-                  >
-                    Corporate Team
-                  </a>
-                </MenuItem>
-              </Menu>
-            </React.Fragment>
+              <MenuItem onClick={handleCloseMobile}>
+                <a
+                  href="https://drive.google.com/file/d/1yWmGIIIdsH4youcA55p1TC0g2slLXg82/view?usp=share_link"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  Age Group
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseMobile}>
+                <a
+                  href="https://drive.google.com/file/d/1dQXyKhEED3OzXbhq3uDkmhzITjdwAPJ1/view?usp=share_link"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Team
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseMobile}>
+                <a
+                  href="https://drive.google.com/file/d/1-xE8PS5dzhggxwio9Svl1JWyJB3FmAvk/view?usp=share_link"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Individual
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseMobile}>
+                <a
+                  href="https://drive.google.com/file/d/1cgcBiWDr9u6SuuOtzb0DslS9UlNb24fb/view?usp=share_link"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Staff
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseMobile}>
+                <a
+                  href="https://drive.google.com/file/d/1l25KUoUstYLZZ1Kpe6aUN9edPoPaLYh3/view?usp=share_link"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  Corporate Team
+                </a>
+              </MenuItem>
+            </Menu>
+          </React.Fragment>
           <a href="/draws" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Draws and Entries</li>
           </a>
