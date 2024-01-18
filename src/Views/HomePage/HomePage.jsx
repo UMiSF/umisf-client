@@ -19,15 +19,15 @@ const HomePage = () => {
   const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
 
   const [gallery, setGallery] = useState([
-    "2017.jpeg",
+    "1.jpg",
     "2.jpg",
     "3.jpg",
     "4.jpg",
+    "5.jpg",
     "6.jpg",
     "7.jpg",
     "8.jpg",
     "9.jpg",
-    "10.jpg",
   ]);
 
   const [sponsers, setSponsers] = useState([
