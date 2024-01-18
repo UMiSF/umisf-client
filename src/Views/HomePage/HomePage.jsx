@@ -3,7 +3,7 @@ import Header from "./Header/Header";
 import CountDownTimer from "./CountDown/CountDownTimer";
 import MeetTeam from "./MeetTeam/MeetTeam";
 import Footer from "./Footer/footer";
-import Sponsers  from './Sponsers/Sponsers'
+import Sponsers from "./Sponsers/Sponsers";
 import Why from "./why/why";
 import Gallery from "./Gallery/gallery";
 import Flyer from "./Flyer/flyer";
@@ -12,11 +12,14 @@ const HomePage = () => {
   const [starttingDate, setStartingDate] = useState("2023-05-21T08:00:00.000");
   const [finishingDate, setFinishingDate] = useState("2023-05-28T00:00:00.000");
 
-  const [showContent, setShowContent] = useState(false)
+  const [showContent, setShowContent] = useState(false);
 
   const [venue, setVenue] = useState(["University gymnasium"]);
-  const [registrationsDeadlines, setRegistrationsDealines] = useState(["2023-04-17", "2023-04-30"]);
-  const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
+  const [registrationsDeadlines, setRegistrationsDealines] = useState([
+    "2024-01-19",
+    "2024-02-15",
+  ]);
+  const [teamPhoto, setTeamPhoto] = useState("team-image.jpg");
 
   const [gallery, setGallery] = useState([
     "1.jpg",
@@ -38,29 +41,30 @@ const HomePage = () => {
     "Pagero.png",
     "SLTMobitel_Logo.svg.png",
     "Yang Yang Logo.png",
-    "Young Logo.png"
-  ])
+    "Young Logo.png",
+  ]);
 
   const [tShirtBack, setTShirtBack] = useState("tshirt-back.png");
 
-  useEffect((()=>{
-    let currentDate = new Date()
-    if (currentDate < new Date(finishingDate)){
-      setShowContent(true)
+  useEffect(() => {
+    let currentDate = new Date();
+    if (currentDate < new Date(finishingDate)) {
+      setShowContent(true);
     }
-
-  }),[])
+  }, []);
 
   return (
     <div>
       <Header />
       {/* {isCounterStarted && <CountDownTimer remainingTime={remainingTime} />} */}
-      {showContent &&<Flyer
-        starttingDate={starttingDate.slice(0, 10).split("-")}
-        venue={venue}
-        registrationsDeadlines={registrationsDeadlines}
-      />}
-      <Sponsers sponsers={sponsers}/>
+      {showContent && (
+        <Flyer
+          starttingDate={starttingDate.slice(0, 10).split("-")}
+          venue={venue}
+          registrationsDeadlines={registrationsDeadlines}
+        />
+      )}
+      <Sponsers sponsers={sponsers} />
       <Why />
       <MeetTeam teamPhoto={teamPhoto} />
       <Gallery gallery={gallery} />
