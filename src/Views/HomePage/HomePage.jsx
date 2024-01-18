@@ -19,7 +19,7 @@ const HomePage = () => {
     "2024-01-19",
     "2024-02-15",
   ]);
-  const [teamPhoto, setTeamPhoto] = useState("team-image.jpeg");
+  const [teamPhoto, setTeamPhoto] = useState("team-image.jpg");
 
   const [gallery, setGallery] = useState([
     "1.jpg",
