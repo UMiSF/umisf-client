@@ -120,7 +120,7 @@ const HeaderPage = () => {
 
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSeOVme4JWT4piVkYEe-WevukEgZI_tc37VMg2CTm4uxMY-fLw/viewform?usp=sf_link"
+                    href="https://forms.gle/PfkoFV6MMYJCiHDT8"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -129,34 +129,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/3tjtdsdpSYm7P"
-                    target="_blank"
-                    className={`${styles["drop-down-item"]}`}
-                  >
-                    University Team
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseRegister}>
-                  <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSc2QUacVoFso_PgTPHsKgYh9ZPamQNdkO09aON5xX4qN3Mo-Q/viewform?usp=sf_link"
-                    target="_blank"
-                    className={`${styles["drop-down-item"]}`}
-                  >
-                    University Individual
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseRegister}>
-                  <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfEGJ8ckJPutlK6uktkSWbEa5e-9jR1KFvrEnyN8nKDewgTCw/viewform?usp=sf_link"
-                    target="_blank"
-                    className={`${styles["drop-down-item"]}`}
-                  >
-                    University Staff
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseRegister}>
-                  <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSe4JfYOw_Y9CGSu926nP_NrwPPgXg5GJxIMA9r1kkXRD4HKag/viewform?usp=sf_link"
+                    href="https://forms.gle/U2jRwsrikJCcSiQk6"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -165,11 +138,38 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/cmr8tayiMktd3"
+                    href="https://forms.gle/4syJJxJQ2stfgScT6"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
                     Novices
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/1kd9i4M4dEk4GJ3K8"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    University Individual
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/GCGVnwN7psXFNYeu6"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    University Staff
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://forms.gle/FYbfNWxdFg8oj5UM9"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    University Team
                   </a>
                 </MenuItem>
               </Menu>
@@ -239,11 +239,20 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <a
-                    href="https://drive.google.com/file/d/1rib_sQQbHAtGlFZDYSSX5xznibua_u7l/view?usp=drive_link"
+                    href="https://drive.google.com/file/d/1Chbl3cAeLobckwgvxZsn6NCFPStbTSxx/view?usp=drive_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
-                    University Team
+                    Corporate Team
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleCloseRegister}>
+                  <a
+                    href="https://drive.google.com/file/d/1Bdv39X_VhrOB_WWgX5QQoeaS3aKig1xD/view?usp=drive_link"
+                    target="_blank"
+                    className={`${styles["drop-down-item"]}`}
+                  >
+                    Novices
                   </a>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
@@ -266,20 +275,11 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <a
-                    href="https://drive.google.com/file/d/1fmwZLoWzM2R-Vk9OrzukdV4GRtFmAOeu/view?usp=drive_link"
+                    href="https://drive.google.com/file/d/1rib_sQQbHAtGlFZDYSSX5xznibua_u7l/view?usp=drive_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
-                    Corporate Team
-                  </a>
-                </MenuItem>
-                <MenuItem onClick={handleCloseRegister}>
-                  <a
-                    href="https://drive.google.com/file/d/1Bdv39X_VhrOB_WWgX5QQoeaS3aKig1xD/view?usp=drive_link"
-                    target="_blank"
-                    className={`${styles["drop-down-item"]}`}
-                  >
-                    Novices
+                    University Team
                   </a>
                 </MenuItem>
               </Menu>
@@ -380,7 +380,7 @@ const HeaderPage = () => {
 
               <MenuItem onClick={handleCloseRegisterMobile}>
                 <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSeOVme4JWT4piVkYEe-WevukEgZI_tc37VMg2CTm4uxMY-fLw/viewform?usp=sf_link"
+                  href="https://forms.gle/PfkoFV6MMYJCiHDT8"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -389,34 +389,7 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseRegisterMobile}>
                 <a
-                  href="https://forms.gle/3tjtdsdpSYm7"
-                  target="_blank"
-                  className={`${styles["drop-down-item-mobile"]}`}
-                >
-                  University Team
-                </a>
-              </MenuItem>
-              <MenuItem onClick={handleCloseRegisterMobile}>
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSc2QUacVoFso_PgTPHsKgYh9ZPamQNdkO09aON5xX4qN3Mo-Q/viewform?usp=sf_link"
-                  target="_blank"
-                  className={`${styles["drop-down-item-mobile"]}`}
-                >
-                  University Individual
-                </a>
-              </MenuItem>
-              <MenuItem onClick={handleCloseRegisterMobile}>
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSfEGJ8ckJPutlK6uktkSWbEa5e-9jR1KFvrEnyN8nKDewgTCw/viewform?usp=sf_link"
-                  target="_blank"
-                  className={`${styles["drop-down-item-mobile"]}`}
-                >
-                  University Staff
-                </a>
-              </MenuItem>
-              <MenuItem onClick={handleCloseRegisterMobile}>
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSe4JfYOw_Y9CGSu926nP_NrwPPgXg5GJxIMA9r1kkXRD4HKag/viewform?usp=sf_link"
+                  href="https://forms.gle/U2jRwsrikJCcSiQk6"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -425,11 +398,38 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseRegister}>
                 <a
-                  href="https://forms.gle/cmr8tayiMktd3"
+                  href="https://forms.gle/4syJJxJQ2stfgScT6"
                   target="_blank"
                   className={`${styles["drop-down-item"]}`}
                 >
                   Novices
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegisterMobile}>
+                <a
+                  href="https://forms.gle/1kd9i4M4dEk4GJ3K8"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Individual
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegisterMobile}>
+                <a
+                  href="https://forms.gle/GCGVnwN7psXFNYeu6"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Staff
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegisterMobile}>
+                <a
+                  href="https://forms.gle/FYbfNWxdFg8oj5UM9"
+                  target="_blank"
+                  className={`${styles["drop-down-item-mobile"]}`}
+                >
+                  University Team
                 </a>
               </MenuItem>
             </Menu>
@@ -506,11 +506,20 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseMobile}>
                 <a
-                  href="https://drive.google.com/file/d/1rib_sQQbHAtGlFZDYSSX5xznibua_u7l/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/1Chbl3cAeLobckwgvxZsn6NCFPStbTSxx/view?usp=drive_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
-                  University Team
+                  Corporate Team
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegister}>
+                <a
+                  href="https://drive.google.com/file/d/1Bdv39X_VhrOB_WWgX5QQoeaS3aKig1xD/view?usp=drive_link"
+                  target="_blank"
+                  className={`${styles["drop-down-item"]}`}
+                >
+                  Novices
                 </a>
               </MenuItem>
               <MenuItem onClick={handleCloseMobile}>
@@ -533,20 +542,11 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseMobile}>
                 <a
-                  href="https://drive.google.com/file/d/1fmwZLoWzM2R-Vk9OrzukdV4GRtFmAOeu/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/1rib_sQQbHAtGlFZDYSSX5xznibua_u7l/view?usp=drive_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
-                  Corporate Team
-                </a>
-              </MenuItem>
-              <MenuItem onClick={handleCloseRegister}>
-                <a
-                  href="https://drive.google.com/file/d/1Bdv39X_VhrOB_WWgX5QQoeaS3aKig1xD/view?usp=drive_link"
-                  target="_blank"
-                  className={`${styles["drop-down-item"]}`}
-                >
-                  Novices
+                  University Team
                 </a>
               </MenuItem>
             </Menu>
