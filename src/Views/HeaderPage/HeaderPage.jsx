@@ -120,7 +120,7 @@ const HeaderPage = () => {
 
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/U3YDggZFVBuFHhjN7"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSeOVme4JWT4piVkYEe-WevukEgZI_tc37VMg2CTm4uxMY-fLw/viewform?usp=sf_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -129,7 +129,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/3tjtdsdpSYm7PDBA6"
+                    href="https://forms.gle/3tjtdsdpSYm7P"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -138,7 +138,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/WFMtDwvWQW8g13Fr7"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSc2QUacVoFso_PgTPHsKgYh9ZPamQNdkO09aON5xX4qN3Mo-Q/viewform?usp=sf_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -147,7 +147,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/VXG6pf3wDpAgQ8ev9"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfEGJ8ckJPutlK6uktkSWbEa5e-9jR1KFvrEnyN8nKDewgTCw/viewform?usp=sf_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -156,7 +156,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/cmr8tayiMktd3ybA8"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSe4JfYOw_Y9CGSu926nP_NrwPPgXg5GJxIMA9r1kkXRD4HKag/viewform?usp=sf_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -165,7 +165,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/cmr8tayiMktd3ybA8"
+                    href="https://forms.gle/cmr8tayiMktd3"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -230,7 +230,7 @@ const HeaderPage = () => {
 
                 <MenuItem onClick={handleClose}>
                   <a
-                    href="https://drive.google.com/file/d/1yWmGIIIdsH4youcA55p1TC0g2slLXg82/view?usp=share_link"
+                    href="https://drive.google.com/file/d/1ArnLLGwQ3P9kwuXC1heatjdyIksoWGAz/view?usp=drive_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -239,7 +239,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <a
-                    href="https://drive.google.com/file/d/1dQXyKhEED3OzXbhq3uDkmhzITjdwAPJ1/view?usp=share_link"
+                    href="https://drive.google.com/file/d/1rib_sQQbHAtGlFZDYSSX5xznibua_u7l/view?usp=drive_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -248,7 +248,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <a
-                    href="https://drive.google.com/file/d/1-xE8PS5dzhggxwio9Svl1JWyJB3FmAvk/view?usp=share_link"
+                    href="https://drive.google.com/file/d/15DYc-2P1YfxLgqvAlb24KD7fOwHE2gU3/view?usp=drive_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -257,7 +257,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <a
-                    href="https://drive.google.com/file/d/1cgcBiWDr9u6SuuOtzb0DslS9UlNb24fb/view?usp=share_link"
+                    href="https://drive.google.com/file/d/1J_jp_JV92-RdWx3OIWI2dztU512gZvkw/view?usp=drive_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -266,7 +266,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <a
-                    href="https://drive.google.com/file/d/1l25KUoUstYLZZ1Kpe6aUN9edPoPaLYh3/view?usp=share_link"
+                    href="https://drive.google.com/file/d/1fmwZLoWzM2R-Vk9OrzukdV4GRtFmAOeu/view?usp=drive_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -275,7 +275,7 @@ const HeaderPage = () => {
                 </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
                   <a
-                    href="https://forms.gle/cmr8tayiMktd3ybA8"
+                    href="https://drive.google.com/file/d/1Bdv39X_VhrOB_WWgX5QQoeaS3aKig1xD/view?usp=drive_link"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >
@@ -380,7 +380,7 @@ const HeaderPage = () => {
 
               <MenuItem onClick={handleCloseRegisterMobile}>
                 <a
-                  href="https://forms.gle/U3YDggZFVBuFHhjN7"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeOVme4JWT4piVkYEe-WevukEgZI_tc37VMg2CTm4uxMY-fLw/viewform?usp=sf_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -389,7 +389,7 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseRegisterMobile}>
                 <a
-                  href="https://forms.gle/3tjtdsdpSYm7PDBA6"
+                  href="https://forms.gle/3tjtdsdpSYm7"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -398,7 +398,7 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseRegisterMobile}>
                 <a
-                  href="https://forms.gle/WFMtDwvWQW8g13Fr7"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSc2QUacVoFso_PgTPHsKgYh9ZPamQNdkO09aON5xX4qN3Mo-Q/viewform?usp=sf_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -407,7 +407,7 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseRegisterMobile}>
                 <a
-                  href="https://forms.gle/VXG6pf3wDpAgQ8ev9"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfEGJ8ckJPutlK6uktkSWbEa5e-9jR1KFvrEnyN8nKDewgTCw/viewform?usp=sf_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -416,11 +416,20 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseRegisterMobile}>
                 <a
-                  href="https://forms.gle/cmr8tayiMktd3ybA8"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSe4JfYOw_Y9CGSu926nP_NrwPPgXg5GJxIMA9r1kkXRD4HKag/viewform?usp=sf_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
                   Corporate Team
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegister}>
+                <a
+                  href="https://forms.gle/cmr8tayiMktd3"
+                  target="_blank"
+                  className={`${styles["drop-down-item"]}`}
+                >
+                  Novices
                 </a>
               </MenuItem>
             </Menu>
@@ -488,7 +497,7 @@ const HeaderPage = () => {
 
               <MenuItem onClick={handleCloseMobile}>
                 <a
-                  href="https://drive.google.com/file/d/1yWmGIIIdsH4youcA55p1TC0g2slLXg82/view?usp=share_link"
+                  href="https://drive.google.com/file/d/1ArnLLGwQ3P9kwuXC1heatjdyIksoWGAz/view?usp=drive_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -497,7 +506,7 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseMobile}>
                 <a
-                  href="https://drive.google.com/file/d/1dQXyKhEED3OzXbhq3uDkmhzITjdwAPJ1/view?usp=share_link"
+                  href="https://drive.google.com/file/d/1rib_sQQbHAtGlFZDYSSX5xznibua_u7l/view?usp=drive_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -506,7 +515,7 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseMobile}>
                 <a
-                  href="https://drive.google.com/file/d/1-xE8PS5dzhggxwio9Svl1JWyJB3FmAvk/view?usp=share_link"
+                  href="https://drive.google.com/file/d/15DYc-2P1YfxLgqvAlb24KD7fOwHE2gU3/view?usp=drive_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -515,7 +524,7 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseMobile}>
                 <a
-                  href="https://drive.google.com/file/d/1cgcBiWDr9u6SuuOtzb0DslS9UlNb24fb/view?usp=share_link"
+                  href="https://drive.google.com/file/d/1J_jp_JV92-RdWx3OIWI2dztU512gZvkw/view?usp=drive_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
@@ -524,11 +533,20 @@ const HeaderPage = () => {
               </MenuItem>
               <MenuItem onClick={handleCloseMobile}>
                 <a
-                  href="https://drive.google.com/file/d/1l25KUoUstYLZZ1Kpe6aUN9edPoPaLYh3/view?usp=share_link"
+                  href="https://drive.google.com/file/d/1fmwZLoWzM2R-Vk9OrzukdV4GRtFmAOeu/view?usp=drive_link"
                   target="_blank"
                   className={`${styles["drop-down-item-mobile"]}`}
                 >
                   Corporate Team
+                </a>
+              </MenuItem>
+              <MenuItem onClick={handleCloseRegister}>
+                <a
+                  href="https://drive.google.com/file/d/1Bdv39X_VhrOB_WWgX5QQoeaS3aKig1xD/view?usp=drive_link"
+                  target="_blank"
+                  className={`${styles["drop-down-item"]}`}
+                >
+                  Novices
                 </a>
               </MenuItem>
             </Menu>
