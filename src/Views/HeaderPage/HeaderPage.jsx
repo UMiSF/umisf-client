@@ -551,7 +551,7 @@ const HeaderPage = () => {
               </MenuItem>
             </Menu>
           </React.Fragment>
-          <a href="/draws" className={`${styles["minNavLink"]}`}>
+          <a href="/draw" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Draws and Entries</li>
           </a>
           <a href="/photos" className={`${styles["minNavLink"]}`}>
