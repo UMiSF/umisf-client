@@ -103,7 +103,7 @@ const AboutPage = () => {
               src={require("../../assests/images/2018.jpeg")}
               alt=""
             ></img>
-            <h3>2017</h3>
+            <h3>2018</h3>
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -111,7 +111,7 @@ const AboutPage = () => {
               src={require("../../assests/images/2019.jpeg")}
               alt=""
             ></img>
-            <h3>2018</h3>
+            <h3>2019</h3>
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -119,7 +119,7 @@ const AboutPage = () => {
               src={require("../../assests/images/2020.jpeg")}
               alt=""
             ></img>
-            <h3>2019</h3>
+            <h3>2020</h3>
           </div>
           <div className={`${styles["past-section-col"]}`}>
             <img
@@ -127,7 +127,7 @@ const AboutPage = () => {
               src={require("../../assests/images/2023.jpg")}
               alt=""
             ></img>
-            <h3>2020</h3>
+            <h3>2023</h3>
           </div>
         </div>
       </section>
@@ -158,7 +158,7 @@ const AboutPage = () => {
                 down the days for great tournament filled with lasting
                 experiences.
               </p>
-              <h3>Bhagya Ranasinghe</h3>
+              <h3>Yasira Punsith</h3>
               <h6>Captain</h6>
             </div>
           </div>
@@ -176,7 +176,7 @@ const AboutPage = () => {
                 participate in this tournament and take advantage of this
                 opportunity.
               </p>
-              <h3>Nethmi Jayakody</h3>
+              <h3>Sahani Dissanayake</h3>
               <h6>Captain</h6>
             </div>
           </div>
@@ -196,7 +196,7 @@ const AboutPage = () => {
                 tournament a memorable one that demonstrates the true spirit of
                 badminton!
               </p>
-              <h3>Ruchira Wijayasena</h3>
+              <h3>Hevindu Tilakasena</h3>
               <h6>Vice Captain</h6>
             </div>
           </div>
@@ -213,7 +213,7 @@ const AboutPage = () => {
                 player has an enjoyable experience. So, come prepared to give
                 your best game, meet new people, and have an amazing time!
               </p>
-              <h3>Pamodya Kodithuwakku</h3>
+              <h3>Hiruni Thathsarani</h3>
               <h6>Vice Captain</h6>
             </div>
           </div>

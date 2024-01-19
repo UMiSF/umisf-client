@@ -66,43 +66,43 @@ function ContactUs() {
 
   const [captainMaleDetails, setCaptainMaleDetails] = useState([
     {
-      name: "Bhagya Ranasinghe",
+      name: "Yasira Punsith",
       tag: "Captain",
-      phone: "+94 77 365 2932",
-      email: "ranasinghebhagya28@gmail.com",
-      facebook: "https://www.facebook.com/bhagya.ranasinghe.522",
-      linkedin: "http://www.linkedin.com/in/bhagya-ranasinghe-",
+      phone: "+94 71 369 8543",
+      email: "yasirapunsith@gmail.com",
+      facebook: "https://www.facebook.com/profile.php?id=100006817725111&mibextid=ZbWKwL",
+      linkedin: "www.linkedin.com/in/yasira-punsith-839121266",
       image: "captain-male.jpg",
     },
     {
-      name: "Ruchira Wijayasena",
+      name: "Hevindu Tilakasena",
       tag: "Vice Captain",
-      phone: "+94 71 342 2941",
-      email: "ruchirajayaruwanwijayasena@gmail.com",
-      facebook: "https://www.facebook.com/ruchirajayaruwan.wijayasena?mibextid=LQQJ4d",
-      linkedin: "https://www.linkedin.com/in/ruchira-wijayasena-b76889202",
+      phone: "+94 76 381 3084",
+      email: "hevinduharshana@gmail.com",
+      facebook: "https://www.facebook.com/dkhevindu.htilakasena?mibextid=JRoKGi",
+      linkedin: "https://www.linkedin.com/in/hevindu-tilakasena-8379b8202",
       image: "viceCaptain-male.jpg",
     },
   ]);
 
   const [captainFeMaleDetails, setCaptainFemaleDetails] = useState([
     {
-      name: "Nethmi Jayakody",
+      name: "Sahani Dissanayake",
       tag: "Captain",
-      phone: "+94 70 524 6536",
-      email: "nethmik99@gmail.com",
-      facebook: "https://web.facebook.com/nethmi.jayakody.52",
-      linkedin: "https://www.linkedin.com/in/nethmi-jayakody/",
-      image: "captain-female.jpeg",
+      phone: "+94 76 885 4813",
+      email: "shdissanayake23@gmail.com",
+      facebook: "#",
+      linkedin: "https://www.linkedin.com/in/sahani-dissanayake-202449267?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      image: "captain-female.jpg",
     },
     {
-      name: "Pamodya Kodithuwakku",
+      name: "Hiruni Thathsarani",
       tag: "Vice Captain",
-      phone: "+94 71 276 3221",
-      email: "pamodyakodi@gmail.com",
+      phone: "+94 70 386 7270",
+      email: "#",
       facebook: "#",
       linkedin: "#",
-      image: "viceCaptain-female.jpeg",
+      image: "viceCaptain-female.jpg",
     },
   ]);
 
