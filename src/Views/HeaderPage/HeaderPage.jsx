@@ -551,6 +551,7 @@ const HeaderPage = () => {
               </MenuItem>
             </Menu>
           </React.Fragment>
+          {/* change heref /draws to /draw */}
           <a href="/draw" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Draws and Entries</li>
           </a>
