@@ -44,7 +44,7 @@ const HomePage = () => {
   //   "Young Logo.png",
   // ]);
 
-  const [sponsers, setSponsers] = useState(["SLTMobitel_Logo.svg.png"]);
+  const [sponsers, setSponsers] = useState([]);
 
   const [tShirtBack, setTShirtBack] = useState("tshirt-back.png");
 
