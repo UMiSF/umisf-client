@@ -122,7 +122,7 @@ const DrawsPage = () => {
   const draws = [
     {
       name: "Age Group",
-      pdf: "https://docs.google.com/spreadsheets/d/1kMGP0M6APsgaQL9fDAJZD3bXM5yf1yu6/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "#",
     },
     // {
     //   name: "University Team",
@@ -130,19 +130,19 @@ const DrawsPage = () => {
     // },
     {
       name: "University Individual",
-      pdf: "https://docs.google.com/spreadsheets/d/1ooSVK_41DxuWHSq5RYBN4GF1RkoAqs11/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "#",
     },
     {
       name: "University Staff",
-      pdf: "https://docs.google.com/file/d/1usuxclj4XEE3Yhvk1gIcrWUrFUW-uDJO/edit?usp=docslist_api&filetype=msexcel",
+      pdf: "#",
     },
     {
       name: "Corporate Team",
-      pdf: "https://docs.google.com/spreadsheets/d/185_62v3xlY1ZxefKdSkbJHkMsLZIKD5N/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "#",
     },
     {
       name: "Novices",
-      pdf: "https://docs.google.com/spreadsheets/d/185_62v3xlY1ZxefKdSkbJHkMsLZIKD5N/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "#",
     },
   ];
 
@@ -160,7 +160,7 @@ const DrawsPage = () => {
           <img src={require("../../assests/images/point.png")} />
           {"Kindly refer to the enclosed "}
           <a
-            href="https://docs.google.com/document/d/11vPpB7E51RCKBoEbHDGFydU6os1HeChAtb7QmAMPHIE/edit?usp=sharing"
+            href="#"
             target="_blank"
           >
             Tournament Schedule
