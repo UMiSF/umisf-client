@@ -100,7 +100,7 @@ const DrawsPage = () => {
     {
       name: "University Individual",
       entriess: 32,
-      pdf: "#",
+      pdf: "https://docs.google.com/spreadsheets/d/1ajskluZjY3TTH-KYxI5pSDSWIncoZEizvzby0MbkYk0/edit?usp=sharing",
     },
     {
       name: "University Staff",
@@ -115,7 +115,7 @@ const DrawsPage = () => {
     {
       name: "Novices",
       entriess: 64,
-      pdf: "#",
+      pdf: "https://docs.google.com/spreadsheets/d/1ARfU-V5DV52QVro1kfBpxWC04kdtWAtzyOEUGRKY6g4/edit?usp=sharing",
     },
   ];
 
