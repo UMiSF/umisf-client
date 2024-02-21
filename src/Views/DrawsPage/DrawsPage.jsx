@@ -95,27 +95,27 @@ const DrawsPage = () => {
     {
       name: "Age Group",
       entriess: 32,
-      pdf: "https://docs.google.com/spreadsheets/d/1UTWL3g3RxSwbtb2G0oXpD7NqgvSahaih/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "https://docs.google.com/spreadsheets/d/14ru7ELe31xdZ7sx92n8bOaJ92DW_wcuW9ef2TeGcO0Q/edit?usp=sharing",
     },
     {
       name: "University Individual",
       entriess: 32,
-      pdf: "https://docs.google.com/spreadsheets/d/1qlMPFut_y85KHblYnHYPBp-f8d-ROgak/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "#",
     },
     {
       name: "University Staff",
       entriess: 11,
-      pdf: "https://docs.google.com/spreadsheets/d/1R2Jfc5_PtYDywjYQbZOVheTLa3usRUdD/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "#",
     },
     {
       name: "Team Events",
       entriess: 400,
-      pdf: "https://docs.google.com/spreadsheets/d/1Y0jMQMskWvom3T7NCUKeNiJV2w7gto5k/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "#",
     },
     {
       name: "Novices",
       entriess: 64,
-      pdf: "https://docs.google.com/spreadsheets/d/185_62v3xlY1ZxefKdSkbJHkMsLZIKD5N/edit?usp=sharing&ouid=116609743485047382976&rtpof=true&sd=true",
+      pdf: "#",
     },
   ];
 
@@ -159,10 +159,7 @@ const DrawsPage = () => {
         <div className={`${styles["tournament-schedule"]}`}>
           <img src={require("../../assests/images/point.png")} />
           {"Kindly refer to the enclosed "}
-          <a
-            href="#"
-            target="_blank"
-          >
+          <a href="#" target="_blank">
             Tournament Schedule
           </a>
           {" for your perusal."}
