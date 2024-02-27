@@ -122,7 +122,7 @@ const DrawsPage = () => {
   const draws = [
     {
       name: "Age Group",
-      pdf: "#",
+      pdf: "https://docs.google.com/spreadsheets/d/1TN2peek-HyHEJ7xzB4KBz4IVq-znbxk-72z3M-3G6cE/edit?usp=sharing",
     },
     // {
     //   name: "University Team",
