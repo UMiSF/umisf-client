@@ -142,7 +142,7 @@ const DrawsPage = () => {
     },
     {
       name: "Novices",
-      pdf: "#",
+      pdf: "https://docs.google.com/spreadsheets/d/1viK41x4q4qXVlzm-_TL2wWztEzgZk1NRH4rjB-3lh-k/edit?usp=sharing",
     },
   ];
 
