@@ -95,12 +95,14 @@ const DrawsPage = () => {
     {
       name: "Age Group",
       entriess: 32,
-      pdf: "https://docs.google.com/spreadsheets/d/14ru7ELe31xdZ7sx92n8bOaJ92DW_wcuW9ef2TeGcO0Q/edit?usp=sharing",
+      // pdf: "https://docs.google.com/spreadsheets/d/14ru7ELe31xdZ7sx92n8bOaJ92DW_wcuW9ef2TeGcO0Q/edit?usp=sharing",
+      pdf: "#",
     },
     {
       name: "University Individual",
       entriess: 32,
-      pdf: "https://docs.google.com/spreadsheets/d/1ajskluZjY3TTH-KYxI5pSDSWIncoZEizvzby0MbkYk0/edit?usp=sharing",
+      //pdf: "https://docs.google.com/spreadsheets/d/1ajskluZjY3TTH-KYxI5pSDSWIncoZEizvzby0MbkYk0/edit?usp=sharing",
+      pdf: "#",
     },
     {
       name: "University Staff",
@@ -115,7 +117,8 @@ const DrawsPage = () => {
     {
       name: "Novices",
       entriess: 64,
-      pdf: "https://docs.google.com/spreadsheets/d/1ARfU-V5DV52QVro1kfBpxWC04kdtWAtzyOEUGRKY6g4/edit?usp=sharing",
+      // pdf: "https://docs.google.com/spreadsheets/d/1ARfU-V5DV52QVro1kfBpxWC04kdtWAtzyOEUGRKY6g4/edit?usp=sharing",
+      pdf: "#",
     },
   ];
 
@@ -124,13 +127,13 @@ const DrawsPage = () => {
       name: "Age Group",
       pdf: "https://docs.google.com/spreadsheets/d/1TN2peek-HyHEJ7xzB4KBz4IVq-znbxk-72z3M-3G6cE/edit?usp=sharing",
     },
-    // {
-    //   name: "University Team",
-    //   pdf: "slip.pdf",
-    // },
+    {
+      name: "University Team",
+      pdf: "https://docs.google.com/spreadsheets/d/1hTe4C36RoWTEQGHYeANqTJF37bHryqde8f4OQad3sUM/edit?usp=sharing",
+    },
     {
       name: "University Individual",
-      pdf: "#",
+      pdf: "https://docs.google.com/spreadsheets/d/1oevtF-3IZdDO2Mm8UZmfSZBSs0nuaQrk/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
     },
     {
       name: "University Staff",
