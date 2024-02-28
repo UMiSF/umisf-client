@@ -166,7 +166,10 @@ const DrawsPage = () => {
             Tournament Schedule
           </a>
           {" for your perusal."}
-          <p>Location : ONLY at University Gymnasium</p>
+          <p>
+            Location : New Gymnasium University of Moratuwa - Katubedda &
+            Institute of Technology University of Moratuwa - Homagama
+          </p>
         </div>
         <div className={`${styles["entries-container"]}`}>
           <div className={`${styles["title"]}`}>Entries</div>
