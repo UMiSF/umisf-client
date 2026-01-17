@@ -13,7 +13,7 @@ import RegistrationsNotOpen from "../../../common/registrationsNotOpen/Registrat
 import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import { CircularProgress, Grid } from "@mui/material";
-import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
+import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 
 const UniversityRegistration = () => {
   useEffect(() => {
@@ -228,8 +228,8 @@ const UniversityRegistration = () => {
 
     const form = e.currentTarget;
 
-    const backendOk = await isBackendAvailable();
-    if (!backendOk) {
+    const health = await preflightBackendHealth();
+    if (health === false) {
       setIsLoading(false);
       showBackendDownModal();
       return;

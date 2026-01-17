@@ -10,7 +10,7 @@ import { CheckCircleTwoTone, ExclamationCircleTwoTone, PlusCircleTwoTone, MinusC
 import { Modal } from "antd";
 import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
-import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
+import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 const SingleRegistration = () => {
   useEffect(() => {
     const playerId = localStorage.getItem("playerId");
@@ -161,8 +161,8 @@ const SingleRegistration = () => {
 
     const form = e.currentTarget;
 
-    const backendOk = await isBackendAvailable();
-    if (!backendOk) {
+    const health = await preflightBackendHealth();
+    if (health === false) {
       showBackendDownModal();
       return;
     }

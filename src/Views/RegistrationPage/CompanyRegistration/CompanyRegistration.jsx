@@ -11,7 +11,7 @@ import Dropdown from "../../../common/Dropdown/Dropdown";
 
 import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
-import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
+import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 import { CircularProgress, Grid, Typography } from "@mui/material";
 const CompanyRegistration = () => {
   useEffect(() => {
@@ -218,8 +218,8 @@ const CompanyRegistration = () => {
 
     const form = e.currentTarget;
 
-    const backendOk = await isBackendAvailable();
-    if (!backendOk) {
+    const health = await preflightBackendHealth();
+    if (health === false) {
       showBackendDownModal();
       return;
     }

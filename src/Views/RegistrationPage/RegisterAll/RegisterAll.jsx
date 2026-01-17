@@ -13,7 +13,7 @@ import { CheckCircleTwoTone, ExclamationCircleTwoTone } from "@ant-design/icons"
 import Dropdown from "../../../common/Dropdown/Dropdown";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
-import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
+import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 
 const RegisterAll = () => {
   useEffect(() => {
@@ -380,8 +380,8 @@ const RegisterAll = () => {
 
     const form = e.currentTarget;
 
-    const backendOk = await isBackendAvailable();
-    if (!backendOk) {
+    const health = await preflightBackendHealth();
+    if (health === false) {
       showBackendDownModal();
       return;
     }

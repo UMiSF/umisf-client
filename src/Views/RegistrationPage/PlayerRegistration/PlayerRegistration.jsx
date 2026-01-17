@@ -13,7 +13,7 @@ import SuccessMessage from "../Common/SuccessMessage/SuccessMessage";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
-import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
+import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 
 const PlayerRegistration = () => {
   const navigate = useNavigate()
@@ -115,9 +115,8 @@ const PlayerRegistration = () => {
     console.log("Form submitted: ", player);
 
     const form = e.currentTarget;
-
-    const backendOk = await isBackendAvailable();
-    if (!backendOk) {
+    const health = await preflightBackendHealth();
+    if (health === false) {
       showBackendDownModal();
       return;
     }

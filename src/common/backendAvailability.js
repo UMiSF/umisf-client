@@ -7,8 +7,6 @@ const DEFAULT_GOOGLE_FORM_URL =
 const GOOGLE_FORM_URL =
   process.env.REACT_APP_REG_FALLBACK_GOOGLE_FORM || DEFAULT_GOOGLE_FORM_URL;
 
-const CIRCUIT_BREAKER_KEY = "umisf_backend_down_until";
-
 function isLikelyNetworkError(error) {
   // Axios: when the browser blocks the request (CORS) or network is down,
   // `error.response` is undefined.
@@ -17,27 +15,22 @@ function isLikelyNetworkError(error) {
   return false;
 }
 
-export async function isBackendAvailable({ timeoutMs = 5000 } = {}) {
-  const now = Date.now();
-  const downUntil = Number(localStorage.getItem(CIRCUIT_BREAKER_KEY) || "0");
-  if (downUntil && downUntil > now) return false;
-
+// Non-blocking preflight health check:
+// - `true`: backend explicitly healthy
+// - `false`: backend responded but is unhealthy (or returned non-200)
+// - `null`: unknown (network/CORS error) -> don't block submit; let submit try once
+export async function preflightBackendHealth({ timeoutMs = 4000 } = {}) {
   try {
     const res = await api.get("/health", {
       timeout: timeoutMs,
       validateStatus: () => true,
     });
 
-    if (res?.status === 200 && res?.data?.ok === true) return true;
-
-    // Backend responded but isn't healthy (or behind proxy returning non-200).
-    localStorage.setItem(CIRCUIT_BREAKER_KEY, String(now + 60_000));
-    return false;
+    return Boolean(res?.status === 200 && res?.data?.ok === true);
   } catch (error) {
-    if (isLikelyNetworkError(error)) {
-      localStorage.setItem(CIRCUIT_BREAKER_KEY, String(now + 60_000));
-    }
-    return false;
+    // Unknown: might be temporary network/CORS issue, don't block submit up-front.
+    if (isLikelyNetworkError(error)) return null;
+    return null;
   }
 }
 
@@ -53,4 +46,3 @@ export function showBackendDownModal({ title = "Registration temporarily unavail
     },
   });
 }
-
