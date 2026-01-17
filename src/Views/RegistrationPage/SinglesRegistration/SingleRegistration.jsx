@@ -159,13 +159,14 @@ const SingleRegistration = () => {
     e.preventDefault();
     console.log("Form submitted", single);
 
+    const form = e.currentTarget;
+
     const backendOk = await isBackendAvailable();
     if (!backendOk) {
       showBackendDownModal();
       return;
     }
 
-    const form = e.currentTarget;
     //form validation
     if (form.checkValidity() === false) {
       e.stopPropagation();

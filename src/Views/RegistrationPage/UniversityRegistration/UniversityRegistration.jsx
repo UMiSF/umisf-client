@@ -226,6 +226,8 @@ const UniversityRegistration = () => {
     e.preventDefault();
     setIsLoading(true);
 
+    const form = e.currentTarget;
+
     const backendOk = await isBackendAvailable();
     if (!backendOk) {
       setIsLoading(false);
@@ -234,7 +236,6 @@ const UniversityRegistration = () => {
     }
 
     console.log("Form submitted", university);
-    const form = e.currentTarget;
     const isPlayerArrayValid = isValidPlayerArray(playersArray);
     //form validation
     if (form.checkValidity() === false || !isPlayerArrayValid) {

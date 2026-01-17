@@ -378,13 +378,13 @@ const RegisterAll = () => {
     e.preventDefault();
     console.log("Form submitted");
 
+    const form = e.currentTarget;
+
     const backendOk = await isBackendAvailable();
     if (!backendOk) {
       showBackendDownModal();
       return;
     }
-
-    const form = e.currentTarget;
     const singlePerf = arrangePerformanceArray(singlePastPerformanceArray);
     const doublePerf = arrangePerformanceArray(doublePastPerformanceArray);
     let perfError = false;

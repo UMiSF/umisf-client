@@ -216,6 +216,8 @@ const CompanyRegistration = () => {
     //TODO: add player array
     e.preventDefault();
 
+    const form = e.currentTarget;
+
     const backendOk = await isBackendAvailable();
     if (!backendOk) {
       showBackendDownModal();
@@ -224,7 +226,6 @@ const CompanyRegistration = () => {
     
     console.log("Form submitted", company);
     console.log("players for submitted",playersArray);
-    const form = e.currentTarget;
     const isPlayerArrayValid = isValidPlayerArray(playersArray)
     //form validation
     if (form.checkValidity() === false || !isPlayerArrayValid) {
