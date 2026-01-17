@@ -4,9 +4,10 @@ import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from './adminPlayersPage.module.css';
 import { useState, useEffect } from 'react';
 import { Select, Space, Button, message} from 'antd';
-import Axios, * as others from 'axios';
+import { api } from '../../common/api';
 import { Link } from 'react-router-dom';
 import { Form, Modal, Spinner } from 'react-bootstrap';
+import { getPaymentSlipHref } from '../../common/paymentSlip';
 
 const AdminPlayersPage = () => {
   // new adding page
@@ -41,6 +42,7 @@ const AdminPlayersPage = () => {
     ageGroup: '',
     paymentMethod: '',
     paymentConfirmed: '',
+    paymentSlip: '',
   });
   const [double, setDouble] = useState({
     _id: '',
@@ -50,6 +52,7 @@ const AdminPlayersPage = () => {
     ageGroup: '',
     paymentMethod: '',
     paymentConfirmed: '',
+    paymentSlip: '',
   });
 
   const [showDouble, setShowDouble] = useState(false); //maodal show
@@ -105,14 +108,7 @@ const AdminPlayersPage = () => {
 
       console.log('playerfilter', playerFilter);
       try {
-        const result = await Axios.get(
-          process.env.REACT_APP_API_URL + `/${filter.matchType == 'None' ? 'player' : filter.matchType.toLowerCase()}/getFilteredData`,
-
-          { params: playerFilter },
-          {
-            headers: {},
-          }
-        );
+        const result = await api.get(`/${filter.matchType == 'None' ? 'player' : filter.matchType.toLowerCase()}/getFilteredData`, { params: playerFilter });
         console.log('Result', result);
         setIsSubmitting(false);
         if (result?.data?.data?.length !== 0) {
@@ -142,14 +138,7 @@ const AdminPlayersPage = () => {
       console.log('playerfilter', playerFilter);
       try {
         console.log('in try block');
-        const result = await Axios.get(
-          process.env.REACT_APP_API_URL + `/${matchTypeForEmail == 'None' ? 'player' : matchTypeForEmail.toLowerCase()}/getFilteredData`,
-
-          { params: playerFilter },
-          {
-            headers: {},
-          }
-        );
+        const result = await api.get(`/${matchTypeForEmail == 'None' ? 'player' : matchTypeForEmail.toLowerCase()}/getFilteredData`, { params: playerFilter });
         console.log('Result', result);
         setIsSubmitting(false);
         if (result?.data?.data?.length !== 0) {
@@ -175,6 +164,7 @@ const AdminPlayersPage = () => {
       ageGroup: value.ageGroup,
       paymentMethod: value.paymentMethod,
       paymentConfirmed: value.paymentConfirmed,
+      paymentSlip: value.paymentSlip,
     });
     handleShowSingle();
   };
@@ -188,6 +178,7 @@ const AdminPlayersPage = () => {
       ageGroup: value.ageGroup,
       paymentMethod: value.paymentMethod,
       paymentConfirmed: value.paymentConfirmed,
+      paymentSlip: value.paymentSlip,
     });
     handleShowDouble();
   };
@@ -200,16 +191,13 @@ const AdminPlayersPage = () => {
     } else {
       try {
         console.log(matchTypeForEmail, 'Email');
-        const result = await Axios.put(
-          process.env.REACT_APP_API_URL + `/${matchTypeForEmail.toLowerCase()}/update`,
+        const result = await api.put(
+          `/${matchTypeForEmail.toLowerCase()}/update`,
           {
             field: '_id',
             value: single._id,
             data: { matchType: single.matchType, ageGroup: single.ageGroup, paymentMethod: single.paymentMethod, paymentConfirmed: single.paymentConfirmed },
           },
-          {
-            headers: {},
-          }
         );
         if (result?.data?.data) {
           console.log('Updated Result', result?.data?.data);
@@ -233,16 +221,13 @@ const AdminPlayersPage = () => {
     } else {
       try {
         console.log(matchTypeForEmail, 'Email');
-        const result = await Axios.put(
-          process.env.REACT_APP_API_URL + `/${matchTypeForEmail.toLowerCase()}/update`,
+        const result = await api.put(
+          `/${matchTypeForEmail.toLowerCase()}/update`,
           {
             field: '_id',
             value: double._id,
             data: { matchType: double.matchType, ageGroup: double.ageGroup, paymentMethod: double.paymentMethod, paymentConfirmed: double.paymentConfirmed, playerPartner:double.playerPartner },
           },
-          {
-            headers: {},
-          }
         );
         if (result?.data?.data) {
           console.log('Updated Result', result?.data?.data);
@@ -261,9 +246,7 @@ const AdminPlayersPage = () => {
   const deleteEvent = async(e)=>{
     e.preventDefault();
     try{
-      const result = await Axios.delete(process.env.REACT_APP_API_URL + `/${matchTypeForEmail == 'None' ? 'player': matchTypeForEmail.toLowerCase()}/removeByField/Id/` + deleteId , {
-        headers: {},
-      });
+      const result = await api.delete(`/${matchTypeForEmail == 'None' ? 'player': matchTypeForEmail.toLowerCase()}/removeByField/Id/` + deleteId);
       //setIsSubmitting(false)
       console.log(result);
 
@@ -379,6 +362,20 @@ const AdminPlayersPage = () => {
                       {key + 1 + ') '}
                       {filter.matchType == 'None' ? `${value.firstName}  ${value.lastName} ${value.email} ${value.institute} ` : value.player?.firstName + ' ' + value.player?.lastName} {value.player?.email} {value.player?.institute} {value.paymentMethod}
                     </Link>
+                    {filter.matchType !== 'None' && value.paymentMethod === 'Bank Transfer' && Boolean(value.paymentSlip) && (
+                      <a
+                        href={getPaymentSlipHref(value.paymentSlip) || '#'}
+                        target="_blank"
+                        rel="noreferrer"
+                        download
+                        style={{ marginLeft: '10px', color: 'var(--accent)' }}
+                        onClick={(e) => {
+                          if (!getPaymentSlipHref(value.paymentSlip)) e.preventDefault();
+                        }}
+                      >
+                        View slip
+                      </a>
+                    )}
                   </button>
                 </div>
                 {/* ))} */}
@@ -398,6 +395,20 @@ const AdminPlayersPage = () => {
                     >
                       {matchTypeForEmail == 'None' ? value?.firstName + ' ' + value?.lastName : value?.player?.firstName + ' ' + value?.player?.lastName}
                     </Link>
+                    {matchTypeForEmail !== 'None' && value.paymentMethod === 'Bank Transfer' && Boolean(value.paymentSlip) && (
+                      <a
+                        href={getPaymentSlipHref(value.paymentSlip) || '#'}
+                        target="_blank"
+                        rel="noreferrer"
+                        download
+                        style={{ marginLeft: '10px', color: 'var(--accent)' }}
+                        onClick={(e) => {
+                          if (!getPaymentSlipHref(value.paymentSlip)) e.preventDefault();
+                        }}
+                      >
+                        View slip
+                      </a>
+                    )}
                   </button>
                   <Button onClick={() => editSingle(value)} hidden={matchTypeForEmail == 'Single' ? false : true}>
                     {' '}
