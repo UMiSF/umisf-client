@@ -17,10 +17,10 @@ function Footer() {
         </div>
         <hr />
         <div className={`${styles["footer-middle"]}`}>
-          <div className={`${styles["center-row"]}`}>
+          {/* <div className={`${styles["center-row"]}`}>
             <i class="bx bx-current-location" style={{ color: "#ffffff" }}></i>
             <p>University of Moratuwa, Bandaranayake Mawatha, Moratuwa 10400</p>
-          </div>
+          </div> */}
           <div className={`${styles["center-row"]}`}>
             <i class="bx bx-phone" style={{ color: "#ffffff" }}></i>
             <p> 0112 640 051</p>
@@ -28,8 +28,8 @@ function Footer() {
           <div className={`${styles["center-row"]}`}>
           <i class='bx bx-link-external' style={{color:'#ffffff'}} ></i>
             <p>
-              <a className={`${styles["uom-email"]}`} href="https://uom.lk" target='_blank'>
-                uom.lk
+              <a className={`${styles["uom-email"]}`} href="https://umisf-4778c.web.app/" target='_blank'>
+                UMISF
               </a>
             </p>
           </div>
@@ -39,8 +39,7 @@ function Footer() {
           <h6>About</h6>
           <p>
             UMiSF is the annual badminton tournament organized
-            by the badminton team of the University of Moratuwa,
-             in collaboration with the university's Division of Physical Education. 
+            by Mora Badminton. 
           </p>
           <div className={`${styles["footer-icons"]}`}>
             <a href="https://twitter.com/MoratuwaUni" target='_blank'>
@@ -53,7 +52,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className={`${styles["bottom-row"]}`}>Copyright © 2022 developers@umisf.web</div>
+      <div className={`${styles["bottom-row"]}`}>Copyright © 2026 developers@umisf.web</div>
     </div>
   );
 }

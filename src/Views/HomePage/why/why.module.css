@@ -12,8 +12,8 @@
   width: fit-content;
   text-align: center;
   background: transparent;
-  color: #0984e3;
-  border: 1px solid #0984e3;
+  color: #025373;
+  border: 1px solid #025373;
   cursor: pointer;
   font-size: 1vw;
   position: relative;
@@ -31,7 +31,7 @@
   border-radius: 0 0 50% 50%;
   width: 100%;
   height: 0%;
-  background: #0984e3;
+  background: #025373;
   z-index: -1;
   transition: 0.8s;
 }

@@ -4,9 +4,9 @@ import styles from "./gallery.module.css";
 function Gallery(props) {
   const [gallery,setGallery] = useState(props.gallery);
   return (
-    <div className={`${styles["gallery-container"]}`}>
-      <div className={`${styles["gallery-title"]}`}>
-        OUR <p style={{ display: "inline-block", color: "#0984E3" }}>GALLERY</p>
+      <div className={`${styles["gallery-container"]}`}>
+        <div className={`${styles["gallery-title"]}`}>
+        OUR <p style={{ display: "inline-block", color: "#025373" }}>GALLERY</p>
       </div>
       <div className={`${styles["gallery-box"]}`}>
         <div className={`${styles["gallery-box-row"]}`}>

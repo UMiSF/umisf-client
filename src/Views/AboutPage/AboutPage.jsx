@@ -180,7 +180,7 @@ const AboutPage = () => {
           </div>
           <div className={`${styles["testimanial-col"]}`}>
             <img
-              src={require("../../assests/images/viceCaptain-female.png")}
+              src={require("../../assests/images/viceCaptain-female.jpg")}
               alt=""
             ></img>
             <div className={`${styles["testimanial-col-content"]}`}>
