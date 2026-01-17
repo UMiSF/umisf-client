@@ -13,6 +13,7 @@ import RegistrationsNotOpen from "../../../common/registrationsNotOpen/Registrat
 import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import { CircularProgress, Grid } from "@mui/material";
+import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
 
 const UniversityRegistration = () => {
   useEffect(() => {
@@ -224,6 +225,14 @@ const UniversityRegistration = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
+
+    const backendOk = await isBackendAvailable();
+    if (!backendOk) {
+      setIsLoading(false);
+      showBackendDownModal();
+      return;
+    }
+
     console.log("Form submitted", university);
     const form = e.currentTarget;
     const isPlayerArrayValid = isValidPlayerArray(playersArray);
@@ -278,7 +287,13 @@ const UniversityRegistration = () => {
         })
         .catch((error) => {
           console.log("Error: ", error);
+          if (!error?.response) {
+            showBackendDownModal();
+            setIsLoading(false);
+            return;
+          }
           message.error(error.response.data.message);
+          setIsLoading(false);
         });
       setIsSubmitting(false);
     }

@@ -10,6 +10,7 @@ import { CheckCircleTwoTone, ExclamationCircleTwoTone, PlusCircleTwoTone, MinusC
 import { Modal } from "antd";
 import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
+import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
 const SingleRegistration = () => {
   useEffect(() => {
     const playerId = localStorage.getItem("playerId");
@@ -74,6 +75,10 @@ const SingleRegistration = () => {
             })
             .catch((error) => {
               console.log("Error: ", error);
+              if (!error?.response) {
+                showBackendDownModal();
+                return;
+              }
               message.error(error.response.data.message);
             });
           setIsSubmitting(false);
@@ -150,9 +155,16 @@ const SingleRegistration = () => {
       setPastPerformanceArray(tmpArray);
     }
   };
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log("Form submitted", single);
+
+    const backendOk = await isBackendAvailable();
+    if (!backendOk) {
+      showBackendDownModal();
+      return;
+    }
+
     const form = e.currentTarget;
     //form validation
     if (form.checkValidity() === false) {
@@ -184,6 +196,10 @@ const SingleRegistration = () => {
           const apiMessage =
             error?.response?.data?.message || error?.message || "Error loading player";
           console.log("Error: ", apiMessage);
+          if (!error?.response) {
+            showBackendDownModal();
+            return;
+          }
           showConfirm("Error Loading Player !", false, apiMessage);
         });
     }

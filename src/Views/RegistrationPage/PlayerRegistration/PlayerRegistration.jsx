@@ -14,6 +14,7 @@ import SuccessMessage from "../Common/SuccessMessage/SuccessMessage";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
+import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
 
 const PlayerRegistration = () => {
   const navigate = useNavigate()
@@ -115,6 +116,12 @@ const PlayerRegistration = () => {
     e.preventDefault();
     console.log("Form submitted: ", player);
 
+    const backendOk = await isBackendAvailable();
+    if (!backendOk) {
+      showBackendDownModal();
+      return;
+    }
+
     const form = e.currentTarget;
     //form validation
     if (form.checkValidity() === false) {
@@ -161,6 +168,10 @@ const PlayerRegistration = () => {
         })
         .catch((error) => {
           console.log("Error: ", error);
+          if (!error?.response) {
+            showBackendDownModal();
+            return;
+          }
           const apiMessage =
             error?.response?.data?.message ||
             error?.message ||

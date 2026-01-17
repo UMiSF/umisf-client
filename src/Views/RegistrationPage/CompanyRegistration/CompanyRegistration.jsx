@@ -11,6 +11,7 @@ import Dropdown from "../../../common/Dropdown/Dropdown";
 
 import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
+import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
 import { CircularProgress, Grid, Typography } from "@mui/material";
 const CompanyRegistration = () => {
   useEffect(() => {
@@ -214,6 +215,12 @@ const CompanyRegistration = () => {
   async function handleSubmit(e) {
     //TODO: add player array
     e.preventDefault();
+
+    const backendOk = await isBackendAvailable();
+    if (!backendOk) {
+      showBackendDownModal();
+      return;
+    }
     
     console.log("Form submitted", company);
     console.log("players for submitted",playersArray);
@@ -265,6 +272,11 @@ const CompanyRegistration = () => {
         })
         .catch((error) => {
           console.log("Error: ", error);
+          if (!error?.response) {
+            showBackendDownModal();
+            setIsLoading(false);
+            return;
+          }
           message.error(error.response.data.message);
         });
       setIsSubmitting(false);

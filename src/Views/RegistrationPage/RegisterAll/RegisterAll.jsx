@@ -13,6 +13,7 @@ import { CheckCircleTwoTone, ExclamationCircleTwoTone } from "@ant-design/icons"
 import Dropdown from "../../../common/Dropdown/Dropdown";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
+import { isBackendAvailable, showBackendDownModal } from "../../../common/backendAvailability";
 
 const RegisterAll = () => {
   useEffect(() => {
@@ -132,6 +133,11 @@ const RegisterAll = () => {
               doneSingle = { ...doneSingle, success: true, message: singleRes.data.message };
             } catch (error) {
               console.log("Error: ", error);
+              if (!error?.response) {
+                showBackendDownModal();
+                setIsSubmitting(false);
+                return;
+              }
               doneSingle = { ...doneSingle, message: error.response.data.message };
               //message.error(error.response.data.message);
             }
@@ -151,6 +157,11 @@ const RegisterAll = () => {
               doneDouble = { ...doneDouble, success: true, message: doubleRes.data.message };
             } catch (error) {
               console.log("Error: ", error);
+              if (!error?.response) {
+                showBackendDownModal();
+                setIsSubmitting(false);
+                return;
+              }
               doneDouble = { ...doneDouble, message: error.response.data.message };
               //message.error(error.response.data.message);
             }
@@ -366,6 +377,13 @@ const RegisterAll = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log("Form submitted");
+
+    const backendOk = await isBackendAvailable();
+    if (!backendOk) {
+      showBackendDownModal();
+      return;
+    }
+
     const form = e.currentTarget;
     const singlePerf = arrangePerformanceArray(singlePastPerformanceArray);
     const doublePerf = arrangePerformanceArray(doublePastPerformanceArray);
