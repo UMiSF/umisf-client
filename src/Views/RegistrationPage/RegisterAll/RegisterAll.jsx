@@ -105,7 +105,7 @@ const RegisterAll = () => {
     }
   }, [isSubmitting]);
 
-  const showConfirm = (title, success, content) => {
+  const showConfirm = (title, success, content, submitSingle, submitDouble) => {
     let singleRes = null;
     let doubleRes = null;
     confirm({
@@ -120,7 +120,7 @@ const RegisterAll = () => {
         console.log("OK");
         if (success) {
           setIsSubmitting(true);
-          if (isPlayingSingle) {
+          if (submitSingle) {
             try {
               singleRes = await api.post(
                 "/single/add",
@@ -144,7 +144,7 @@ const RegisterAll = () => {
           } else {
             doneSingle = { ...doneSingle, success: true };
           }
-          if (isPlayingDouble) {
+          if (submitDouble) {
             try {
               doubleRes = await api.post(
                 "/double/add",
@@ -183,12 +183,12 @@ const RegisterAll = () => {
           setIsSubmitting(false);
           let msg = "";
 
-          if (isPlayingSingle) {
+          if (submitSingle) {
             msg += doneSingle.message;
           }
-          if (isPlayingDouble && isPlayingSingle) msg += " & ";
+          if (submitDouble && submitSingle) msg += " & ";
 
-          if (isPlayingDouble) {
+          if (submitDouble) {
             msg += doneDouble.message;
           }
 
@@ -429,16 +429,21 @@ const RegisterAll = () => {
       double.paymentMethod &&
       (double.paymentMethod !== "Bank Transfer" || Boolean(double.paymentSlip));
 
+    const submitSingle = Boolean(singleReady && !perfError);
+    const submitDouble = Boolean(doubleReady && !perfError);
+
     if (!perfError) {
-      if (isPlayingSingle && !singleReady) {
-        message.error("Fill Singles: Player ID, Age Group, Payment Method (and upload slip if Bank Transfer).");
+      if (isPlayingSingle && !submitSingle) {
+        message.warning(
+          "Singles is ON but not complete. Fill Player ID, Age Group, Payment Method (and upload slip if Bank Transfer) or turn Singles off."
+        );
       }
-      if (isPlayingDouble && !doubleReady) {
-        message.error("Fill Doubles: Player ID, Partner ID, Age Group, Payment Method (and upload slip if Bank Transfer).");
+      if (isPlayingDouble && !submitDouble) {
+        message.warning(
+          "Doubles is ON but not complete. Fill Player ID, Partner ID, Age Group, Payment Method (and upload slip if Bank Transfer) or turn Doubles off."
+        );
       }
-      if ((isPlayingSingle && !singleReady) || (isPlayingDouble && !doubleReady)) {
-        return;
-      }
+      if (!submitSingle && !submitDouble) return;
     }
 
     if (isPlayingSingle && single.paymentMethod === "Bank Transfer" && !single.paymentSlip) {
@@ -452,10 +457,7 @@ const RegisterAll = () => {
       return;
     }
 
-    if (
-      singleReady &&
-      !perfError
-    ) {
+    if (submitSingle) {
       try {
         const res = await api.get(
           "/player/getByObjectId",
@@ -468,7 +470,7 @@ const RegisterAll = () => {
         console.log("Result from get player by id", res.data.data);
         // showConfirm("Confirm your data !", true, res.data.toString());
         doneSingle = { ...doneSingle, valid: true, data: res.data.data[0] };
-        !isPlayingDouble && check();
+        !submitDouble && check(submitSingle, submitDouble);
         console.log("SUPUN");
       } catch (error) {
         const apiMessage =
@@ -476,14 +478,11 @@ const RegisterAll = () => {
         console.log("Error: ", apiMessage);
         //showConfirm("Error Loading Player !", false, error.response.data.message);
         doneSingle = { ...doneSingle, data: apiMessage };
-        !isPlayingDouble && check();
+        !submitDouble && check(submitSingle, submitDouble);
       }
     }
 
-    if (
-      doubleReady &&
-      !perfError
-    ) {
+    if (submitDouble) {
       api
         .get(
           "/player/getByObjectId",
@@ -504,12 +503,12 @@ const RegisterAll = () => {
               dataP: res.data.data[1]._id === double.player ? res.data.data[0] : res.data.data[1],
             };
             console.log("Below");
-            check();
+            check(submitSingle, submitDouble);
           } else if (res.data.data.length == 1) {
             console.log("Here");
             doneDouble = createDoneDouble(double.player, res.data.data[0], doneDouble);
 
-            check();
+            check(submitSingle, submitDouble);
           } else {
             console.log(res.data);
             alert("Something went wrong !!");
@@ -528,7 +527,7 @@ const RegisterAll = () => {
             data: apiMessage,
             dataP: apiMessage,
           };
-          check();
+          check(submitSingle, submitDouble);
         });
     }
   }
@@ -546,9 +545,9 @@ const RegisterAll = () => {
     return { ...doneDouble, valid: false, validP: true, data: "Invalid ID included", dataP: data };
   };
 
-  const check = () => {
+  const check = (submitSingle, submitDouble) => {
     let message = "";
-    if (isPlayingSingle && isPlayingDouble) {
+    if (submitSingle && submitDouble) {
       console.log("single double");
       doneDouble.valid && doneDouble.validP
         ? (message =
@@ -566,7 +565,7 @@ const RegisterAll = () => {
         : doneDouble.valid && !doneDouble.validP
         ? (message = doneDouble.dataP)
         : (message = doneDouble.data);
-    } else if (isPlayingSingle && !isPlayingDouble) {
+    } else if (submitSingle && !submitDouble) {
       console.log("single");
       // console.log("doneSingle", doneSingle.data);
       doneSingle.valid
@@ -579,7 +578,7 @@ const RegisterAll = () => {
             "Gender: " +
             doneSingle.data.gender)
         : (message = doneSingle.data);
-    } else if (!isPlayingSingle && isPlayingDouble) {
+    } else if (!submitSingle && submitDouble) {
       console.log("double");
       doneDouble.valid && doneDouble.validP
         ? (message =
@@ -601,12 +600,12 @@ const RegisterAll = () => {
     console.log("Message : ", message);
     console.log(doneSingle.valid, doneDouble.valid, doneDouble.validP);
     if (
-      (isPlayingDouble && (doneDouble.valid == false || doneDouble.validP == false)) ||
-      (isPlayingSingle && doneSingle.valid == false)
+      (submitDouble && (doneDouble.valid == false || doneDouble.validP == false)) ||
+      (submitSingle && doneSingle.valid == false)
     ) {
-      showConfirm("Error Loading Player !", false, message);
+      showConfirm("Error Loading Player !", false, message, submitSingle, submitDouble);
     } else {
-      showConfirm("Confirm your data !", true, message);
+      showConfirm("Confirm your data !", true, message, submitSingle, submitDouble);
     }
   };
 
