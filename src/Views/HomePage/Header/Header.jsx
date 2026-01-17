@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./header.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
+import { Link } from "react-router-dom";
 import image from "../../../assests/images/gallery/1.jpg"
 import image2 from "../../../assests/images/gallery/6.jpg"
 
@@ -110,19 +111,19 @@ const HomePage = () => {
         </div>
           <div style={merchandiseContainerStyle}>
           <div style={merchandiseTextStyle}>UMiSF 2025 official merchandise</div>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIU264eXTtGNRB1oJIxO9q-7ayQbPTZUbcuR1HUPCCwSBBcA/viewform" style={buttonURl} target="blank">
-          <button 
-            style={buttonStyles}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          
-            aria-label="Shop UMiSF 2025 merchandise"
-          >
-            
-            BUY NOW 
-          </button>
-          </a>
-        </div>
+	          <Link to="/register/player" style={buttonURl}>
+	          <button 
+	            style={buttonStyles}
+	            onMouseEnter={() => setIsHovered(true)}
+	            onMouseLeave={() => setIsHovered(false)}
+	          
+	            aria-label="Register for UMiSF"
+	          >
+	            
+	            REGISTER
+	          </button>
+	          </Link>
+	        </div>
       
       </div>
     </div>
