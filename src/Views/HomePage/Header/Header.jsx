@@ -110,7 +110,7 @@ const HomePage = () => {
           </p>
         </div>
           <div style={merchandiseContainerStyle}>
-          <div style={merchandiseTextStyle}>UMiSF 2025 official merchandise</div>
+          <div style={merchandiseTextStyle}>Register for UMiSF 2026</div>
 	          <Link to="/register/player" style={buttonURl}>
 	          <button 
 	            style={buttonStyles}
