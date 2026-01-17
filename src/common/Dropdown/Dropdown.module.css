@@ -1,6 +1,7 @@
 .selectContainer {
   color: white;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .lableselected {
@@ -39,6 +40,7 @@
 
 .optionsContainer {
   position: absolute;
+  left: 0;
   width: 93%;
   margin-top: 5px;
   max-height: 200px;
@@ -213,4 +215,3 @@
     font-size: 2.5vw;
   }
 }
-

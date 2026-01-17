@@ -9,7 +9,6 @@ import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import { api } from "../../../common/api";
 import { message } from "antd";
-import Dropdown from "../../../common/Dropdown/Dropdown";
 import SuccessMessage from "../Common/SuccessMessage/SuccessMessage";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import { useNavigate } from "react-router-dom";
@@ -39,7 +38,6 @@ const PlayerRegistration = () => {
   const [playerID, setPlayerID] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const genderOptions = ["Male", "Female"];
-  const [gender, setGender] = useState("");
   const [imageName,setImageName] = useState();
 
   const registrationOptions = useMemo(
@@ -129,7 +127,12 @@ const PlayerRegistration = () => {
     }
     setValidated(true);
 
-    if (!Object.values(player).includes("")) {
+    if (Object.values(player).includes("")) {
+      message.error("Please fill all required fields (including Gender).");
+      return;
+    }
+
+    {
       setIsSubmitting(true);
       const formData = new FormData();
 
@@ -230,15 +233,18 @@ const PlayerRegistration = () => {
                         <ImageUploader setImage={setImage} fileList={fileList} setFileList={setFileList} setImageName={setImageName} />
                       </MDBCol>
                       <MDBCol className="" lg="6" md="6" sm="12">
-                        <Dropdown
-                          options={genderOptions}
-                          handleClick={(option) => {
-                            setGender(option);
-                            changeGender(option);
-                          }}
-                          value={gender}
-                          lable={"Gender"}
-                        />
+                        <div style={{ marginBottom: "20px" }}>
+                          <div style={{ color: "white", fontFamily: "Hind", marginBottom: "6px" }}>
+                            Gender
+                          </div>
+                          <Select
+                            style={{ width: "100%" }}
+                            placeholder="Select Gender"
+                            value={player.gender || undefined}
+                            options={genderOptions.map((g) => ({ label: g, value: g }))}
+                            onChange={changeGender}
+                          />
+                        </div>
                       </MDBCol>
                     </div>
                     <div className="row mb-2">
