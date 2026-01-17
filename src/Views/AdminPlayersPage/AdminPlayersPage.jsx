@@ -29,7 +29,6 @@ const AdminPlayersPage = () => {
   const matchTypesForEmail = ['None', 'Single', 'Double'];
   const ageGroups = ['All', 'Under 9', 'Under 11', 'Under 13', 'Under 15', 'Under 17', 'Under 19', 'University', 'Company'];
   const gender = ['All', 'Girls', 'Boys', 'Men', 'Women'];
-  const year = new Date().getFullYear();
   const [deleteId, setDeleteId] = useState('')
 
   const [showSingle, setShowSingle] = useState(false); //maodal show
@@ -101,7 +100,7 @@ const AdminPlayersPage = () => {
     } else {
       setIsSubmitting(true);
       console.log('Valid filter');
-      let playerFilter = { year: year };
+      let playerFilter = {};
 
       filter.ageGroup !== 'All' && (playerFilter = { ...playerFilter, ageGroup: filter.ageGroup });
       filter.gender !== 'All' && (playerFilter = { ...playerFilter, matchType: filter.gender });
@@ -133,7 +132,7 @@ const AdminPlayersPage = () => {
     } else {
       setIsSubmitting(true);
       console.log('Valid filter');
-      let playerFilter = email.includes('@') ? { email: email, year: year } : { _id: email, year: year };
+      let playerFilter = email.includes('@') ? { email: email } : { _id: email };
 
       console.log('playerfilter', playerFilter);
       try {
