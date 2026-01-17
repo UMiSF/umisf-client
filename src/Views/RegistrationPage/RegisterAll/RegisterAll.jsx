@@ -399,6 +399,7 @@ const RegisterAll = () => {
       isPlayingDouble &&
         double.player === double.playerPartner &&
         message.error("Player and the Partner have the same ID !! ");
+      return;
     }
     if (singlePerf.includes("~error~") || doublePerf.includes("~error~")) {
       perfError = true;
@@ -427,6 +428,18 @@ const RegisterAll = () => {
       double.ageGroup !== "Select Age Group" &&
       double.paymentMethod &&
       (double.paymentMethod !== "Bank Transfer" || Boolean(double.paymentSlip));
+
+    if (!perfError) {
+      if (isPlayingSingle && !singleReady) {
+        message.error("Fill Singles: Player ID, Age Group, Payment Method (and upload slip if Bank Transfer).");
+      }
+      if (isPlayingDouble && !doubleReady) {
+        message.error("Fill Doubles: Player ID, Partner ID, Age Group, Payment Method (and upload slip if Bank Transfer).");
+      }
+      if ((isPlayingSingle && !singleReady) || (isPlayingDouble && !doubleReady)) {
+        return;
+      }
+    }
 
     if (isPlayingSingle && single.paymentMethod === "Bank Transfer" && !single.paymentSlip) {
       message.error("Please upload your payment slip PDF.");
