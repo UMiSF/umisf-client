@@ -104,7 +104,7 @@ const Header = () => {
         </div>
           <div style={merchandiseContainerStyle}>
           <div style={merchandiseTextStyle}>Register for UMiSF 2026</div>
-	          <Link to="/register/player" style={buttonURl}>
+	          <Link to="https://umisf-4778c.web.app/register/player" style={buttonURl}>
 	          <button 
 	            style={buttonStyles}
 	            onMouseEnter={() => setIsHovered(true)}
