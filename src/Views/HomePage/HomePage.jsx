@@ -9,28 +9,28 @@ import Gallery from "./Gallery/gallery";
 import Flyer from "./Flyer/flyer";
 
 const HomePage = () => {
-  const [starttingDate, setStartingDate] = useState("2023-05-21T08:00:00.000");
-  const [finishingDate, setFinishingDate] = useState("2023-05-28T00:00:00.000");
+  const [starttingDate, setStartingDate] = useState("2026-02-26T08:00:00.000");
+  const [finishingDate, setFinishingDate] = useState("2026-03-02T23:59:59.000");
 
   const [showContent, setShowContent] = useState(false);
 
-  const [venue, setVenue] = useState(["University gymnasium"]);
+  const [venue, setVenue] = useState(["MBA Badminton Courts, Colombo"]);
   const [registrationsDeadlines, setRegistrationsDealines] = useState([
-    "2024-01-19",
-    "2024-02-15",
+    "2026-02-14",
+    "2026-02-19",
   ]);
-  const [teamPhoto, setTeamPhoto] = useState("team-image-new.jpeg");
+  const [teamPhoto, setTeamPhoto] = useState("Team2025.jpg");
 
   const [gallery, setGallery] = useState([
-    "1.jpg",
-    "2.jpg",
-    "3.jpg",
-    "4.jpg",
-    "5.jpg",
-    "6.jpg",
-    "7.jpg",
-    "8.jpg",
-    "9.jpg",
+    "10.jpg",
+    "11.jpg",
+    "12.jpg",
+    "13.jpg",
+    "14.jpg",
+    "15.jpg",
+    "16.jpg",
+    "17.jpg",
+    "18.jpg",
   ]);
 
   const [sponsers, setSponsers] = useState([

@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
 import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 
+const TOURNAMENT_GUIDELINES_URL =
+  "https://drive.google.com/file/d/1hkU7h9Z3FlYU3ENO8SRNjUt3ufXkp2sG/view?usp=drive_link";
+
 const PlayerRegistration = () => {
   const navigate = useNavigate()
   const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
@@ -43,14 +46,24 @@ const PlayerRegistration = () => {
   const registrationOptions = useMemo(
     () => [
       { label: "Player Registration", value: "/register/player" },
-      { label: "Single / Double Registration", value: "/register/single-double" },
+      {
+        label: "Age Group Championship - UMiSF 2026",
+        value: "https://forms.gle/rqwRDvPasvF7YE9D6",
+      },
       { label: "University Registration", value: "/register/university" },
-      { label: "Company Registration", value: "/register/company" },
+      {
+        label: "University Individual Registration",
+        value: "https://forms.gle/MEvpUiKo9JFJv8dJ7",
+      },
     ],
     []
   );
 
   const handleRegistrationCategoryChange = (path) => {
+    if (String(path).startsWith("http")) {
+      window.open(path, "_blank", "noreferrer");
+      return;
+    }
     if (path !== "/register/player") {
       const playerId = localStorage.getItem("playerId");
       if (!playerId) {
@@ -202,8 +215,10 @@ const PlayerRegistration = () => {
                 />
               </div>
               <div className={`${Styles["tournament-guidlines"]}`}>
-                <a href="#">Tournament and Registration guildlines</a>
-                <img src={require("../../../assests/images/tap.gif")} />
+                <a href={TOURNAMENT_GUIDELINES_URL} target="_blank" rel="noopener noreferrer">
+                  Tournament and registration guidelines
+                </a>
+                <img src={require("../../../assests/images/tap.gif")} alt="" />
               </div>
               <div className={`${Styles["info-container"]}`}>
                 <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />

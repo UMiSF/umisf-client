@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./gallery.module.css";
+import { Link } from "react-router-dom";
 
 function Gallery(props) {
-  const [gallery,setGallery] = useState(props.gallery);
+  const gallery = props.gallery ?? [];
   return (
       <div className={`${styles["gallery-container"]}`}>
         <div className={`${styles["gallery-title"]}`}>
@@ -11,32 +12,44 @@ function Gallery(props) {
       <div className={`${styles["gallery-box"]}`}>
         <div className={`${styles["gallery-box-row"]}`}>
           {gallery.slice(0, 3).map((image, index) => (
-            <figure className='bg-image hover-zoom'>
-              <img src={require(`../../../assests/images/gallery/${image}`)} key={index} />
+            <figure key={`${image}-${index}`} className='bg-image hover-zoom'>
+              <img
+                src={require(`../../../assests/images/gallery/${image}`)}
+                alt="UMiSF gallery"
+                loading="lazy"
+              />
             </figure>
           ))}
         </div>
 
         <div className={`${styles["gallery-box-row"]}`}>
           {gallery.slice(3, 6).map((image, index) => (
-            <figure className='bg-image hover-zoom'>
-              <img src={require(`../../../assests/images/gallery/${image}`)} />
+            <figure key={`${image}-${index + 3}`} className='bg-image hover-zoom'>
+              <img
+                src={require(`../../../assests/images/gallery/${image}`)}
+                alt="UMiSF gallery"
+                loading="lazy"
+              />
             </figure>
           ))}
         </div>
 
         <div className={`${styles["gallery-box-row"]}`}>
           {gallery.slice(6, 9).map((image, index) => (
-            <figure className='bg-image hover-zoom'>
-              <img src={require(`../../../assests/images/gallery/${image}`)} />
+            <figure key={`${image}-${index + 6}`} className='bg-image hover-zoom'>
+              <img
+                src={require(`../../../assests/images/gallery/${image}`)}
+                alt="UMiSF gallery"
+                loading="lazy"
+              />
             </figure>
           ))}
         </div>
       </div>
       <div className={`${styles["gallery-view-more"]}`}>
-        <a href="#" type="button" target='_blank'>
+        <Link to="/photos" type="button">
           View More
-        </a>
+        </Link>
       </div>
     </div>
   );

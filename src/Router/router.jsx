@@ -7,7 +7,6 @@ import AboutPage from "../Views/AboutPage/AboutPage";
 import ContactUsPage from "../Views/ContactUsPage/ContactUs";
 // import SingleRegistration from "../Views/RegistrationPage/SinglesRegistration/SingleRegistration";
 // import DoubleRegistration from "../Views/RegistrationPage/DoublesRegistration/DoubleRegistration";
-import CompanyRegistration from "../Views/RegistrationPage/CompanyRegistration/CompanyRegistration";
 import UniversityRegistration from "../Views/RegistrationPage/UniversityRegistration/UniversityRegistration";
 import PlayerRegistration from "../Views/RegistrationPage/PlayerRegistration/PlayerRegistration";
 import SuccessMessage from "../Views/RegistrationPage/Common/SuccessMessage/SuccessMessage";
@@ -25,9 +24,9 @@ import DrawEditPage from "../Views/DrawEditPage/DrawEditPage";
 
 import FinishedMatchCard from "../Views/MatchResultsPage/FinishedMatchCard";
 import PhotosPage from "../Views/PhotosPage/PhotosPage";
-import RegisterAll from "../Views/RegistrationPage/RegisterAll/RegisterAll";
 import DevelopersPage from "../Views/DevelopersPage/DevelopersPage";
 import LoginPage from "../Views/LoginPage/LoginPage";
+import ExternalRedirect from "../common/ExternalRedirect";
 
 import AdminHomePage from "../Views/AdminHomePage/AdminHomePage";
 import AdminGalleryPage from "../Views/AdminGalleryPage/AdminGalleryPage";
@@ -63,6 +62,8 @@ import Timeline from '../Views/TimelinePage/timeline';
 
 export default function AppRouter() {
   let type = localStorage.getItem('role'); //todo: this should change according to the user
+  const ageGroupChampionshipFormUrl =
+    "https://forms.gle/rqwRDvPasvF7YE9D6";
   return (
     <BrowserRouter>
       <>
@@ -74,9 +75,16 @@ export default function AppRouter() {
           <Route path="register">
             <Route path="player" element={<PlayerRegistration />} />
             <Route path="player/:id" element={<SuccessMessage />} />
-            <Route path="single-double" element={<RegisterAll/>} />
+            <Route
+              path="single-double"
+              element={
+                <ExternalRedirect
+                  href={ageGroupChampionshipFormUrl}
+                  title="Redirecting to Age Group Championship Registration…"
+                />
+              }
+            />
             <Route path="university" element={<UniversityRegistration />} />
-            <Route path="company" element={<CompanyRegistration />} />
           </Route>
           <Route path="draws" element={<DrawsPage />} />
 

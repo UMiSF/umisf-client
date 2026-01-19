@@ -1,448 +1,439 @@
-import React, { useRef, useState, useEffect } from "react";
-import HeaderPage from "../../HeaderPage/HeaderPage";
-import info from "../../../assests/images/info.gif";
-import { Form } from "react-bootstrap";
-import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
-import { Button, Divider, Space, Tour } from "antd";
-import TableRow from "../Common/AddTablePlayer/TableRow";
-import Styles from "./UniversityRegistration.module.css";
-import { api } from "../../../common/api";
-import { PlusCircleTwoTone, MinusCircleTwoTone } from "@ant-design/icons";
-import Dropdown from "../../../common/Dropdown/Dropdown";
-import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
+import React, { useMemo, useState } from "react";
 import { message } from "antd";
+import HeaderPage from "../../HeaderPage/HeaderPage";
+import Footer from "../../HomePage/Footer/footer";
+import styles from "./UniversityRegistration.module.css";
+import { api, API_BASE_URL } from "../../../common/api";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
-import { CircularProgress, Grid } from "@mui/material";
-import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
+import RegistrationClosed from "./RegistrationClosed";
+import {
+  preflightBackendHealth,
+  showBackendDownModal,
+} from "../../../common/backendAvailability";
 
-const UniversityRegistration = () => {
-  useEffect(() => {
-    const playerId = localStorage.getItem("playerId");
-    if (!playerId) {
-      message.warning(
-        "Please register as a player first. Use your Player ID for single/double registrations."
-      );
-    }
-  }, []);
+const TOURNAMENT_GUIDELINES_URL =
+  "https://drive.google.com/file/d/1hkU7h9Z3FlYU3ENO8SRNjUt3ufXkp2sG/view?usp=drive_link";
 
-  const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
-  const [validated, setValidated] = useState(false); //form validation
-  const [university, setUniversity] = useState({
+const UNIVERSITY_OPTIONS = [
+  "University of Moratuwa",
+  "University of Colombo",
+  "University of Kelaniya",
+  "University of Sri Jayewardenepura",
+  "University of Ruhuna",
+  "University of Jaffna",
+  "University of Vavuniya",
+  "University of the Visual & Performing Arts",
+  "Eastern University of Sri Lanka",
+  "Rajarata University of Sri Lanka",
+  "Sabaragamuwa University of Sri Lanka",
+  "Uva Wellassa University",
+  "Wayamba University of Sri Lanka",
+  "South Eastern University of Sri Lanka",
+  "Gampaha Wickramarachchi University of Indigenous Medicine",
+];
+
+const CATEGORY_OPTIONS = [
+  { label: "Men’s Team Championship", matchType: "Male" },
+  { label: "Women’s Team Championship", matchType: "Female" },
+];
+
+const TEAM_OPTIONS = ["Team A", "Team B"];
+
+function splitName(fullName) {
+  const parts = String(fullName || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (parts.length === 0) return { firstName: "", lastName: "" };
+  if (parts.length === 1) return { firstName: parts[0], lastName: parts[0] };
+  return {
+    firstName: parts.slice(0, -1).join(" "),
+    lastName: parts[parts.length - 1],
+  };
+}
+
+const emptyMember = { name: "", contactNumber: "", nicNumber: "", registrationNumber: "" };
+
+export default function UniversityRegistration() {
+  const isUniversityRegistrationOpen =
+    String(process.env.REACT_APP_UNI_REG_OPEN || "true").toLowerCase() !==
+    "false";
+
+  const eventYear = useMemo(() => String(new Date().getFullYear()), []);
+
+  const [universityName, setUniversityName] = useState("");
+  const [category, setCategory] = useState("");
+  const [teamName, setTeamName] = useState("");
+
+  const [teamEmail, setTeamEmail] = useState("");
+  const [teamContactNumber, setTeamContactNumber] = useState("");
+
+  const paymentMethod = "Bank Transfer";
+  const [paymentSlip, setPaymentSlip] = useState(null);
+  const [paymentSlipFiles, setPaymentSlipFiles] = useState([]);
+
+  const [agreed, setAgreed] = useState(false);
+  const [error, setError] = useState("");
+
+  const [members, setMembers] = useState([]);
+  const [current, setCurrent] = useState(emptyMember);
+  const [editIndex, setEditIndex] = useState(null);
+
+  const [fieldErrors, setFieldErrors] = useState({
     name: "",
-    matchType: "",
-    email: "",
     contactNumber: "",
-    paymentMethod: "",
-    paymentSlip: "",
-    year: "2023",
+    nicNumber: "",
+    registrationNumber: "",
   });
 
-  const [isBankTransfer, setIsBankTransfer] = useState(false);
-  const [playersArray, setPlayersArray] = useState([
-    { firstName: "", lastName: "", photo: "" },
-    { firstName: "", lastName: "", photo: "" },
-    { firstName: "", lastName: "", photo: "" },
-  ]);
-  const [count, setCount] = useState(3);
-  const [exceeded, setExceeded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const genderOptions = ["Male", "Female"];
-  const [gender, setGender] = useState("");
-  const paymentOptions = ["On-site", "Bank Transfer"];
-  const [payment, setPayment] = useState("");
-  const [fileList,setFileList] = useState([[],[],[]]);
-  const [imageList, setImageList] = useState([null,null,null]);
-  const [fileNameList, setFileNameList] = useState([null,null,null]);
 
-  const [slipImage,setSlipImage] = useState(null);
-  const [slipFile,setSlipFile] = useState([]);
-  const [,setSlipName] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const isMemberLimitReached = members.length >= 8;
 
-  useEffect(() => {
-    if (isSubmitting) {
-      // show loading message
-      message.loading("Submitting form...");
+  const addOrUpdateMember = () => {
+    const errors = { name: "", contactNumber: "", nicNumber: "", registrationNumber: "" };
+
+    if (!current.name) errors.name = "Full name is required.";
+    if (!current.contactNumber) errors.contactNumber = "Contact number is required.";
+    if (!current.nicNumber) errors.nicNumber = "NIC number is required.";
+    if (!current.registrationNumber) errors.registrationNumber = "Registration number is required.";
+
+    setFieldErrors(errors);
+    if (errors.name || errors.contactNumber || errors.nicNumber || errors.registrationNumber) return;
+
+    if (editIndex !== null) {
+      const updated = [...members];
+      updated[editIndex] = current;
+      setMembers(updated);
+      setEditIndex(null);
+    } else {
+      if (isMemberLimitReached) return;
+      setMembers([...members, current]);
     }
-  }, [isSubmitting]);
 
-  const handleChange = (e) => {
-    console.log("Past performance array: ", playersArray);
-    const name = e.target.name;
-    const value = e.target.value;
-    if (name === "name") {
-      setUniversity((prevValue) => {
-        return { ...prevValue, name: value };
-      });
-    } else if (name === "email") {
-      setUniversity((prevValue) => {
-        return { ...prevValue, email: value };
-      });
-    } else if (name === "contactNumber") {
-      setUniversity((prevValue) => {
-        return { ...prevValue, contactNumber: value };
-      });
-    } else if (name === "paymentMethod") {
-      setUniversity((prevValue) => {
-        return { ...prevValue, paymentMethod: value };
-      });
-      console.log("isBankTransfer: ", value === "On-Site");
-      value === "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
-    } else if (name === "paymentSlip") {
-      setUniversity((prevValue) => {
-        return { ...prevValue, paymentSlip: value };
-      });
+    setCurrent(emptyMember);
+    setFieldErrors({ name: "", contactNumber: "", nicNumber: "", registrationNumber: "" });
+  };
+
+  const editMember = (index) => {
+    setCurrent(members[index]);
+    setEditIndex(index);
+  };
+
+  const deleteMember = (index) => {
+    setMembers(members.filter((_, i) => i !== index));
+    if (editIndex === index) {
+      setEditIndex(null);
+      setCurrent(emptyMember);
     }
   };
 
-  const changePlayerArray = (option, id) => {
-    const name = id;
-    const value = option;
-    const field = name.split("-")[0];
-    const position = parseInt(name.split("-")[1]);
-    const newArray = [...playersArray];
+  const handleRegisterTeam = async () => {
+    setError("");
 
-    switch (field) {
-      case "name":
-        //incase of one part of the name
-        const fullName = value.trim().split(" ")
-        fullName.length == 1 && fullName.push(fullName[0])
-        const length = fullName.length
-
-        newArray[position] = {
-          firstName: length == 2 ? fullName[0]: fullName.slice(0,length - 1).join(" "),
-          lastName: fullName[length - 1],
-          photo: newArray[position].photo
-        };
-        break;
-      case "id":
-        newArray[position] = {
-          firstName: newArray[position].firstName,
-          lastName: newArray[position].lastName,
-          photo: newArray[position].photo
-        };
-        break;
-      case "photo":
-        newArray[position] = {
-          firstName: newArray[position].firstName,
-          lastName: newArray[position].lastName,
-          photo: value
-        };
-        break;
-      default:
-        console.log(field);
+    if (!universityName || !category || !teamName) {
+      setError("Please select University, Category, and Team Name.");
+      return;
     }
-    setPlayersArray(newArray);
-  };
 
-  const changeGender = (value) => {
-    setUniversity((prevValue) => {
-      return { ...prevValue, matchType: value };
-    });
-  };
-
-  const changePaymentMethod = (value) => {
-    setUniversity((prevValue) => {
-      return { ...prevValue, paymentMethod: value };
-    });
-    console.log("isBankTransfer: ", value === "On-Site");
-    value === "Bank Transfer" ? setIsBankTransfer(true) : setIsBankTransfer(false);
-  };
-
-  const updatePlayerCommonData = () => {
-    const tempArray = [];
-    for (const player of playersArray) {
-      let tempObj = {
-        email: university.email,
-        institute: university.name,
-        contactNumber: university.contactNumber,
-        gender: university.matchType,
-        ...player,
-      };
-      tempArray.push(tempObj);
+    if (!teamEmail || !teamContactNumber) {
+      setError("Please provide Team Email and Contact Number.");
+      return;
     }
-    return tempArray;
-  };
 
-  const AddAnotherRow = (e) => {
-    e.preventDefault();
-    setCount(count + 1);
-    setPlayersArray((prevValue) => {
-      return [
-        ...playersArray,
-        {
-          Firstname: "",
-          lastName: "",
-          photo: "",
-          email: university.email,
-          contactNumber: university.contactNumber,
-          institute: university.name,
-          gender: university.matchType,
-        },
-      ];
-    });
-    setFileList((prevValue) => {
-      return [...fileList, []];
-    });
-    setImageList((prevValue) => {
-      return [...imageList, null];
-    });
-
-    setFileNameList((prevValue) => {
-      return [...fileNameList, null];
-    });
-    count === 7 && setExceeded(true);
-  };
-
-  const RemoveanotherRow = (e) => {
-    e.preventDefault();
-    setCount(count - 1);
-    if (playersArray.length > 3) {
-      const tmpArray = playersArray.slice(0, playersArray.length - 1);
-      setPlayersArray(tmpArray);
-      const tmpfileList = fileList.slice(0, fileList.length - 1);
-      setFileList(tmpfileList);
-
-      const tmpimageList = imageList.slice(0, imageList.length - 1);
-      setImageList(tmpimageList);
-
-      const tmpfileNameList = fileNameList.slice(0, fileNameList.length - 1);
-      setFileNameList(tmpfileNameList);
-      count < 8 && exceeded && setExceeded(false);
+    if (members.length < 5) {
+      setError("You must add at least 5 members to register the team.");
+      return;
     }
-  };
 
-  const isValidPlayerArray = (players) => {
-    if (players.length < 5) {
-      return false;
+    if (!paymentSlip) {
+      setError("Please upload the payment slip as a PDF.");
+      return;
     }
-    for (const player of players) {
-      if (Object.values(player).includes("")) return false;
+
+    if (!agreed) {
+      setError("You must agree to the tournament guidelines to register.");
+      return;
     }
-    return true;
-  };
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setIsLoading(true);
-
-    const form = e.currentTarget;
 
     const health = await preflightBackendHealth();
     if (health === false) {
-      setIsLoading(false);
       showBackendDownModal();
       return;
     }
 
-    console.log("Form submitted", university);
-    const isPlayerArrayValid = isValidPlayerArray(playersArray);
-    //form validation
-    if (form.checkValidity() === false || !isPlayerArrayValid) {
-      e.stopPropagation();
-      !isPlayerArrayValid && message.error("Please fill players' details correctly !");
-    }
-    setValidated(true);
-    if (
-      ((Object.values(university).includes("") &&
-        university.paymentMethod === "On-site" &&
-        university.paymentSlip === "") ||
-        !Object.values(university).includes("")) &&
-      isPlayerArrayValid
-    ) {
-      console.log("Here");
-      const players = updatePlayerCommonData();
-      console.log(players);
-      api.post(
-        "/university/add",
-        { universityDetails: university, players: players },
-        {
-          headers: {},
-        }
+    const categoryMatchType = CATEGORY_OPTIONS.find((c) => c.label === category)?.matchType;
 
-      )
-        .then(async (res) => {
-          console.log(res.data);
-          message.success(res.data.message);
+    const universityDetails = {
+      name: universityName,
+      matchType: categoryMatchType || "",
+      email: teamEmail,
+      contactNumber: teamContactNumber,
+      paymentMethod,
+      paymentSlip,
+      year: eventYear,
+      teamName,
+    };
 
-          const imageForm = {
-            companyId: res.data.data._id,
-            slip: slipImage,
-            playerIds: res.data.data.players,
-            images: imageList
-          }
+    const players = members.map((m) => {
+      const { firstName, lastName } = splitName(m.name);
+      return {
+        firstName,
+        lastName,
+        institute: universityName,
+        gender: categoryMatchType || "",
+        contactNumber: m.contactNumber,
+        nicNumber: m.nicNumber,
+        email: teamEmail,
+        registrationNumber: m.registrationNumber,
+        year: eventYear,
+      };
+    });
 
-          await api.post(
-            "/image/addMultiple",
-            imageForm,
-            {
-              headers: {},
-            })
+    try {
+      setIsSubmitting(true);
+      const res = await api.post("/university/add", { universityDetails, players });
+      message.success(res?.data?.message || "Registered");
 
-
-          setIsLoading(false);
-
-          setTimeout(() => {
-            window.location.reload(true);
-          }, 2000);
-        })
-        .catch((error) => {
-          console.log("Error: ", error);
-          if (!error?.response) {
-            showBackendDownModal();
-            setIsLoading(false);
-            return;
-          }
-          message.error(error.response.data.message);
-          setIsLoading(false);
-        });
+      setTimeout(() => window.location.reload(), 1200);
+    } catch (err) {
+      console.error("University registration request failed", {
+        message: err?.message,
+        baseURL: err?.config?.baseURL,
+        url: err?.config?.url,
+        method: err?.config?.method,
+        status: err?.response?.status,
+        data: err?.response?.data,
+      });
+      if (!err?.response) {
+        message.error(`Network/CORS error calling ${API_BASE_URL}/university/add`);
+        showBackendDownModal();
+        return;
+      }
+      message.error(err?.response?.data?.message || "Registration failed");
+    } finally {
       setIsSubmitting(false);
     }
-  }
+  };
+
+  if (!isUniversityRegistrationOpen) return <RegistrationClosed />;
 
   return (
-    <div className={`${Styles["body"]}`}>
+    <>
       <HeaderPage />
-      {isRegistrationsOpen ? (
-        <>
-          <div className={`${Styles["title"]}`}>Event Registration - University</div>
-          <div className={`${Styles["tournament-guidlines"]}`}>
-            <a href="#">Tournament and Registration guildlines</a>
-            <img src={require("../../../assests/images/tap.gif")} />
+
+      <main className={styles.pageWrapper}>
+        <h1 className={styles.title}>Event Registration – University Team</h1>
+
+        <div className={styles.infoCard}>
+          <p>
+            <strong>UMISF Badminton Championship - University Team Registration</strong>
+          </p>
+
+          <ul>
+            <li>📍 MBA</li>
+            <li>📅 26th – 2nd February {eventYear}</li>
+            <li>⏰ Entries close: 20th February {eventYear}</li>
+          </ul>
+
+          <a
+            className={styles.guidelineLink}
+            href={TOURNAMENT_GUIDELINES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            📄 View Tournament Guidelines
+          </a>
+
+          <div className={styles.agreement}>
+            <input
+              type="checkbox"
+              id="agree"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+            />
+            <label htmlFor="agree">
+              I hereby agree to comply with the rules governing the tournament and the decision of
+              the Tournament Committee.
+            </label>
           </div>
-          <div className={`${Styles["register-form"]}`}>
-            {/* <img src={bg} className={`${Styles["bg"]}`}/> */}
-            <MDBContainer className="">
-              <Form
-                noValidate
-                validated={validated}
-                onSubmit={handleSubmit}
-                className={`${Styles["register-form-content"]}`}
-              >
-                <div className="row mb-4">
-                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                    <MDBInput
-                      wrapperClass="mb-1"
-                      label="University"
-                      labelStyle={{ color: "white", fontFamily: "Hind" }}
-                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
-                      labelClass="text-white"
-                      name="name"
-                      type="text"
-                      value={university.name}
-                      onChange={handleChange}
-                      required
-                      contrast
-                    />
-                  </MDBCol>
-                  <MDBCol className="" lg="6" md="6" sm="12">
-                    <Dropdown
-                      options={genderOptions}
-                      handleClick={(option) => {
-                        setGender(option);
-                        changeGender(option);
-                      }}
-                      value={gender}
-                      lable={"Gender"}
-                    />
-                  </MDBCol>
-                </div>
-                <div className="row mb-2">
-                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                    <MDBInput
-                      wrapperClass="mb-1"
-                      label="Email"
-                      labelStyle={{ color: "white", fontFamily: "Hind" }}
-                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
-                      labelClass="text-white"
-                      name="email"
-                      type="email"
-                      value={university.email}
-                      onChange={handleChange}
-                      required
-                      contrast
-                    />
-                  </MDBCol>
-                  <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                    <MDBInput
-                      wrapperClass="mb-1"
-                      label="Contact Number"
-                      labelStyle={{ color: "white", fontFamily: "Hind" }}
-                      className={`${Styles["mdbinput"]} bg-primary bg-opacity-25`}
-                      labelClass="text-white"
-                      name="contactNumber"
-                      type="text"
-                      value={university.contactNumber}
-                      onChange={handleChange}
-                      required
-                      contrast
-                    />
-                  </MDBCol>
-                </div>
-                <div className="mb-2">
-                  <div style={{ fontWeight: "bold", fontFamily: "Hind" }}>Team</div>
-                  {playersArray?.map((player, index) => {
-                    return <TableRow player={player} index={index} handleChange={changePlayerArray} genderNeeded={false} setFileList={setFileList} setImageList={setImageList} fileList={fileList} imageList={imageList} fileNameList={fileNameList} setFileNameList={setFileNameList}/>;
-                  })}
-                  <div className={`${Styles["plus-minus"]}`}>
-                    <button
-                      hidden={exceeded}
-                      className={`${Styles["plus-btn"]}`}
-                      onClick={AddAnotherRow}
-                    >
-                      <img src={require(`../../../assests/images/plus-row.png`)} alt=''/>
-                    </button>
-                    <button className={`${Styles["plus-btn"]}`} onClick={RemoveanotherRow}>
-                      <img src={require(`../../../assests/images/minus-row.png`)} alt=''/>
-                    </button>
-                  </div>
-                </div>
+        </div>
 
-                <div className="row mb-4 mt-2">
-                  <MDBCol className="mb-1">
-                    <Dropdown
-                      options={paymentOptions}
-                      handleClick={(option) => {
-                        setPayment(option);
-                        changePaymentMethod(option);
-                      }}
-                      value={payment}
-                      lable={"Payment"}
-                    />
-                  </MDBCol>
-                  {isBankTransfer && (
-                    <MDBCol className="mb-1" lg="6" md="6" sm="12">
-                      <ImageUploader
-                        isfile={true}
-                        allowedTypes={["application/pdf"]}
-                        accept=".pdf"
-                        setImage={setSlipImage}
-                        fileList={slipFile}
-                        setFileList={setSlipFile}
-                        setImageName={setSlipName}
-                      />
-                    </MDBCol>
-                  )}
-                </div>
+        <div className={styles.formCard}>
+          <div className={styles.grid}>
+            <div>
+              <label>University</label>
+              <select value={universityName} onChange={(e) => setUniversityName(e.target.value)}>
+                <option value="">Select University</option>
+                {UNIVERSITY_OPTIONS.map((u) => (
+                  <option key={u} value={u}>
+                    {u}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-                <button className={`${Styles["btn"]}`} type="submit">
-                  Register
+            <div>
+              <label>Category</label>
+              <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="">Select Category</option>
+                {CATEGORY_OPTIONS.map((c) => (
+                  <option key={c.label} value={c.label}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label>Team Name</label>
+              <select value={teamName} onChange={(e) => setTeamName(e.target.value)}>
+                <option value="">Select Team</option>
+                {TEAM_OPTIONS.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label>Team Email</label>
+              <input
+                value={teamEmail}
+                onChange={(e) => setTeamEmail(e.target.value)}
+                placeholder="team@email.com"
+              />
+            </div>
+
+            <div>
+              <label>Team Contact Number</label>
+              <input
+                value={teamContactNumber}
+                onChange={(e) => setTeamContactNumber(e.target.value)}
+                placeholder="07XXXXXXXX"
+              />
+            </div>
+
+          </div>
+
+          <h3 className={styles.sectionTitle}>Team Members</h3>
+          <p className={styles.helperText}>Minimum of 5 and maximum of 8 members per team</p>
+
+          <div className={styles.memberInput}>
+            <div>
+              <input
+                placeholder="Full Name"
+                value={current.name}
+                onChange={(e) => setCurrent({ ...current, name: e.target.value })}
+              />
+              {fieldErrors.name && <span className={styles.fieldError}>{fieldErrors.name}</span>}
+            </div>
+
+            <div>
+              <input
+                placeholder="Contact Number"
+                value={current.contactNumber}
+                onChange={(e) => setCurrent({ ...current, contactNumber: e.target.value })}
+              />
+              {fieldErrors.contactNumber && (
+                <span className={styles.fieldError}>{fieldErrors.contactNumber}</span>
+              )}
+            </div>
+
+            <div>
+              <input
+                placeholder="NIC Number"
+                value={current.nicNumber}
+                onChange={(e) => setCurrent({ ...current, nicNumber: e.target.value })}
+              />
+              {fieldErrors.nicNumber && (
+                <span className={styles.fieldError}>{fieldErrors.nicNumber}</span>
+              )}
+            </div>
+
+            <div>
+              <input
+                placeholder="Registration Number"
+                value={current.registrationNumber}
+                onChange={(e) => setCurrent({ ...current, registrationNumber: e.target.value })}
+              />
+              {fieldErrors.registrationNumber && (
+                <span className={styles.fieldError}>{fieldErrors.registrationNumber}</span>
+              )}
+            </div>
+
+            <button
+              type="button"
+              className={styles.actionBtn}
+              onClick={addOrUpdateMember}
+              disabled={isMemberLimitReached && editIndex === null}
+            >
+              {editIndex !== null ? "Update Member" : "Add Member"}
+            </button>
+          </div>
+
+          {members.map((m, i) => (
+            <div key={`${m.registrationNumber}-${i}`} className={styles.memberRow}>
+              <span>{m.name}</span>
+              <span>{m.contactNumber}</span>
+              <span>{m.nicNumber}</span>
+              <span>{m.registrationNumber}</span>
+
+              <div className={styles.actions}>
+                <button type="button" className={styles.edit} onClick={() => editMember(i)}>
+                  Edit
                 </button>
-              </Form>
-            </MDBContainer>
+                <button type="button" className={styles.delete} onClick={() => deleteMember(i)}>
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+
+          <div className={styles.paymentRow}>
+            <div className={styles.paymentInfo}>
+              <h4>Payment Details</h4>
+              <p>Account Name: Badminton UOM</p>
+              <p>Account Number: 85473940</p>
+              <p>Branch: University of Moratuwa</p>
+              <p>
+                <strong>Fee: Rs. 10,000.00</strong>
+              </p>
+              <p>
+                <strong>Upload the payment slip as PDF</strong>
+              </p>
+            </div>
+
+            <div className={styles.uploadSection}>
+              <ImageUploader
+                isfile
+                accept=".pdf"
+                allowedTypes={["application/pdf"]}
+                setImage={setPaymentSlip}
+                fileList={paymentSlipFiles}
+                setFileList={setPaymentSlipFiles}
+                setImageName={() => {}}
+              />
+            </div>
           </div>
-        </>
-      ) :
-      isRegistrationsOpen && isLoading ?
-      (
-        <Grid container item xs={12} height='100vh' display='flex' justifyContent='center' alignItems='center'>
-          <CircularProgress size={100}/>
-        </Grid>
-        
-      ): (
-        <RegistrationsNotOpen />
-      )}
-    </div>
+
+          {error && <p className={styles.errorText}>{error}</p>}
+
+          <div className={styles.registerWrapper}>
+            <button
+              type="button"
+              className={styles.registerBtn}
+              onClick={handleRegisterTeam}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Register Team"}
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </>
   );
-};
-export default UniversityRegistration;
+}

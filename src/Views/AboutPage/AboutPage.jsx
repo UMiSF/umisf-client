@@ -15,13 +15,6 @@ const AboutPage = () => {
       </div>
       {/* mission vission section */}
       <section class={`${styles["objectives"]}`}>
-        <p>
-          University of Moratuwa International Shuttlers’ Fest (UMISF) is the
-          annual badminton tournament organized by the badminton team of
-          University of Moratuwa in collaboration with the Division of Physical
-          Education. The tournament will be held for the 16th time in 2025, on a
-          grander scale than ever!
-        </p>
         <div class={`${styles["history-row"]}`}>
           <div class={`${styles["objectives-col"]}`}>
             <h3>VISION</h3>
@@ -127,11 +120,11 @@ const AboutPage = () => {
           Badminton has always been a popular sport among the undergraduate community of our university. Since the inauguration of this annual tournament in 2007, we have expanded our horizons. It was indeed a success for us to reach the 1000 plus mark in the number of participants. UMiSF is a great platform to showcase the potential of youngsters, university students, and staff members, and with the latest updates on the Open Club Event and School Team Event, it is expanding more than ever before.We wish the participants the best of luck for the tournament and hope everyone will enjoy it.
         </p>
         <div className={`${styles["row"]}`}>
-          <div className={`${styles["testimanial-col"]}`}>
-            <img
-              src={require("../../assests/images/captain-male.png")}
-              alt=""
-            ></img>
+	          <div className={`${styles["testimanial-col"]}`}>
+	            <img
+	              src={require("../../assests/images/captain-male2026.jpg")}
+	              alt=""
+	            ></img>
             <div className={`${styles["testimanial-col-content"]}`}>
               <p>
                 I believe that UMISF is a great opportunity, especially for
@@ -141,7 +134,7 @@ const AboutPage = () => {
                 down the days for great tournament filled with lasting
                 experiences.
               </p>
-              <h3>Tharindu Ambegoda</h3>
+              <h3>Chatura Gunawardena</h3>
               <h6>Captain</h6>
             </div>
           </div>
@@ -159,7 +152,7 @@ const AboutPage = () => {
                 participate in this tournament and take advantage of this
                 opportunity.
               </p>
-              <h3>Sahani Dissanayake</h3>
+              <h3>Thulani Jayathilaka</h3>
               <h6>Captain</h6>
             </div>
           </div>
@@ -167,27 +160,27 @@ const AboutPage = () => {
         <div className={`${styles["row"]}`}>
           <div className={`${styles["testimanial-col"]}`}>
             <img
-              src={require("../../assests/images/viceCaptain-male.png")}
+              src={require("../../assests/images/viceCaptain-male2026.jpg")}
               alt=""
             ></img>
             <div className={`${styles["testimanial-col-content"]}`}>
               <p>
                 UMISF is not just about competition; it’s about passion, sportsmanship, and unforgettable moments on the court. Embrace the challenge, respect your opponents, and enjoy every rally. Whether you play to win or for the love of the game, this tournament is your chance to shine. Join us and make history!
               </p>
-              <h3>Vinuga Jayawardana</h3>
+              <h3>Hirun Wijerathne</h3>
               <h6>Vice Captain</h6>
             </div>
           </div>
           <div className={`${styles["testimanial-col"]}`}>
             <img
-              src={require("../../assests/images/viceCaptain-female.jpg")}
+              src={require("../../assests/images/viceCaptain-female2026.jpg")}
               alt=""
             ></img>
             <div className={`${styles["testimanial-col-content"]}`}>
               <p>
                 UMISF is where the unexpected happens. New rivalries, new friendships, and moments that stick with you. This is your stage. Step in, play your game, and leave a mark.
               </p>
-              <h3>Kavindi Patabendige</h3>
+              <h3>Kaveesha Liyanage</h3>
               <h6>Vice Captain</h6>
             </div>
           </div>

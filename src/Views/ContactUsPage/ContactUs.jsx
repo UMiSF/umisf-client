@@ -66,43 +66,43 @@ function ContactUs() {
 
   const [captainMaleDetails, setCaptainMaleDetails] = useState([
     {
-      name: "Tharindu Ambegoda",
+      name: "Chatura Dissanayake",
       tag: "Captain",
-      phone: "+94 71 175 6702",
-      email: "tharinduambegoda2000@gmail.com",
-      facebook: "https://www.facebook.com/share/191F4mKy38/",
+      phone: "+94 70 310 6793",
+      email: "",
+      facebook: "",
       linkedin: "#",
-      image: "captain-male.png",
+      image: "captain-male2026.jpg",
     },
     {
-      name: "Vinuga Jayawardana",
+      name: "Hirun Wijesinghe",
       tag: "Vice Captain",
       phone: "+94 77 446 9602",
-      email: "vinugajayawardana@gmail.com",
-      facebook: "https://www.facebook.com/share/1EEUxVLAZn/?mibextid=wwXIfr",
-      linkedin: "https://www.linkedin.com/in/vinuga-jayawardana-698759241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      image: "viceCaptain-male.png",
+      email: "Hirurash02@gmail.com",
+      facebook: "https://www.facebook.com/share/1fohxb5Rpo/?mibextid=wwXIfr",
+      linkedin: "",
+      image: "viceCaptain-male2026.jpg",
     },
   ]);
 
   const [captainFeMaleDetails, setCaptainFemaleDetails] = useState([
     {
-      name: "Sahani Dissanayake",
+      name: "Thulani Jayathilake",
       tag: "Captain",
-      phone: "+94 76 885 4813",
+      phone: "+94 70 310 6793",
       email: "shdissanayake23@gmail.com",
-      facebook: "#",
-      linkedin: "https://www.linkedin.com/in/sahani-dissanayake-202449267?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      facebook: "https://www.facebook.com/share/17xtrCytKk/",
+      linkedin: "https://www.linkedin.com/in/thulani-jayathilake-7913a629b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       image: "captain-female.jpg",
     },
     {
-      name: "Kavindi Patabendige",
+      name: "Kaveesha Liyanage",
       tag: "Vice Captain",
       phone: "+94 76 060 8150",
       email: "kavindipatabendige2002@gmail.com",
-      facebook: "https://www.facebook.com/share/1EEfDwc8zF/",
-      linkedin: "https://www.linkedin.com/in/kavindi-patabendige-650b49235?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      image: "viceCaptain-female.png",
+      facebook: "",
+      linkedin: "",
+      image: "viceCaptain-female2026.jpg",
     },
   ]);
 

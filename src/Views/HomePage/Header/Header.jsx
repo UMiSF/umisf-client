@@ -1,34 +1,31 @@
-import React, { useState, useEffect } from "react";
-import styles from "./header.module.css";
-import HeaderPage from "../../HeaderPage/HeaderPage";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import image from "../../../assests/images/gallery/1.jpg"
-import image2 from "../../../assests/images/gallery/6.jpg"
+import HeaderPage from "../../HeaderPage/HeaderPage";
+import styles from "./header.module.css";
 
-import image4 from "../../../assests/images/gallery/4.jpg";
-
-import image6 from "../../../assests/images/gallery/T-2.jpg";
-import image7 from "../../../assests/images/gallery/T-3.jpg";
-import image8 from "../../../assests/images/gallery/T-5.jpg";
-import { Opacity } from "@mui/icons-material";
+import image14 from "../../../assests/images/gallery/14.jpg";
+import image15 from "../../../assests/images/gallery/15.jpg";
+import image16 from "../../../assests/images/gallery/16.jpg";
+import image17 from "../../../assests/images/gallery/17.jpg";
+import image18 from "../../../assests/images/gallery/18.jpg";
 
 
 // Import your background images (replace with your actual image paths)
 const backgroundImages = [
-  // image,
-  // image2,
-  // image4,
-  
-  image6,
-  image7,
-  image8
+  image14,
+  image15,
+  image16,
+  image17,
+  image18,
 ];
 
-const HomePage = () => {
+const Header = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
+    if (backgroundImages.length === 0) return;
+
     // Automatically cycle through background images every 5 seconds
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
@@ -104,10 +101,6 @@ const HomePage = () => {
         <div className={styles.UMiSFContainer}>
           
           <h1>UMiSF</h1>
-          <p>
-            University of Moratuwa<br/>
-            International Shuttlers' Fest
-          </p>
         </div>
           <div style={merchandiseContainerStyle}>
           <div style={merchandiseTextStyle}>Register for UMiSF 2026</div>
@@ -130,4 +123,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Header;

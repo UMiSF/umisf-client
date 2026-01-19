@@ -32,7 +32,7 @@
 }
 .objectives p {
   color: #060509;
-  font-size: 0.9vw;
+  font-size: clamp(14px, 0.9vw, 18px);
   font-weight: 600;
   padding: 10px;
 }
@@ -54,7 +54,7 @@
 }
 .objectives-col p, .objectives-col li {
   color: #2c3237;
-  font-size: 0.9vw;
+  font-size: clamp(13px, 0.9vw, 16px);
   font-weight: 400;
 }
 .objectives h3 {
@@ -78,7 +78,7 @@
 
 .past-section p {
   color: white;
-  font-size: 1vw;
+  font-size: clamp(14px, 1vw, 18px);
   font-family: "Hind";
   margin: 0;
 }
@@ -134,8 +134,9 @@
 }
 
 .testimonials p {
-  font-size: 1vw;
+  font-size: clamp(14px, 1vw, 18px);
   font-family: "Hind";
+  color: #000;
 }
 
 .row {
@@ -175,19 +176,20 @@
 
 .testimanial-col p {
   padding: 0;
-  color: rgb(45, 44, 44)
+  color: #000;
+  font-size: clamp(13px, 0.95vw, 16px);
 }
 .testimanial-col h3 {
   margin-top: 15px;
   text-align: left;
   font-family: "Hind";
-  font-size: 1vw;
+  font-size: clamp(14px, 1vw, 18px);
   color: #0984E3;
 }
 .testimanial-col h6 {
   /* margin-top: 15px; */
   text-align: left;
-  font-size: 1vw;
+  font-size: clamp(13px, 1vw, 18px);
   color: #0984E3;
 }
 
@@ -197,11 +199,11 @@
   }
 
   .objectives p {
-    font-size: 1.1vw;
+    font-size: clamp(14px, 1.6vw, 18px);
   }
 
   .objectives-col p,.objectives-col li  {
-    font-size: 1.1vw;
+    font-size: clamp(13px, 1.6vw, 16px);
   }
 
   .past-section h1 {
@@ -213,7 +215,7 @@
   }
 
   .past-section p {
-    font-size: 1.3vw;
+    font-size: clamp(14px, 1.8vw, 18px);
   }
 
   .testimonials h1 {
@@ -221,7 +223,7 @@
   }
 
   .testimonials p {
-    font-size: 1.2vw;
+    font-size: clamp(14px, 1.8vw, 18px);
   }
 }
 
@@ -231,11 +233,11 @@
   }
 
   .objectives p {
-    font-size: 1.3vw;
+    font-size: clamp(14px, 2.2vw, 18px);
   }
 
   .objectives-col p,.objectives-col li  {
-    font-size: 1.3vw;
+    font-size: clamp(13px, 2.2vw, 16px);
   }
 
   .past-section h1 {
@@ -247,7 +249,7 @@
   }
 
   .past-section p {
-    font-size: 1.4vw;
+    font-size: clamp(14px, 2.2vw, 18px);
   }
 
   .testimonials h1 {
@@ -255,7 +257,7 @@
   }
 
   .testimonials p {
-    font-size: 1.4vw;
+    font-size: clamp(14px, 2.2vw, 18px);
   }
 
   .testimanial-col{
@@ -269,7 +271,7 @@
 
   .testimanial-col p, .testimanial-col h3, .testimanial-col h6 {
     text-align: center;
-    font-size: 1.7vw;
+    font-size: clamp(14px, 2.4vw, 18px);
   }
 }
 
@@ -279,11 +281,11 @@
   }
 
   .objectives p {
-    font-size: 1.5vw;
+    font-size: clamp(14px, 2.6vw, 18px);
   }
 
   .objectives-col p,.objectives-col li  {
-    font-size: 1.7vw;
+    font-size: clamp(13px, 2.6vw, 16px);
   }
 
   .past-section h1 {
@@ -295,7 +297,7 @@
   }
 
   .past-section p {
-    font-size: 1.6vw;
+    font-size: clamp(14px, 2.6vw, 18px);
   }
 
   .testimonials h1 {
@@ -303,10 +305,10 @@
   }
 
   .testimonials p {
-    font-size: 1.6vw;
+    font-size: clamp(14px, 2.6vw, 18px);
   }
   .testimanial-col h3, .testimanial-col h6 {
-    font-size: 1.8vw;
+    font-size: clamp(14px, 2.8vw, 18px);
   }
   .testimanial-col img {
     height: 18vw;
@@ -323,11 +325,11 @@
   }
 
   .objectives p {
-    font-size: 1.8vw;
+    font-size: clamp(14px, 3.2vw, 18px);
   }
 
   .objectives-col p,.objectives-col li  {
-    font-size: 1.8vw;
+    font-size: clamp(13px, 3.2vw, 16px);
   }
 
   .past-section h1 {
@@ -339,7 +341,7 @@
   }
 
   .past-section p {
-    font-size: 2vw;
+    font-size: clamp(14px, 3.2vw, 18px);
   }
 
   .testimonials h1 {
@@ -347,7 +349,7 @@
   }
 
   .testimonials p {
-    font-size: 2.2vw;
+    font-size: clamp(14px, 3.4vw, 18px);
   }
   .testimanial-col{
     display: block;
@@ -369,7 +371,7 @@
     font-size: 3vw;
   }
   .testimanial-col h3, .testimanial-col h6 {
-    font-size: 2vw;
+    font-size: clamp(14px, 3.2vw, 18px);
   }
 }
 
@@ -379,11 +381,11 @@
   }
 
   .objectives p {
-    font-size: 2vw;
+    font-size: 14px;
   }
 
   .objectives-col p,.objectives-col li  {
-    font-size: 2vw;
+    font-size: 13px;
   }
 
   .past-section h1 {
@@ -395,7 +397,7 @@
   }
 
   .past-section p {
-    font-size: 3vw;
+    font-size: 14px;
   }
 
   .past-section h3{
@@ -407,7 +409,7 @@
   }
 
   .testimonials p {
-    font-size: 2.6vw;
+    font-size: 14px;
   }
 
   .past-section-col{
@@ -423,7 +425,7 @@
   }
 
   .testimanial-col h3, .testimanial-col h6 {
-    font-size: 2.5vw;
+    font-size: 14px;
   }
 }
 @media (max-width: 390px) {

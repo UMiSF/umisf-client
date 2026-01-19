@@ -107,6 +107,25 @@ const AdminUniversityPage = () => {
           <div className={`${styles['profile-field-value']}`}>{university.email}</div>
         </div>
         <hr />
+
+        {Array.isArray(university.teamMembers) && university.teamMembers.length > 0 && (
+          <>
+            <div className={`${styles['profile-field-container']}`}>
+              <div className={`${styles['profile-field-name']}`}>Team Members</div>
+              <div className={`${styles['profile-field-value']}`}>
+                {university.teamMembers.map((m, idx) => (
+                  <div key={`${m.registrationNumber || m.fullName || idx}`}>
+                    {(m.fullName || `${m.firstName || ''} ${m.lastName || ''}`.trim() || 'Member')}{' '}
+                    {m.nicNumber ? `- ${m.nicNumber}` : ''}{' '}
+                    {m.registrationNumber ? `(${m.registrationNumber})` : ''}{' '}
+                    {m.contactNumber ? `- ${m.contactNumber}` : ''}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <hr />
+          </>
+        )}
       </div>
       {/* modal for deleting */}
       <Modal show={show} onHide={handleClose} centered>

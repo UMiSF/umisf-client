@@ -13,6 +13,10 @@ import { message } from "antd";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 import { CircularProgress, Grid, Typography } from "@mui/material";
+
+const TOURNAMENT_GUIDELINES_URL =
+  "https://drive.google.com/file/d/1hkU7h9Z3FlYU3ENO8SRNjUt3ufXkp2sG/view?usp=drive_link";
+
 const CompanyRegistration = () => {
   useEffect(() => {
     const playerId = localStorage.getItem("playerId");
@@ -290,8 +294,12 @@ const CompanyRegistration = () => {
       {isRegistrationsOpen && !isLoading ? (
         <>
           <div className={`${Styles["title"]}`}>Event Registration - Corporate</div>
-          <div className={`${Styles["tournament-guidlines"]}`}><a href="#">
-          Tournament and Registration guildlines</a><img src={require("../../../assests/images/tap.gif")} /></div>
+          <div className={`${Styles["tournament-guidlines"]}`}>
+            <a href={TOURNAMENT_GUIDELINES_URL} target="_blank" rel="noopener noreferrer">
+              Tournament and registration guidelines
+            </a>
+            <img src={require("../../../assests/images/tap.gif")} alt="" />
+          </div>
           <div className={`${Styles["info-container"]}`}>
             <img src={info} alt="info-icon" className={`${Styles["info-logo"]}`} />
             <div className={`${Styles["info"]}`}>

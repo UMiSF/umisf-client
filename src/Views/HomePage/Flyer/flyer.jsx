@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./flyer.module.css";
-import { saveAs } from "file-saver";
-import guidlines from "../../../assests/documents/Tournament Guidlines - UMiSF 2023.pdf";
-import {
-  MDBBtn,
-  MDBModal,
-  MDBModalDialog,
-  MDBModalContent,
-  MDBModalHeader,
-  MDBModalTitle,
-  MDBModalBody,
-  MDBModalFooter,
-} from "mdb-react-ui-kit";
+
+const TOURNAMENT_GUIDELINES_URL =
+  "https://drive.google.com/file/d/1hkU7h9Z3FlYU3ENO8SRNjUt3ufXkp2sG/view?usp=drive_link";
 
 const Flyer = (props) => {
   const [date, setDate] = useState(props.starttingDate);
@@ -51,10 +42,6 @@ const Flyer = (props) => {
     return [dayList[0], month, dayList[2]];
   };
 
-  const [basicModal, setBasicModal] = useState(false);
-
-  const toggleShow = () => setBasicModal(!basicModal);
-
   useEffect(() => {
     let period = [];
     for (let i = 0; i < registrationPeriod.length; i++) {
@@ -87,12 +74,23 @@ const Flyer = (props) => {
 
         <div className={`${styles['schedule']}`}>
         <a href="https://docs.google.com/document/d/11vPpB7E51RCKBoEbHDGFydU6os1HeChAtb7QmAMPHIE/edit?usp=sharing" target='_blank'>
-        <img className={`${styles['download-image']}`} src={require('../../../assests/images/schedule.png')} />
+        <img
+          className={`${styles['download-image']}`}
+          src={require('../../../assests/images/schedule.png')}
+          alt=""
+        />
         Tournament Schedule</a>
         </div>
 
-        <div className={`${styles['register']}`} onClick={toggleShow} type='button'>
-          Register
+        <div className={`${styles['schedule']}`}>
+          <a href={TOURNAMENT_GUIDELINES_URL} target="_blank" rel="noopener noreferrer">
+            <img
+              className={`${styles['download-image']}`}
+              src={require("../../../assests/images/pdf.png")}
+              alt=""
+            />
+            Tournament Guidelines
+          </a>
         </div>
         {/* <div className={`${styles['before']}`}>
           {`from ${registrationPeriod[0][2]}`} <sup style={{ fontSize: '0.6vw' }}>{`${superscript(registrationPeriod[0][2].charAt(registrationPeriod[0][2].length - 1))}`}</sup>{' '}
@@ -108,66 +106,6 @@ const Flyer = (props) => {
           </a>
         </div> */}
       </div>
-
-      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
-        <MDBModalDialog centered>
-          <MDBModalContent>
-            <MDBModalHeader>
-              <MDBModalTitle style={{ fontFamily: "Hind" }}>
-                {" "}
-                UMiSF - EVENT REGISTRATION{" "}
-              </MDBModalTitle>
-              <MDBBtn className="btn-close" color="none" onClick={toggleShow}></MDBBtn>
-            </MDBModalHeader>
-            <MDBModalBody>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://drive.google.com/file/d/1yWmGIIIdsH4youcA55p1TC0g2slLXg82/view?usp=share_link"
-                className={`${styles["register-links"]}`}
-              >
-                Age Group
-              </a>
-              <br />
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://drive.google.com/file/d/1dQXyKhEED3OzXbhq3uDkmhzITjdwAPJ1/view?usp=share_link"
-                className={`${styles["register-links"]}`}
-              >
-                University Team
-              </a>
-              <br />
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://drive.google.com/file/d/1-xE8PS5dzhggxwio9Svl1JWyJB3FmAvk/view?usp=share_link"
-                className={`${styles["register-links"]}`}
-              >
-                University Individual
-              </a>
-              <br />
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://drive.google.com/file/d/1cgcBiWDr9u6SuuOtzb0DslS9UlNb24fb/view?usp=share_link"
-                className={`${styles["register-links"]}`}
-              >
-                University Staff
-              </a>
-              <br />
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://drive.google.com/file/d/1l25KUoUstYLZZ1Kpe6aUN9edPoPaLYh3/view?usp=share_link"
-                className={`${styles["register-links"]}`}
-              >
-                Corporate Team
-              </a>
-            </MDBModalBody>
-          </MDBModalContent>
-        </MDBModalDialog>
-      </MDBModal>
     </div>
   );
 };
