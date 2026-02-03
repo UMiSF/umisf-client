@@ -50,6 +50,10 @@ const PlayerRegistration = () => {
         label: "Age Group Championship - UMiSF 2026",
         value: "https://forms.gle/rqwRDvPasvF7YE9D6",
       },
+      {
+        label: "Novices Men's Double Badminton Championship",
+        value: "https://forms.gle/ZdgffEmLopJcu2QcA",
+      },
       { label: "University Registration", value: "/register/university" },
       {
         label: "University Individual Registration",

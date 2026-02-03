@@ -42,6 +42,8 @@ const HeaderPage = () => {
   const color = indigo[900];
 
   const ageGroupChampionshipFormUrl = "https://forms.gle/rqwRDvPasvF7YE9D6";
+  const novicesMensDoubleBadmintonChampionshipFormUrl =
+    "https://forms.gle/ZdgffEmLopJcu2QcA";
   const universityIndividualFormUrl = "https://forms.gle/MEvpUiKo9JFJv8dJ7";
   const loadSideBar = () => {
     let display = document.querySelector("#navSideBar").style.display;
@@ -130,6 +132,16 @@ const HeaderPage = () => {
                         className={`${styles["drop-down-item"]}`}
                       >
                         Age Group Championship - UMiSF 2026
+                      </a>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseRegister}>
+                      <a
+                        href={novicesMensDoubleBadmintonChampionshipFormUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`${styles["drop-down-item"]}`}
+                      >
+                        Novices Men's Double Badminton Championship
                       </a>
                     </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
@@ -249,6 +261,16 @@ const HeaderPage = () => {
                         className={`${styles["drop-down-item-mobile"]}`}
                       >
                         Age Group Championship - UMiSF 2026
+                      </a>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseRegisterMobile}>
+                      <a
+                        href={novicesMensDoubleBadmintonChampionshipFormUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`${styles["drop-down-item-mobile"]}`}
+                      >
+                        Novices Men's Double Badminton Championship
                       </a>
                     </MenuItem>
                     <MenuItem onClick={handleCloseRegisterMobile}>
