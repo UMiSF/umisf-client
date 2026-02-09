@@ -9,22 +9,28 @@ import { message } from 'antd';
 import Axios from "axios";
 
 const GalleryPage = () => {
-  
-
   const [photos, setPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Axios.get(process.env.REACT_APP_API_URL + '/photo/getAll ', {
-      headers: {},
-    })
+    const apiUrl = process.env.REACT_APP_API_URL;
+    if (!apiUrl) {
+      setLoading(false);
+      message.error("API URL is not configured.");
+      return;
+    }
+    Axios.get(apiUrl + "/photo/getAll", { headers: {} })
       .then((res) => {
-        console.log('Photos: ', res);
-        setPhotos(res.data.data)
+        const data = res.data?.data;
+        setPhotos(Array.isArray(data) ? data : []);
       })
       .catch((error) => {
-        console.log(error);
-        message.error(error.response.data.message);
-      });
+        console.error("Photos fetch error:", error);
+        const msg = error.response?.data?.message || error.message || "Failed to load photos.";
+        message.error(msg);
+        setPhotos([]);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -43,9 +49,15 @@ const GalleryPage = () => {
       </div>
       <div className={`${Styles['gallery']} `}>
         <div className={`${Styles['gallery-content']} `}>
-          {photos?.map((obj, index) => {
-            return <AlbumCard key={index} title={obj.year} photos={obj.photos} />;
-          })}
+          {loading ? (
+            <p style={{ textAlign: "center", padding: "2rem" }}>Loading albums...</p>
+          ) : photos?.length > 0 ? (
+            photos.map((obj, index) => (
+              <AlbumCard key={index} title={obj.year} photos={obj.photos} />
+            ))
+          ) : (
+            <p style={{ textAlign: "center", padding: "2rem" }}>No photo albums yet.</p>
+          )}
         </div>
       </div>
 

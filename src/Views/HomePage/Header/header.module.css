@@ -35,6 +35,12 @@
   opacity: 1;
 }
 
+/* Image 17: show full width so more of the photo is visible */
+.backgroundSlide.backgroundSlideWide {
+  background-size: 100% auto;
+  background-position: center center;
+}
+
 .headerDiv {
   position: relative;
   z-index: 10;
