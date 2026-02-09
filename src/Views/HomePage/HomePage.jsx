@@ -29,7 +29,7 @@ const HomePage = () => {
     "14.jpg",
     "15.jpg",
     "16.jpg",
-    "17.jpg",
+    "17.jpeg",
     "18.jpg",
   ]);
 
