@@ -1,119 +1,111 @@
 .tshirt-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(280px, 520px) minmax(220px, 1fr);
   align-items: center;
-  /* background-color: rgb(251,251,251); */
+  gap: 24px;
+  padding: 40px 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+  overflow: hidden;
 }
 
-.tshirt-front,
-.tshirt-back {
-  /* margin: 2vw; */
-
+.tshirt-photo {
+  display: flex;
+  justify-content: center;
+  animation: fadeInUp 0.8s ease both;
 }
 
-.tshirt-back img,
-.tshirt-front img {
-  width: 20vw;
-  height: fit-content;
-  transition: ease-in-out 0.8s;
+.left {
+  animation-delay: 0.15s;
 }
 
-.tshirt-back img:hover,
-.tshirt-front img:hover {
-  transform: scale(1.1);
+.right {
+  animation-delay: 0.3s;
 }
 
-.tshirt-title span {
-  font-family: "roboto";
-  font-size: 6vw;
+.tshirt-photo img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+  transition: transform 0.35s ease;
 }
 
-.tshirt-title{
+.tshirt-photo img:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.tshirt-content {
   text-align: center;
+  animation: fadeInUp 0.8s ease both;
 }
 
-.order-now{
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: fit-content;
-  border: 1px solid #0984E3;
-  color: white;
-  background-color: #0984E3;
-  padding: 8px 20px;
-  font-size: 1vw;
-  font-family: "Hind";
+.title {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  color: #072a43;
 }
 
-.order-now:hover{
-  color: white;
+.subtitle {
+  margin: 14px auto 24px;
+  max-width: 520px;
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: #38556a;
+}
+
+.order-now {
+  display: inline-block;
+  border: none;
+  background: #00b4d8;
+  color: #fff;
   text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: clamp(14px, 1.7vw, 17px);
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-@media screen and (max-width: 720px) {
-  .order-now{
-    font-size: 1.5vw;
+.order-now:hover {
+  color: #fff;
+  text-decoration: none;
+  background: #009bc3;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1024px) {
   .tshirt-container {
-    display: block;
-    margin: 0vh;
+    grid-template-columns: 1fr;
+    padding: 32px 18px;
   }
 
-  .tshirt-back,.tshirt-front{
-    display: flex;
-    justify-content: center;
-
+  .tshirt-photo img {
+    max-width: 320px;
   }
 
-  .tshirt-back img,
-  .tshirt-front img {
-    width: 40vw;
-    height: 60vw;
+  .left {
+    order: 1;
   }
 
-  .tshirt-title span {
-    font-size: 9vw;
+  .tshirt-content {
+    order: 2;
   }
 
-  .order-now{
-    font-size: 1.7vw;
-  }
-}
-
-@media screen and (max-width: 480px) {
-
-  .tshirt-back img,
-  .tshirt-front img {
-    width: 50vw;
-    height: 75vw;
-  }
-
-  .tshirt-title span {
-    font-size: 10vw;
-  }
-
-  .order-now{
-    font-size: 2vw;
-  }
-}
-
-@media screen and (max-width: 350px) {
-
-  .tshirt-back img,
-  .tshirt-front img {
-    width: 60vw;
-    height: 90vw;
-  }
-
-  .tshirt-title span {
-    font-size: 11vw;
-  }
-
-  .order-now{
-    font-size: 2.5vw;
+  .right {
+    order: 3;
   }
 }

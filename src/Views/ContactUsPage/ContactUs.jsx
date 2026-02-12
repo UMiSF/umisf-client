@@ -17,12 +17,6 @@ function ContactUs() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validated, setValidated] = useState(false); //form validation
-  const loadSideBar = () => {
-    let display = document.querySelector("#navSideBar").style.display;
-    display === "block"
-      ? (document.querySelector("#navSideBar").style.display = "none")
-      : (document.querySelector("#navSideBar").style.display = "block");
-  };
 
   useEffect(() => {
     if (isSubmitting) {
@@ -46,7 +40,7 @@ function ContactUs() {
       setIsSubmitting(true);
 
       try {
-        const res = await Axios.post(
+        await Axios.post(
           process.env.REACT_APP_API_URL + "/feedbacks/add",
           { feedbackData: feedback },
           {
@@ -64,7 +58,7 @@ function ContactUs() {
     }
   }
 
-  const [captainMaleDetails, setCaptainMaleDetails] = useState([
+  const [captainMaleDetails] = useState([
     {
       name: "Chatura Dissanayake",
       tag: "Captain",
@@ -85,7 +79,7 @@ function ContactUs() {
     },
   ]);
 
-  const [captainFeMaleDetails, setCaptainFemaleDetails] = useState([
+  const [captainFeMaleDetails] = useState([
     {
       name: "Thulani Jayathilake",
       tag: "Captain",

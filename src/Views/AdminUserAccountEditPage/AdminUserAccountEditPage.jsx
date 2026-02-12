@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
-import { Form, Input } from 'reactstrap';
+import { Form } from 'reactstrap';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from './adminUserAccountEditPage.module.css';
@@ -101,7 +101,7 @@ const AdminUserAccountEditPage = () => {
         return {
           ...prevValue,
           role: userDetails.role.filter((role) => {
-            return role != userRole;
+            return role !== userRole;
           }),
         };
       });

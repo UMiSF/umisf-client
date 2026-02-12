@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import styles from "./developers.module.css";
 import HeaderPage from "../HeaderPage/HeaderPage";
 import Footer from "../HomePage/Footer/footer";
-import { LinkedinOutlined, GithubOutlined, FacebookOutlined } from "@ant-design/icons";
-
 function DevelopersPage() {
-  const [developers, setDevelopers] = useState([
+  const [developers] = useState([
     {
       name: "Nethmi Jayakody",
       working_place: "Trainee Software Engineer@ WealthOS",
@@ -100,19 +98,21 @@ function DevelopersPage() {
         <div className={`${styles["developers"]}`}>
           {developers.map((developer, index) => (
             <div className={`${styles["developer"]}`}>
-              <img src={require(`../../assests/images/developers/${developer.image}`)} />
+              <img src={require(`../../assests/images/developers/${developer.image}`)} alt="" />
               <div className={`${styles["overlay"]}`}>
-                <a href={`${developer.linkedin}`} target="_blank">
+                <a href={`${developer.linkedin}`} target="_blank" rel="noreferrer">
                   <img
                     src={require(`../../assests/images/linkedin.png`)}
+                    alt=""
                   />
                 </a>
-                <a className={`${styles["github"]}`} href={`https://github.com/${developer.github}`} target="_blank">
-                  <img src={require(`../../assests/images/github.png`)} />
+                <a className={`${styles["github"]}`} href={`https://github.com/${developer.github}`} target="_blank" rel="noreferrer">
+                  <img src={require(`../../assests/images/github.png`)} alt="" />
                 </a>
-                <a href={`${developer.facebook}`} target="_blank">
+                <a href={`${developer.facebook}`} target="_blank" rel="noreferrer">
                   <img
                     src={require(`../../assests/images/facebook.png`)}
+                    alt=""
                   />
                 </a>
               </div>

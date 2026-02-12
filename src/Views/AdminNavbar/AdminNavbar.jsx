@@ -92,7 +92,8 @@ const ProfileNavbar = (props) => {
     const activeId = "#" + props.page;
     const active = document.querySelector(activeId);
     if (active) active.classList.add(styles.activeLink);
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount to set active link
+  }, [props.page]);
 
   return (
     <div className={`${styles["navbar-container"]}`}>

@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { Select, Space, Button, message} from 'antd';
 import { api } from '../../common/api';
 import { Link } from 'react-router-dom';
-import { Form, Modal, Spinner } from 'react-bootstrap';
+import { Form, Modal } from 'react-bootstrap';
 import { getPaymentSlipHref } from '../../common/paymentSlip';
 
 const AdminPlayersPage = () => {
@@ -107,7 +107,7 @@ const AdminPlayersPage = () => {
 
       console.log('playerfilter', playerFilter);
       try {
-        const result = await api.get(`/${filter.matchType == 'None' ? 'player' : filter.matchType.toLowerCase()}/getFilteredData`, { params: playerFilter });
+        const result = await api.get(`/${filter.matchType === 'None' ? 'player' : filter.matchType.toLowerCase()}/getFilteredData`, { params: playerFilter });
         console.log('Result', result);
         setIsSubmitting(false);
         if (result?.data?.data?.length !== 0) {
@@ -127,7 +127,7 @@ const AdminPlayersPage = () => {
   const searchPlayersByEmail = async (e) => {
     e.preventDefault();
     console.log('email: ', email, matchTypeForEmail);
-    if (email == '' || matchTypeForEmail == '') {
+    if (email === '' || matchTypeForEmail === '') {
       message.error('Email/Match Type not given');
     } else {
       setIsSubmitting(true);
@@ -137,7 +137,7 @@ const AdminPlayersPage = () => {
       console.log('playerfilter', playerFilter);
       try {
         console.log('in try block');
-        const result = await api.get(`/${matchTypeForEmail == 'None' ? 'player' : matchTypeForEmail.toLowerCase()}/getFilteredData`, { params: playerFilter });
+        const result = await api.get(`/${matchTypeForEmail === 'None' ? 'player' : matchTypeForEmail.toLowerCase()}/getFilteredData`, { params: playerFilter });
         console.log('Result', result);
         setIsSubmitting(false);
         if (result?.data?.data?.length !== 0) {
@@ -184,7 +184,6 @@ const AdminPlayersPage = () => {
 
   const submitEditSingle = async (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
     if (Object.values(single).includes('')) {
       e.stopPropagation();
     } else {
@@ -214,7 +213,6 @@ const AdminPlayersPage = () => {
 
   const submitEditDouble = async (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
     if (Object.values(double).includes('')) {
       e.stopPropagation();
     } else {
@@ -245,7 +243,7 @@ const AdminPlayersPage = () => {
   const deleteEvent = async(e)=>{
     e.preventDefault();
     try{
-      const result = await api.delete(`/${matchTypeForEmail == 'None' ? 'player': matchTypeForEmail.toLowerCase()}/removeByField/Id/` + deleteId);
+      const result = await api.delete(`/${matchTypeForEmail === 'None' ? 'player': matchTypeForEmail.toLowerCase()}/removeByField/Id/` + deleteId);
       //setIsSubmitting(false)
       console.log(result);
 
@@ -357,9 +355,9 @@ const AdminPlayersPage = () => {
                 {/* {value.map((player, index) => ( */}
                 <div className={`${styles['player-each']}`}>
                   <button className={`${styles['player-btn']}`}>
-                    <Link to={ filter.matchType == 'None'? value.firstName + '+' + value.lastName : value.player?.firstName + '+' + value.player?.lastName} className={`${styles['player-name']}`} state={{ playerDetails: filter.matchType == 'None' ? value:value.player }} key={key}>
+                    <Link to={ filter.matchType === 'None'? value.firstName + '+' + value.lastName : value.player?.firstName + '+' + value.player?.lastName} className={`${styles['player-name']}`} state={{ playerDetails: filter.matchType === 'None' ? value:value.player }} key={key}>
                       {key + 1 + ') '}
-                      {filter.matchType == 'None' ? `${value.firstName}  ${value.lastName} ${value.email} ${value.institute} ` : value.player?.firstName + ' ' + value.player?.lastName} {value.player?.email} {value.player?.institute} {value.paymentMethod}
+                      {filter.matchType === 'None' ? `${value.firstName}  ${value.lastName} ${value.email} ${value.institute} ` : value.player?.firstName + ' ' + value.player?.lastName} {value.player?.email} {value.player?.institute} {value.paymentMethod}
                     </Link>
                     {filter.matchType !== 'None' && value.paymentMethod === 'Bank Transfer' && Boolean(value.paymentSlip) && (
                       <a
@@ -387,12 +385,12 @@ const AdminPlayersPage = () => {
                 <div className={`${styles['player-each']}`}>
                   <button className={`${styles['player-btn']}`}>
                     <Link
-                      to={matchTypeForEmail == 'None' ? value?.firstName + '+' + value?.lastName : value?.player?.firstName + '+' + value?.player?.lastName}
+                      to={matchTypeForEmail === 'None' ? value?.firstName + '+' + value?.lastName : value?.player?.firstName + '+' + value?.player?.lastName}
                       className={`${styles['player-name']}`}
-                      state={{ playerDetails: matchTypeForEmail == 'None' ? value : value?.player }}
+                      state={{ playerDetails: matchTypeForEmail === 'None' ? value : value?.player }}
                       key={key}
                     >
-                      {matchTypeForEmail == 'None' ? value?.firstName + ' ' + value?.lastName : value?.player?.firstName + ' ' + value?.player?.lastName}
+                      {matchTypeForEmail === 'None' ? value?.firstName + ' ' + value?.lastName : value?.player?.firstName + ' ' + value?.player?.lastName}
                     </Link>
                     {matchTypeForEmail !== 'None' && value.paymentMethod === 'Bank Transfer' && Boolean(value.paymentSlip) && (
                       <a
@@ -409,11 +407,11 @@ const AdminPlayersPage = () => {
                       </a>
                     )}
                   </button>
-                  <Button onClick={() => editSingle(value)} hidden={matchTypeForEmail == 'Single' ? false : true}>
+                  <Button onClick={() => editSingle(value)} hidden={matchTypeForEmail === 'Single' ? false : true}>
                     {' '}
                     Edit Single
                   </Button>
-                  <Button onClick={() => editDouble(value)} hidden={matchTypeForEmail == 'Double' ? false : true}>
+                  <Button onClick={() => editDouble(value)} hidden={matchTypeForEmail === 'Double' ? false : true}>
                     {' '}
                     Edit Double
                   </Button>

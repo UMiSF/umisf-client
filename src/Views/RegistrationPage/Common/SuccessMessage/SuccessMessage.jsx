@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, message } from 'antd';
+import { message } from 'antd';
 import Styles from "./successMessage.module.css";
 
 const SuccessMessage = () => {

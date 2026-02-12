@@ -1,11 +1,11 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminGalleryPage.module.css";
 import { Modal } from "react-bootstrap";
 
 const AdminGalleryPage = () => {
-  const [years, setYears] = useState([
+  const [years] = useState([
     2000, 2002, 2004, 2008, 2010, 2012, 2014, 2016, 2020, 2022, 2024,
   ]);
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import { Form, Input } from "reactstrap";
+import { Form } from "reactstrap";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import styles from "./adminPaymentEditPage.module.css";

@@ -54,7 +54,7 @@ function NotFound() {
             <SmallText> Oops! Page not Found.</SmallText>
             <BigText>404</BigText>
             <SmallerText>We can't find the page you're looking for.</SmallerText>
-            <MutedLink href="#">Go back home</MutedLink>
+            <MutedLink href="/">Go back home</MutedLink>
         </BoxContainer>
     );
 }

@@ -2,33 +2,19 @@ import React, { useState } from "react";
 import styles from "./headerPage.module.css";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { indigo } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
 
 const HeaderPage = () => {
   const [anchor, setAnchor] = useState(null);
   const [anchorMobile, setAnchorMobile] = useState(null);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [anchorElmobile, setAnchorElmobile] = useState(null);
-  const open = Boolean(anchorEl);
   const openRegister = Boolean(anchor);
   const openRegisterMobile = Boolean(anchorMobile);
-  const openmobile = Boolean(anchorElmobile);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
   const handleClickRegister = (event) => {
     setAnchor(event.currentTarget);
   };
   const handleClickRegisterMobile = (event) => {
     setAnchorMobile(event.currentTarget);
-  };
-  const handleClickMobile = (event) => {
-    setAnchorElmobile(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
   };
   const handleCloseRegister = () => {
     setAnchor(null);
@@ -36,10 +22,6 @@ const HeaderPage = () => {
   const handleCloseRegisterMobile = () => {
     setAnchorMobile(null);
   };
-  const handleCloseMobile = () => {
-    setAnchorElmobile(null);
-  };
-  const color = indigo[900];
 
   const ageGroupChampionshipFormUrl = "https://forms.gle/rqwRDvPasvF7YE9D6";
   const universityIndividualFormUrl = "https://forms.gle/MEvpUiKo9JFJv8dJ7";

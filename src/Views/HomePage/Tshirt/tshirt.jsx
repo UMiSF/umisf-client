@@ -1,21 +1,41 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./tshirt.module.css";
 
-const Tshirt = (props) => {
+const PRE_ORDER_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScAfVklcGP5lJJmijSdpwLTcYALW0aR_C-NAcl0-CyFhSk1uQ/viewform";
+
+const Tshirt = () => {
   return (
-    <div className={`${styles["tshirt-container"]}`}>
-      <div className={`${styles["tshirt-front"]}`}>
-        <img src={require(`../../../assests/images/tshirts/${props.tShirtFront}`)} />
+    <section className={`${styles["tshirt-container"]}`}>
+      <div className={`${styles["tshirt-photo"]} ${styles["left"]}`}>
+        <img
+          src={require("../../../assests/images/tshirt-preorder-female.png")}
+          alt="UMiSF 2026 t-shirt pre-order female model"
+        />
       </div>
-      <div className={`${styles["tshirt-title"]}`}>
-        <span >Make I</span>
-        <span style={{ color: "#0984e3" }}>t Yours</span>
-        <a href="#" className={`${styles["order-now"]}`}>Order Now</a>
+
+      <div className={`${styles["tshirt-content"]}`}>
+        <h2 className={`${styles["title"]}`}>T-Shirt Pre Order</h2>
+        <p className={`${styles["subtitle"]}`}>
+          Grab the official UMiSF tee and represent the tournament in style.
+        </p>
+        <a
+          href={PRE_ORDER_URL}
+          className={`${styles["order-now"]}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Pre Order Now
+        </a>
       </div>
-      <div className={`${styles["tshirt-back"]}`}>
-        <img src={require(`../../../assests/images/tshirts/${props.tShirtBack}`)} />
+
+      <div className={`${styles["tshirt-photo"]} ${styles["right"]}`}>
+        <img
+          src={require("../../../assests/images/tshirt-preorder-male.png")}
+          alt="UMiSF 2026 t-shirt pre-order male model"
+        />
       </div>
-    </div>
+    </section>
   );
 };
 

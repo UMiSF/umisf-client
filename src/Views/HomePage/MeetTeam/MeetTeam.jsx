@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./meetteam.module.css";
 
 const MeetTeam = (props) => {
@@ -30,7 +30,7 @@ const MeetTeam = (props) => {
         </div>
       </div>
       <div className={`${styles["team-photo"]}`}>
-        <img src={require(`../../../assests/images/${props.teamPhoto}`)} />
+        <img src={require(`../../../assests/images/${props.teamPhoto}`)} alt="" />
       </div>
     </div>
   );

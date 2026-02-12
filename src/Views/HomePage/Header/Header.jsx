@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import styles from "./header.module.css";
 
@@ -19,9 +18,11 @@ const backgroundImages = [
   image18,
 ];
 
+const PRE_ORDER_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScAfVklcGP5lJJmijSdpwLTcYALW0aR_C-NAcl0-CyFhSk1uQ/viewform";
+
 const Header = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (backgroundImages.length === 0) return;
@@ -36,50 +37,6 @@ const Header = () => {
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
-
-  // Button styles
-  const buttonStyles = {
-    padding: '5px 24px',
-    fontSize: '18px',
-    fontWeight: 'bold',
-    backgroundColor: isHovered ? '#ff6b00' : '#ff8800',
-    color: 'white',
-    border: 'none',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    boxShadow: isHovered ? '0 6px 12px rgba(0, 0, 0, 0.2)' : '0 4px 8px rgba(0, 0, 0, 0.1)',
-    transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
-    outline: 'none',
-    marginTop: '-7px',
-    letterSpacing: '1px',
-   
-    
-  };
-  const buttonURl = {
-   marginTop: "-7px"
-};
-  // Container styles for the merchandise section
-  const merchandiseContainerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    paddingBottom: '20px',
-    borderRadius: '10px',
-    marginTop: '5px',
-   
-    
-    
-  };
-
-  // Text styles for the merchandise announcement
-  const merchandiseTextStyle = {
-    fontSize: '30px',
-    color: 'white',
-    marginBottom: '10px',
-    fontWeight: '500'
-  };
 
   return (
     <div className={styles.homeContainer}>
@@ -99,25 +56,31 @@ const Header = () => {
       <div className={styles.headerDiv}>
         <HeaderPage />
         <div className={styles.UMiSFContainer}>
-          
           <h1>UMiSF</h1>
+          <div className={styles.preOrderSection}>
+            <div className={styles.preOrderPhotos}>
+              <img
+                className={styles.preOrderPhoto}
+                src={require("../../../assests/images/tshirt-preorder-female.png")}
+                alt="UMiSF t-shirt female model"
+              />
+              <img
+                className={styles.preOrderPhoto}
+                src={require("../../../assests/images/tshirt-preorder-male.png")}
+                alt="UMiSF t-shirt male model"
+              />
+            </div>
+            <a
+              href={PRE_ORDER_URL}
+              className={styles.preOrderButton}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Pre order UMiSF T-shirt"
+            >
+              PRE ORDER
+            </a>
+          </div>
         </div>
-          <div style={merchandiseContainerStyle}>
-          <div style={merchandiseTextStyle}>Register for UMiSF 2026</div>
-	          <Link to="/register/player" style={buttonURl}>
-	          <button 
-	            style={buttonStyles}
-	            onMouseEnter={() => setIsHovered(true)}
-	            onMouseLeave={() => setIsHovered(false)}
-	          
-	            aria-label="Register for UMiSF"
-	          >
-	            
-	            REGISTER
-	          </button>
-	          </Link>
-	        </div>
-      
       </div>
     </div>
   );

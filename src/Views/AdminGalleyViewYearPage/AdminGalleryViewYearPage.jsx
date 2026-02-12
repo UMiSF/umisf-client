@@ -8,7 +8,7 @@ import PhotoItem from "./PhotoItem";
 const AdminGalleryViewYearPage = () => {
   let { year } = useParams();
 
-  const [images, setImages] = useState([
+  const [images] = useState([
     "1.jpg",
     "2.jpg",
     "3.jpg",

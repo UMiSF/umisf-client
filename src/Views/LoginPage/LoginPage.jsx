@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
+import { MDBInput, MDBCol } from "mdb-react-ui-kit";
 import { message } from "antd";
 import styles from "./loginPage.module.css";
 import HeaderPage from "../HeaderPage/HeaderPage";
 import Dropdown from "../../common/Dropdown/Dropdown";
 import { api } from "../../common/api";
-import { useNavigate } from "react-router-dom";
 
 const LoginPage = (props) => {
-  const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
 
   const roles = ["admin", "tableOrganizer", "organizer", "umpire"];
@@ -76,7 +74,7 @@ const LoginPage = (props) => {
       <HeaderPage />
       <div className={`${styles["login-container"]}`}>
         <h1>Login</h1>
-        <img src={require("../../assests/images/user.png")} />
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}<img src={require("../../assests/images/user.png")} alt="User" />
         <Form
           noValidate
           validated={validated}

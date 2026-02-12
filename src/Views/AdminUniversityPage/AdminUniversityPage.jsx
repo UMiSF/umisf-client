@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from './adminUniversitiesPage.module.css';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
-import Axios from 'axios';
-import { message } from 'antd';
-import defualtUser from '../../assests/images/default-user.png';
+import { useLocation } from 'react-router-dom';
 import { getPaymentSlipHref } from '../../common/paymentSlip';
 
 
@@ -15,11 +11,9 @@ const AdminUniversityPage = () => {
   let location = useLocation();
   const {university} = location.state
   const [show, setShow] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [universityDetails, setUniversityDetails] = useState({
-    university
-  })
+  // eslint-disable-next-line no-unused-vars
+  const [universityDetails, setUniversityDetails] = useState({ university })
 
   const handleClose = (e) => {
     e.preventDefault();

@@ -1,9 +1,8 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { useLocation } from "react-router-dom";
 import Styles from "./PhotosPage.module.css";
 import HeaderPage from "../HeaderPage/HeaderPage";
 import PhotoItem from "./PhotoItem";
-import PreviewBox from "./PreviewBox";
 import Footer from "../HomePage/Footer/footer";
 
 const PhotosPage = (props) => {
