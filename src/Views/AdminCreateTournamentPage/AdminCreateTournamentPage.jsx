@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input } from "reactstrap";
+import { Form } from "reactstrap";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
@@ -38,7 +38,7 @@ const AdminCreateTournamentPage = () => {
     flyers: [],
   });
 
-  const [ageGroups, setAgeGroups] = useState([
+  const [ageGroups] = useState([
     "Under 9",
     "Under 11",
     "Under 13",

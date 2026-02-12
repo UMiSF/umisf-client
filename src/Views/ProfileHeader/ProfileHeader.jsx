@@ -30,7 +30,7 @@ const ProfileHeader = (props) => {
               ></img>
             </button>
             <div className={`${styles["header-drop-down-content"]}`}>
-              <a href="#">Settings</a>
+              <button type="button" onClick={() => {}} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", font: "inherit" }}>Settings</button>
               <button onClick={logout}>Log out</button>
             </div>
           </div>

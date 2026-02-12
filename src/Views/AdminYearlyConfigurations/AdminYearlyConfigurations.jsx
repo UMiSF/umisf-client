@@ -1,28 +1,14 @@
-import { React, useRef, useState } from "react";
+import { React, useState } from "react";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import styles from "./adminYearlyConfigurations.module.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { BsUpload } from "react-icons/bs";
 import { BsCloudUpload } from "react-icons/bs";
 import { FaFileImage } from "react-icons/fa";
 const AdminYearlyConfigurations = ({ onChange }) => {
-  const teamPhoto = [];
-  const teamCaptains = [];
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const handleFileInput = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
-  const handleUploadClick = () => {
-    // Upload the selected file to the server
-    console.log(`Uploading file: ${selectedFile.name}`);
-  };
 
   const [file, setFile] = useState(null);
   const [file1, setFile1] = useState(null);
@@ -33,19 +19,19 @@ const AdminYearlyConfigurations = ({ onChange }) => {
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     console.log(event.target.id);
-    if (event.target.id == "input-file") {
+    if (event.target.id === "input-file") {
       console.log(event.target.id);
       setFile(selectedFile);
-    } else if (event.target.id == "input-file-1") {
+    } else if (event.target.id === "input-file-1") {
       console.log(event.target.id);
       setFile1(selectedFile);
-    } else if (event.target.id == "input-file-2") {
+    } else if (event.target.id === "input-file-2") {
       console.log(event.target.id);
       setFile2(selectedFile);
-    } else if (event.target.id == "input-file-3") {
+    } else if (event.target.id === "input-file-3") {
       console.log(event.target.id);
       setFile3(selectedFile);
-    } else if (event.target.id == "input-file-4") {
+    } else if (event.target.id === "input-file-4") {
       console.log(event.target.id);
       setFile4(selectedFile);
     }

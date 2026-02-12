@@ -55,12 +55,22 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 170px); 
+  padding: 120px 16px 20px;
+  transform: translateY(34px);
 }
 
 .UMiSFContainer h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  font-size: clamp(4.4rem, 10vw, 7.5rem);
+  margin-top: 60px;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.12em;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 0%, #8ff4ff 38%, #25d2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  animation: umisfGlow 2.2s ease-in-out infinite alternate;
 }
 
 .UMiSFContainer p {

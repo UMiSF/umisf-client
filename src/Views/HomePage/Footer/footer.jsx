@@ -7,7 +7,7 @@ function Footer() {
     <div>
       <div className={`${styles["footer-container"]}`}>
         <div className={`${styles["footer-left"]}`}>
-          <img src={require("../../../assests/images/umisf_logo.png")} />
+          <img src={require("../../../assests/images/umisf_logo.png")} alt="" />
           <div className={`${styles["quick-tabs"]}`}>
             <a href="/">Home</a>|<a href="/about">About</a>|
             <a href="/draws">Draws</a><br />
@@ -28,7 +28,7 @@ function Footer() {
           <div className={`${styles["center-row"]}`}>
           <i class='bx bx-link-external' style={{color:'#ffffff'}} ></i>
             <p>
-              <a className={`${styles["uom-email"]}`} href="https://umisf-4778c.web.app/" target='_blank'>
+              <a className={`${styles["uom-email"]}`} href="https://umisf-4778c.web.app/" target="_blank" rel="noreferrer">
                 UMISF
               </a>
             </p>
@@ -42,10 +42,10 @@ function Footer() {
             by Mora Badminton. 
           </p>
           <div className={`${styles["footer-icons"]}`}>
-            <a href="https://twitter.com/MoratuwaUni" target='_blank'>
+            <a href="https://twitter.com/MoratuwaUni" target="_blank" rel="noreferrer">
               <i className="bx bxl-twitter"></i>
             </a>
-            <a href="https://www.facebook.com/UMiSFMora?mibextid=LQQJ4d" target='_blank'>
+            <a href="https://www.facebook.com/UMiSFMora?mibextid=LQQJ4d" target="_blank" rel="noreferrer">
               <i className="bx bxl-facebook"></i>
             </a>
           </div>

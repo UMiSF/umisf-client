@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './PreviewBox.module.css';
-import {GrNext,GrPrevious,GrDownload} from 'react-icons/gr';
+import {GrNext,GrPrevious} from 'react-icons/gr';
 
 const PreviewBox = () => {
     return (

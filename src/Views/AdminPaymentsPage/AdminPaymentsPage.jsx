@@ -10,7 +10,7 @@ import { getPaymentSlipHref } from '../../common/paymentSlip';
 import Axios from 'axios';
 
 const AdminPaymentsPage = () => {
-  const [paymentDetails, setPaymentDetails] = useState([]);
+  const [paymentDetails] = useState([]);
 
   const [filteredDetails, setFilteredDetails] = useState(paymentDetails);
   const user = 'Nethmi Jayakody';
@@ -68,7 +68,7 @@ const AdminPaymentsPage = () => {
       console.log('Valid filter');
       let paymentFilter = {};
       filter.paymentMethod !== 'All' && (paymentFilter = { ...paymentFilter, paymentMethod: filter.paymentMethod });
-      filter.paymentConfirmed != 2 && (paymentFilter = { ...paymentFilter, paymentConfirmed: filter.paymentConfirmed });
+      filter.paymentConfirmed !== 2 && (paymentFilter = { ...paymentFilter, paymentConfirmed: filter.paymentConfirmed });
       if (filter.matchType === 'Single' || filter.matchType === 'Double') {
         filter.ageGroup !== 'All' && (paymentFilter = { ...paymentFilter, ageGroup: filter.ageGroup });
       }

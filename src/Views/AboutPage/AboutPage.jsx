@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Footer from "../HomePage/Footer/footer";
-import Gallery from "../HomePage/Gallery/gallery";
 import HeaderPage from "../HeaderPage/HeaderPage";
 import styles from "./aboutPage.module.css";
 

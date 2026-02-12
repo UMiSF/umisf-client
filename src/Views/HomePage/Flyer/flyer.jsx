@@ -5,8 +5,8 @@ const TOURNAMENT_GUIDELINES_URL =
   "https://drive.google.com/file/d/1Zb_YdAWpWUcjpoxAusV156iqoi4stg2m/view?usp=drivesdk";
 
 const Flyer = (props) => {
-  const [date, setDate] = useState(props.starttingDate);
-  const [venue, setVenue] = useState(props.venue);
+  const [date] = useState(props.starttingDate);
+  const [venue] = useState(props.venue);
   const [registrationPeriod, setRegistrationPeriod] = useState(props.registrationsDeadlines);
 
   const months = [
@@ -25,11 +25,11 @@ const Flyer = (props) => {
   ];
 
   const superscript = (letter) => {
-    if (letter == "1") {
+    if (letter === "1") {
       return "st";
-    } else if (letter == "2") {
+    } else if (letter === "2") {
       return "nd";
-    } else if (letter == "3") {
+    } else if (letter === "3") {
       return "rd";
     } else {
       return "th";
@@ -37,8 +37,10 @@ const Flyer = (props) => {
   };
 
   const formatDate = (date) => {
-    let dayList = date.slice(0, 10).split("-");
-    let month = months[parseInt(dayList[1]) - 1];
+    if (Array.isArray(date)) return date;
+    const str = typeof date === "string" ? date : String(date);
+    let dayList = str.slice(0, 10).split("-");
+    let month = months[parseInt(dayList[1], 10) - 1];
     return [dayList[0], month, dayList[2]];
   };
 
@@ -49,6 +51,7 @@ const Flyer = (props) => {
     }
 
     setRegistrationPeriod(period);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- format on mount
   }, []);
 
   return (
@@ -56,6 +59,7 @@ const Flyer = (props) => {
       <img
         className={`${styles["flyer-image"]}`}
         src={require("../../../assests/images/flyer-background.png")}
+        alt=""
       />
       <div className={`${styles["overlay"]}`}>
         <div className={`${styles["action"]}`}>Action</div>
@@ -68,12 +72,12 @@ const Flyer = (props) => {
         <div className={`${styles["month"]}`}>{date[1] + " , " + date[0]}</div>
         <div className={`${styles["venue"]}`}>
           {venue.map((place, index) => (
-            <p> {index == 0 ? "at " + place : "& " + place}</p>
+            <p key={index}> {index === 0 ? "at " + place : "& " + place}</p>
           ))}
         </div>
 
         <div className={`${styles['schedule']}`}>
-        <a href="https://docs.google.com/document/d/11vPpB7E51RCKBoEbHDGFydU6os1HeChAtb7QmAMPHIE/edit?usp=sharing" target='_blank'>
+        <a href="https://docs.google.com/document/d/11vPpB7E51RCKBoEbHDGFydU6os1HeChAtb7QmAMPHIE/edit?usp=sharing" target="_blank" rel="noreferrer">
         <img
           className={`${styles['download-image']}`}
           src={require('../../../assests/images/schedule.png')}

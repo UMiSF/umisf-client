@@ -1,11 +1,10 @@
-import { closestCenter, DndContext, PointerSensor, rectIntersection, useSensor, useSensors } from "@dnd-kit/core";
+import { DndContext, PointerSensor, rectIntersection, useSensor, useSensors } from "@dnd-kit/core";
 import { restrictToWindowEdges } from "@dnd-kit/modifiers";
-import { Button, CardContent, CardMedia, Grid, Popover, ToggleButton, Typography } from "@mui/material";
+import { CardContent, CardMedia, Grid, Popover, Typography } from "@mui/material";
 import { useState } from "react";
 import { Bracket, Seed, SeedItem, SeedTeam } from "react-brackets";
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
-import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import { Card } from "react-bootstrap";
 
 export default function EditableDraw(props){

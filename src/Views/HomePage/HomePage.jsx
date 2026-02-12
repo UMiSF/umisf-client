@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header/Header";
-import CountDownTimer from "./CountDown/CountDownTimer";
 import MeetTeam from "./MeetTeam/MeetTeam";
 import Footer from "./Footer/footer";
 import Sponsers from "./Sponsers/Sponsers";
@@ -9,8 +8,8 @@ import Gallery from "./Gallery/gallery";
 import Flyer from "./Flyer/flyer";
 
 const HomePage = () => {
-  const [starttingDate, setStartingDate] = useState("2026-02-26T08:00:00.000");
-  const [finishingDate, setFinishingDate] = useState("2026-03-02T23:59:59.000");
+  const [starttingDate] = useState("2026-02-26T08:00:00.000");
+  const [finishingDate] = useState("2026-03-02T23:59:59.000");
 
   const [showContent, setShowContent] = useState(false);
 
@@ -52,7 +51,7 @@ const HomePage = () => {
     if (currentDate < new Date(finishingDate)) {
       setShowContent(true);
     }
-  }, []);
+  }, [finishingDate]);
 
   return (
     <div>

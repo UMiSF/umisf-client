@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Dropdown.module.css";
-import { DownOutlined } from "@ant-design/icons";
 const Dropdown = ({ options, value, name, lable, handleClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -13,12 +12,12 @@ const Dropdown = ({ options, value, name, lable, handleClick }) => {
       <div className={styles.lable} hidden={value !== ""} onClick={toggleOpen}>
         {"Select " + lable}
       </div>
-      <div className={styles.lableselected} hidden={value == ""} onClick={toggleOpen}>
+      <div className={styles.lableselected} hidden={value === ""} onClick={toggleOpen}>
         {"Select " + lable}
       </div>
       <div className={styles.selectedValue} onClick={toggleOpen}>
         {value}
-        <img src={require("../../assests/images/d_arrow.png")} className={styles.down} />
+        <img src={require("../../assests/images/d_arrow.png")} className={styles.down} alt="" />
       </div>
 
       {isOpen && (

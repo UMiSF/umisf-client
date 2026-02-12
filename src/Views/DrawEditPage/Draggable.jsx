@@ -1,7 +1,6 @@
 import React from 'react';
 import {useDraggable} from '@dnd-kit/core';
 import { Card } from '@mui/material';
-import zIndex from '@mui/material/styles/zIndex';
 
 export default function Draggable(props) {
   const {attributes, listeners, setNodeRef, transform} = useDraggable({

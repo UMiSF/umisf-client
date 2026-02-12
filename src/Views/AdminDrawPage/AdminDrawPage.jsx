@@ -5,7 +5,7 @@ import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 const AdminDrawPage = () => {
-  const [drawCatogory, setdrawCatogory] = useState({
+  const [drawCatogory] = useState({
     "under-19-men": [
       "draw-1",
       "draw-1",
@@ -105,11 +105,6 @@ const AdminDrawPage = () => {
   const [showDrawModal,  setShowDrawModal]=useState(false);
 
   const [folderToBeDeleted, setFolderToBeDeleted] = useState("");
-  const showDraws = (index, year) => {
-    // e.preventDefault();
-    console.log(year, index);
-    console.log();
-  };
   const handleClose = (e) => {
     e.preventDefault();
     setShowDeleteModal(false);

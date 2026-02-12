@@ -5,9 +5,7 @@ import ResultRowDouble from "./ResultRowDouble";
 import Styles from "./MatchResultsPage.module.css";
 import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import OngoingMatchcard from "./OngoingMatchcard";
 import { Link } from "react-router-dom";
-import { fontSize } from "@mui/system";
 import {schoolFinishedMatches} from './finishedMatches';
 const MatchResultsPage = () => {
   
@@ -28,8 +26,11 @@ const MatchResultsPage = () => {
   const [typeFilter, setTypeFilter] = useState("Type");
   const [dateFilter, setDateFilter] = useState("Date");
 
+  // eslint-disable-next-line no-unused-vars
   const [filterdAges, setFilteredAges] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [filterdTypes, setFilteredTypes] = useState(schoolFinishedMatches);
+  // eslint-disable-next-line no-unused-vars
   const [filterdDates, setFilteredDates] = useState([]);
 
   function handleAgeFilter(e) {
@@ -227,7 +228,7 @@ const MatchResultsPage = () => {
           <div className={`${Styles["container"]}`}>
             {tempFinishedMatches?.map((match, index) => {
               return (
-                match.matchCategory != 'Double'?
+                match.matchCategory !== 'Double'?
                 <Link
                   to={`../match-results/${match.id}`}
                   state={{ obj: match }}

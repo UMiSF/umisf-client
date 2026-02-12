@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Form, Input } from "reactstrap";
+import React, { useState } from "react";
+import { Form } from "reactstrap";
 import { useParams } from "react-router-dom";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
@@ -243,7 +243,7 @@ const AdminUniversityRegisterPage = () => {
             </div>
           </div>
           <hr />
-          {newUniversity["paymentMethod"] == "Bank Transfer" && (
+          {newUniversity["paymentMethod"] === "Bank Transfer" && (
             <div>
               <div className={`${styles["form-field-container"]}`}>
                 <div className={`${styles["form-field-name"]}`}>

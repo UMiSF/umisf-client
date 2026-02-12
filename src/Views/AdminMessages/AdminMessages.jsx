@@ -3,8 +3,8 @@ import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from './AdminMessages.module.css';
 import { useState, useEffect } from 'react';
-import { CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
-import { Select, Space, Button, message, Row, Col } from 'antd';
+import { CheckCircleTwoTone } from '@ant-design/icons';
+import { message, Row, Col } from 'antd';
 
 import Axios from 'axios';
 

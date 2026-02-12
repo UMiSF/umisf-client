@@ -3,7 +3,7 @@ import styles from './registrationsNotOpen.module.css'
 
 const RegistrationsNotOpen = () => {
 
-  const [registrationPeriod, setRegistrationPeriod] = useState(["13-04-2023", "30-04-2023"]);
+  const [registrationPeriod] = useState(["13-04-2023", "30-04-2023"]);
   return (
     <div className={`${styles["not-available-content"]}`}>
       <div className={`${styles["sad-face"]}`}>{":("}</div>

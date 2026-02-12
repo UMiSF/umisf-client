@@ -9,7 +9,7 @@ const AdminTournamentPage = () => {
     setIsClickedCurrent(!isClickedCurrent);
   };
 
-  const [isInitiatedTournament, setIsInitiatedTournament] = useState(true);
+  const [isInitiatedTournament] = useState(true);
 
   const rotateLeftStyle = { transform: "rotate(-360deg)" };
   const rotateRightStyle = { transform: "rotate(90deg)" };
@@ -17,7 +17,7 @@ const AdminTournamentPage = () => {
   const [isClickedCurrent, setIsClickedCurrent] = useState(true);
   const [isClickedPast, setIsClickedPast] = useState(false);
 
-  const [ageGroups, setAgeGroups] = useState([
+  const [ageGroups] = useState([
     "Under 11",
     "Under 17",
     "Under 19",
@@ -25,7 +25,7 @@ const AdminTournamentPage = () => {
     "University",
   ]);
 
-  const [Tournament, setTournament] = useState({
+  const [Tournament] = useState({
     startingDate: "2012-12-01",
     description: "UMiSF",
     tshirtFront: "tshirt-front.png",
@@ -56,9 +56,9 @@ const AdminTournamentPage = () => {
           Tournament
         </a>
 
-        <a
-          href=""
-          style={{ color: "red" }}
+        <button
+          type="button"
+          style={{ color: "red", background: "none", border: "none", padding: 0, cursor: "pointer" }}
           className={
             isInitiatedTournament
               ? "btn padding-none border-0 shadow-none"
@@ -67,10 +67,10 @@ const AdminTournamentPage = () => {
         >
           <img src={require("../../assests/images/close.png")} alt="" /> Close
           Tournament
-        </a>
+        </button>
       </div>
       <div className={`${styles["sub-titles"]}`}>
-        <a href="#" onClick={() => setIsClickedPast(!isClickedPast)}>
+        <button type="button" onClick={() => setIsClickedPast(!isClickedPast)} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", font: "inherit", color: "inherit" }}>
           {isClickedPast ? (
             <img
               style={rotateRightStyle}
@@ -89,10 +89,10 @@ const AdminTournamentPage = () => {
             />
           )}
           Past Tournaments
-        </a>
+        </button>
       </div>
       <div className={`${styles["sub-titles"]}`}>
-        <a href="#" onClick={showMessage}>
+        <button type="button" onClick={showMessage} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", font: "inherit", color: "inherit" }}>
           {isClickedCurrent ? (
             <img
               style={rotateRightStyle}
@@ -111,7 +111,7 @@ const AdminTournamentPage = () => {
             />
           )}
           Current Tournament
-        </a>
+        </button>
       </div>
       {! isInitiatedTournament
         ? isClickedCurrent && (

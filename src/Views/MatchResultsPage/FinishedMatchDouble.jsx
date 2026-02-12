@@ -1,7 +1,6 @@
 import React from "react";
 import Styles from "./FinishedMatchDouble.module.css";
 import { Table } from "react-bootstrap";
-import { useLocation } from 'react-router-dom';
 import { determineWinningRounds } from "./helpers/determineWinningRounds";
 
 const FinishedMatchDouble = (props) => {

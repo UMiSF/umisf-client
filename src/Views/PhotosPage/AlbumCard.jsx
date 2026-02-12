@@ -1,7 +1,6 @@
 import React from "react";
 import Styles from "./AlbumCard.module.css";
 import { Link } from "react-router-dom";
-import {FcImageFile} from 'react-icons/fc'
 const AlbumCard = (props) => {
   return (
     <div className={`${Styles["card"]} `}>
@@ -12,7 +11,7 @@ const AlbumCard = (props) => {
         style={{ textDecoration: "none"}}
         className = {`${Styles["link"]}`}
       >
-        <img src={require('../../assests/images/folder.png')} />
+        <img src={require('../../assests/images/folder.png')} alt="" />
       {props.title}
       </Link>
     </div>
