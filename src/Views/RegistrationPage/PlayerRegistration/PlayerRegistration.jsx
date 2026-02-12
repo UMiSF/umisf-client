@@ -13,7 +13,7 @@ import { Select } from "antd";
 import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 
 const TOURNAMENT_GUIDELINES_URL =
-  "https://drive.google.com/file/d/1hkU7h9Z3FlYU3ENO8SRNjUt3ufXkp2sG/view?usp=drive_link";
+  "https://drive.google.com/file/d/1Zb_YdAWpWUcjpoxAusV156iqoi4stg2m/view?usp=drivesdk";
 
 const PlayerRegistration = () => {
   const navigate = useNavigate()
@@ -42,10 +42,14 @@ const PlayerRegistration = () => {
 
   const registrationOptions = useMemo(
     () => [
-      { label: "Player Registration", value: "/register/player" },
+      { label: "Player Registration", value: "https://umisf-4778c.web.app/register/player" },
       {
         label: "Age Group Championship - UMiSF 2026",
         value: "https://forms.gle/rqwRDvPasvF7YE9D6",
+      },
+      {
+        label: "Novices Men's Double Badminton Championship",
+        value: "https://forms.gle/ZdgffEmLopJcu2QcA",
       },
       { label: "University Registration", value: "/register/university" },
       {
@@ -61,7 +65,7 @@ const PlayerRegistration = () => {
       window.open(path, "_blank", "noreferrer");
       return;
     }
-    if (path !== "/register/player") {
+    if (path !== "https://umisf-4778c.web.app/register/player") {
       const playerId = localStorage.getItem("playerId");
       if (!playerId) {
         message.warning(
@@ -176,7 +180,7 @@ const PlayerRegistration = () => {
           }
           
           setIsChecked(true);
-          navigate('/register/player/'+res.data.data[0]["_id"])
+          navigate('https://umisf-4778c.web.app/register/player/'+res.data.data[0]["_id"])
         })
         .catch((error) => {
           console.log("Error: ", error);
@@ -206,7 +210,7 @@ const PlayerRegistration = () => {
                 <Select
                   style={{ width: "100%" }}
                   placeholder="Select registration category"
-                  value="/register/player"
+                  value="https://umisf-4778c.web.app/register/player"
                   options={registrationOptions}
                   onChange={handleRegistrationCategoryChange}
                 />

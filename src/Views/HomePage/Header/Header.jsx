@@ -5,7 +5,7 @@ import styles from "./header.module.css";
 import image14 from "../../../assests/images/gallery/14.jpg";
 import image15 from "../../../assests/images/gallery/15.jpg";
 import image16 from "../../../assests/images/gallery/16.jpg";
-import image17 from "../../../assests/images/gallery/17.jpg";
+import image17 from "../../../assests/images/gallery/17.jpeg";
 import image18 from "../../../assests/images/gallery/18.jpg";
 
 
@@ -17,9 +17,6 @@ const backgroundImages = [
   image17,
   image18,
 ];
-
-const PRE_ORDER_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLScAfVklcGP5lJJmijSdpwLTcYALW0aR_C-NAcl0-CyFhSk1uQ/viewform";
 
 const Header = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -47,7 +44,7 @@ const Header = () => {
             key={index}
             className={`${styles.backgroundSlide} ${
               index === currentImageIndex ? styles.active : ''
-            }`}
+            } ${index === 3 ? styles.backgroundSlideWide : ''}`}
             style={{ backgroundImage: `url(${image})` }}
           />
         ))}
@@ -57,29 +54,6 @@ const Header = () => {
         <HeaderPage />
         <div className={styles.UMiSFContainer}>
           <h1>UMiSF</h1>
-          <div className={styles.preOrderSection}>
-            <div className={styles.preOrderPhotos}>
-              <img
-                className={styles.preOrderPhoto}
-                src={require("../../../assests/images/tshirt-preorder-female.png")}
-                alt="UMiSF t-shirt female model"
-              />
-              <img
-                className={styles.preOrderPhoto}
-                src={require("../../../assests/images/tshirt-preorder-male.png")}
-                alt="UMiSF t-shirt male model"
-              />
-            </div>
-            <a
-              href={PRE_ORDER_URL}
-              className={styles.preOrderButton}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Pre order UMiSF T-shirt"
-            >
-              PRE ORDER
-            </a>
-          </div>
         </div>
       </div>
     </div>

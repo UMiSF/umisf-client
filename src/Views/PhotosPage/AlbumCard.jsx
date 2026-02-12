@@ -6,7 +6,7 @@ const AlbumCard = (props) => {
     <div className={`${Styles["card"]} `}>
       
       <Link
-        to={`../photos/${props.title}`}
+        to={`/photos/${props.title}`}
         state={{obj: {photos:props.photos, title: props.title} }}
         style={{ textDecoration: "none"}}
         className = {`${Styles["link"]}`}

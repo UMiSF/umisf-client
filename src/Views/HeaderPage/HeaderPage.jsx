@@ -24,6 +24,8 @@ const HeaderPage = () => {
   };
 
   const ageGroupChampionshipFormUrl = "https://forms.gle/rqwRDvPasvF7YE9D6";
+  const novicesMensDoubleBadmintonChampionshipFormUrl =
+    "https://forms.gle/ZdgffEmLopJcu2QcA";
   const universityIndividualFormUrl = "https://forms.gle/MEvpUiKo9JFJv8dJ7";
   const loadSideBar = () => {
     let display = document.querySelector("#navSideBar").style.display;
@@ -112,6 +114,16 @@ const HeaderPage = () => {
                         className={`${styles["drop-down-item"]}`}
                       >
                         Age Group Championship - UMiSF 2026
+                      </a>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseRegister}>
+                      <a
+                        href={novicesMensDoubleBadmintonChampionshipFormUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`${styles["drop-down-item"]}`}
+                      >
+                        Novices Men's Double Badminton Championship
                       </a>
                     </MenuItem>
                 <MenuItem onClick={handleCloseRegister}>
@@ -235,6 +247,16 @@ const HeaderPage = () => {
                     </MenuItem>
                     <MenuItem onClick={handleCloseRegisterMobile}>
                       <a
+                        href={novicesMensDoubleBadmintonChampionshipFormUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`${styles["drop-down-item-mobile"]}`}
+                      >
+                        Novices Men's Double Badminton Championship
+                      </a>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseRegisterMobile}>
+                      <a
                         href={universityIndividualFormUrl}
                         target="_blank"
                         rel="noreferrer"
@@ -245,7 +267,7 @@ const HeaderPage = () => {
                     </MenuItem>
 {/*               <MenuItem onClick={handleClose}>
                   <a
-                    href="https://drive.google.com/file/d/1rib_sQQbHAtGlFZDYSSX5xznibua_u7l/view?usp=drive_link"
+                    href="https://drive.google.com/file/d/1Zb_YdAWpWUcjpoxAusV156iqoi4stg2m/view?usp=drivesdk"
                     target="_blank"
                     className={`${styles["drop-down-item"]}`}
                   >

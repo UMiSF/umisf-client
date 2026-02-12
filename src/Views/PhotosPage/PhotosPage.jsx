@@ -1,13 +1,24 @@
-import { React } from "react";
-import { useLocation } from "react-router-dom";
+import { React, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Styles from "./PhotosPage.module.css";
 import HeaderPage from "../HeaderPage/HeaderPage";
 import PhotoItem from "./PhotoItem";
 import Footer from "../HomePage/Footer/footer";
 
-const PhotosPage = (props) => {
-  let location = useLocation();
-  let { obj } = location.state;
+const PhotosPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const obj = location.state?.obj;
+
+  useEffect(() => {
+    if (!obj) {
+      navigate("/photos", { replace: true });
+    }
+  }, [obj, navigate]);
+
+  if (!obj) {
+    return null;
+  }
 
   return (
     <div className={`${Styles["body"]}`}>
@@ -15,7 +26,7 @@ const PhotosPage = (props) => {
       <div className={`${Styles["title"]}`}>
         <h1 style={{ fontFamily: "Hind", color: "#0984E3", fontSize: "4vw" }}>
           UMiSF{" - "}
-          {obj?.title}
+          {obj.title}
         </h1>
         <p>
           {" "}
@@ -24,9 +35,9 @@ const PhotosPage = (props) => {
       </div>
 
       <div className={`${Styles["gallery"]}`}>
-        {obj?.photos?.map((img, index) => {
-          return <PhotoItem key={index} image={img} id={index} />;
-        })}
+        {(obj.photos || []).map((img, index) => (
+          <PhotoItem key={index} image={img} id={index} />
+        ))}
       </div>
 
       <Footer />

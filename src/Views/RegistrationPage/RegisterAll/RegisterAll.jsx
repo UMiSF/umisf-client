@@ -16,7 +16,7 @@ import ImageUploader from "../Common/imageUploader/ImageUploader";
 import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
 
 const TOURNAMENT_GUIDELINES_URL =
-  "https://drive.google.com/file/d/1hkU7h9Z3FlYU3ENO8SRNjUt3ufXkp2sG/view?usp=drive_link";
+  "https://drive.google.com/file/d/1Zb_YdAWpWUcjpoxAusV156iqoi4stg2m/view?usp=drivesdk";
 
 const RegisterAll = () => {
   useEffect(() => {

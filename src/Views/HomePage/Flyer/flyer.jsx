@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./flyer.module.css";
 
 const TOURNAMENT_GUIDELINES_URL =
-  "https://drive.google.com/file/d/1hkU7h9Z3FlYU3ENO8SRNjUt3ufXkp2sG/view?usp=drive_link";
+  "https://drive.google.com/file/d/1Zb_YdAWpWUcjpoxAusV156iqoi4stg2m/view?usp=drivesdk";
 
 const Flyer = (props) => {
   const [date] = useState(props.starttingDate);
