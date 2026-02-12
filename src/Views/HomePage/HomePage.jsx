@@ -16,7 +16,7 @@ const HomePage = () => {
   const [venue] = useState(["MBA Badminton Courts, Colombo"]);
   const [registrationsDeadlines] = useState(["2026-02-14", "2026-02-19"]);
   const [teamPhoto] = useState("Team2025.jpg");
-  const [gallery] = useState(["10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg"]);
+  const [gallery] = useState(["10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpeg", "18.jpg"]);
   const [sponsers] = useState([]);
 
   useEffect(() => {

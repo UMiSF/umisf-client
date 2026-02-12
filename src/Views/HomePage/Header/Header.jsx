@@ -5,7 +5,7 @@ import styles from "./header.module.css";
 import image14 from "../../../assests/images/gallery/14.jpg";
 import image15 from "../../../assests/images/gallery/15.jpg";
 import image16 from "../../../assests/images/gallery/16.jpg";
-import image17 from "../../../assests/images/gallery/17.jpg";
+import image17 from "../../../assests/images/gallery/17.jpeg";
 import image18 from "../../../assests/images/gallery/18.jpg";
 
 
