@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input } from 'reactstrap';
+import { Form } from 'reactstrap';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from './adminPlayersAddPage.module.css';
 import ImageUploader from '../RegistrationPage/Common/imageUploader/ImageUploader';
 import Axios from 'axios';
 import { message } from 'antd';
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import defualtUser from '../../assests/images/default-user.png'
 import Dropdown from "../../common/Dropdown/Dropdown";
-import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
+import { MDBCol } from "mdb-react-ui-kit";
 const AdminPlayersAddPage = () => {
   const [userDetails, setUserDetails] = useState({
     firstName: "",

@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
@@ -29,10 +29,6 @@ const AdminCompaniesViewYearPage = () => {
     e.preventDefault();
     setShow(false);
   };
-  const handleShow = () => {
-    setShow(true);
-  };
-
   const unregisterCompany = (e) => {
     e.preventDefault();
     console.log(companyToBeUnregistered);
@@ -54,6 +50,7 @@ const AdminCompaniesViewYearPage = () => {
         console.log('Error loading users', error);
         message.error(error.response.data.message);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- initial load only
   }, []);
 
   return (

@@ -16,7 +16,6 @@ import MatchResultsPage from "../Views/MatchResultsPage/MatchResultsPage";
 import GalleryPage from "../Views/PhotosPage/GalleryPage";
 import NotFound from "../Views/NotFoundPage/NotFound";
 import Unauth from "../Views/UnauthPage/Unauth";
-import HeaderPage from "../Views/HeaderPage/HeaderPage";
 import OrganizerHomePage from "../Views/OrganizerHomePage/OrganizerHomePage";
 import TableHomePage from "../Views/TableHomePage/TableHomePage";
 import UmpireHomePage from "../Views/UmpireHomePage/UmpireHomePage";
@@ -24,7 +23,6 @@ import DrawEditPage from "../Views/DrawEditPage/DrawEditPage";
 
 import FinishedMatchCard from "../Views/MatchResultsPage/FinishedMatchCard";
 import PhotosPage from "../Views/PhotosPage/PhotosPage";
-import DevelopersPage from "../Views/DevelopersPage/DevelopersPage";
 import LoginPage from "../Views/LoginPage/LoginPage";
 import ExternalRedirect from "../common/ExternalRedirect";
 
@@ -69,6 +67,7 @@ export default function AppRouter() {
       <>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
+          <Route path="home" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact-us" element={<ContactUsPage />} />
           <Route path="Timeline" element={<Timeline/>}/>

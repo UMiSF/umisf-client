@@ -2,14 +2,11 @@ import React, { useState, useEffect, useMemo } from "react";
 import Styles from "./PlayerRegistration.module.css";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import info from "../../../assests/images/info.gif";
-import { Button, Space, notification } from "antd";
-import { RadiusBottomrightOutlined } from "@ant-design/icons";
 import { Form } from "react-bootstrap";
-import { MDBContainer, MDBInput, MDBBtn, MDBCol } from "mdb-react-ui-kit";
+import { MDBContainer, MDBInput, MDBCol } from "mdb-react-ui-kit";
 import ImageUploader from "../Common/imageUploader/ImageUploader";
 import { api } from "../../../common/api";
 import { message } from "antd";
-import SuccessMessage from "../Common/SuccessMessage/SuccessMessage";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
 import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
@@ -20,7 +17,7 @@ const TOURNAMENT_GUIDELINES_URL =
 
 const PlayerRegistration = () => {
   const navigate = useNavigate()
-  const [isRegistrationsOpen, setIsRegistrationsOpen] = useState(true);
+  const [isRegistrationsOpen] = useState(true);
 
   const [validated, setValidated] = useState(false); //form validation
   const [player, setPlayer] = useState({
@@ -38,7 +35,7 @@ const PlayerRegistration = () => {
   const [fileList, setFileList] = useState([]);
   const [image,setImage] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
-  const [playerID, setPlayerID] = useState("");
+  const [, setPlayerID] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const genderOptions = ["Male", "Female"];
   const [imageName,setImageName] = useState();

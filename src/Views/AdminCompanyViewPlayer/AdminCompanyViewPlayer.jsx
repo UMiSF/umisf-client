@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from '../AdminPlayersViewPage/adminPlayersViewPage.module.css';
-import { useLocation, Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Axios from 'axios';
 import { message } from 'antd';
 import defualtUser from '../../assests/images/default-user.png';
@@ -32,7 +32,7 @@ const AdminCompanyPlayerView = () => {
           console.log('Error loading users', error);
           message.error(error.response.data.message);
         });
-  }, [isSubmitting]);
+  }, [isSubmitting, playerId]);
 
   const handleClose = (e) => {
     e.preventDefault();

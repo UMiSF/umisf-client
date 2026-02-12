@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Form } from "reactstrap";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
@@ -8,7 +8,7 @@ import ImageUploader from "../RegistrationPage/Common/imageUploader/ImageUploade
 
 const AdminEditTournamentPage = (props) => {
   const location = useLocation();
-  const [ageGroups, setAgeGroups] = useState([
+  const [ageGroups] = useState([
     "Under 9",
     "Under 11",
     "Under 13",
@@ -47,6 +47,8 @@ const AdminEditTournamentPage = (props) => {
       case "tshirtBack":
         setTournament({ ...Tournament, tshirtBack: "" });
         break;
+      default:
+        break;
     }
   };
 
@@ -54,7 +56,7 @@ const AdminEditTournamentPage = (props) => {
     let newItems = [];
     let existingItems = listName;
     for (let item in existingItems) {
-      if (itemName != existingItems[item]) {
+      if (itemName !== existingItems[item]) {
         newItems.push(existingItems[item]);
       }
     }

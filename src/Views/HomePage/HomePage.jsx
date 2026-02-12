@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header/Header";
-import CountDownTimer from "./CountDown/CountDownTimer";
 import MeetTeam from "./MeetTeam/MeetTeam";
 import Footer from "./Footer/footer";
 import Sponsers from "./Sponsers/Sponsers";
@@ -9,50 +8,23 @@ import Gallery from "./Gallery/gallery";
 import Flyer from "./Flyer/flyer";
 
 const HomePage = () => {
-  const [starttingDate, setStartingDate] = useState("2026-02-26T08:00:00.000");
-  const [finishingDate, setFinishingDate] = useState("2026-03-02T23:59:59.000");
+  const [starttingDate] = useState("2026-02-26T08:00:00.000");
+  const [finishingDate] = useState("2026-03-02T23:59:59.000");
 
   const [showContent, setShowContent] = useState(false);
 
-  const [venue, setVenue] = useState(["MBA Badminton Courts, Colombo"]);
-  const [registrationsDeadlines, setRegistrationsDealines] = useState([
-    "2026-02-14",
-    "2026-02-19",
-  ]);
-  const [teamPhoto, setTeamPhoto] = useState("Team2025.jpg");
-
-  const [gallery, setGallery] = useState([
-    "10.jpg",
-    "11.jpg",
-    "12.jpg",
-    "13.jpg",
-    "14.jpg",
-    "15.jpg",
-    "16.jpg",
-    "17.jpeg",
-    "18.jpg",
-  ]);
-
-  const [sponsers, setSponsers] = useState([
-    // "MSLogo.jpeg",
-    // "Amana Bank.png",
-    // "Yeti.png",
-    // "Gihan Apparalels.jpeg",
-    // "Pera Beats.png",
-    // "Live-Plus.png",
-    // "BOC.png"
-  ]);
-
-  // const [sponsers, setSponsers] = useState([]);
-
-  const [tShirtBack, setTShirtBack] = useState("tshirt-back.png");
+  const [venue] = useState(["MBA Badminton Courts, Colombo"]);
+  const [registrationsDeadlines] = useState(["2026-02-14", "2026-02-19"]);
+  const [teamPhoto] = useState("Team2025.jpg");
+  const [gallery] = useState(["10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg"]);
+  const [sponsers] = useState([]);
 
   useEffect(() => {
     let currentDate = new Date();
     if (currentDate < new Date(finishingDate)) {
       setShowContent(true);
     }
-  }, []);
+  }, [finishingDate]);
 
   return (
     <div>

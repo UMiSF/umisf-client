@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
-import { Form, Input } from 'reactstrap';
+import { Form } from 'reactstrap';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from './adminPlayerEditPage.module.css';
@@ -15,7 +15,6 @@ const AdminPlayerEditPage = () => {
 
   const [playerDetails, setPlayerDetails] = useState(location.state.playerDetails);
 
-  const email = location.state.playerDetails.email;
   const gender = ['Male','Female'];
 
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);

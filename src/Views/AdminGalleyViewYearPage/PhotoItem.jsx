@@ -6,6 +6,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 
 const PhotoItem = (props) => {
   const [modal, setModal] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [tempImgSrc, setTempImgSrc] = useState("");
 
   function getImage(image) {

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Styles from './GalleryPage.module.css';
 import AlbumCard from './AlbumCard';
 import { useState } from 'react';
-import image from './Images/TempImg/1.jpg';
 import HeaderPage from '../HeaderPage/HeaderPage';
 import Footer from '../HomePage/Footer/footer';
 import { message } from 'antd';

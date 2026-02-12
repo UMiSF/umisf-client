@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./sponsers.module.css";
 
 const Sponsers = (props) => {
-  const [sponsers,setSponsers] = useState(props.sponsers);
+  const [sponsers] = useState(props.sponsers);
 
   return (
     <div className={`${styles["sponsers"]}`}>

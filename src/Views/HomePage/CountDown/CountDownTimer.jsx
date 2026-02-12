@@ -11,7 +11,7 @@ const CountDownTimer = (props) => {
 
   const calculateDays = (startingDate, endingDate) => {
     let numberOfDays = 0;
-    if (endingDate.getMonth == startingDate.getMonth) {
+    if (endingDate.getMonth() === startingDate.getMonth()) {
       numberOfDays = endingDate.getDate() - startingDate.getDate();
     } else {
       numberOfDays =
@@ -55,7 +55,6 @@ const CountDownTimer = (props) => {
   useEffect(() => {
     const countToDate = new Date(props.startingDate);
     setStartingTimeDifference(calculateTimeDiffrence(new Date(), countToDate));
-    let previousTimeBetweenDates;
 
     function flipAllCards(time, remainingDates) {
       const seconds = time % 60;
@@ -108,8 +107,8 @@ const CountDownTimer = (props) => {
       const timeBetweenDates = toSeconds(remainingTime);
       flipAllCards(timeBetweenDates, remainingTime.days);
 
-      previousTimeBetweenDates = timeBetweenDates;
-    }, 250);
+      }, 250);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- countdown interval
   }, []);
   return (
     <div className="countdown-container">

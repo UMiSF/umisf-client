@@ -21,7 +21,6 @@ export default function ImageUploader(props){
     setFileList,
     setImage,
     setImageName,
-    index,
     isfile,
     allowedTypes,
     accept,
@@ -141,7 +140,7 @@ export default function ImageUploader(props){
                     {fileList.length  < 1 &&  isfile === undefined ? 
                       (<img
                           src={uploader}
-                          alt="upload-image"
+                          alt=""
                           className={`${Styles["uploader"]}`}/>)
                       :(null) }
                 </Upload>

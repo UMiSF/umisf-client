@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input } from 'reactstrap';
+import { Form } from 'reactstrap';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import styles from './adminUserAccountAddPage.module.css';
-import ImageUploader from '../RegistrationPage/Common/imageUploader/ImageUploader';
 import Axios from 'axios';
 import { message } from 'antd';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
@@ -18,10 +17,12 @@ const AdminUserAccountAddPage = () => {
   });
 
   const userRoles = ['admin', 'umpire', 'tableOrganizer', 'organizer'];
+  // eslint-disable-next-line no-unused-vars
   const [selectedUserRoles, setSelectedUserRoles] = useState([]);
 
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 
+  // eslint-disable-next-line no-unused-vars
   const [profileImage, setProfileImage] = useState([]);
 
   const [validated, setValidated] = useState(false); //form validation
@@ -73,7 +74,7 @@ const AdminUserAccountAddPage = () => {
         return {
           ...prevValue,
           role: userDetails.role.filter((role) => {
-            return role != userRole;
+            return role !== userRole;
           }),
         };
       });

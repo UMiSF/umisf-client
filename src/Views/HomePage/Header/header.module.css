@@ -35,12 +35,6 @@
   opacity: 1;
 }
 
-/* Image 17: show full width so more of the photo is visible */
-.backgroundSlide.backgroundSlideWide {
-  background-size: 100% auto;
-  background-position: center center;
-}
-
 .headerDiv {
   position: relative;
   z-index: 10;
@@ -55,12 +49,22 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 170px); 
+  padding: 120px 16px 20px;
+  transform: translateY(34px);
 }
 
 .UMiSFContainer h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  font-size: clamp(4.4rem, 10vw, 7.5rem);
+  margin-top: 60px;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.12em;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 0%, #8ff4ff 38%, #25d2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  animation: umisfGlow 2.2s ease-in-out infinite alternate;
 }
 
 .UMiSFContainer p {
@@ -73,5 +77,87 @@ h1{
 }
 p{
   font-weight: bolder;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(110, 181, 213, 0.92);
+}
+
+.preOrderSection {
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.preOrderPhotos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.preOrderPhoto {
+  width: min(320px, 42vw);
+  max-height: 440px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.34);
+}
+
+.preOrderButton {
+  display: inline-block;
+  padding: 10px 26px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #fff;
+  background-color: #ff8800;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.preOrderButton:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #ff6b00;
+  transform: translateY(-1px);
+}
+
+@keyframes umisfGlow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(56, 232, 255, 0.35));
+  }
+  to {
+    filter: drop-shadow(0 0 16px rgba(56, 232, 255, 0.75));
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .UMiSFContainer {
+    padding-top: 100px;
+    transform: translateY(24px);
+  }
+
+  .UMiSFContainer h1 {
+    font-size: clamp(3.4rem, 14vw, 4.6rem);
+    margin-top: 0;
+    letter-spacing: 0.08em;
+  }
+
+  .preOrderSection {
+    margin-top: 12px;
+  }
+
+  .preOrderPhoto {
+    width: min(220px, 44vw);
+    max-height: 300px;
+  }
+
+  .preOrderButton {
+    font-size: 16px;
+    padding: 9px 20px;
+  }
 }
