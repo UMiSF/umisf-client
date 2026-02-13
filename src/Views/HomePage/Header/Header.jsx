@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import styles from "./header.module.css";
 
@@ -70,15 +71,24 @@ const Header = () => {
                 alt="UMiSF t-shirt male model"
               />
             </div>
-            <a
-              href={PRE_ORDER_URL}
-              className={styles.preOrderButton}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Pre order UMiSF T-shirt"
-            >
-              PRE ORDER
-            </a>
+            <div className={styles.headerButtons}>
+              <Link
+                to="/register/player"
+                className={styles.registerButton}
+                aria-label="Player registration for UMiSF"
+              >
+                REGISTER
+              </Link>
+              <a
+                href={PRE_ORDER_URL}
+                className={styles.preOrderButton}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Pre order UMiSF T-shirt"
+              >
+                PRE ORDER
+              </a>
+            </div>
           </div>
         </div>
       </div>

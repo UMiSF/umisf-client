@@ -105,6 +105,36 @@ p{
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.34);
 }
 
+.headerButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.registerButton {
+  display: inline-block;
+  padding: 10px 26px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #fff;
+  background-color: #025373;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.registerButton:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #033d52;
+  transform: translateY(-1px);
+}
+
 .preOrderButton {
   display: inline-block;
   padding: 10px 26px;
@@ -156,6 +186,11 @@ p{
     max-height: 300px;
   }
 
+  .headerButtons {
+    gap: 12px;
+  }
+
+  .registerButton,
   .preOrderButton {
     font-size: 16px;
     padding: 9px 20px;
