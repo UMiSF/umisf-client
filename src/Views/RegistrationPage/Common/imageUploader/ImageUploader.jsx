@@ -127,7 +127,7 @@ export default function ImageUploader(props){
             </Upload>
           ):
           (
-            <ImgCrop grid rotate>
+            <ImgCrop showGrid={true} rotationSlider={true}>
                 <Upload
                     // action={`${process.env.REACT_APP_API_URL}/image/add`}
                     listType="picture-card"
