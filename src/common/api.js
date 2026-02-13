@@ -7,7 +7,7 @@ function normalizeBaseUrl(value) {
 
 // CRA env vars are baked at build time; when missing we fall back to local dev backend.
 const LOCAL_FALLBACK_BASE_URL = "http://localhost:3001/api";
-const PROD_FALLBACK_BASE_URL = "https://mora-badminton.vercel.app/api";
+const PROD_FALLBACK_BASE_URL = "https://mora-umisf.onrender.com/api";
 
 function getDefaultBaseUrl() {
   if (typeof window === "undefined") return LOCAL_FALLBACK_BASE_URL;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import HeaderPage from "../../HeaderPage/HeaderPage";
 import styles from "./header.module.css";
 
@@ -21,6 +20,8 @@ const backgroundImages = [
 
 const PRE_ORDER_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScAfVklcGP5lJJmijSdpwLTcYALW0aR_C-NAcl0-CyFhSk1uQ/viewform";
+
+const REGISTER_PLAYER_URL = "https://umisf-4778c.web.app/register/player";
 
 const Header = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -72,13 +73,13 @@ const Header = () => {
               />
             </div>
             <div className={styles.headerButtons}>
-              <Link
-                to="/register/player"
+              <a
+                href={REGISTER_PLAYER_URL}
                 className={styles.registerButton}
                 aria-label="Player registration for UMiSF"
               >
                 REGISTER
-              </Link>
+              </a>
               <a
                 href={PRE_ORDER_URL}
                 className={styles.preOrderButton}
