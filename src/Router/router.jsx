@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
 // Route imports
 import HomePage from "../Views/HomePage/HomePage";
@@ -72,7 +72,8 @@ export default function AppRouter() {
           <Route path="contact-us" element={<ContactUsPage />} />
           <Route path="Timeline" element={<Timeline/>}/>
           <Route path="register">
-            <Route path="player" element={<PlayerRegistration />} />
+            <Route path="player" element={<Navigate to="/register/player/add" replace />} />
+            <Route path="player/add" element={<PlayerRegistration />} />
             <Route path="player/:id" element={<SuccessMessage />} />
             <Route
               path="single-double"

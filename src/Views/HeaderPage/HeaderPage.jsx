@@ -23,7 +23,7 @@ const HeaderPage = () => {
     setAnchorMobile(null);
   };
 
-  const registerUniversityUrl = "https://umisf-4778c.web.app/register/university";
+  const registerUniversityUrl = "/register/university";
   const ageGroupChampionshipFormUrl = "https://forms.gle/rqwRDvPasvF7YE9D6";
   const novicesMensDoubleBadmintonChampionshipFormUrl =
     "https://forms.gle/ZdgffEmLopJcu2QcA";
@@ -100,12 +100,12 @@ const HeaderPage = () => {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 		              >
                     <MenuItem onClick={handleCloseRegister}>
-                      <a
-                        href={registerUniversityUrl}
+                      <Link
+                        to={registerUniversityUrl}
                         className={`${styles["drop-down-item"]}`}
                       >
                         University Team Registration
-                      </a>
+                      </Link>
                     </MenuItem>
                     <MenuItem onClick={handleCloseRegister}>
                       <a
@@ -229,12 +229,12 @@ const HeaderPage = () => {
               }}
 		              >
                     <MenuItem onClick={handleCloseRegisterMobile}>
-                      <a
-                        href={registerUniversityUrl}
+                      <Link
+                        to={registerUniversityUrl}
                         className={`${styles["drop-down-item-mobile"]}`}
                       >
                         University Team Registration
-                      </a>
+                      </Link>
                     </MenuItem>
                     <MenuItem onClick={handleCloseRegisterMobile}>
                       <a

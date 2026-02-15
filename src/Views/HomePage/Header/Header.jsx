@@ -21,7 +21,7 @@ const backgroundImages = [
 const PRE_ORDER_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScAfVklcGP5lJJmijSdpwLTcYALW0aR_C-NAcl0-CyFhSk1uQ/viewform";
 
-const REGISTER_PLAYER_URL = "https://umisf-4778c.web.app/register/player";
+const REGISTER_PLAYER_URL = "/register/player/add";
 
 const Header = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

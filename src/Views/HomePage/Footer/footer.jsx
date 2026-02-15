@@ -28,7 +28,7 @@ function Footer() {
           <div className={`${styles["center-row"]}`}>
           <i class='bx bx-link-external' style={{color:'#ffffff'}} ></i>
             <p>
-              <a className={`${styles["uom-email"]}`} href="https://umisf-4778c.web.app/" target="_blank" rel="noreferrer">
+              <a className={`${styles["uom-email"]}`} href="/" rel="noreferrer">
                 UMISF
               </a>
             </p>

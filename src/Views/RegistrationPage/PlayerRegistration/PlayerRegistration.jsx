@@ -40,9 +40,10 @@ const PlayerRegistration = () => {
   const genderOptions = ["Male", "Female"];
   const [imageName,setImageName] = useState();
 
+  const PLAYER_REGISTER_URL = "/register/player/add";
   const registrationOptions = useMemo(
     () => [
-      { label: "Player Registration", value: "https://umisf-4778c.web.app/register/player" },
+      { label: "Player Registration", value: "/register/player/add" },
       {
         label: "Age Group Championship - UMiSF 2026",
         value: "https://forms.gle/rqwRDvPasvF7YE9D6",
@@ -65,7 +66,7 @@ const PlayerRegistration = () => {
       window.open(path, "_blank", "noreferrer");
       return;
     }
-    if (path !== "https://umisf-4778c.web.app/register/player") {
+    if (path !== PLAYER_REGISTER_URL) {
       const playerId = localStorage.getItem("playerId");
       if (!playerId) {
         message.warning(
@@ -180,7 +181,7 @@ const PlayerRegistration = () => {
           }
           
           setIsChecked(true);
-          navigate('https://umisf-4778c.web.app/register/player/'+res.data.data[0]["_id"])
+          navigate('/register/player/'+res.data.data[0]["_id"])
         })
         .catch((error) => {
           console.log("Error: ", error);
@@ -210,7 +211,7 @@ const PlayerRegistration = () => {
                 <Select
                   style={{ width: "100%" }}
                   placeholder="Select registration category"
-                  value="https://umisf-4778c.web.app/register/player"
+                  value={PLAYER_REGISTER_URL}
                   options={registrationOptions}
                   onChange={handleRegistrationCategoryChange}
                 />
