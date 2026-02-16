@@ -42,11 +42,14 @@ function Footer() {
             by Mora Badminton. 
           </p>
           <div className={`${styles["footer-icons"]}`}>
-            <a href="https://twitter.com/MoratuwaUni" target="_blank" rel="noreferrer">
-              <i className="bx bxl-twitter"></i>
+            <a href="https://www.instagram.com/_umisf_?igsh=MTJmdW9wdWJocHk4NA==" target="_blank" rel="noopener noreferrer">
+              <i className="bx bxl-instagram"></i>
             </a>
-            <a href="https://www.facebook.com/UMiSFMora?mibextid=LQQJ4d" target="_blank" rel="noreferrer">
+            <a href="https://www.facebook.com/share/1J4dHU361j/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
               <i className="bx bxl-facebook"></i>
+            </a>
+            <a href="https://twitter.com/MoratuwaUni" target="_blank" rel="noopener noreferrer">
+              <i className="bx bxl-twitter"></i>
             </a>
           </div>
         </div>
