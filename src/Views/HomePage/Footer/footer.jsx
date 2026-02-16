@@ -23,7 +23,7 @@ function Footer() {
           </div> */}
           <div className={`${styles["center-row"]}`}>
             <i class="bx bx-phone" style={{ color: "#ffffff" }}></i>
-            <p> 0112 640 051</p>
+            <p> 070 655 0022 (Hotline)</p>
           </div>
           <div className={`${styles["center-row"]}`}>
           <i class='bx bx-link-external' style={{color:'#ffffff'}} ></i>
