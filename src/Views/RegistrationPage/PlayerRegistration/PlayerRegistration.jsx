@@ -8,6 +8,7 @@ import ImageUploader from "../Common/imageUploader/ImageUploader";
 import { api } from "../../../common/api";
 import { message } from "antd";
 import RegistrationsNotOpen from "../../../common/registrationsNotOpen/RegistrationsNotOpen";
+import { REGISTRATIONS_OPEN } from "../../../constants/registrations";
 import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
 import { preflightBackendHealth, showBackendDownModal } from "../../../common/backendAvailability";
@@ -17,7 +18,7 @@ const TOURNAMENT_GUIDELINES_URL =
 
 const PlayerRegistration = () => {
   const navigate = useNavigate()
-  const [isRegistrationsOpen] = useState(true);
+  const isRegistrationsOpen = REGISTRATIONS_OPEN;
 
   const [validated, setValidated] = useState(false); //form validation
   const [player, setPlayer] = useState({

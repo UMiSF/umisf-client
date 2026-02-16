@@ -135,6 +135,12 @@ p{
   transform: translateY(-1px);
 }
 
+.registerButtonDisabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .preOrderButton {
   display: inline-block;
   padding: 10px 26px;

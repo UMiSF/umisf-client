@@ -4,6 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
+import { REGISTRATIONS_OPEN } from "../../constants/registrations";
 
 const HeaderPage = () => {
   const [anchor, setAnchor] = useState(null);
@@ -100,12 +101,18 @@ const HeaderPage = () => {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 		              >
                     <MenuItem onClick={handleCloseRegister}>
-                      <Link
-                        to={registerUniversityUrl}
-                        className={`${styles["drop-down-item"]}`}
-                      >
-                        University Team Registration
-                      </Link>
+                      {REGISTRATIONS_OPEN ? (
+                        <Link
+                          to={registerUniversityUrl}
+                          className={`${styles["drop-down-item"]}`}
+                        >
+                          University Team Registration
+                        </Link>
+                      ) : (
+                        <span className={`${styles["drop-down-item"]}`} style={{ opacity: 0.6, cursor: "default" }}>
+                          University Team Registration (Closed)
+                        </span>
+                      )}
                     </MenuItem>
                     <MenuItem onClick={handleCloseRegister}>
                       <a
@@ -229,12 +236,18 @@ const HeaderPage = () => {
               }}
 		              >
                     <MenuItem onClick={handleCloseRegisterMobile}>
-                      <Link
-                        to={registerUniversityUrl}
-                        className={`${styles["drop-down-item-mobile"]}`}
-                      >
-                        University Team Registration
-                      </Link>
+                      {REGISTRATIONS_OPEN ? (
+                        <Link
+                          to={registerUniversityUrl}
+                          className={`${styles["drop-down-item-mobile"]}`}
+                        >
+                          University Team Registration
+                        </Link>
+                      ) : (
+                        <span className={`${styles["drop-down-item-mobile"]}`} style={{ opacity: 0.6, cursor: "default" }}>
+                          University Team Registration (Closed)
+                        </span>
+                      )}
                     </MenuItem>
                     <MenuItem onClick={handleCloseRegisterMobile}>
                       <a

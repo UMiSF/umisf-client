@@ -10,6 +10,7 @@ import {
   preflightBackendHealth,
   showBackendDownModal,
 } from "../../../common/backendAvailability";
+import { REGISTRATIONS_OPEN } from "../../../constants/registrations";
 
 const TOURNAMENT_GUIDELINES_URL =
   "https://drive.google.com/file/d/1Zb_YdAWpWUcjpoxAusV156iqoi4stg2m/view?usp=drivesdk";
@@ -56,8 +57,8 @@ const emptyMember = { name: "", contactNumber: "", nicNumber: "", registrationNu
 
 export default function UniversityRegistration() {
   const isUniversityRegistrationOpen =
-    String(process.env.REACT_APP_UNI_REG_OPEN || "true").toLowerCase() !==
-    "false";
+    REGISTRATIONS_OPEN &&
+    String(process.env.REACT_APP_UNI_REG_OPEN || "true").toLowerCase() !== "false";
 
   const eventYear = useMemo(() => String(new Date().getFullYear()), []);
 

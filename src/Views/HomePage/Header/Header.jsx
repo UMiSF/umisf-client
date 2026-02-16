@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HeaderPage from "../../HeaderPage/HeaderPage";
+import { REGISTRATIONS_OPEN } from "../../../constants/registrations";
 import styles from "./header.module.css";
 
 import image14 from "../../../assests/images/gallery/14.jpg";
@@ -73,13 +74,22 @@ const Header = () => {
               />
             </div>
             <div className={styles.headerButtons}>
-              <a
-                href={REGISTER_PLAYER_URL}
-                className={styles.registerButton}
-                aria-label="Player registration for UMiSF"
-              >
-                REGISTER
-              </a>
+              {REGISTRATIONS_OPEN ? (
+                <a
+                  href={REGISTER_PLAYER_URL}
+                  className={styles.registerButton}
+                  aria-label="Player registration for UMiSF"
+                >
+                  REGISTER
+                </a>
+              ) : (
+                <span
+                  className={`${styles.registerButton} ${styles.registerButtonDisabled}`}
+                  aria-label="Registrations are closed"
+                >
+                  REGISTER
+                </span>
+              )}
               <a
                 href={PRE_ORDER_URL}
                 className={styles.preOrderButton}
