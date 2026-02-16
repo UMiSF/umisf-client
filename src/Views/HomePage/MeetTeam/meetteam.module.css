@@ -1,10 +1,15 @@
 .team-container{
   display: flex;
   flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .team {
   background-color: #012326;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .team-title{
@@ -28,10 +33,21 @@
   color: white;
 }
 
+.team-photo{
+  flex: 0 1 40%;
+  max-width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vw;
+}
+
 .team-photo img {
-  height: 28vw;
-  width: fit-content;
-  margin: 2vw;
+  width: 100%;
+  height: auto;
+  max-height: 28vw;
+  object-fit: contain;
+  display: block;
 }
 
 @media screen and (max-width: 920px) {
