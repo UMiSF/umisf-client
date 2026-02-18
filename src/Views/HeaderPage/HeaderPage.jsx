@@ -146,10 +146,10 @@ const HeaderPage = () => {
                 </MenuItem>
               </Menu>
             </React.Fragment>
-
+{/* 
             <Link to="/draws" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>Draws and Entries</li>
-            </Link>
+            </Link> */}
             <Link to="/Timeline" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>Events</li>
             </Link>
