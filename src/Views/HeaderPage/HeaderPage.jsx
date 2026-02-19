@@ -146,10 +146,7 @@ const HeaderPage = () => {
                 </MenuItem>
               </Menu>
             </React.Fragment>
-{/* 
-            <Link to="/draws" className={`${styles["navBarItemLink"]}`}>
-              <li className={`${styles["navBarItem"]}`}>Draws and Entries</li>
-            </Link> */}
+
             <Link to="/Timeline" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>Events</li>
             </Link>
@@ -290,14 +287,6 @@ const HeaderPage = () => {
                 </MenuItem> */}
             </Menu>
           </React.Fragment>
-          <Link to="/draws" className={`${styles["minNavLink"]}`}>
-            <li className={`${styles["navBarItem"]}`}>Draws and Entries</li>
-          </Link>
-
-
-          {/* <a href="/draws" className={`${styles["minNavLink"]}`}>
-            <li className={`${styles["navBarItem"]}`}>Draws and Entries</li>
-          </a> */}
           <Link to="/Timeline" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>Events</li>
           </Link>
