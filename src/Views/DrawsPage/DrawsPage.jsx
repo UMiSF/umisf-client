@@ -3,79 +3,74 @@ import Header from "../HeaderPage/HeaderPage";
 import styles from "./drawsPage.module.css";
 
 const DrawsPage = () => {
-  // const entries = [
-  //   {
-  //     name: "Age Group",
-  //     entriess: 0,
-  //     //pdf: "https://docs.google.com/spreadsheets/d/1ojmjVxOQR2izjtRrwE94sGIjKCMOJU2jTjnHC3nqS4I/edit?usp=sharing",
-  //     // pdf: "#",
-  //   },
-  //   {
-  //     name: "University Individual",
-  //     entriess: 0,
-  //     //pdf: "https://docs.google.com/spreadsheets/d/1ajskluZjY3TTH-KYxI5pSDSWIncoZEizvzby0MbkYk0/edit?usp=sharing",
-  //    // pdf: "https://docs.google.com/spreadsheets/d/1ZTov6tF-7uVCN9vmbGCf9O0zrCi54N4Uxw2ZGKFWFi8/edit?usp=sharing",
-  //   },
-  //   {
-  //     name: "University Staff",
-  //     entriess: 0,
-  //     //pdf: "https://docs.google.com/spreadsheets/d/1zwlm_Q1Pf3HZrDaDjcgourPfIKx81yJKvhlxqn8qs5o/edit?usp=sharing",
-  //   },
-  //   {
-  //     name: "University Team",
-  //     entriess: 0,
-  //     pdf: "#",
-  //   },
-  //   {
-  //     name: "Novices",
-  //     entriess: 0,
-  //     //pdf: "https://docs.google.com/spreadsheets/d/1bNSkUrblVyN97H75axH2QgqZttF8heRP/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
-  //     // pdf: "#",
-  //   },
-  //   {
-  //     name: "Club Team",
-  //     entriess: 0,
-  //     // pdf: "https://docs.google.com/spreadsheets/d/1ARfU-V5DV52QVro1kfBpxWC04kdtWAtzyOEUGRKY6g4/edit?usp=sharing",
-  //     pdf: "#",
-  //   },
-  //   {
-  //     name: "Invitational School",
-  //     entriess: 0,
-  //     // pdf: "https://docs.google.com/spreadsheets/d/1ARfU-V5DV52QVro1kfBpxWC04kdtWAtzyOEUGRKY6g4/edit?usp=sharing",
-  //     pdf: "#",
-  //   }
+  const entries = [
+    {
+      name: "Age Group",
+      entriess: 0,
+      pdf: "#",
+    },
+    {
+      name: "University Individual",
+      entriess: 0,
+      pdf: "#",
+    },
+    {
+      name: "University Staff",
+      entriess: 0,
+      pdf: "#",
+    },
+    {
+      name: "University Team",
+      entriess: 0,
+      pdf: "#",
+    },
+    {
+      name: "Novices",
+      entriess: 0,
+      pdf: "#",
+    },
+    {
+      name: "Club Team",
+      entriess: 0,
+      pdf: "#",
+    },
+    {
+      name: "Invitational School",
+      entriess: 0,
+      pdf: "#",
+    },
   ];
 
-  // const draws = [
-  //   {
-  //     name: "Age Group",
-  //     pdf: "https://docs.google.com/spreadsheets/d/1McZ_9bKe7DqFSqr4J1jrPRyPaBbo8DTP/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
-  //   },
-  //   {
-  //     name: "University Team",
-  //     pdf: "https://docs.google.com/spreadsheets/d/17kvE89K3FS6NTxEf2qb_tUpXoS8ac8sIrmulSxPqsAU/edit?usp=sharing",
-  //   },
-  //   {
-  //     name: "University Individual",
-  //     pdf: "https://docs.google.com/spreadsheets/d/11wLn0E6_45mJ3gZP82KIS8ivyyDZt9y9/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
-  //   },
-  //   {
-  //     name: "University Staff",
-  //     pdf: "https://docs.google.com/spreadsheets/d/1r6T6vozhdqDMiDk7HjqMXUeDtvAxaGxa/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
-  //   },
-  //   {
-  //     name: "Club Team",
-  //     pdf: "#",
-  //   },
-  //   {
-  //     name: "Novices",
-  //     pdf: "https://docs.google.com/spreadsheets/d/1Xmy84F2Uk1Gk7F2LU1B45e_pY0CEEyF1/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
-  //   },
-  //    {
-  //     name: "Invitational School",
-  //     pdf: "#",
-  //   }
-  // ];
+  const draws = [
+    {
+      name: "Age Group",
+      pdf: "https://docs.google.com/spreadsheets/d/1McZ_9bKe7DqFSqr4J1jrPRyPaBbo8DTP/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
+    },
+    {
+      name: "University Team",
+      pdf: "https://docs.google.com/spreadsheets/d/17kvE89K3FS6NTxEf2qb_tUpXoS8ac8sIrmulSxPqsAU/edit?usp=sharing",
+    },
+    {
+      name: "University Individual",
+      pdf: "https://docs.google.com/spreadsheets/d/11wLn0E6_45mJ3gZP82KIS8ivyyDZt9y9/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
+    },
+    {
+      name: "University Staff",
+      pdf: "https://docs.google.com/spreadsheets/d/1r6T6vozhdqDMiDk7HjqMXUeDtvAxaGxa/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
+    },
+    {
+      name: "Club Team",
+      pdf: "#",
+    },
+    {
+      name: "Novices",
+      pdf: "https://docs.google.com/spreadsheets/d/1Xmy84F2Uk1Gk7F2LU1B45e_pY0CEEyF1/edit?usp=sharing&ouid=108516483365954862566&rtpof=true&sd=true",
+    },
+    {
+      name: "Invitational School",
+      pdf: "#",
+    },
+  ];
 
   return (
     <>
