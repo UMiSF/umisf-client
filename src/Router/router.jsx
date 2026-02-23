@@ -63,7 +63,12 @@ export default function AppRouter() {
   const ageGroupChampionshipFormUrl =
     "https://forms.gle/rqwRDvPasvF7YE9D6";
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <>
         <Routes>
           <Route exact path="/" element={<HomePage />} />

@@ -53,6 +53,9 @@ const HeaderPage = () => {
             <Link to="/about" className={`${styles["navBarItemLink"]}`}>
               <li className={`${styles["navBarItem"]}`}>About</li>
             </Link>
+            <Link to="/draws" className={`${styles["navBarItemLink"]}`}>
+              <li className={`${styles["navBarItem"]}`}>Draws</li>
+            </Link>
             <React.Fragment>
               <IconButton
                 onClick={handleClickRegister}
@@ -178,6 +181,9 @@ const HeaderPage = () => {
           </Link>
           <Link to="/about" className={`${styles["minNavLink"]}`}>
             <li className={`${styles["navBarItem"]}`}>About</li>
+          </Link>
+          <Link to="/draws" className={`${styles["minNavLink"]}`}>
+            <li className={`${styles["navBarItem"]}`}>Draws</li>
           </Link>
           <React.Fragment>
             <IconButton

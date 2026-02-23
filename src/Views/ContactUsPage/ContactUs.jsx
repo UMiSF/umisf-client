@@ -53,7 +53,7 @@ function ContactUs() {
      
       } catch (error) {
         console.log("Error: ", error);
-        message.error(error.response.data.message);
+        message.error(error.response?.data?.message || error.message || "Failed to send.");
       }
     }
   }

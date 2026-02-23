@@ -19,10 +19,10 @@ const AdminMessagesPage = () => {
         headers: {},
       }
     ).then((res)=>{
-      setMessages(res.data.data)
+      setMessages(res?.data?.data ?? [])
     })
     .catch ((error) =>{
-      message.error(error.response.data.message);
+      message.error(error.response?.data?.message || error.message || "Failed to load messages.");
     })
     
   });

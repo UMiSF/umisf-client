@@ -40,7 +40,8 @@ const LoginPage = (props) => {
         }
       )
         .then((res) => {
-          message.success(res.data.message);
+          if (!res?.data) return;
+          message.success(res.data.message || "Login successful.");
           let user = res.data?.data;
 
           localStorage.setItem("user", user);
@@ -64,7 +65,7 @@ const LoginPage = (props) => {
           }
         })
         .catch((error) => {
-          message.error(error.response.data.message);
+          message.error(error.response?.data?.message || error.message || "Login failed.");
         });
     }
   };

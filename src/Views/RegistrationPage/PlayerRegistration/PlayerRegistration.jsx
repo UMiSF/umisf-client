@@ -165,14 +165,19 @@ const PlayerRegistration = () => {
         }
       )
         .then(async (res) => {
+          if (!res?.data?.data?.[0]) {
+            message.error("Invalid response from server.");
+            return;
+          }
           console.log(res.data);
-          message.success(res.data.message);
-          setPlayerID(res.data.data[0]["_id"]);
-          localStorage.setItem("playerId", res.data.data[0]["_id"]);
+          message.success(res.data.message || "Registration successful.");
+          const playerId = res.data.data[0]["_id"];
+          setPlayerID(playerId);
+          localStorage.setItem("playerId", playerId);
 
           
           if(image !== null){
-            const imageForm = {image: image,  playerId: res.data.data[0]["_id"], imageName: imageName};
+            const imageForm = {image: image,  playerId, imageName: imageName};
             await api.post(
               "/image/add",
             imageForm,
@@ -182,7 +187,7 @@ const PlayerRegistration = () => {
           }
           
           setIsChecked(true);
-          navigate('/register/player/'+res.data.data[0]["_id"])
+          navigate('/register/player/'+playerId)
         })
         .catch((error) => {
           console.log("Error: ", error);

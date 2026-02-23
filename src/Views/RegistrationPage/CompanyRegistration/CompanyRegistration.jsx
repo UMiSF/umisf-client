@@ -251,8 +251,13 @@ const CompanyRegistration = () => {
         }
       )
         .then(async (res) => {
+          if (!res?.data?.data) {
+            message.error("Invalid response from server.");
+            setIsLoading(false);
+            return;
+          }
           console.log(res.data);
-          message.success(res.data.message);
+          message.success(res.data.message || "Registration successful.");
 
           const imageForm = {
             companyId: res.data.data._id,
@@ -282,7 +287,7 @@ const CompanyRegistration = () => {
             setIsLoading(false);
             return;
           }
-          message.error(error.response.data.message);
+          message.error(error.response?.data?.message || error.message || "Registration failed.");
         });
       setIsSubmitting(false);
     }

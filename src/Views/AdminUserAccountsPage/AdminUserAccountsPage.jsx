@@ -38,11 +38,11 @@ const AdminUserAccountsPage = () => {
       }
     ).then((res)=>{
       console.log(res)
-      setUsers(res.data.data)
+      setUsers(res?.data?.data ?? [])
     })
     .catch ((error) =>{
       console.log("Error loading users", error);
-      message.error(error.response.data.message);
+      message.error(error.response?.data?.message || error.message || "Failed to load users.");
     })
 
   // eslint-disable-next-line react-hooks/exhaustive-deps -- initial load only
