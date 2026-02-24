@@ -14,8 +14,12 @@ const DrawsPage = () => {
       label: "Draws & Schedule",
       url: "https://docs.google.com/spreadsheets/d/1l1gxYxIHH1z6NkmlTQqq8zNo1L7lCwJ_nFf6-oPEDH4/edit?usp=drivesdk",
     },
+    {
+      name: "University Team",
+      label: "Draws & Schedule",
+      url: "https://docs.google.com/spreadsheets/d/1nPzI6Tq64L4LDJNWERouyRe__vFGjWb_cIdqY3YDEpg/edit?usp=sharing",
+    },
     // --- Future: uncomment and set url when published ---
-    // { name: "University Team", label: "Draws & Schedule", url: "https://docs.google.com/spreadsheets/d/17kvE89K3FS6NTxEf2qb_tUpXoS8ac8sIrmulSxPqsAU/edit?usp=sharing" },
     // { name: "University Staff", label: "Draws & Schedule", url: "https://docs.google.com/spreadsheets/d/1r6T6vozhdqDMiDk7HjqMXUeDtvAxaGxa/edit?usp=sharing" },
     // { name: "Club Team", label: "Draws & Schedule", url: "#" },
     // { name: "Novices", label: "Draws & Schedule", url: "https://docs.google.com/spreadsheets/d/1Xmy84F2Uk1Gk7F2LU1B45e_pY0CEEyF1/edit?usp=sharing" },
@@ -46,7 +50,7 @@ const DrawsPage = () => {
         <div className={`${styles["draws-container"]}`}>
           <div className={`${styles["title"]}`}>Draws & Schedule</div>
           <p className={styles["draws-note"]}>
-            Age Group and University Individual draws and schedules are available below.
+            Age Group, University Individual, and University Team draws and schedules are available below.
           </p>
           <div className={`${styles["tiles"]} row`}>
             {draws.map((draw, index) => (
