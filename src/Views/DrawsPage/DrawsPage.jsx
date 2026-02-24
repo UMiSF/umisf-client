@@ -3,16 +3,19 @@ import Header from "../HeaderPage/HeaderPage";
 import styles from "./drawsPage.module.css";
 
 const DrawsPage = () => {
-  // Only Age Group draws and schedule are published for now; add more below when available
   const draws = [
     {
       name: "Age Group",
       label: "Draws & Schedule",
       url: "https://docs.google.com/spreadsheets/d/1ljrlKdtYVsAvAYbcDrgcwb8tRVc_kwdc8IpWT-MOtDI/edit?gid=992639896#gid=992639896",
     },
+    {
+      name: "University Individual",
+      label: "Draws & Schedule",
+      url: "https://docs.google.com/spreadsheets/d/1l1gxYxIHH1z6NkmlTQqq8zNo1L7lCwJ_nFf6-oPEDH4/edit?usp=drivesdk",
+    },
     // --- Future: uncomment and set url when published ---
     // { name: "University Team", label: "Draws & Schedule", url: "https://docs.google.com/spreadsheets/d/17kvE89K3FS6NTxEf2qb_tUpXoS8ac8sIrmulSxPqsAU/edit?usp=sharing" },
-    // { name: "University Individual", label: "Draws & Schedule", url: "https://docs.google.com/spreadsheets/d/11wLn0E6_45mJ3gZP82KIS8ivyyDZt9y9/edit?usp=sharing" },
     // { name: "University Staff", label: "Draws & Schedule", url: "https://docs.google.com/spreadsheets/d/1r6T6vozhdqDMiDk7HjqMXUeDtvAxaGxa/edit?usp=sharing" },
     // { name: "Club Team", label: "Draws & Schedule", url: "#" },
     // { name: "Novices", label: "Draws & Schedule", url: "https://docs.google.com/spreadsheets/d/1Xmy84F2Uk1Gk7F2LU1B45e_pY0CEEyF1/edit?usp=sharing" },
@@ -43,7 +46,7 @@ const DrawsPage = () => {
         <div className={`${styles["draws-container"]}`}>
           <div className={`${styles["title"]}`}>Draws & Schedule</div>
           <p className={styles["draws-note"]}>
-            Currently only the Age Group draws and schedule are available.
+            Age Group and University Individual draws and schedules are available below.
           </p>
           <div className={`${styles["tiles"]} row`}>
             {draws.map((draw, index) => (
